@@ -1,7 +1,7 @@
 /.idea/
 *.iml
 
-#backend
+#backend_e-source
 /backend_e-source/target/
 /backend_e-source/!.mvn/wrapper/maven-wrapper.jar
 /backend_e-source/!**/src/main/**/target/
@@ -17,3 +17,15 @@
 /backend_e-source/mvnw
 /backend_e-source/.mvn/
 /backend_e-source/src/main/resources/application-secrets.properties
+# frontend
+/frontend/logs
+/frontend/*.log
+/frontend/npm-debug.log*
+/frontend/yarn-debug.log*
+/frontend/yarn-error.log*
+/frontend/pnpm-debug.log*
+/frontend/lerna-debug.log*
+/frontend/node_modules
+/frontend/dist
+/frontend/dist-ssr
+/frontend/*.local
