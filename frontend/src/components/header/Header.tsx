@@ -7,7 +7,7 @@ function Header() {
     return (
         <header>
                 <div id={"heading"}>
-                    <img id={"dash-icon-header"} className={"logo"} src="../../../public/icons/dash-red-192x192.png" />
+                    <img alt={"Dashboard Icon"} id={"dash-icon-header"} className={"logo"} src="../src/assets/dash-red-192x192.png" />
                     <h1>Sourc(es)</h1>
                 </div>
                 <div id={"creativity-boost"}>
