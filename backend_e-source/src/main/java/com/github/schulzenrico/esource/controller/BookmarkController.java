@@ -2,7 +2,6 @@ package com.github.schulzenrico.esource.controller;
 
 import com.github.schulzenrico.esource.models.Bookmark;
 import com.github.schulzenrico.esource.models.BookmarkDTO;
-
 import com.github.schulzenrico.esource.services.BookmarkService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;

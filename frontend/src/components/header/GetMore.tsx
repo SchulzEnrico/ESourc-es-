@@ -1,6 +1,7 @@
 import {useState} from "react";
 import axios from "axios";
 import {Form, InputGroup} from "react-bootstrap";
+
  function GetMore() {
         const [url, setUrl] = useState("");
         const [dropdownCategory, setDropdownCategory] = useState("");
@@ -8,7 +9,6 @@ import {Form, InputGroup} from "react-bootstrap";
         const [titleAndTags, setTitleAndTags] = useState("");
 
      function handleSubmit() {
-            // Erstellen Sie ein neues Bookmark-Objekt
             const newBookmarkDetailsDTO = {
                 bookmarkUrl: url,
                 bookmarkDropdownCategory: dropdownCategory,
@@ -19,7 +19,6 @@ import {Form, InputGroup} from "react-bootstrap";
             axios.post('api/bookmarks', newBookmarkDetailsDTO)
                 .then((response) => {
                     console.log('Bookmark added successfully:', response.data);
-
                     setUrl('');
                     setDropdownCategory('');
                     setName('');

@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../index.css';
 import { useEffect, useState } from "react";
-import axios, {AxiosResponse} from "axios";
+import axios from "axios";
 import {Bookmark} from "../types/types.ts";
 import {useParams} from "react-router-dom";
 
@@ -9,16 +9,15 @@ function Navbar() {
         const {bookmarkDropdownCategory} = useParams();
         const [bookmarks, setBookmarks] = useState<Bookmark[]>([]);
 
-
-        useEffect(():void => {
+        useEffect(() => {
                 axios.get(`/api/bookmarks/category/${bookmarkDropdownCategory}`)
-                    .then((response: AxiosResponse<Bookmark[]>):void => {
+                    .then((response):void => {
                             setBookmarks(response.data);
                     })
                     .catch(error =>
-                        console.error("Error fetching bookmarks:", error));
-        }, []);
-
+                        console.error("Error fetching bookmarks:", error)
+                    );
+        }, [bookmarkDropdownCategory]);
 
         return (
                 <>
