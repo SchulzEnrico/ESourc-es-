@@ -19,22 +19,20 @@ header {
                  inset -8px -8px 16px #3a3a3a;
 }
 
+#dash-icon-header {
+    padding: 1.5em 0 0 1.5em;
+    width: 4em;
+}
+
 #heading {
     display: flex;
-    margin: 0;
     height: 70%;
     width: fit-content;
 }
 
-#dash-icon-header {
-    height: 60%;
-    padding: 1.5em;
-}
-
-#creativity-boost {
-    width: 360px;
-    height: 75%;
-    margin-top: 10px;
+#bg-nested-dropdown {
+    height: 50%;
+    margin: auto;
     display: flex;
     justify-content: space-between;
 }
