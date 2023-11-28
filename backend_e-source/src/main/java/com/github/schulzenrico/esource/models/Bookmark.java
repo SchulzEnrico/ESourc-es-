@@ -22,7 +22,7 @@ public record Bookmark(
         @Field ("bookmark_name")
         String bookmarkName,
         @Getter
-        @Field ("bookmark_titleAndTags")
-        String bookmarkTitleAndTags
+        @Field ("bookmark_title")
+        String bookmarkTitle
 ) {
 }

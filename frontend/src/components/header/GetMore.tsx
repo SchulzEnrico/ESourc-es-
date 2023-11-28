@@ -6,14 +6,14 @@ import {Form, InputGroup} from "react-bootstrap";
         const [url, setUrl] = useState("");
         const [dropdownCategory, setDropdownCategory] = useState("");
         const [name, setName] = useState("");
-        const [titleAndTags, setTitleAndTags] = useState("");
+        const [title, setTitle] = useState("");
 
      function handleSubmit() {
             const newBookmarkDTO = {
                 bookmarkUrl: url,
                 bookmarkDropdownCategory: dropdownCategory,
                 bookmarkName: name,
-                bookmarkTitleAndTags: titleAndTags
+                bookmarkTitle: title
             }
 
             axios.post('api/bookmarks/add', newBookmarkDTO)
@@ -22,7 +22,7 @@ import {Form, InputGroup} from "react-bootstrap";
                     setUrl('');
                     setDropdownCategory('');
                     setName('');
-                    setTitleAndTags('');
+                    setTitle('');
                 })
                 .catch((error) => {
                     console.error('Error adding the bookmark:', error.message);
@@ -59,8 +59,8 @@ import {Form, InputGroup} from "react-bootstrap";
                             className={"w-100 mx-1 bg-transparent text-bg-dark"}
                             placeholder="Title & Tags"
                             aria-label="Title & Tags"
-                            value={titleAndTags}
-                            onChange={(event) => setTitleAndTags(event.target.value)}
+                            value={title}
+                            onChange={(event) => setTitle(event.target.value)}
                         />
                         <button type={"submit"} className={"mx-1 my-2 btn btn-outline-danger text-light"}>
                             add
