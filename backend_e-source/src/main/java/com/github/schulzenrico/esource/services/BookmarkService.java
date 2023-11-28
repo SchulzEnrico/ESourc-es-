@@ -28,7 +28,7 @@ public class BookmarkService {
         List<Bookmark> bookmarks = bookmarkRepository.findAll();
         return bookmarks.stream()
                 .map(this::convertToDTO)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     private BookmarkDTO convertToDTO(Bookmark bookmark) {

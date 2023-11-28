@@ -24,14 +24,5 @@ public class BookmarkController {
     public List<BookmarkDTO> getAllBookmarksAsDTO() {
         return bookmarkService.getAllBookmarksAsDTO();
     }
-
-    private BookmarkDTO convertToDTO(Bookmark bookmark) {
-        return BookmarkDTO.builder()
-                        .bookmarkUrl(bookmark.getBookmarkUrl())
-                        .bookmarkDropdownCategory(bookmark.getBookmarkDropdownCategory())
-                        .bookmarkName(bookmark.getBookmarkName())
-                        .bookmarkTitleAndTags(bookmark.getBookmarkTitleAndTags())
-                .build();
-    }
 }
 
