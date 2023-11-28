@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/bookmarks")
@@ -14,14 +15,23 @@ import java.util.List;
 public class BookmarkController {
     private BookmarkService bookmarkService;
 
-    @PostMapping("")
+    @PostMapping("/add")
     public Bookmark addBookmark(@RequestBody BookmarkDTO bookmarkDTO) {
       return bookmarkService.addBookmark(bookmarkDTO);
     }
 
-    @GetMapping("/category/{bookmarkDropdownCategory}")
-    public List<BookmarkDTO> getAllBookmarksByBookmarkDropdownCategory(@PathVariable String bookmarkDropdownCategory) {
-        return bookmarkService.getAllBookmarksByBookmarkDropdownCategory(bookmarkDropdownCategory);
+    @GetMapping("/getAll")
+    public List<BookmarkDTO> getAllBookmarksAsDTO() {
+        return bookmarkService.getAllBookmarksAsDTO();
+    }
+
+    private BookmarkDTO convertToDTO(Bookmark bookmark) {
+        return BookmarkDTO.builder()
+                        .bookmarkUrl(bookmark.getBookmarkUrl())
+                        .bookmarkDropdownCategory(bookmark.getBookmarkDropdownCategory())
+                        .bookmarkName(bookmark.getBookmarkName())
+                        .bookmarkTitleAndTags(bookmark.getBookmarkTitleAndTags())
+                .build();
     }
 }
 

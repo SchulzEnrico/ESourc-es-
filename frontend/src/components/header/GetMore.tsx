@@ -9,14 +9,14 @@ import {Form, InputGroup} from "react-bootstrap";
         const [titleAndTags, setTitleAndTags] = useState("");
 
      function handleSubmit() {
-            const newBookmarkDetailsDTO = {
+            const newBookmarkDTO = {
                 bookmarkUrl: url,
                 bookmarkDropdownCategory: dropdownCategory,
                 bookmarkName: name,
                 bookmarkTitleAndTags: titleAndTags
             }
 
-            axios.post('api/bookmarks', newBookmarkDetailsDTO)
+            axios.post('api/bookmarks/add', newBookmarkDTO)
                 .then((response) => {
                     console.log('Bookmark added successfully:', response.data);
                     setUrl('');
