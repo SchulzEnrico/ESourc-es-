@@ -17,8 +17,7 @@ import {Form, InputGroup} from "react-bootstrap";
             }
 
             axios.post('api/bookmarks/add', newBookmarkDTO)
-                .then((response) => {
-                    console.log('Bookmark added successfully:', response.data);
+                .then(() => {
                     setUrl('');
                     setDropdownCategory('');
                     setName('');
