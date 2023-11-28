@@ -31,7 +31,7 @@ public class BookmarkControllerTest {
     private BookmarkService bookmarkService;
 
     @Test
-    public void testAddBookmark() throws Exception {
+    void testAddBookmark() throws Exception {
         // Mocking
         Bookmark bookmark = Bookmark.builder()
                 .id("4117")
@@ -48,7 +48,7 @@ public class BookmarkControllerTest {
     }
 
     @Test
-    public void testGetAllBookmarksAsDTO() throws Exception {
+    void testGetAllBookmarksAsDTO() throws Exception {
         // Mocking
         BookmarkDTO bookmarkDTO1 = BookmarkDTO.builder()
                 .bookmarkTitle("Bookmark 1")

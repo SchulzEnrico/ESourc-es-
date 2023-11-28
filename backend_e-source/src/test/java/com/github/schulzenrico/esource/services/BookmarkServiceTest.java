@@ -26,7 +26,7 @@ public class BookmarkServiceTest {
     private BookmarkService bookmarkService;
 
     @Test
-    public void testAddBookmark() {
+    void testAddBookmark() {
         // Mocking
         BookmarkDTO bookmarkDTO = BookmarkDTO.builder()
                 .bookmarkTitle("Test Bookmark")
@@ -45,7 +45,7 @@ public class BookmarkServiceTest {
     }
 
     @Test
-    public void testGetAllBookmarksAsDTO() {
+    void testGetAllBookmarksAsDTO() {
         // Mocking
         Bookmark bookmark1 = Bookmark.builder()
                 .bookmarkTitle("Bookmark 1")
