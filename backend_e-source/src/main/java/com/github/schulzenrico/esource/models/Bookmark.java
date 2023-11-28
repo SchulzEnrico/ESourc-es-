@@ -1,7 +1,6 @@
 package com.github.schulzenrico.esource.models;
 
 import lombok.Builder;
-import lombok.Getter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -12,17 +11,13 @@ public record Bookmark(
 
         @Id
         String id,
-        @Getter
         @Field ("bookmark_url")
-        String bookmarkUrl,
-        @Getter
+        String url,
         @Field ("bookmark_dropdownCategory")
-        String bookmarkDropdownCategory,
-        @Getter
+        String dropdownCategory,
         @Field ("bookmark_name")
-        String bookmarkName,
-        @Getter
+        String name,
         @Field ("bookmark_title")
-        String bookmarkTitle
+        String title
 ) {
 }

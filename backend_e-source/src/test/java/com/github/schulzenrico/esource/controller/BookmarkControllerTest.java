@@ -35,8 +35,8 @@ public class BookmarkControllerTest {
         // Mocking
         Bookmark bookmark = Bookmark.builder()
                 .id("4117")
-                .bookmarkTitle("Test Bookmark")
-                .bookmarkUrl("http://example.com")
+                .title("Test Bookmark")
+                .url("http://example.com")
                 .build();
         when(bookmarkService.addBookmark(any(BookmarkDTO.class))).thenReturn(bookmark);
 
@@ -51,12 +51,12 @@ public class BookmarkControllerTest {
     void testGetAllBookmarksAsDTO() throws Exception {
         // Mocking
         BookmarkDTO bookmarkDTO1 = BookmarkDTO.builder()
-                .bookmarkTitle("Bookmark 1")
-                .bookmarkUrl("http://bookmark1.com")
+                .title("Bookmark 1")
+                .url("http://bookmark1.com")
                 .build();
         BookmarkDTO bookmarkDTO2 = BookmarkDTO.builder()
-                .bookmarkTitle("Bookmark 2")
-                .bookmarkUrl("http://bookmark2.com")
+                .title("Bookmark 2")
+                .url("http://bookmark2.com")
                 .build();
         List<BookmarkDTO> bookmarkDTOList = Arrays.asList(bookmarkDTO1, bookmarkDTO2);
         when(bookmarkService.getAllBookmarksAsDTO()).thenReturn(bookmarkDTOList);

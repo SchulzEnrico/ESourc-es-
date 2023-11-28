@@ -16,10 +16,10 @@ public class BookmarkService {
     public Bookmark addBookmark(BookmarkDTO bookmarkDTO) {
        return bookmarkRepository.save(Bookmark.builder()
                 .id(null)
-                .bookmarkUrl(bookmarkDTO.bookmarkUrl())
-                .bookmarkDropdownCategory(bookmarkDTO.bookmarkDropdownCategory())
-                .bookmarkName(bookmarkDTO.bookmarkName())
-                .bookmarkTitle(bookmarkDTO.bookmarkTitle())
+                .url(bookmarkDTO.url())
+                .dropdownCategory(bookmarkDTO.dropdownCategory())
+                .name(bookmarkDTO.name())
+                .title(bookmarkDTO.title())
         .build());
     }
 
@@ -32,10 +32,10 @@ public class BookmarkService {
 
     private BookmarkDTO convertToDTO(Bookmark bookmark) {
         return BookmarkDTO.builder()
-                        .bookmarkUrl(bookmark.getBookmarkUrl())
-                        .bookmarkDropdownCategory(bookmark.getBookmarkDropdownCategory())
-                        .bookmarkName(bookmark.getBookmarkName())
-                        .bookmarkTitle(bookmark.getBookmarkTitle())
+                        .url(bookmark.url())
+                        .dropdownCategory(bookmark.dropdownCategory())
+                        .name(bookmark.name())
+                        .title(bookmark.title())
                 .build();
     }
 }

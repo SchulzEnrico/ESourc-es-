@@ -29,13 +29,13 @@ public class BookmarkServiceTest {
     void testAddBookmark() {
         // Mocking
         BookmarkDTO bookmarkDTO = BookmarkDTO.builder()
-                .bookmarkTitle("Test Bookmark")
-                .bookmarkUrl("http://example.com")
+                .title("Test Bookmark")
+                .url("http://example.com")
                 .build();
         Bookmark expectedBookmark = Bookmark.builder()
                 .id("4117")
-                .bookmarkTitle("Test Bookmark")
-                .bookmarkUrl("http://example.com")
+                .title("Test Bookmark")
+                .url("http://example.com")
                 .build();
         when(bookmarkRepository.save(any(Bookmark.class))).thenReturn(expectedBookmark);
 
@@ -48,12 +48,12 @@ public class BookmarkServiceTest {
     void testGetAllBookmarksAsDTO() {
         // Mocking
         Bookmark bookmark1 = Bookmark.builder()
-                .bookmarkTitle("Bookmark 1")
-                .bookmarkUrl("http://bookmark1.com")
+                .title("Bookmark 1")
+                .url("http://bookmark1.com")
                 .build();
         Bookmark bookmark2 = Bookmark.builder()
-                .bookmarkTitle("Bookmark 2")
-                .bookmarkUrl("http://bookmark2.com")
+                .title("Bookmark 2")
+                .url("http://bookmark2.com")
                 .build();
         List<Bookmark> bookmarks = Arrays.asList(bookmark1, bookmark2);
         when(bookmarkRepository.findAll()).thenReturn(bookmarks);
@@ -61,9 +61,9 @@ public class BookmarkServiceTest {
         // Test
         List<BookmarkDTO> bookmarkDTOList = bookmarkService.getAllBookmarksAsDTO();
         assertEquals(2, bookmarkDTOList.size());
-        assertEquals("Bookmark 1", bookmarkDTOList.get(0).bookmarkTitle());
-        assertEquals("http://bookmark1.com", bookmarkDTOList.get(0).bookmarkUrl());
-        assertEquals("Bookmark 2", bookmarkDTOList.get(1).bookmarkTitle());
-        assertEquals("http://bookmark2.com", bookmarkDTOList.get(1).bookmarkUrl());
+        assertEquals("Bookmark 1", bookmarkDTOList.get(0).title());
+        assertEquals("http://bookmark1.com", bookmarkDTOList.get(0).url());
+        assertEquals("Bookmark 2", bookmarkDTOList.get(1).title());
+        assertEquals("http://bookmark2.com", bookmarkDTOList.get(1).url());
     }
 }

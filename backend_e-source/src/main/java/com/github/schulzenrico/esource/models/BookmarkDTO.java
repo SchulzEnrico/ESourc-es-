@@ -4,10 +4,10 @@ import lombok.Builder;
 
 @Builder
 public record BookmarkDTO(
-        String bookmarkUrl,
-        String bookmarkDropdownCategory,
-        String bookmarkName,
-        String bookmarkTitle
+        String url,
+        String dropdownCategory,
+        String name,
+        String title
 ) {
 }
 
