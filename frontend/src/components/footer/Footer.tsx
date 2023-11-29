@@ -15,7 +15,7 @@ function Footer() {
                     <img title={"Project on Github"} src="../src/assets/compass-invert.svg" className={"logo"} alt="Compass icon" />
                 </a>
                 <a href="https://github.com/SchulzEnrico/ESourc-es-/issues" target="_blank">
-                    <img title={"Issues on Github"} id={"chuck"} src="../src/assets/base_chuck.svg" className={"logo"} alt="Shoe icon" />
+                    <img title={"Issues on Github"} src="../src/assets/base_chuck.svg" className={"logo"} alt="Shoe icon" />
                 </a>
             </div>
         </footer>
