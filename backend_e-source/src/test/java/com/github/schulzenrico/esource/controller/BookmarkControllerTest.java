@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(controllers = BookmarkController.class)
 @ExtendWith(MockitoExtension.class)
-public class BookmarkControllerTest {
+class BookmarkControllerTest {
 
     @Autowired
     private MockMvc mockMvc;

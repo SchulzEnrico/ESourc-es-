@@ -45,7 +45,6 @@ function HeaderNavbar() {
     };
 
     return (
-        <>
             <Navbar bg="dark" variant="dark" expand="sm">
                 <Navbar.Toggle aria-controls="navbarNav" />
                 <Navbar.Collapse id="navbarNav">
@@ -54,7 +53,6 @@ function HeaderNavbar() {
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
-        </>
     );
 }
 
