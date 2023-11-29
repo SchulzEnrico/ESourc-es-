@@ -22,22 +22,22 @@ function HeaderNavbar() {
         const categories = new Map();
 
         bookmarks.forEach((bookmark) => {
-            const { bookmarkDropdownCategory, links } = bookmark;
+            const { dropdownCategory, links } = bookmark;
 
-            if (!categories.has(bookmarkDropdownCategory)) {
-                categories.set(bookmarkDropdownCategory, []);
+            if (!categories.has(dropdownCategory)) {
+                categories.set(dropdownCategory, []);
             }
 
             if (links && links.length > 0) {
-                categories.get(bookmarkDropdownCategory).push(...links);
+                categories.get(dropdownCategory).push(...links);
             }
         });
 
         return Array.from(categories).map(([category, links]) => (
             <NavDropdown title={category} id={`navbarDropdown${category}`} key={category}>
-                {links.map((link: { id: string, bookmarkUrl: string, bookmarkName: string }) => (
-                    <NavDropdown.Item key={link.id} href={link.bookmarkUrl} target="_blank">
-                        {link.bookmarkName}
+                {links.map((link: { id: string, title: string, url: string, name: string }) => (
+                    <NavDropdown.Item key={link.id} href={link.url} target="_blank">
+                        {link.name}
                     </NavDropdown.Item>
                 ))}
             </NavDropdown>

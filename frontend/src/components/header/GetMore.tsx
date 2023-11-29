@@ -10,10 +10,10 @@ import {Form, InputGroup} from "react-bootstrap";
 
      function handleSubmit() {
             const newBookmarkDTO = {
-                bookmarkUrl: url,
-                bookmarkDropdownCategory: dropdownCategory,
-                bookmarkName: name,
-                bookmarkTitle: title
+                url: url,
+                dropdownCategory: dropdownCategory,
+                name: name,
+                title: title
             }
 
             axios.post('api/bookmarks/add', newBookmarkDTO)

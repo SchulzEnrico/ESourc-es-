@@ -1,15 +1,15 @@
 export type BookmarkDTO = {
     id: string;
-    bookmarkUrl: string;
-    bookmarkDropdownCategory: string;
-    bookmarkName: string;
-    bookmarkTitle: string;
+    url: string;
+    dropdownCategory: string;
+    name: string;
+    title: string;
     links: Link[];
 };
 
 export type Link = {
     id: string;
-    bookmarkName: string;
-    bookmarkUrl: string;
-    bookmarkTitle: string;
+    name: string;
+    url: string;
+    title: string;
 };
