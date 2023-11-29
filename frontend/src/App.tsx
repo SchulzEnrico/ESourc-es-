@@ -7,6 +7,12 @@ function App() {
   return (
     <>
         <Header />
+        <img
+            className={"base-chuck"}
+            title={"Not a Chuck"}
+            src="../src/assets/base_chuck.svg"
+            alt="Chuck Icon"
+        />
         <Footer />
     </>
   )
