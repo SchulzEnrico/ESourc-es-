@@ -56,7 +56,7 @@ public class BookmarkService {
 
     private BookmarkDTO convertToDTOWithId(Bookmark bookmark) {
         return BookmarkDTO.builder()
-                        ._id(new ObjectId(bookmark.id()).toHexString())
+                        .id(new ObjectId(bookmark.id()).toHexString())
                         .url(bookmark.url())
                         .dropdownCategory(bookmark.dropdownCategory())
                         .name(bookmark.name())
