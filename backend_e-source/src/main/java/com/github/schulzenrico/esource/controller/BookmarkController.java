@@ -1,9 +1,15 @@
 package com.github.schulzenrico.esource.controller;
 
+
 import com.github.schulzenrico.esource.models.Bookmark;
 import com.github.schulzenrico.esource.models.BookmarkDTO;
 import com.github.schulzenrico.esource.services.BookmarkService;
 import lombok.AllArgsConstructor;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,16 +18,53 @@ import java.util.List;
 @RequestMapping("/api/bookmarks")
 @AllArgsConstructor
 public class BookmarkController {
-    private BookmarkService bookmarkService;
+
+    private static final Logger logger = LoggerFactory.getLogger(BookmarkController.class);
+
+    private final BookmarkService bookmarkService;
 
     @PostMapping("/add")
     public Bookmark addBookmark(@RequestBody BookmarkDTO bookmarkDTO) {
-      return bookmarkService.addBookmark(bookmarkDTO);
+        logger.info("Received bookmark DTO: {}", bookmarkDTO);
+        return bookmarkService.addBookmark(bookmarkDTO);
     }
 
     @GetMapping("/getAll")
-    public List<BookmarkDTO> getAllBookmarksAsDTO() {
+    public List<BookmarkDTO> getAllBookmarks() {
         return bookmarkService.getAllBookmarksAsDTO();
     }
-}
 
+    @GetMapping("/getAllBookmarksForEdit")
+    public ResponseEntity<List<BookmarkDTO>> getAllBookmarksForEdit() {
+        try {
+            List<BookmarkDTO> bookmarks = bookmarkService.getAllBookmarksForEditAsDTO();
+            bookmarks.forEach(bookmarkDTO -> logger.info("BookmarkDTO with _id: {}", bookmarkDTO._id()));  // Hier 'get_id()' statt 'id()'
+            return ResponseEntity.ok(bookmarks);
+        } catch (Exception e) {
+            logger.error("Error retrieving all bookmarks", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+    @PutMapping("/edit/{_id}")
+    public ResponseEntity<Bookmark> editBookmark(@PathVariable String _id, @RequestBody BookmarkDTO bookmarkDTO) {
+        try {
+            Bookmark bookmark = bookmarkService.editBookmark(_id, bookmarkDTO);
+            return ResponseEntity.ok(bookmark);
+        } catch (Exception e) {
+            logger.error("Error editing the bookmark", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+    @DeleteMapping("/delete/{_id}")
+    public ResponseEntity<String> deleteBookmark(@PathVariable String _id) {
+        try {
+            bookmarkService.deleteBookmark(_id);
+            return ResponseEntity.ok("Bookmark deleted successfully");
+        } catch (Exception e) {
+            logger.error("Error deleting the bookmark", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error deleting bookmark");
+        }
+    }
+}

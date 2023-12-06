@@ -1,0 +1,54 @@
+.edit-modal,
+.manage-bookmarks {
+    margin-top: .8em;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    height: 75%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    padding: 5px 25px 10px 25px;
+    transition: transform 0.5s ease-in-out;
+    border: solid 1px var(--color-4);
+    border-radius: 20px;
+    background: var(--color-2);
+    box-shadow: 5px 4px 15px var(--color-31),
+    1px -1px 15px var(--color-3),
+    inset -5px -5px 10px #121212,
+    inset 5px 5px 10px #3a3a3a;
+}
+
+.edit-modal{
+    z-index: 1000;
+
+}
+
+.manage-bookmarks.open {
+    transform: translateY(0); /* Move to the visible area */
+}
+
+.manage-form {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.filter-bookmark-manager {
+    margin: 0 0.5em 2em 0;
+    background-color: var(--color-1);
+    color: var(--color-41);
+    border-radius: 5px;
+    font-size: large;
+    font-weight: bolder;
+}
+
+#reset-filter-btn {
+    background-color: var(--color-1);
+    margin: 0 2em .5em .5em;
+    border-radius: 5px;
+    font-size: large;
+    font-weight: bolder;
+}
