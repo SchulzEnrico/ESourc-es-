@@ -88,7 +88,6 @@ const ManageBookmarks: React.FC<ManageBookmarksProps> = function ManageBookmarks
     const handleResetFilter = () => {
             setCategoryFilter('');
             setTargetFilter('');
-            setBookmarks(bookmarks);
             loadAllBookmarks().then();
     };
 
@@ -108,8 +107,7 @@ const ManageBookmarks: React.FC<ManageBookmarksProps> = function ManageBookmarks
             logger('Data before PUT request: ' + JSON.stringify(bookmarkData));
             const response = await axios.put(`/api/bookmarks/edit/${bookmarkData?._id}`, bookmarkData);
             logger('Antwort vom Server: ' + JSON.stringify(response.data));
-            // Weitere Verarbeitung nach Bedarf
-            handleCloseModalEdit();  // Schließe das Modal nach dem Speichern der Änderungen
+            handleCloseModalEdit();
         } catch (error) {
             logger('Error when saving changes: ' + error);
         }
