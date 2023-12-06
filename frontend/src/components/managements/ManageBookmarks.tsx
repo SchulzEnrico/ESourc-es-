@@ -61,7 +61,7 @@ const ManageBookmarks: React.FC<ManageBookmarksProps> = function ManageBookmarks
 
     const handleTargetFilterChange = (filterValue: string) => {
         setTargetFilter(filterValue);
-        const filteredBookmarks = applyFilters(categoryFilter, filterValue);
+        const filteredBookmarks = applyFilters(filterValue, categoryFilter);
         setBookmarks(filteredBookmarks);
     };
 

@@ -7,7 +7,7 @@ import java.util.List;
 
 @Builder
 public record BookmarkDTO(
-        @JsonProperty("_id") String _id,
+        @JsonProperty("_id") String id,
         String url,
         String dropdownCategory,
         String name,

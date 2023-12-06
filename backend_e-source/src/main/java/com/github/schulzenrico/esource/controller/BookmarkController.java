@@ -1,6 +1,5 @@
 package com.github.schulzenrico.esource.controller;
 
-
 import com.github.schulzenrico.esource.models.Bookmark;
 import com.github.schulzenrico.esource.models.BookmarkDTO;
 import com.github.schulzenrico.esource.services.BookmarkService;
@@ -38,7 +37,7 @@ public class BookmarkController {
     public ResponseEntity<List<BookmarkDTO>> getAllBookmarksForEdit() {
         try {
             List<BookmarkDTO> bookmarks = bookmarkService.getAllBookmarksForEditAsDTO();
-            bookmarks.forEach(bookmarkDTO -> logger.info("BookmarkDTO with _id: {}", bookmarkDTO._id()));  // Hier 'get_id()' statt 'id()'
+            bookmarks.forEach(bookmarkDTO -> logger.info("BookmarkDTO with _id: {}", bookmarkDTO.id()));  // Hier 'get_id()' statt 'id()'
             return ResponseEntity.ok(bookmarks);
         } catch (Exception e) {
             logger.error("Error retrieving all bookmarks", e);
@@ -46,10 +45,10 @@ public class BookmarkController {
         }
     }
 
-    @PutMapping("/edit/{_id}")
-    public ResponseEntity<Bookmark> editBookmark(@PathVariable String _id, @RequestBody BookmarkDTO bookmarkDTO) {
+    @PutMapping("/edit/{id}")
+    public ResponseEntity<Bookmark> editBookmark(@PathVariable String id, @RequestBody BookmarkDTO bookmarkDTO) {
         try {
-            Bookmark bookmark = bookmarkService.editBookmark(_id, bookmarkDTO);
+            Bookmark bookmark = bookmarkService.editBookmark(id, bookmarkDTO);
             return ResponseEntity.ok(bookmark);
         } catch (Exception e) {
             logger.error("Error editing the bookmark", e);
@@ -57,10 +56,10 @@ public class BookmarkController {
         }
     }
 
-    @DeleteMapping("/delete/{_id}")
-    public ResponseEntity<String> deleteBookmark(@PathVariable String _id) {
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteBookmark(@PathVariable String id) {
         try {
-            bookmarkService.deleteBookmark(_id);
+            bookmarkService.deleteBookmark(id);
             return ResponseEntity.ok("Bookmark deleted successfully");
         } catch (Exception e) {
             logger.error("Error deleting the bookmark", e);
