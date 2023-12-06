@@ -1,13 +1,25 @@
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Button, Modal } from 'react-bootstrap';
 import './Footer.css';
+import  ManageBookmarks from '../managements/ManageBookmarks.tsx';
+import  {useState} from "react"; // Stelle sicher, dass der Pfad korrekt ist
 
 function Footer() {
+    const [showManageBookmarks, setShowBookmarkManager] = useState(false);
+
+    const handleBookmarkManagerClick = () => {
+        setShowBookmarkManager(true);
+    };
+
+    const handleCloseModalBookmarkManager = () => {
+        setShowBookmarkManager(false);
+    };
+
     return (
         <footer>
             <Container>
                 <Row className="footer-row">
-                    <Col xs={12} md={4} className="footer-item">
-                        <a href="https://github.com/SchulzEnrico" target="_blank">
+                    <Col className="footer-item">
+                        <a href="https://github.com/SchulzEnrico" target="_blank" rel="noopener noreferrer">
                             <div className="svg-container">
                                 <img
                                     title={"Overview on Github"}
@@ -19,22 +31,21 @@ function Footer() {
                         </a>
                     </Col>
                     <p>Overview</p>
-                    <Col xs={12} md={4} className="footer-item">
-                        <a href="https://github.com/SchulzEnrico?tab=repositories" target="_blank">
+                    <Col className="footer-item">
+                        <a href="https://github.com/SchulzEnrico?tab=repositories" target="_blank" rel="noopener noreferrer">
                             <div className="svg-container">
-                                <img
-                                    title={"Repositories on Github"}
-                                    src="../src/assets/repositories.svg"
-                                    className={"logo repositories"}
-                                    alt="Repositories Icon"
-                                />
+                            <img
+                                title={"Repositories on Github"}
+                                src="../src/assets/repositories.svg"
+                                className={"logo repositories"}
+                                alt="Repositories Icon"
+                            />
                             </div>
                         </a>
                     </Col>
                     <p>Repositories</p>
-                    <p className={"gitGab"}>{'\u2666'}</p>
-                    <Col xs={12} md={4} className="footer-item">
-                        <a href="https://github.com/SchulzEnrico/ESourc-es-" target="_blank">
+                    <Col className="footer-item">
+                        <a href="https://github.com/SchulzEnrico/ESourc-es-" target="_blank" rel="noopener noreferrer">
                             <div className="svg-container">
                                 <img
                                     title={"Code on Github"}
@@ -46,8 +57,8 @@ function Footer() {
                         </a>
                     </Col>
                     <p>Code</p>
-                    <Col xs={12} md={4} className="footer-item">
-                        <a href="https://github.com/SchulzEnrico/ESourc-es-/issues" target="_blank">
+                    <Col className="footer-item">
+                        <a href="https://github.com/SchulzEnrico/ESourc-es-/issues" target="_blank" rel="noopener noreferrer">
                             <div className="svg-container">
                                 <img
                                     title={"Issues on Github"}
@@ -59,8 +70,8 @@ function Footer() {
                         </a>
                     </Col>
                     <p>Issues</p>
-                    <Col xs={12} md={4} className="footer-item">
-                        <a href="https://github.com/SchulzEnrico/ESourc-es-/pulls" target="_blank">
+                    <Col className="footer-item">
+                        <a href="https://github.com/SchulzEnrico/ESourc-es-/pulls" target="_blank" rel="noopener noreferrer">
                             <div className="svg-container">
                                 <img
                                     title={"Pull request on Github"}
@@ -73,7 +84,7 @@ function Footer() {
                     </Col>
                     <p>Pull request</p>
                     <Col xs={12} md={4} className="footer-item">
-                        <a href="https://github.com/SchulzEnrico/ESourc-es-/actions" target="_blank">
+                        <a href="https://github.com/SchulzEnrico/ESourc-es-/actions" target="_blank" rel="noopener noreferrer">
                             <div className="svg-container">
                                 <img
                                     title={"Actions on Github"}
@@ -85,8 +96,8 @@ function Footer() {
                         </a>
                     </Col>
                     <p>Actions</p>
-                    <Col xs={12} md={4} className="footer-item">
-                        <a href="https://github.com/users/SchulzEnrico/projects/3" target="_blank">
+                    <Col className="footer-item">
+                        <a href="https://github.com/users/SchulzEnrico/projects/3" target="_blank" rel="noopener noreferrer">
                             <div className="svg-container">
                                 <img
                                     title={"Project on Github"}
@@ -100,6 +111,14 @@ function Footer() {
                     <p>Projects</p>
                 </Row>
             </Container>
+            <Button title={"Open Bookmark Manager"} className={"manageBookmarksBtn"} variant="primary" onClick={handleBookmarkManagerClick}>
+                <img alt="Settings Icon" id="settings-png" src="../src/assets/settings.png" />
+            </Button>
+            <Modal show={showManageBookmarks} onHide={handleCloseModalBookmarkManager} dialogClassName="modal-90w">
+                <Modal.Body>
+                    <ManageBookmarks onClose={handleCloseModalBookmarkManager} />
+                </Modal.Body>
+            </Modal>
         </footer>
     );
 }

@@ -11,7 +11,17 @@ const GetMore: React.FC<GetMoreProps> = function GetMore({ onClose, onBookmarkAd
     const [title, setTitle] = useState("");
     const [target, setTarget] = useState("");
 
-    const logger = (message: string) => { console.log(message); };
+    const logger = (message: string) => {
+        console.log(message);
+    };
+
+    const showErrorNotification = (message: string) => {
+        alert(message);
+    };
+
+    const showSuccessNotification = (message: string) => {
+        alert(message);
+    };
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -34,9 +44,12 @@ const GetMore: React.FC<GetMoreProps> = function GetMore({ onClose, onBookmarkAd
                 setTarget("");
                 onBookmarkAdded();
                 onClose();
+                showSuccessNotification("Bookmark successfully added");
             })
             .catch((error) => {
-                logger("Error when adding bookmark:" + error.message);
+                const errorMessage = `Error when adding bookmark: ${error.message}`;
+                showErrorNotification(errorMessage);
+                logger(errorMessage);
             });
     }
 

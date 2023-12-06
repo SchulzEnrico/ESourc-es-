@@ -1,21 +1,17 @@
-import './App.css'
-import Header from "./components/header/Header.tsx";
-import Footer from "./components/footer/Footer.tsx";
+import './App.css';
+import Header from "./components/header/Header";
+import Footer from "./components/footer/Footer";
+import { Container, Row } from 'react-bootstrap';
 
 function App() {
-
-  return (
-    <>
-        <Header />
-        <img
-            className={"base-chuck"}
-            title={"Not a Chuck"}
-            src="../src/assets/base_chuck.svg"
-            alt="Chuck Icon"
-        />
-        <Footer />
-    </>
-  )
+    return (
+        <Container fluid>
+            <Header />
+            <Row className="justify-content-center">
+            </Row>
+            <Footer />
+        </Container>
+    );
 }
 
-export default App
+export default App;
