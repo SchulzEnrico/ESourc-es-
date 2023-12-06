@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -52,7 +51,7 @@ public class BookmarkService {
 
         return bookmarks.stream()
                 .map(this::convertToDTOWithId)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     private BookmarkDTO convertToDTOWithId(Bookmark bookmark) {
