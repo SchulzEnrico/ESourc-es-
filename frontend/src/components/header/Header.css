@@ -2,6 +2,7 @@ header {
     position: fixed;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     top: 0;
     left: 0;
     right: 0;
@@ -12,6 +13,7 @@ header {
     color: var(--color-4);
     background-color: var(--color-2);
     border-radius: 0 0 20px 20px;
+    border: solid 1px var(--color-4);
     border-top: none;
     box-shadow:  4px 1px 12px var(--color-31),
                  4px 5px 18px var(--color-3),
@@ -20,19 +22,26 @@ header {
 }
 
 #dash-icon-header {
-    padding: 1.5em 0 0 1.5em;
-    width: 4em;
+    height: 40px;
+    margin: 18px 5px 0 10px;
+    filter: grayscale(100%)
+    brightness(100%)
+    saturate(100%)
+    invert(10%)
+    sepia(98%)
+    saturate(1500%)
+    hue-rotate(354deg)
+    brightness(185%)
+    contrast(100%)
+    grayscale(0)
+    brightness(100%)
+    hue-rotate(0deg)
+    invert(0%)
+    sepia(0%);
 }
 
 #heading {
     display: flex;
-    height: 70%;
-    width: fit-content;
+    margin: auto 15px;
 }
 
-#bg-nested-dropdown {
-    height: 50%;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-}

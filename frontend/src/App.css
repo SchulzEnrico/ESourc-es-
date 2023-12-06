@@ -7,14 +7,21 @@
 .logo {
   max-height: 40px;
   padding: 0 5px 0 20px;
-  transition: all .5s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .logo:hover {
   transform: scale(1.25);
 }
 
-.base-chuck {
-  max-width: 30%;
-  opacity: .2;
+.modal-90w {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  z-index: 1050; /* Passen Sie den z-index-Wert nach Bedarf an */
 }
+
+.modal.show .modal-90w {
+  opacity: 1;
+}
+
+
