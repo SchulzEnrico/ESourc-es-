@@ -11,7 +11,7 @@ const ManageBookmarks: React.FC<ManageBookmarksProps> = function ManageBookmarks
     const [showEditModal, setShowEditModal] = useState(false);
     const [bookmarkData, setBookmarkData] = useState<BookmarkDTO | null>(null);
     const [uniqueCategories, setUniqueCategories] = useState<string[]>([]);
-    const [uniqueNames, setUniqueNames] = useState<string[]>([]);
+    const [uniqueTargets, setUniqueTargets] = useState<string[]>([]);
     const [categoryFilter, setCategoryFilter] = useState<string>('');
     const [targetFilter, setTargetFilter] = useState<string>('');
     const logger = (message: string) => {console.log(message);};
@@ -20,14 +20,14 @@ const ManageBookmarks: React.FC<ManageBookmarksProps> = function ManageBookmarks
         axios.get<BookmarkDTO[]>('/api/bookmarks/getAllBookmarksForEdit')
             .then((response) => {
                 const bookmarksWithIds = response.data.map((bookmark) => {
-                    return { ...bookmark, _id: bookmark._id }; // Verwende _id direkt, da es ein String ist
+                    return { ...bookmark, _id: bookmark._id };
                 });
                 setBookmarks(bookmarksWithIds);
 
                 const categories = Array.from(new Set(bookmarksWithIds.flatMap(bookmark => bookmark.dropdownCategory)));
-                const names = Array.from(new Set(bookmarksWithIds.flatMap(bookmark => bookmark.target)));
+                const target = Array.from(new Set(bookmarksWithIds.flatMap(bookmark => bookmark.target)));
                 setUniqueCategories(categories);
-                setUniqueNames(names);
+                setUniqueTargets(target);
             })
             .catch(error =>
                 logger('Error retrieving bookmarks:' + error)
@@ -92,14 +92,21 @@ const ManageBookmarks: React.FC<ManageBookmarksProps> = function ManageBookmarks
     };
 
     const handleInputChange = (fieldName: string, value: string | number) => {
-        setSelectedBookmark((prevSelectedBookmark) => ({
-            ...prevSelectedBookmark!,
-            [fieldName]: value.toString(),
-        }));
-        setBookmarkData((prevBookmarkData) => ({
-            ...prevBookmarkData!,
-            [fieldName]: value.toString(),
-        }));
+        setSelectedBookmark((prevSelectedBookmark) => {
+            if (!prevSelectedBookmark) return prevSelectedBookmark;
+            return {
+                ...prevSelectedBookmark,
+                [fieldName]: value.toString(),
+            };
+        });
+
+        setBookmarkData((prevBookmarkData) => {
+            if (!prevBookmarkData) return prevBookmarkData;
+            return {
+                ...prevBookmarkData,
+                [fieldName]: value.toString(),
+            };
+        });
     };
 
     const handleSaveChanges = async () => {
@@ -142,23 +149,23 @@ const ManageBookmarks: React.FC<ManageBookmarksProps> = function ManageBookmarks
                 </Button>
                 <Form.Select className={"filter-bookmark-manager"} value={categoryFilter} onChange={(e) => handleCategoryFilterChange(e.target.value)}>
                     <option value="">select category</option>
-                    {uniqueCategories.map((category, index) => (
-                        <option key={index} value={category}>
+                    {uniqueCategories.map((category,id) => (
+                        <option key={id} value={category}>
                             {category}
                         </option>
                     ))}
                 </Form.Select>
                 <Form.Select className={"filter-bookmark-manager"} value={targetFilter} onChange={(e) => handleTargetFilterChange(e.target.value)}>
                     <option value="">select target</option>
-                    {uniqueNames.map((name, index) => (
-                        <option key={index} value={name}>
-                            {name}
+                    {uniqueTargets.map((target ,id) => (
+                        <option key={id} value={target}>
+                            {target}
                         </option>
                     ))}
                 </Form.Select>
             </Container>
-            {bookmarks.map((bookmark, index) => (
-                <Row key={index} className="mb-2">
+            {bookmarks.map((bookmark,id) => (
+                <Row key={id} className="mb-2">
                     <Col>
                         <Form className={"manage-form"}>
                             <Button title={"Edit your bookmark"} variant="primary" className={"edit-bookmark-btn"} onClick={() => handleEditBookmark(bookmark)}>
@@ -202,7 +209,7 @@ const ManageBookmarks: React.FC<ManageBookmarksProps> = function ManageBookmarks
                         <Form.Control
                             className={"form-input-edit-bookmark"}
                             type="text"
-                            aria-label="Dropdown Category"
+                            aria-label={"Dropdown Category"}
                             value={selectedBookmark?.dropdownCategory}
                             onChange={(e) => handleInputChange('dropdownCategory', e.target.value)}
                         />
