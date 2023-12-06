@@ -149,23 +149,23 @@ const ManageBookmarks: React.FC<ManageBookmarksProps> = function ManageBookmarks
                 </Button>
                 <Form.Select className={"filter-bookmark-manager"} value={categoryFilter} onChange={(e) => handleCategoryFilterChange(e.target.value)}>
                     <option value="">select category</option>
-                    {uniqueCategories.map((category,id) => (
-                        <option key={id} value={category}>
+                    {uniqueCategories.map((category,_id) => (
+                        <option key={_id} value={category}>
                             {category}
                         </option>
                     ))}
                 </Form.Select>
                 <Form.Select className={"filter-bookmark-manager"} value={targetFilter} onChange={(e) => handleTargetFilterChange(e.target.value)}>
                     <option value="">select target</option>
-                    {uniqueTargets.map((target ,id) => (
-                        <option key={id} value={target}>
+                    {uniqueTargets.map((target ,_id) => (
+                        <option key={_id} value={target}>
                             {target}
                         </option>
                     ))}
                 </Form.Select>
             </Container>
-            {bookmarks.map((bookmark,id) => (
-                <Row key={id} className="mb-2">
+            {bookmarks.map((bookmark,_id) => (
+                <Row key={_id} className="mb-2">
                     <Col>
                         <Form className={"manage-form"}>
                             <Button title={"Edit your bookmark"} variant="primary" className={"edit-bookmark-btn"} onClick={() => handleEditBookmark(bookmark)}>

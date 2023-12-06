@@ -1,7 +1,7 @@
 import { Container, Row, Col, Button, Modal } from 'react-bootstrap';
 import './Footer.css';
 import  ManageBookmarks from '../managements/ManageBookmarks.tsx';
-import  {useState} from "react"; // Stelle sicher, dass der Pfad korrekt ist
+import  {useState} from "react";
 
 function Footer() {
     const [showManageBookmarks, setShowBookmarkManager] = useState(false);
