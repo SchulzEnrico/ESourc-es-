@@ -4,7 +4,7 @@ import { Form, InputGroup, Button, CloseButton } from "react-bootstrap";
 import "./GetMore.css";
 import {GetMoreProps} from "../types/types.ts";
 
-function GetMore({ show, onClose }: GetMoreProps) {
+function GetMore({ show, onClose }:Readonly<GetMoreProps>) {
     const [url, setUrl] = useState("");
     const [dropdownCategory, setDropdownCategory] = useState("");
     const [name, setName] = useState("");

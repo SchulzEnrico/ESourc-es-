@@ -54,16 +54,14 @@ function Navigation() {
     };
 
     const handleDeleteBookmark = (bookmark: BookmarkDTO | null) => {
-
-        if (bookmark && bookmark.id) {
-            axios.delete(`/api/bookmarks/delete/${bookmark.id}`)
+        // Verwende optional chain expression
+        if (bookmark?.id) {
+            axios
+                .delete(`/api/bookmarks/delete/${bookmark.id}`)
                 .then(response => {
-
                     console.log('Bookmark deleted successfully:', response.data);
-
                 })
                 .catch(error => {
-
                     console.error('Error deleting bookmark:', error);
                 });
         } else {

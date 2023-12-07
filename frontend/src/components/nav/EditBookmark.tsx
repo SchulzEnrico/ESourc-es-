@@ -16,14 +16,13 @@ function EditBookmark({
       handleSaveChanges,
       handleDeleteBookmark,
       selectedBookmark,
-  }: EditBookmarkProps) {
+  }: Readonly<EditBookmarkProps>) {
 
     const onDeleteBookmarkClick = () => {
         handleDeleteBookmark(selectedBookmark);
 };
 
     return (
-        <>
             <Modal className={"edit-modal"} show={showEditModal} onHide={handleCloseModalEdit}>
                 <Modal.Header>
                     <Modal.Title>Edit Bookmark</Modal.Title>
@@ -83,7 +82,6 @@ function EditBookmark({
                     </Button>
                 </Modal.Footer>
             </Modal>
-        </>
     );
 }
 export default EditBookmark;
