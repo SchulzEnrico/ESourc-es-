@@ -15,8 +15,8 @@ public class BookmarkService {
 
     public Bookmark addBookmark(BookmarkDTO bookmarkDTO) {
        return bookmarkRepository.save(Bookmark.builder()
-                .id(null)
                 .url(bookmarkDTO.url())
+                .destination(bookmarkDTO.destination())
                 .dropdownCategory(bookmarkDTO.dropdownCategory())
                 .name(bookmarkDTO.name())
                 .title(bookmarkDTO.title())
@@ -32,10 +32,37 @@ public class BookmarkService {
 
     private BookmarkDTO convertToDTO(Bookmark bookmark) {
         return BookmarkDTO.builder()
+                        .id(bookmark.id())
                         .url(bookmark.url())
+                        .destination(bookmark.destination())
                         .dropdownCategory(bookmark.dropdownCategory())
                         .name(bookmark.name())
                         .title(bookmark.title())
                 .build();
+    }
+
+    public Bookmark editBookmark(String id, BookmarkDTO updatedBookmarkDTO) {
+        Bookmark existingBookmark = bookmarkRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Bookmark not found."));
+
+        // Überprüfen, ob die bereitgestellte URL nicht leer ist, bevor sie aktualisiert wird
+        String updatedUrl = updatedBookmarkDTO.url();
+        String updatedDestination = updatedBookmarkDTO.destination();
+        String updatedDropdownCategory = updatedBookmarkDTO.dropdownCategory();
+        String updatedName = updatedBookmarkDTO.name();
+        String updatedTitle = updatedBookmarkDTO.title();
+
+        Bookmark updatedBookmark = existingBookmark
+                .withUrl(updatedUrl)
+                .withDestination(updatedDestination)
+                .withDropdownCategory(updatedDropdownCategory)
+                .withName(updatedName)
+                .withTitle(updatedTitle);
+
+        return bookmarkRepository.save(updatedBookmark);
+    }
+
+    public void deleteBookmark(String id) {
+        bookmarkRepository.deleteById(id);
     }
 }

@@ -1,5 +1,5 @@
 import "./Header.css";
-import HeaderNavbar from "../nav/HeaderNavbar.tsx";
+import Navigation from "../nav/Navigation.tsx";
 import GetMore from "./GetMore.tsx";
 import {ButtonGroup, DropdownButton} from "react-bootstrap";
 
@@ -12,7 +12,7 @@ function Header() {
                 <h1 className={"modal-{sm}"}>Sourc(es)</h1>
             </div>
             <div data-bs-theme={"dark"} className={"d-flex justify-content-between"}>
-                    <HeaderNavbar />
+                    <Navigation />
                 <DropdownButton variant={"outline-danger text-light"} drop={"start"} as={ButtonGroup} title="get more" id="bg-nested-dropdown">
                     <GetMore />
                 </DropdownButton>

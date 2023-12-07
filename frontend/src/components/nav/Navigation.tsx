@@ -5,7 +5,7 @@ import axios from "axios";
 import { BookmarkDTO } from "../types/types.ts";
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 
-function HeaderNavbar() {
+function Navigation() {
     const [bookmarks, setBookmarks] = useState<BookmarkDTO[]>([]);
 
     useEffect(() => {
@@ -56,4 +56,4 @@ function HeaderNavbar() {
     );
 }
 
-export default HeaderNavbar;
+export default Navigation;

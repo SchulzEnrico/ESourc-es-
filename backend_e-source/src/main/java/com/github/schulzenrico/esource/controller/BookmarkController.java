@@ -23,5 +23,15 @@ public class BookmarkController {
     public List<BookmarkDTO> getAllBookmarksAsDTO() {
         return bookmarkService.getAllBookmarksAsDTO();
     }
+
+    @PutMapping("/edit/{id}")
+    public Bookmark editBookmark(@PathVariable String id, @RequestBody BookmarkDTO updatedBookmarkDTO) {
+        return bookmarkService.editBookmark(id, updatedBookmarkDTO);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteBookmark(@PathVariable String id) {
+        bookmarkService.deleteBookmark(id);
+    }
 }
 

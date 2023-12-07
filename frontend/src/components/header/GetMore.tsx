@@ -5,12 +5,14 @@ import {Form, InputGroup} from "react-bootstrap";
  function GetMore() {
         const [url, setUrl] = useState("");
         const [dropdownCategory, setDropdownCategory] = useState("");
+        const [destination, setDestination] = useState("");
         const [name, setName] = useState("");
         const [title, setTitle] = useState("");
 
      function handleSubmit() {
             const newBookmarkDTO = {
                 url: url,
+                destination: destination,
                 dropdownCategory: dropdownCategory,
                 name: name,
                 title: title
@@ -19,6 +21,7 @@ import {Form, InputGroup} from "react-bootstrap";
             axios.post('api/bookmarks/add', newBookmarkDTO)
                 .then(() => {
                     setUrl('');
+                    setDestination('');
                     setDropdownCategory('');
                     setName('');
                     setTitle('');
@@ -40,6 +43,13 @@ import {Form, InputGroup} from "react-bootstrap";
                             aria-label="URL"
                             value={url}
                             onChange={(event) => setUrl(event.target.value)}
+                        />
+                        <Form.Control
+                            className={"w-100 mx-1 bg-transparent text-bg-dark"}
+                            placeholder="Destination"
+                            aria-label="Destination"
+                            value={destination}
+                            onChange={(event) => setDestination(event.target.value)}
                         />
                         <Form.Control
                             className={"w-100 mx-1 bg-transparent text-bg-dark"}
