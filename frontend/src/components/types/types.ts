@@ -1,4 +1,5 @@
 export type BookmarkDTO = {
+    id: string;
     url: string;
     destination: string;
     dropdownCategory: string;
@@ -14,3 +15,8 @@ export type LinkParameters = {
     name: string;
     title: string;
 };
+
+export type GetMoreProps ={
+    show: boolean;
+    onClose: () => void;
+}

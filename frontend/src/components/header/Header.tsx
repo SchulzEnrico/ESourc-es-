@@ -1,24 +1,19 @@
-import "./Header.css";
 import Navigation from "../nav/Navigation.tsx";
-import GetMore from "./GetMore.tsx";
-import {ButtonGroup, DropdownButton} from "react-bootstrap";
+import "./Header.css";
 
 function Header() {
 
     return (
         <header>
             <div id={"heading"} className={"align-items-baseline"}>
-                <img alt={"Dashboard Icon"} id={"dash-icon-header"} src="../src/assets/dash-red-192x192.png" />
+                <img alt={"Dashboard Icon"} id={"dash-icon-header"} src="../src/assets/dashboard.svg"/>
                 <h1 className={"modal-{sm}"}>Sourc(es)</h1>
             </div>
             <div data-bs-theme={"dark"} className={"d-flex justify-content-between"}>
-                    <Navigation />
-                <DropdownButton variant={"outline-danger text-light"} drop={"start"} as={ButtonGroup} title="get more" id="bg-nested-dropdown">
-                    <GetMore />
-                </DropdownButton>
+                <Navigation />
             </div>
         </header>
-    )
+    );
 }
 
-export default Header
+export default Header;

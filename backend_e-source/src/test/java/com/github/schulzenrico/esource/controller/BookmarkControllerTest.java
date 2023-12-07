@@ -109,7 +109,7 @@ class BookmarkControllerTest {
     }
 
     @Test
-    public void testDeleteBookmark() {
+    void testDeleteBookmark() {
         // Arrange
         String bookmarkId = "123";
 
