@@ -1,10 +1,11 @@
 package com.github.schulzenrico.esource.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 
 @Builder
 public record BookmarkDTO(
-        String id,
+        @JsonProperty("_id") String id,
         String url,
         String destination,
         String dropdownCategory,
@@ -12,4 +13,3 @@ public record BookmarkDTO(
         String title
 ) {
 }
-

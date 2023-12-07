@@ -1,15 +1,16 @@
 export type BookmarkDTO = {
-    id: string;
     url: string;
+    destination: string;
     dropdownCategory: string;
     name: string;
     title: string;
-    links: Link[];
+    links: LinkParameters[];
 };
 
-export type Link = {
+export type LinkParameters = {
     id: string;
-    name: string;
     url: string;
+    destination: string; // hier muss für target="" eine variable hin, die aus einem Auswahldropdown für destinations kommt
+    name: string;
     title: string;
 };
