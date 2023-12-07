@@ -12,15 +12,86 @@ footer {
     color: var(--color-4);
     background-color: var(--color-2);
     border-radius: 20px 20px 0 0;
+    border: solid 1px var(--color-4);
     border-bottom: none;
     box-shadow:  1px 4px 15px var(--color-31),
-                 1px -1px 15px var(--color-3),
-                 inset 8px -8px 16px #121212,
-                 inset -8px 8px 16px #3a3a3a;
+    1px -1px 15px var(--color-3),
+    inset 8px -8px 16px #121212,
+    inset -8px 8px 16px #3a3a3a;
 }
 
-#on-github{
+.footer-row{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-right: 25px;
 }
+
+.svg-container,
+.svg-container p {
+    margin: 0 15px;
+    padding: 0;
+}
+
+p {
+    background-image: -webkit-linear-gradient(270deg, #808080 53%, #808080 54%, #c0c0c0 64%, #808080 72%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.footer-item {
+    text-align: center;
+    margin: 0;
+}
+
+.overview {
+    margin-top: 5px;
+}
+
+.repositories {
+    height: 31px;
+    margin-top: 5px;
+}
+
+.code {
+    margin-top: 5px;
+}
+
+.issues {
+    height: 35px;
+    margin-top: 5px;
+}
+
+.pullRequests {
+    height: 30px;
+    margin-top: 5px;
+}
+
+.actions {
+    height: 30px;
+    margin-top: 5px;
+}
+
+.projects {
+    height: 30px;
+    margin-top: 5px;
+}
+
+.footer-item a:hover img {
+    filter: grayscale(100%)
+    brightness(100%)
+    saturate(100%)
+    invert(10%)
+    sepia(98%)
+    saturate(1500%)
+    hue-rotate(354deg)
+    brightness(100%)
+    contrast(100%)
+    grayscale(0)
+    brightness(100%)
+    hue-rotate(0deg)
+    invert(0%)
+    sepia(0%);
+}
+
