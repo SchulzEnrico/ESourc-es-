@@ -1,5 +1,5 @@
 export type BookmarkDTO = {
-    id: string;
+    _id: string;
     url: string;
     destination: string;
     dropdownCategory: string;
@@ -20,3 +20,12 @@ export type GetMoreProps ={
     show: boolean;
     onClose: () => void;
 }
+export type EditBookmarkProps = {
+    showEditModal: boolean;
+    isDeleting: boolean;
+    handleCloseModalEdit: () => void;
+    handleInputChange: (field: string, value: string) => void;
+    handleSaveChanges: () => void;
+    handleDeleteBookmark: (bookmark: BookmarkDTO | null) => void;
+    selectedBookmark: BookmarkDTO | null;
+};

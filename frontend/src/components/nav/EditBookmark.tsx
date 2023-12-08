@@ -1,26 +1,22 @@
 import { Modal, Form, Button } from 'react-bootstrap';
-import {BookmarkDTO } from "../types/types.ts";
+import { EditBookmarkProps } from '../types/types.ts';
 
-export type EditBookmarkProps = {
-    showEditModal: boolean;
-    handleCloseModalEdit: () => void;
-    handleInputChange: (field: string, value: string) => void;
-    handleSaveChanges: () => void;
-    handleDeleteBookmark: (bookmark: BookmarkDTO | null) => void;
-    selectedBookmark: BookmarkDTO | null;
-};
 function EditBookmark({
-      showEditModal,
-      handleCloseModalEdit,
-      handleInputChange,
-      handleSaveChanges,
-      handleDeleteBookmark,
-      selectedBookmark,
-  }: Readonly<EditBookmarkProps>) {
+                          showEditModal,
+                          isDeleting,
+                          handleCloseModalEdit,
+                          handleInputChange,
+                          handleSaveChanges,
+                          handleDeleteBookmark,
+                          selectedBookmark,
+                      }: Readonly<EditBookmarkProps>) {
 
     const onDeleteBookmarkClick = () => {
-        handleDeleteBookmark(selectedBookmark);
-};
+        if (!isDeleting) {
+            handleDeleteBookmark(selectedBookmark);
+        }
+    };
+
 
     return (
             <Modal className={"edit-modal"} show={showEditModal} onHide={handleCloseModalEdit}>
@@ -68,7 +64,10 @@ function EditBookmark({
                     <Button
                         className={"save-close-btn"}
                         variant="primary"
-                        onClick={handleSaveChanges}
+                        onClick={() => {
+                            handleSaveChanges();
+                            handleCloseModalEdit();
+                        }}
                     >
                         close/save
                     </Button>
