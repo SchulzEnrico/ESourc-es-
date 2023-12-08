@@ -23,7 +23,6 @@ function Navigation() {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
     const [selectedBookmark, setSelectedBookmark] = useState<BookmarkDTO | null>(null);
 
-
     const handleGetMoreClick = () => {
         setShowGetMore(true);
     };
@@ -31,7 +30,6 @@ function Navigation() {
     const handleCloseModal = () => {
         setShowGetMore(false);
     };
-
 
     const handleSaveChanges = () => {
         // Überprüfen Sie, ob das ausgewählte Lesezeichen nicht null ist und "_id" hat
@@ -51,7 +49,6 @@ function Navigation() {
         }
     };
 
-
     const handleInputChange = (field: string, value: string, bookmark: BookmarkDTO | null) => {
         if (!bookmark) {
             console.warn('Trying to update a null or undefined bookmark.');
@@ -65,21 +62,14 @@ function Navigation() {
         tempBookmark.current = updatedBookmark;
     };
 
-    const handleDeleteBookmark = (bookmark: BookmarkDTO | null) => {
-        // Verwende optional chain expression
-        if (bookmark?.id) {
-            axios
-                .delete(`/api/bookmarks/delete/${bookmark.id}`)
-                .then(response => {
-                    console.log('Bookmark deleted successfully:', response.data);
-                    setShowEditModal(false); // Schließe das Edit-Modal nach dem Löschen
-                })
-                .catch(error => {
-                    console.error('Error deleting bookmark:', error);
-                });
-        } else {
-            console.warn('Trying to delete a null or undefined bookmark.');
-        }
+    const handleDeleteBookmark = (id: string) => {
+        console.log(`Deleting bookmark with ID ${id}`);
+        return axios
+            .delete(`/api/bookmarks/delete/${id}`)
+            .then(response => {
+                console.log('Bookmark deleted successfully:', response.data);
+                setShowEditModal(false);
+            });
     };
 
     useEffect(() => {
@@ -123,14 +113,9 @@ function Navigation() {
                     <Dropdown.Item eventKey={`${bookmark.url}/edit`} >
                         Edit
                     </Dropdown.Item>
-                    <Dropdown.Item eventKey={`${bookmark.url}/delete`} >
-                        Delete
-                    </Dropdown.Item>
                 </SplitButton>
             ));
     };
-
-
 
     const renderDropdowns = () => {
         const uniqueCategories = Array.from(new Set(bookmarks.map((bookmark) => bookmark.dropdownCategory)));
@@ -166,13 +151,23 @@ function Navigation() {
                     showEditModal={showEditModal}
                     handleCloseModalEdit={() => setShowEditModal(false)}
                     handleInputChange={(field, value) => { handleInputChange(field, value, selectedBookmark) }}
-                    handleSaveChanges={() => { tempBookmark.current && handleSaveChanges(tempBookmark.current) }}
-                    handleDeleteBookmark={(bookmark) => {
-                        handleDeleteBookmark(bookmark);
-                        setSelectedBookmark(null);
+                    handleSaveChanges={handleSaveChanges}
+                    handleDeleteBookmark={() => {
+                        if (selectedBookmark?._id) {
+                            handleDeleteBookmark(selectedBookmark._id)
+                                .then(() => {
+                                    setSelectedBookmark(null);
+                                })
+                                .catch((error) => {
+                                    console.error('Error deleting bookmark:', error);
+                                });
+                        } else {
+                            console.warn('Trying to delete a null or undefined bookmark.');
+                        }
                     }}
                     selectedBookmark={selectedBookmark}
-                 isDeleting/>
+/*                 isDeleting*/
+                />
             </ButtonGroup>
         );
     };
