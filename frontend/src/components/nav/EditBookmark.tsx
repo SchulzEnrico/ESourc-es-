@@ -3,7 +3,7 @@ import { EditBookmarkProps } from '../types/types.ts';
 
 function EditBookmark({
                           showEditModal,
-                          isDeleting,
+/*                          isDeleting,*/
                           handleCloseModalEdit,
                           handleInputChange,
                           handleSaveChanges,
@@ -12,12 +12,12 @@ function EditBookmark({
                       }: Readonly<EditBookmarkProps>) {
 
     const onDeleteBookmarkClick = () => {
-        if (!isDeleting) {
+        console.log("onDeleteBookmarkClick has been called"); // Log message to ensure function call
+      //  if (!isDeleting) {
+            console.log("Deleting bookmark with ID ", selectedBookmark); // Log the bookmark being deleted
             handleDeleteBookmark(selectedBookmark);
-        }
+      //  }
     };
-
-
     return (
             <Modal className={"edit-modal"} show={showEditModal} onHide={handleCloseModalEdit}>
                 <Modal.Header>
@@ -28,35 +28,35 @@ function EditBookmark({
                         className={"form-input-edit-bookmark"}
                         type="text"
                         aria-label={"Destination"}
-                        value={selectedBookmark?.destination}
+                        value={selectedBookmark?.destination || ''}
                         onChange={(e) => handleInputChange('destination', e.target.value)}
                     />
                     <Form.Control
                         className={"form-input-edit-bookmark"}
                         type="text"
                         aria-label={"Dropdown Category"}
-                        value={selectedBookmark?.dropdownCategory}
+                        value={selectedBookmark?.dropdownCategory || ''}
                         onChange={(e) => handleInputChange('dropdownCategory', e.target.value)}
                     />
                     <Form.Control
                         className={"form-input-edit-bookmark"}
                         type="text"
                         aria-label={"Name"}
-                        value={selectedBookmark?.name}
+                        value={selectedBookmark?.name || ''}
                         onChange={(e) => handleInputChange('name', e.target.value)}
                     />
                     <Form.Control
                         className={"form-input-edit-bookmark"}
                         type="text"
                         aria-label={"Title"}
-                        value={selectedBookmark?.title}
+                        value={selectedBookmark?.title || ''}
                         onChange={(e) => handleInputChange('title', e.target.value)}
                     />
                     <Form.Control
                         className={"form-input-edit-bookmark"}
                         type="text"
                         aria-label={"URL"}
-                        value={selectedBookmark?.url}
+                        value={selectedBookmark?.url || ''}
                         onChange={(e) => handleInputChange('url', e.target.value)}
                     />
                 </Modal.Body>
@@ -75,7 +75,10 @@ function EditBookmark({
                         title={"Delete bookmark forever"}
                         variant="danger"
                         className={"delete-forever-btn"}
-                        onClick={onDeleteBookmarkClick}
+                        onClick={() => {
+                            onDeleteBookmarkClick();
+                            handleCloseModalEdit();
+                        }}
                     >
                         <img alt="Delete Forever Icon" id="deleteForever-png" src="../src/assets/deleteForever.png" />
                     </Button>

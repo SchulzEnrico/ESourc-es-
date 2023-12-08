@@ -9,7 +9,7 @@ export type BookmarkDTO = {
 };
 
 export type LinkParameters = {
-    id: string;
+    _id: string;
     url: string;
     destination: string; // hier muss für target="" eine variable hin, die aus einem Auswahldropdown für destinations kommt
     name: string;
@@ -22,7 +22,7 @@ export type GetMoreProps ={
 }
 export type EditBookmarkProps = {
     showEditModal: boolean;
-    isDeleting: boolean;
+    // isDeleting?: boolean; // <-- remove this line
     handleCloseModalEdit: () => void;
     handleInputChange: (field: string, value: string) => void;
     handleSaveChanges: () => void;
