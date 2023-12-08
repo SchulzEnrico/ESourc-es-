@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import {useEffect, useRef, useState} from 'react';
 import axios from 'axios';
 import {
     DropdownButton,
@@ -16,10 +16,13 @@ import EditBookmark from "./EditBookmark";
 
 
 function Navigation() {
+    const tempBookmark = useRef<BookmarkDTO | null>(null);
+    const [showEditModal, setShowEditModal] = useState(false);
     const [bookmarks, setBookmarks] = useState<BookmarkDTO[]>([]);
     const [showGetMore, setShowGetMore] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
     const [selectedBookmark, setSelectedBookmark] = useState<BookmarkDTO | null>(null);
+
 
     const handleGetMoreClick = () => {
         setShowGetMore(true);
@@ -29,19 +32,27 @@ function Navigation() {
         setShowGetMore(false);
     };
 
-    const handleSaveChanges = (bookmark: BookmarkDTO) => {
-        axios.put(`/api/bookmarks/edit/${bookmark.id}`, bookmark)
-            .then(response => {
-                // Hier kannst du entsprechende Logik für den Erfolgsfall implementieren
-                console.log('Bookmark updated successfully:', response.data);
-            })
-            .catch(error => {
-                // Hier kannst du Logik für den Fehlerfall implementieren
-                console.error('Error updating bookmark:', error);
-            });
+
+    const handleSaveChanges = () => {
+        // Überprüfen Sie, ob das ausgewählte Lesezeichen nicht null ist und "_id" hat
+        if (selectedBookmark && selectedBookmark._id) {
+            axios.put(`/api/bookmarks/edit/${selectedBookmark._id}`, selectedBookmark)
+                .then(response => {
+                    // Hier können Sie entsprechende Logik für den Erfolgsfall implementieren
+                    console.log('Bookmark updated successfully:', response.data);
+                    setShowEditModal(false); // Schließen Sie das Edit-Modal nach dem Speichern
+                })
+                .catch(error => {
+                    // Hier können Sie die Logik für den Fehlerfall implementieren
+                    console.error('Error updating bookmark:', error);
+                });
+        } else {
+            console.error('Selected bookmark is null or does not have an _id:', selectedBookmark);
+        }
     };
 
-    const handleInputChange = (field: string, value: string, bookmark: BookmarkDTO | null, setSelectedBookmark: React.Dispatch<React.SetStateAction<BookmarkDTO | null>>) => {
+
+    const handleInputChange = (field: string, value: string, bookmark: BookmarkDTO | null) => {
         if (!bookmark) {
             console.warn('Trying to update a null or undefined bookmark.');
             return;
@@ -51,6 +62,7 @@ function Navigation() {
             [field]: value,
         };
         setSelectedBookmark(updatedBookmark);
+        tempBookmark.current = updatedBookmark;
     };
 
     const handleDeleteBookmark = (bookmark: BookmarkDTO | null) => {
@@ -60,6 +72,7 @@ function Navigation() {
                 .delete(`/api/bookmarks/delete/${bookmark.id}`)
                 .then(response => {
                     console.log('Bookmark deleted successfully:', response.data);
+                    setShowEditModal(false); // Schließe das Edit-Modal nach dem Löschen
                 })
                 .catch(error => {
                     console.error('Error deleting bookmark:', error);
@@ -102,12 +115,15 @@ function Navigation() {
                     title={bookmark.title}
                     href={bookmark.url}
                     target={bookmark.destination}
-                    onSelect={() => setSelectedBookmark(bookmark)} // Setzt den ausgewählten Bookmark
+                    onSelect={() => {
+                        setSelectedBookmark(bookmark); // Setzt den ausgewählten Bookmark
+                        setShowEditModal(true); // Öffnet das Edit-Modal
+                    }}
                 >
-                    <Dropdown.Item eventKey={`${bookmark.url}-edit`} >
+                    <Dropdown.Item eventKey={`${bookmark.url}/edit`} >
                         Edit
                     </Dropdown.Item>
-                    <Dropdown.Item eventKey={`${bookmark.url}-delete`} >
+                    <Dropdown.Item eventKey={`${bookmark.url}/delete`} >
                         Delete
                     </Dropdown.Item>
                 </SplitButton>
@@ -147,16 +163,16 @@ function Navigation() {
                     </Button>
                 )}
                 <EditBookmark
-                    showEditModal={true}
-                    handleCloseModalEdit={() => setSelectedBookmark(null)}
-                    handleInputChange={(field, value) => handleInputChange(field, value, selectedBookmark, setSelectedBookmark)}
-                    handleSaveChanges={() => handleSaveChanges(selectedBookmark as BookmarkDTO)}
+                    showEditModal={showEditModal}
+                    handleCloseModalEdit={() => setShowEditModal(false)}
+                    handleInputChange={(field, value) => { handleInputChange(field, value, selectedBookmark) }}
+                    handleSaveChanges={() => { tempBookmark.current && handleSaveChanges(tempBookmark.current) }}
                     handleDeleteBookmark={(bookmark) => {
                         handleDeleteBookmark(bookmark);
                         setSelectedBookmark(null);
                     }}
                     selectedBookmark={selectedBookmark}
-                />
+                 isDeleting/>
             </ButtonGroup>
         );
     };
