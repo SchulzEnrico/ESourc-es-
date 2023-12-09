@@ -1,0 +1,68 @@
+/* styles.css */
+.esources-desk {
+    display: grid;
+    margin: auto auto;
+    grid-template-columns: 700px 1400px 900px 600px;
+    grid-template-rows: 720px;
+    gap: 25px 25px;
+    width: 3829px;
+    height: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-content: center;
+    grid-template-areas: "garage workstation library managements";
+}
+
+.garage {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 25px 25px;
+    grid-template-areas:
+    "ins_pro"
+    "snip_gen";
+    grid-area: garage;
+}
+
+.ins_pro { grid-area: ins_pro; }
+
+.snip_gen { grid-area: snip_gen; }
+
+.workstation {
+    display: grid;
+    grid-template-rows: 1fr;
+    gap: 25px 25px;
+    grid-template-areas:
+    "development";
+    grid-area: workstation;
+}
+.development {
+    grid-area: development;
+}
+
+.library {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 25px 25px;
+    grid-template-areas:
+    "know_guide"
+    "lip_doc";
+    grid-area: library;
+}
+
+.know_guide { grid-area: know_guide; }
+
+.lip_doc { grid-area: lip_doc; }
+
+.managements {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 25px 25px;
+    grid-template-areas:
+    "project"
+    "personal";
+    grid-area: managements;
+}
+
+.project { grid-area: project; }
+
+.personal { grid-area: personal; }

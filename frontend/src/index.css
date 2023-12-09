@@ -6,10 +6,12 @@
   text-rendering: optimizeLegibility;
   -moz-osx-font-smoothing: grayscale;
 
-  --color-1: #131313;
-  --color-2: #262626;
-  --color-3: #7f0a05;
-  --color-31: #c91108;
+  --color-0: #000000;
+  --color-1: #181818;
+  --color-2: #333333;
+  --color-21: #444444;
+  --color-3: #5d0101;
+  --color-31: #be0b02;
   --color-4: #808080;
   --color-41: #c0c0c0;
   --color-5: #001bde;
@@ -45,11 +47,15 @@ a:hover {
 
 body {
   margin: 0;
+  padding: 0;
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  overflow: auto;
 }
+
 
 button {
   border-radius: 25px;
@@ -297,3 +303,9 @@ button:focus-visible {
               inset -5px -5px 10px #121212,
               inset 5px 5px 10px #3a3a3a;
 }
+
+/*
+.Iframe {
+  width: 100%;
+  height: 100%;
+}*/
