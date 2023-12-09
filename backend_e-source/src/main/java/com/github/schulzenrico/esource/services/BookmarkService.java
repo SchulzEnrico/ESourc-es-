@@ -1,5 +1,6 @@
 package com.github.schulzenrico.esource.services;
 
+import com.github.schulzenrico.esource.exceptions.BookmarkDeletionException;
 import com.github.schulzenrico.esource.models.Bookmark;
 import com.github.schulzenrico.esource.models.BookmarkDTO;
 import com.github.schulzenrico.esource.repositories.BookmarkRepository;
@@ -72,7 +73,7 @@ public class BookmarkService {
         try {
             bookmarkRepository.deleteById(id);
         } catch (DataAccessException e) {
-            throw new RuntimeException("Error deleting bookmark with id " + id, e);
+            throw new BookmarkDeletionException("Error deleting bookmark with id " + id, e);
         }
     }
 }
