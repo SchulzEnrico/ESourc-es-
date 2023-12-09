@@ -69,11 +69,12 @@ public class BookmarkService {
                 .withTitle(updatedTitle);
     }
 
-    public void deleteBookmark(String id) {
+    public void deleteBookmark(String id) throws BookmarkDeletionException {
         try {
             bookmarkRepository.deleteById(id);
         } catch (DataAccessException e) {
-            throw new BookmarkDeletionException("Error deleting bookmark with id " + id, e);
+            String errorMessage = "Error deleting bookmark.";
+            throw new BookmarkDeletionException(errorMessage, e);
         }
     }
 }
