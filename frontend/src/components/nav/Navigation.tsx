@@ -6,7 +6,7 @@ import {
     ButtonGroup,
     Modal,
     Button,
-    SplitButton,
+    SplitButton, Alert,
 } from 'react-bootstrap';
 import { BookmarkDTO } from '../types/types.ts';
 import '../../index.css';
@@ -23,6 +23,17 @@ function Navigation() {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
     const [selectedBookmark, setSelectedBookmark] = useState<BookmarkDTO | null>(null);
 
+    const [alert, setAlert] = useState({
+        open: false,
+        message: '',
+        variant: 'success' // Other options: 'danger', 'warning', etc...
+    });
+
+    const showAlert = (message: string, variant: string = 'success') => {
+        setAlert({ open: true, message, variant });
+        setTimeout(() => setAlert({ ...alert, open: false }), 1500); // Auto close the alert after 3 seconds
+    }
+
     const handleGetMoreClick = () => {
         setShowGetMore(true);
     };
@@ -38,6 +49,7 @@ function Navigation() {
                 .then(response => {
                     // Hier können Sie entsprechende Logik für den Erfolgsfall implementieren
                     console.log('Bookmark updated successfully:', response.data);
+                    showAlert('Bookmark updated successfully'); // Show success alert
                     setShowEditModal(false); // Schließen Sie das Edit-Modal nach dem Speichern
                 })
                 .catch(error => {
@@ -68,6 +80,7 @@ function Navigation() {
             .delete(`/api/bookmarks/delete/${id}`)
             .then(response => {
                 console.log('Bookmark deleted successfully:', response.data);
+                showAlert('Bookmark deleted successfully'); // Show success alert
                 setShowEditModal(false);
             });
     };
@@ -174,6 +187,11 @@ function Navigation() {
     return (
         <>
             {renderDropdowns()}
+            {alert.open && (
+                <Alert variant={alert.variant} onClose={() => setAlert({ ...alert, open: false })} dismissible>
+                    {alert.message}
+                </Alert>
+            )}
             <Modal show={showGetMore} onHide={handleCloseModal}>
                 <GetMore onClose={handleCloseModal}  show/>
             </Modal>

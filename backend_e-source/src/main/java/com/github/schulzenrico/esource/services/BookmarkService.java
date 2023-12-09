@@ -4,6 +4,7 @@ import com.github.schulzenrico.esource.models.Bookmark;
 import com.github.schulzenrico.esource.models.BookmarkDTO;
 import com.github.schulzenrico.esource.repositories.BookmarkRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,13 +15,13 @@ public class BookmarkService {
     private BookmarkRepository bookmarkRepository;
 
     public Bookmark addBookmark(BookmarkDTO bookmarkDTO) {
-       return bookmarkRepository.save(Bookmark.builder()
+        return bookmarkRepository.save(Bookmark.builder()
                 .url(bookmarkDTO.url())
                 .destination(bookmarkDTO.destination())
                 .dropdownCategory(bookmarkDTO.dropdownCategory())
                 .name(bookmarkDTO.name())
                 .title(bookmarkDTO.title())
-        .build());
+                .build());
     }
 
     public List<BookmarkDTO> getAllBookmarksAsDTO() {
@@ -32,12 +33,12 @@ public class BookmarkService {
 
     private BookmarkDTO convertToDTO(Bookmark bookmark) {
         return BookmarkDTO.builder()
-                        .id(bookmark.id())
-                        .url(bookmark.url())
-                        .destination(bookmark.destination())
-                        .dropdownCategory(bookmark.dropdownCategory())
-                        .name(bookmark.name())
-                        .title(bookmark.title())
+                .id(bookmark.id())
+                .url(bookmark.url())
+                .destination(bookmark.destination())
+                .dropdownCategory(bookmark.dropdownCategory())
+                .name(bookmark.name())
+                .title(bookmark.title())
                 .build();
     }
 
@@ -58,18 +59,20 @@ public class BookmarkService {
         String updatedName = updatedBookmarkDTO.name();
         String updatedTitle = updatedBookmarkDTO.title();
 
-        Bookmark updatedBookmark = existingBookmark
+        // Return the expression directly instead of assigning it to a variable
+        return existingBookmark
                 .withUrl(updatedUrl)
                 .withDestination(updatedDestination)
                 .withDropdownCategory(updatedDropdownCategory)
                 .withName(updatedName)
                 .withTitle(updatedTitle);
-        return updatedBookmark;
     }
 
     public void deleteBookmark(String id) {
-        System.out.println("Attempting to delete bookmark with id " + id);
-        bookmarkRepository.deleteById(id);
-        System.out.println("Bookmark with id " + id + " deleted successfully");
+        try {
+            bookmarkRepository.deleteById(id);
+        } catch (DataAccessException e) {
+            throw new RuntimeException("Error deleting bookmark with id " + id, e);
+        }
     }
 }
