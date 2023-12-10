@@ -6,6 +6,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.List;
+
 @With
 @Builder
 @Document(collection = "bookmarks")
@@ -19,8 +21,8 @@ public record Bookmark(
         String destination,
         @Field ("bookmark_dropdownCategory")
         String dropdownCategory,
-        @Field ("bookmark_name")
-        String name,
+        @Field ("bookmark_tags")
+        List<String> tags,
         @Field ("bookmark_title")
         String title
 ) {

@@ -24,13 +24,22 @@ function EditBookmark({
                     <Modal.Title>Edit Bookmark</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form.Control
+                    <Form.Select
                         className={"form-input-edit-bookmark"}
-                        type="text"
                         aria-label={"Destination"}
                         value={selectedBookmark?.destination || ''}
                         onChange={(e) => handleInputChange('destination', e.target.value)}
-                    />
+                    >
+                        <option>Wählen Sie eine Destination</option>
+                        <option value="external">external</option>
+                        <option value="ins_pro">ins_pro</option>
+                        <option value="snip_gen">snip_gen</option>
+                        <option value="development">development</option>
+                        <option value="know_guide">know_guide</option>
+                        <option value="lip_doc">lip_doc</option>
+                        <option value="project">project</option>
+                        <option value="personal">personal</option>
+                    </Form.Select>
                     <Form.Control
                         className={"form-input-edit-bookmark"}
                         type="text"
@@ -42,7 +51,7 @@ function EditBookmark({
                         className={"form-input-edit-bookmark"}
                         type="text"
                         aria-label={"Name"}
-                        value={selectedBookmark?.name || ''}
+                        value={selectedBookmark?.tags || ''}
                         onChange={(e) => handleInputChange('name', e.target.value)}
                     />
                     <Form.Control

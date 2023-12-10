@@ -7,7 +7,7 @@ import {GetMoreProps} from "../types/types.ts";
 function GetMore({ show, onClose }:Readonly<GetMoreProps>) {
     const [url, setUrl] = useState("");
     const [dropdownCategory, setDropdownCategory] = useState("");
-    const [name, setName] = useState("");
+    const [tags, setTags] = useState("");
     const [title, setTitle] = useState("");
     const [destination, setDestination] = useState("");
     const [showSuccessPopup, setShowSuccessPopup] = useState(false);
@@ -32,7 +32,7 @@ function GetMore({ show, onClose }:Readonly<GetMoreProps>) {
             .then(() => {
                 setUrl("");
                 setDropdownCategory("");
-                setName("");
+                setTags("");
                 setTitle("");
                 setDestination("");
                 setShowSuccessPopup(true);
@@ -75,15 +75,24 @@ function GetMore({ show, onClose }:Readonly<GetMoreProps>) {
                             value={url}
                         onChange={(event) => setUrl(event.target.value)}
                     />
-                    <Form.Control
-                            className="form-input-get-more"
-                            placeholder="Destination"
-                            aria-label="Destination"
-                            value={destination}
+                    <Form.Select
+                        className="form-input-get-more"
+                        aria-label="Destination"
+                        value={destination}
                         onChange={(event) => setDestination(event.target.value)}
-                    />
+                    >
+                        <option>Wählen Sie eine Destination</option>
+                        <option value="external">external</option>
+                        <option value="ins_pro">ins_pro</option>
+                        <option value="snip_gen">snip_gen</option>
+                        <option value="development">development</option>
+                        <option value="know_guide">know_guide</option>
+                        <option value="lip_doc">lip_doc</option>
+                        <option value="project">project</option>
+                        <option value="personal">personal</option>
+                    </Form.Select>
                     <Form.Control
-                            className="form-input-get-more"
+                        className="form-input-get-more"
                             placeholder="Dropdown Category"
                             aria-label="Dropdown Category"
                             value={dropdownCategory}
@@ -91,10 +100,10 @@ function GetMore({ show, onClose }:Readonly<GetMoreProps>) {
                     />
                     <Form.Control
                             className="form-input-get-more"
-                            placeholder="Name"
-                            aria-label="Name"
-                            value={name}
-                        onChange={(event) => setName(event.target.value)}
+                            placeholder="Tags"
+                            aria-label="Tags"
+                            value={tags}
+                        onChange={(event) => setTags(event.target.value)}
                     />
                     <Form.Control
                             className="form-input-get-more"

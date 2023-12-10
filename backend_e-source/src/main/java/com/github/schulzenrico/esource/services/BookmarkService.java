@@ -20,7 +20,7 @@ public class BookmarkService {
                 .url(bookmarkDTO.url())
                 .destination(bookmarkDTO.destination())
                 .dropdownCategory(bookmarkDTO.dropdownCategory())
-                .name(bookmarkDTO.name())
+                .tags(bookmarkDTO.tags())
                 .title(bookmarkDTO.title())
                 .build());
     }
@@ -38,7 +38,7 @@ public class BookmarkService {
                 .url(bookmark.url())
                 .destination(bookmark.destination())
                 .dropdownCategory(bookmark.dropdownCategory())
-                .name(bookmark.name())
+                .tags(bookmark.tags())
                 .title(bookmark.title())
                 .build();
     }
@@ -47,7 +47,6 @@ public class BookmarkService {
         Bookmark existingBookmark = bookmarkRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Bookmark not found."));
 
-        // Überprüfen, ob die bereitgestellte URL nicht leer ist, bevor sie aktualisiert wird
         String updatedUrl = updatedBookmarkDTO.url();
         Bookmark updatedBookmark = getBookmark(updatedBookmarkDTO, existingBookmark, updatedUrl);
 
@@ -57,15 +56,14 @@ public class BookmarkService {
     private static Bookmark getBookmark(BookmarkDTO updatedBookmarkDTO, Bookmark existingBookmark, String updatedUrl) {
         String updatedDestination = updatedBookmarkDTO.destination();
         String updatedDropdownCategory = updatedBookmarkDTO.dropdownCategory();
-        String updatedName = updatedBookmarkDTO.name();
+        List<String> updatedTags = updatedBookmarkDTO.tags();
         String updatedTitle = updatedBookmarkDTO.title();
 
-        // Return the expression directly instead of assigning it to a variable
         return existingBookmark
                 .withUrl(updatedUrl)
                 .withDestination(updatedDestination)
                 .withDropdownCategory(updatedDropdownCategory)
-                .withName(updatedName)
+                .withTags(updatedTags)
                 .withTitle(updatedTitle);
     }
 
