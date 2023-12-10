@@ -1,10 +1,25 @@
 import "./Footer.css";
 import {Col, Container, Row} from "react-bootstrap";
+import React, {useState} from "react";
 
-function Footer() {
+const Footer = () => {
+    const [searchText, setSearchText] = useState('');
+
+    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchText(event.target.value);
+    };
+
+    const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        window.open(`https://www.google.com/search?q=${encodeURIComponent(searchText)}`, '_blank');
+    };
 
     return (
         <footer>
+            <form onSubmit={handleSearchSubmit}>
+                <input type="text" value={searchText} onChange={handleSearchChange} placeholder="Google search..." />
+                <button type="submit">Search on Google</button>
+            </form>
             <Container>
                 <Row className="footer-row">
                     <Col className="footer-item">
