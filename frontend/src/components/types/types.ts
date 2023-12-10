@@ -3,17 +3,17 @@ export type BookmarkDTO = {
     url: string;
     destination: string;
     dropdownCategory: string;
-    name: string;
     title: string;
+    tags?: string[];
     links: LinkParameters[];
 };
 
 export type LinkParameters = {
     _id: string;
     url: string;
-    destination: string; // hier muss für target="" eine variable hin, die aus einem Auswahldropdown für destinations kommt
+    destination: string;
     name: string;
-    title: string;
+    tags: string;
 };
 
 export type GetMoreProps ={
@@ -22,10 +22,20 @@ export type GetMoreProps ={
 }
 export type EditBookmarkProps = {
     showEditModal: boolean;
-    // isDeleting?: boolean; // <-- remove this line
     handleCloseModalEdit: () => void;
     handleInputChange: (field: string, value: string) => void;
     handleSaveChanges: () => void;
     handleDeleteBookmark: (bookmark: BookmarkDTO | null) => void;
     selectedBookmark: BookmarkDTO | null;
 };
+
+export type PanelProps = {
+    className: string;
+}
+
+export type NavigationProps = {
+    onLinkClick?: (url: string) => void;
+    panelName?: string;
+    isExternal: boolean;
+};
+
