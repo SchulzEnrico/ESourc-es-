@@ -1,6 +1,8 @@
 import "./Footer.css";
 import {Col, Container, Row} from "react-bootstrap";
 import React, {useState} from "react";
+import Clock from "../utilities/Clock.tsx";
+
 
 const Footer = () => {
     const [searchText, setSearchText] = useState('');
@@ -16,6 +18,7 @@ const Footer = () => {
 
     return (
         <footer>
+            <Clock />
             <form onSubmit={handleSearchSubmit}>
                 <input type="text" value={searchText} onChange={handleSearchChange} placeholder="Google search..." />
                 <button type="submit">Search on Google</button>

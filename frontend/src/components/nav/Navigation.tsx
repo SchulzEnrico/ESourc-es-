@@ -14,6 +14,7 @@ import './EditBookmark.tsx'
 import EditBookmark from "./EditBookmark";
 import {NavigationProps, BookmarkDTO} from "../types/types.ts";
 
+
 const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExternal }) => {
     const tempBookmark = useRef<BookmarkDTO | null>(null);
     const [showEditModal, setShowEditModal] = useState(false);
@@ -202,6 +203,7 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
             <Modal show={showGetMore} onHide={handleCloseModal}>
                 <GetMore onClose={handleCloseModal}  show/>
             </Modal>
+
         </>
     );
 }

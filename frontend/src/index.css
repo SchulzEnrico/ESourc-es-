@@ -307,3 +307,17 @@ button:focus-visible {
   transform: translate(-50%, -50%);
   overflow-y: auto;
 }
+
+.timer-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 25px;
+  z-index: 1;
+}
+
+.timer{
+  margin-top: 2rem;
+}
