@@ -3,7 +3,6 @@ import { EditBookmarkProps } from '../types/types.ts';
 
 function EditBookmark({
                           showEditModal,
-/*                          isDeleting,*/
                           handleCloseModalEdit,
                           handleInputChange,
                           handleSaveChanges,
@@ -12,25 +11,31 @@ function EditBookmark({
                       }: Readonly<EditBookmarkProps>) {
 
     const onDeleteBookmarkClick = () => {
-        console.log("onDeleteBookmarkClick has been called"); // Log message to ensure function call
-      //  if (!isDeleting) {
-            console.log("Deleting bookmark with ID ", selectedBookmark); // Log the bookmark being deleted
+        console.log("onDeleteBookmarkClick has been called");
+
+            console.log("Deleting bookmark with ID ", selectedBookmark);
             handleDeleteBookmark(selectedBookmark);
-      //  }
+
     };
     return (
-            <Modal className={"edit-modal"} show={showEditModal} onHide={handleCloseModalEdit}>
+            <Modal className={"edit-modal shadow--raised"} show={showEditModal} onHide={handleCloseModalEdit}>
                 <Modal.Header>
                     <Modal.Title>Edit Bookmark</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                    <Form.Control
+                        className={"form-input-edit-bookmark shadow--ridge"}
+                        type="text"
+                        aria-label={"URL"}
+                        value={selectedBookmark?.url || ''}
+                        onChange={(e) => handleInputChange('url', e.target.value)}
+                    />
                     <Form.Select
-                        className={"form-input-edit-bookmark"}
+                        className={"form-select-edit-bookmark form-input-edit-bookmark shadow--ridge"}
                         aria-label={"Destination"}
                         value={selectedBookmark?.destination || ''}
                         onChange={(e) => handleInputChange('destination', e.target.value)}
                     >
-                        <option>Wählen Sie eine Destination</option>
                         <option value="external">external</option>
                         <option value="ins_pro">ins_pro</option>
                         <option value="snip_gen">snip_gen</option>
@@ -41,33 +46,28 @@ function EditBookmark({
                         <option value="personal">personal</option>
                     </Form.Select>
                     <Form.Control
-                        className={"form-input-edit-bookmark"}
+                        className={"form-input-edit-bookmark shadow--ridge"}
                         type="text"
                         aria-label={"Dropdown Category"}
                         value={selectedBookmark?.dropdownCategory || ''}
                         onChange={(e) => handleInputChange('dropdownCategory', e.target.value)}
                     />
+
                     <Form.Control
-                        className={"form-input-edit-bookmark"}
-                        type="text"
-                        aria-label={"Name"}
-                        value={selectedBookmark?.tags || ''}
-                        onChange={(e) => handleInputChange('name', e.target.value)}
-                    />
-                    <Form.Control
-                        className={"form-input-edit-bookmark"}
+                        className={"form-input-edit-bookmark shadow--ridge"}
                         type="text"
                         aria-label={"Title"}
                         value={selectedBookmark?.title || ''}
                         onChange={(e) => handleInputChange('title', e.target.value)}
                     />
                     <Form.Control
-                        className={"form-input-edit-bookmark"}
+                        className={"form-input-edit-bookmark shadow--ridge"}
                         type="text"
-                        aria-label={"URL"}
-                        value={selectedBookmark?.url || ''}
-                        onChange={(e) => handleInputChange('url', e.target.value)}
+                        aria-label={"Tags"}
+                        value={selectedBookmark?.tags || ''}
+                        onChange={(e) => handleInputChange('name', e.target.value)}
                     />
+
                 </Modal.Body>
                 <Modal.Footer>
                     <Button

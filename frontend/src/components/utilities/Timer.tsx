@@ -10,17 +10,22 @@ const Timer: React.FC = () => {
     const [selectedTime, setSelectedTime] = useState(60);
 
     const timeOptions = [
-        { label: "60 Sekunden", value: 60 },
-        { label: "90 Sekunden", value: 90 },
-        { label: "2 Minuten", value: 120 },
-        { label: "5 Minuten", value: 300 },
-        { label: "10 Minuten", value: 600 },
-        { label: "15 Minuten", value: 900 },
-        { label: "20 Minuten", value: 1200 },
-        { label: "25 Minuten", value: 1500 },
-        { label: "30 Minuten", value: 1800 },
-        { label: "45 Minuten", value: 2700 },
-        { label: "60 Minuten", value: 3600 }
+        { label: "60 sec", value: 60 },
+        { label: "90 sec", value: 90 },
+        { label: "2 min", value: 120 },
+        { label: "5 min", value: 300 },
+        { label: "10 min", value: 600 },
+        { label: "15 min", value: 900 },
+        { label: "20 min", value: 1200 },
+        { label: "25 min", value: 1500 },
+        { label: "30 min", value: 1800 },
+        { label: "45 min", value: 2700 },
+        { label: "60 min", value: 3600 },
+        { label: "90 min", value: 5400 },
+        { label: "120 min", value: 7200 },
+        { label: "180 min", value: 10800 },
+        { label: "240 min", value: 14400 },
+        { label: "300 min", value: 18000 },
     ];
 
     useEffect(() => {
@@ -55,8 +60,11 @@ const Timer: React.FC = () => {
 
             {showTimer && (
                 <>
-                    <label>Timer:</label>
-                    <select onChange={handleChange}>
+                    <label>Choose...</label>
+                    <select
+                        className={"timer-input"}
+                        onChange={handleChange}
+                    >
                         {timeOptions.map((option) => (
                             <option key={option.value} value={option.value}>
                                 {option.label}
@@ -64,33 +72,33 @@ const Timer: React.FC = () => {
                         ))}
                     </select>
 
-                    <label>Own time in seconds:</label>
+                    <label>or set</label>
                     <input
+                        className={"timer-input"}
                         type="number"
                         min="0"
                         step="1"
                         value={customTime}
                         onChange={(e) => setCustomTime(Number(e.target.value))}
                     />
-                    <button onClick={() => setSelectedTime(Number(customTime))}>Set own time</button>
+                    <button onClick={() => setSelectedTime(Number(customTime))}>Set your own</button>
 
-
-                    <div>
-                        Time left {selectedTime - seconds} seconds
+                    <div className={"time-left"}>
+                        Time left {selectedTime - seconds} sec
                     </div>
 
+                    <button className={"start-btn"} onClick={() => setIsActive(true)}>Start</button>
+                    <button className={"stop-btn"} onClick={() => setIsActive(false)}>Stop</button>
+                    <button className={"reset-btn"} onClick={() => setSeconds(0)}>reset</button>
 
-                    <button onClick={() => setIsActive(true)}>Start</button>
-                    <button onClick={() => setIsActive(false)}>Stop</button>
-                    <button onClick={() => setSeconds(0)}>reset</button>
 
+                {showModal && (
+                    <div className="timer-modal">
+                        <h2>Time's up!</h2>
+                        <button onClick={() => setShowModal(false)}>close</button>
+                    </div>
 
-                    {showModal && (
-                        <div className="timer-modal">
-                            <h2>Time's up!</h2>
-                            <button onClick={() => setShowModal(false)}>close</button>
-                        </div>
-                    )}
+                )}
                 </>
             )}
         </div>

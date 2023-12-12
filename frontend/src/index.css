@@ -11,12 +11,12 @@
   --color-2: #333333;
   --color-21: #444444;
   --color-3: #5d0101;
-  --color-31: #be0b02;
+  --color-31: #830401;
   --color-4: #808080;
   --color-41: #c0c0c0;
-  --color-5: #001bde;
+  --color-5: #0219c0;
 
-  background-color: var(--color-1);
+  background-color: var(--color-0);
   color: var(--color-4);
 }
 
@@ -26,7 +26,6 @@ h3,
 h4,
 h5,
 h6 {
-  color: var(--color-41);
   background-image: -webkit-linear-gradient(270deg, #808080 53%, #808080 54%, #c0c0c0 64%, #808080 72%);
   background-clip: text;
   -webkit-background-clip: text;
@@ -35,7 +34,6 @@ h6 {
 
 a {
   text-decoration: inherit;
-  color: var(--color-41);
   background-image: -webkit-linear-gradient(270deg, #808080 53%, #808080 54%, #c0c0c0 64%, #808080 72%);
   background-clip: text;
   -webkit-background-clip: text;
@@ -56,25 +54,23 @@ body {
   overflow: auto;
 }
 
-
 button {
   border-radius: 25px;
-  border: 1px solid var(--color-2);
-  padding: .5em .6em;
-  font-size: 1em;
+  border: 2px solid var(--color-0);
+  padding: .3em .4em;
+  font-size: medium;
   font-weight: 500;
   font-family: inherit;
-  color: var(--color-41);
   background-image: -webkit-linear-gradient(270deg, #808080 53%, #808080 54%, #c0c0c0 64%, #808080 72%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   cursor: pointer;
   box-shadow: inset -5px -5px 8px #181818,
-  inset 5px 5px 8px #343434;
+              inset 5px 5px 8px #343434;
 }
 button:hover {
-  border-color: var(--color-1);
+  border: solid 2px var(--color-4);
 }
 button:focus,
 button:focus-visible {
@@ -82,25 +78,24 @@ button:focus-visible {
   background-color: var(--color-3);
   color: var(--color-4);
   box-shadow: 7px 7px 14px #161616,
-  -7px -7px 14px #363636,
-  inset -5px -5px 10px #470603,
-  inset 5px 5px 10px #b70e07;
+              -7px -7px 14px #363636,
+              inset -5px -5px 10px #470603,
+              inset 5px 5px 10px #b70e07;
 }
 .close-button,
 .get-more-button,
 .manageBookmarksBtn,
 .submit {
-  border: solid 1px var(--color-1);
-  background-color: var(--color-3);
+  border: 2px solid var(--color-0);
   color: var(--color-4);
-  font-weight: 500;
-  box-shadow: 7px 7px 14px #161616,
-  -7px -7px 14px #363636,
-  inset -5px -5px 10px #470603,
-  inset 5px 5px 10px #a20f08;
+  box-shadow: inset -5px -5px 10px #470603,
+              inset 5px 5px 10px #a20f08;
 }
-.manageBookmarksBtn {
-  margin-right: 20px;
+
+.btn-close {
+  width: 40px;
+  height: 40px;
+
 }
 
 .edit-bookmark-btn,
@@ -112,71 +107,90 @@ button:focus-visible {
   padding: 5px 20px 5px 20px;
   height: 30px;
   background: #262626;
-  border: solid 1px var(--color-1);
+  border: solid 2px var(--color-1);
   box-shadow: inset -5px -5px 6px #151515,
-  inset 5px 5px 6px #373737;
-}
-#pencil-png {
-  height: 20px;
+              inset 5px 5px 6px #373737;
 }
 
+.submit,
 .save-close-btn {
-  margin: 10px;
-  border: solid 1px var(--color-1);
+  margin: 25px;
+  border: solid 2px var(--color-1);
   box-shadow: 7px 7px 10px #0e2d08,
-  -3px -3px 10px #0f7501,
-  inset -5px -5px 10px #15440d,
-  inset 5px 5px 10px #38c418;
+              -3px -3px 10px #0f7501,
+              inset -5px -5px 10px #15440d,
+              inset 5px 5px 10px #38c418;
   color: var(--color-4);
 }
 
 .dropdown-toggle-split {
-    color: transparent;
-    border: solid 1px var(--color-1);
-    width: 10%;
-    box-shadow: 7px 7px 14px #161616,
-    -7px -7px 14px #363636,
-    inset -5px -5px 10px #470603,
-    inset 5px 5px 10px #a20f08;
+    border: solid 2px var(--color-1);
+    margin-top: -2px;
+    width: 40px;
+    height: 28px;
+    box-shadow: inset -5px -5px 10px #470603,
+                inset 5px 5px 10px #a20f08;
 }
 
-.visually-hidden {
+.dropdown-toggle-split:hover {
+  border: solid 2px var(--color-1);
+  background-color: var(--color-3);
+  color: var(--color-4);
+}
+
+#split-button-basic-secondary > span {
+  margin: 0 10px 0 0;
+  padding: 4px;
+  left: 0;
+  background-image: url(./assets/settings.png);
+  opacity: 0.3;
+  background-repeat: no-repeat;
   color: transparent;
-  overflow: hidden;
+}
+
+#split-button-basic-secondary:hover > span {
+  opacity: 1;
 }
 
 .delete-forever-btn {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 10px;
+  margin: 3rem 30px 10px;
   padding: 0 10px;
   right: 0;
   border: solid 2px var(--color-1);
   box-shadow:  -8px -8px 16px #111111,
-  8px 8px 16px #3b3b3b;
+                5px 5px 16px #3b3b3b;
+}
+
+.delete-forever-btn:hover {
+  border: solid 2px var(--color-31);
+  background-color: var(--color-3);
+  color: var(--color-4);
+  box-shadow: 7px 7px 10px var(--color-3),
+              -3px -3px 10px var(--color-31),
+              inset -5px -5px 10px var(--color-3),
+              inset 5px 5px 10px var(--color-31);
 }
 
 .submit {
   padding: 11px;
+  margin: 10px 20px;
 }
 .get-more-button:hover,
 .manageBookmarksBtn:hover,
 .submit:hover {
-  border: solid 1px var(--color-1);
+  border: solid 2px var(--color-1);
   background-color: var(--color-3);
   color: var(--color-4);
-  box-shadow: 7px 7px 10px #0e2d08,
-  -3px -3px 10px #0f7501,
-  inset -5px -5px 10px #15440d,
-  inset 5px 5px 10px #38c418;
+  box-shadow: 5px 5px 10px #001180,
+  -3px -3px 10px #0219C0FF,
+  inset -3px -3px 10px #0219C0FF,
+  inset 3px 3px 10px #0219C0FF;
 }
 .add-png {
   height: 20px;
-}
-
-.get-more.open {
-  transform: translateY(0); /* Move to the visible area */
 }
 
 .dropdown-menu {
@@ -189,7 +203,6 @@ button:focus-visible {
 }
 
 .nav-group {
-  background-color: var(--color-1);
   display: flex;
   padding: 10px 5px 7px 10px;
   border-radius: 30px;
@@ -201,23 +214,38 @@ button:focus-visible {
   cursor: pointer;
   margin-right: 5px;
   border-radius: 25px;
-  box-shadow: 7px 7px 14px #161616,
-  7px 7px 14px #363636;
+
 }
+
+.dropdown-item {
+  background-color: var(--color-0);
+  display: flex;
+  flex-direction: row;
+  height: 25px;
+  width: 90%;
+  justify-content: space-between;
+  padding: .2em .3em;
+  border: solid 2px var(--color-1);
+  border-radius: 25px;
+  margin: 5px;
+  box-shadow: inset -5px -5px 8px #181818,
+  inset 8px 10px 15px #343434;
+}
+
 .nav-button:hover,
 .dropdown-item:hover {
-  border: solid 1px var(--color-1);
+  border: solid 2px var(--color-1);
   background-color: var(--color-3);
   color: var(--color-4);
   box-shadow: 7px 7px 14px #161616,
-  -7px -7px 14px #363636,
-  inset -5px -5px 10px #470603,
-  inset 5px 5px 10px #b70e07;
+              -7px -7px 14px #363636,
+              inset -5px -5px 10px #470603,
+              inset 5px 5px 10px #b70e07;
 }
 
 .dropdown-container {
-  position: fixed;
-  width: 170px;
+  position: relative;
+  width: 250px;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -228,18 +256,27 @@ button:focus-visible {
   inset -6px -6px 12px #3b3b3b;
 }
 
-.dropdown-item {
-  background-color: var(--color-0);
+.dropdown-button-container {
   display: flex;
-  flex-direction: row;
-  height: 25px;
-  width: 90%;
-  justify-content: space-between;
-  padding: .5em .6em;
-  border-radius: 25px;
-  margin: 3px;
-  box-shadow: inset -7px -7px 14px #171717,
-  inset 7px 7px 14px #353535;
+  column-gap: 1px; /* Controls the space between the buttons. May adjust based on preference. */
+  border-radius: 25px; /* Controls the radius on the corners that do not touch each other */
+}
+
+.dropdown-button-container > button {
+  flex-basis: 50%;   /* Each button takes up to 50% of the parent's width */
+  border-radius: 0;
+}
+
+/* Apply border radius to the first (left-most) button end */
+.dropdown-button-container > button:first-child {
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+
+/* Apply border radius to the last (right-most) button end */
+.dropdown-button-container > button:last-child {
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
 }
 
 .introductions {
@@ -252,33 +289,20 @@ button:focus-visible {
   font-weight: bolder;
 }
 
-.form-input-get-more {
-  height: 25px;
-  margin: 0 10px 20px 10px;
-  padding: 5px;
-  font-size: medium;
-  font-weight: bolder;
-  color: var(--color-5);
-  border-radius: 7px;
-  border: solid 1px var(--color-2);
-  background: linear-gradient(315deg, #292929, #222222);
-  box-shadow:  -8px -8px 16px #111111,
-  8px 8px 16px #3b3b3b;
-}
-
+.form-input-get-more,
 .form-input-edit-bookmark {
-  height: 25px;
   margin: 10px 20px;
   font-size: medium;
   font-weight: bold;
+  width: 190px;
   color: var(--color-5);
-  border-radius: 7px;
-  border: solid 1px var(--color-2);
-  background: linear-gradient(315deg, #292929, #222222);
-  box-shadow:  -8px -8px 16px #111111,
-  8px 8px 16px #3b3b3b;
+  border-radius: 25px;
+  border: var(--color-2) solid 1px;
+  background-color: transparent;
+  height: 5px;
 }
 
+.get-more,
 .edit-modal {
   display: flex;
   flex-direction: column;
@@ -286,18 +310,24 @@ button:focus-visible {
   z-index: 1000;
   top: 50%;
   left: 50%;
-  width: 220px;
-  height: 400px;
+  width: 300px;
+  height: 500px;
   transform: translate(-50%, -50%);
   padding: 20px;
   transition: transform 0.5s ease-in-out;
-  border: solid 1px var(--color-4);
+  border: solid 1px var(--color-0);
   border-radius: 20px;
-  background: var(--color-2);
-  box-shadow: 5px 4px 15px var(--color-31),
-              1px -1px 15px var(--color-3),
+  background: var(--color-0);
+  box-shadow: 1px 4px 10px var(--color-3),
+              1px -1px 10px var(--color-2),
               inset -5px -5px 10px #121212,
               inset 5px 5px 10px #3a3a3a;
+}
+
+.form-select-get-more,
+.form-select-edit-bookmark {
+  height: 50px;
+  width: 240px;
 }
 
 .centered-modal .modal-dialog {
@@ -308,16 +338,82 @@ button:focus-visible {
   overflow-y: auto;
 }
 
-.timer-modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-  padding: 25px;
-  z-index: 1;
+.timer{
+  margin-top: .5rem;
+  display: flex;
+  justify-content: center;
 }
 
-.timer{
-  margin-top: 2rem;
+.timer-input {
+  margin: 0 15px;
+  padding: 1px 5px;
+  font-size: medium;
+  font-weight: bold;
+  color: var(--color-5);
+  width: 100px;
+  height: 30px;
+  border-radius: 25px;
+  border: var(--color-2) solid 1px;
+  background-color: transparent;
+}
+
+.timer button {
+  margin: 0 1rem;
+  height: 30px;
+  font-size: small;
+  padding: 0 10px;
+  border: solid 2 px var(--color-1);
+  box-shadow: inset -5px -5px 10px #470603,
+  inset 5px 5px 10px #a20f08;
+}
+
+.time-left {
+  font-size: x-large;
+  font-weight: bolder;
+  padding-bottom: .5rem;
+  background-image: -webkit-linear-gradient(270deg, #808080 53%, #808080 54%, #c0c0c0 64%, #808080 72%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.timer button:hover,
+.start-btn:hover,
+.stop-btn:hover,
+.reset-btn:hover {
+  border: solid 2 px var(--color-4);
+  box-shadow: 5px 5px 10px var(--color-3),
+              -3px -3px 10px var(--color-31),
+              inset -3px -3px 10px var(--color-3),
+              inset 3px 3px 10px var(--color-31);
+}
+
+.dropdown-edit{
+  background-color: #0219c0;
+}
+
+.dropdown-edit {
+  border: solid 2px var(--color-4);
+  box-shadow: 5px 5px 10px #001180,
+              -3px -3px 10px #0219C0FF,
+              inset -3px -3px 10px #0219C0FF,
+              inset 3px 3px 10px #0219C0FF;
+}
+
+.dropdown-edit:hover {
+  box-shadow: 7px 7px 10px #0e2d08,
+  -3px -3px 10px #0f7501,
+  inset -5px -5px 10px #15440d,
+  inset 5px 5px 10px #38c418;
+}
+
+
+.panel-items-container {
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.get-more.open {
+  transform: translateY(0);
 }

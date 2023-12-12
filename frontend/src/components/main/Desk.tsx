@@ -1,41 +1,53 @@
+import { ResizableBox } from 'react-resizable';
+import 'react-resizable/css/styles.css';
 import './DeskGrid.css';
 import './DeskStyles.css'
-import { Container, Row, Col } from 'react-bootstrap';
 import Panel from "./Panel.tsx";
+import './Resizeable.css'
+
+
+const insProWidth = 700;
+const devWidth = 1200;
+const libraryWidth = 900;
+const managementsWidth = 600;
+
+const halfHeight = 330;
+const fullHeight = 772;
+
 
 function Desk() {
     return (
-        <Container className="esources-desk">
-            <Row className="garage">
-                <Col className="ins_pro panel shadow--raised">
+        <div className="esources-desk">
+            <div className="garage row">
+                <ResizableBox className="ins_pro panel shadow--raised col" width={insProWidth} height={halfHeight} resizeHandles={["se", "s", "e"]}>
                     <Panel className="ins_pro" />
-                </Col>
-                <Col className="snip_gen panel shadow--raised">
+                </ResizableBox>
+                <ResizableBox className="snip_gen panel shadow--raised col" width={insProWidth} height={halfHeight} resizeHandles={["ne", "e", "n"]}>
                     <Panel className="snip_gen" />
-                </Col>
-            </Row>
-            <Row className="workstation">
-                <Col className="development panel shadow--raised">
+                </ResizableBox>
+            </div>
+            <div className="workstation row">
+                <ResizableBox className="development panel shadow--raised col" width={devWidth} height={fullHeight} resizeHandles={["w", "e", "n", "s"]}>
                     <Panel className="development" />
-                </Col>
-            </Row>
-            <Row className="library">
-                <Col className="know_guide panel shadow--raised">
+                </ResizableBox>
+            </div>
+            <div className="library row">
+                <ResizableBox className="know_guide panel shadow--raised col" width={libraryWidth} height={halfHeight} resizeHandles={["sw", "se", "w", "e", "s"]}>
                     <Panel className="know_guide" />
-                </Col>
-                <Col className="lip_doc panel shadow--raised">
+                </ResizableBox>
+                <ResizableBox className="lip_doc panel shadow--raised col" width={libraryWidth} height={halfHeight} resizeHandles={["sw", "se", "nw", "ne", "w", "e", "n", "s"]}>
                     <Panel className="lip_doc" />
-                </Col>
-            </Row>
-            <Row className="managements">
-                <Col className="project panel shadow--raised">
+                </ResizableBox>
+            </div>
+            <div className="managements row">
+                <ResizableBox className="project panel shadow--raised col" width={managementsWidth} height={halfHeight} resizeHandles={["sw", "w", "s"]}>
                     <Panel className="project" />
-                </Col>
-                <Col className="personal panel shadow--raised">
+                </ResizableBox>
+                <ResizableBox className="personal panel shadow--raised col" width={managementsWidth} height={halfHeight} resizeHandles={["sw", "w", "s"]}>
                     <Panel className="personal" />
-                </Col>
-            </Row>
-        </Container>
+                </ResizableBox>
+            </div>
+        </div>
     );
 }
 

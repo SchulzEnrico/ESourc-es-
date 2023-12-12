@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from "react";
 
 const Clock: React.FC = () => {
     const [time, setTime] = useState<Date>(new Date());
@@ -11,7 +11,7 @@ const Clock: React.FC = () => {
         return () => clearInterval(intervalId);
     }, []);
 
-    return <div>{time.toLocaleTimeString()}</div>;
+    return <div className={"clock "} >{time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>;
 };
 
 export default Clock;

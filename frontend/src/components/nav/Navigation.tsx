@@ -2,11 +2,10 @@ import React, {useEffect, useRef, useState} from 'react';
 import axios from 'axios';
 import {
     DropdownButton,
-    Dropdown,
     ButtonGroup,
     Modal,
     Button,
-    SplitButton, Alert,
+    Alert,
 } from 'react-bootstrap';
 import '../../index.css';
 import GetMore from '../header/GetMore.tsx';
@@ -23,8 +22,15 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
     const [selectedBookmark, setSelectedBookmark] = useState<BookmarkDTO | null>(null);
 
-    const handleLinkClick = (url: string) => {
-        onLinkClick?.(url);
+
+    const openLink = (url: string, destination: string) => {
+        destination === "external" ? window.open(url, '_blank') : onLinkClick?.(url);
+    };
+
+    const openEditModal = (bookmark: BookmarkDTO) => {
+        setSelectedBookmark(bookmark);
+        setShowEditModal(true);
+        document.body.style.overflow = 'hidden';  // Neu hinzugefügt
     };
 
     const [alert, setAlert] = useState({
@@ -41,10 +47,17 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
 
     const handleGetMoreClick = () => {
         setShowGetMore(true);
+        document.body.style.overflow = 'hidden';  // Neu hinzugefügt
     };
 
     const handleCloseModal = () => {
         setShowGetMore(false);
+        document.body.style.overflow = 'auto';  // Neu hinzugefügt
+    };
+
+    const handleCloseModalEdit = () => {
+        setShowEditModal(false);
+        document.body.style.overflow = 'auto';  // Neu hinzugefügt
     };
 
     const handleSaveChanges = () => {
@@ -54,6 +67,8 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
                     console.log('Bookmark updated successfully:', response.data);
                     showAlert('Bookmark updated successfully'); // Show success alert
                     setShowEditModal(false);
+                    setShowEditModal(false);
+                    document.body.style.overflow = 'auto'; // Hinzugefügt
                 })
                 .catch(error => {
                     console.error('Error updating bookmark:', error);
@@ -84,6 +99,7 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
                 console.log('Bookmark deleted successfully:', response.data);
                 showAlert('Bookmark deleted successfully'); // Show success alert
                 setShowEditModal(false);
+                document.body.style.overflow = 'auto'; // Neu hinzugefügt
             });
     };
 
@@ -109,28 +125,28 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
         };
     }, []);
 
+
+
     const renderDropdownItems = (category: string) => {
-        return bookmarks
-            .filter((bookmark) => bookmark.dropdownCategory === category && (isExternal ? bookmark.destination === "external" : bookmark.destination === panelName))
-            .map((bookmark) => (
-                <SplitButton
+        const relatedBookmarks = bookmarks.filter(bookmark => bookmark.dropdownCategory === category && (isExternal ? bookmark.destination === "external" : bookmark.destination === panelName));
+
+        return relatedBookmarks.map((bookmark) => (
+            <div className="dropdown-button-container" key={bookmark.url}>
+                <Button
                     className="dropdown-item"
-                    id={"split-button-basic-secondary"}
-                    key={bookmark.url}
-                    title={bookmark.title}
-                    target={bookmark.destination === "external" ? "_blank" : "_self"}
-                    onSelect={() => {
-                        setSelectedBookmark(bookmark);
-                        setShowEditModal(true);
-                    }}
-                    onClick={() => handleLinkClick(bookmark.url)}
+                    target={bookmark.target}
+                    onClick={() => openLink(bookmark.url, bookmark.destination)}
                 >
-                    {bookmark.tags}
-                    <Dropdown.Item eventKey={`${bookmark.url}/edit`} title={bookmark.tags ? bookmark.tags.join(", ") : ""}>
-                        Edit
-                    </Dropdown.Item>
-                </SplitButton>
-            ));
+                    {bookmark.title}
+                </Button>
+                <Button
+                    className={"dropdown-item dropdown-edit"}
+                    onClick={() => openEditModal(bookmark)}
+                >
+                    Edit
+                </Button>
+            </div>
+        ));
     };
 
     const renderDropdowns = () => {
@@ -143,12 +159,7 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
         );
 
         return (
-            <ButtonGroup className={isMobile ? "nav-group-mobile" : "nav-group shadow--ridge"}>
-                {isMobile && (
-                    <Button title={"Add a new Bookmark to your collection"} variant="primary" className={"get-more-button"} onClick={handleGetMoreClick}>
-                        <img alt="Add Icon" id="add-png" src="../src/assets/add.png" />
-                    </Button>
-                )}
+            <ButtonGroup className={isMobile ? "nav-group-mobile" : "nav-group"}>
                 {!isMobile &&
                     uniqueCategories.map((category) => (
                         <DropdownButton
@@ -157,21 +168,23 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
                             id={`dropdown-variants-${category}`}
                             variant="secondary"
                             title={category}
-                            drop={"down"}
+                            drop={isExternal ? "down-centered" : "up-centered"}
                         >
                             <div className="dropdown-container">
                                 {renderDropdownItems(category)}
                             </div>
                         </DropdownButton>
                     ))}
+
                 {!isMobile && (
                     <Button title={"Add a new Bookmark to your collection"} variant="primary" className={"get-more-button"} onClick={handleGetMoreClick}>
                         <img alt="Add Icon" id="add-png" src="../src/assets/add.png" />
                     </Button>
                 )}
+
                 <EditBookmark
                     showEditModal={showEditModal}
-                    handleCloseModalEdit={() => setShowEditModal(false)}
+                    handleCloseModalEdit={handleCloseModalEdit}
                     handleInputChange={(field, value) => { handleInputChange(field, value, selectedBookmark) }}
                     handleSaveChanges={handleSaveChanges}
                     handleDeleteBookmark={() => {

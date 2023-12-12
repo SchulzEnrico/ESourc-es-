@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Form, InputGroup, Button, CloseButton } from "react-bootstrap";
-import "./GetMore.css";
 import {GetMoreProps} from "../types/types.ts";
 
 function GetMore({ show, onClose }:Readonly<GetMoreProps>) {
@@ -23,7 +22,7 @@ function GetMore({ show, onClose }:Readonly<GetMoreProps>) {
             url: url,
             destination: destination,
             dropdownCategory: dropdownCategory,
-            name: name,
+            tags: tags.split(/[, .#/]+/),
             title: title,
         };
 
@@ -62,6 +61,8 @@ function GetMore({ show, onClose }:Readonly<GetMoreProps>) {
                 className="close-button"
                 onClick={onClose}
                 aria-label="Close"
+                title="Close"
+                name="Close"
             />
             <p className={"introductions"}>
                 Add a new bookmark by filling in these fields
@@ -69,19 +70,19 @@ function GetMore({ show, onClose }:Readonly<GetMoreProps>) {
             <Form onSubmit={handleSubmit}>
                 <InputGroup className="container-fluid md-3 d-flex justify-content-between">
                     <Form.Control
-                            className="form-input-get-more"
+                            className="form-input-get-more shadow--ridge"
                             placeholder="URL"
                             aria-label="URL"
                             value={url}
                         onChange={(event) => setUrl(event.target.value)}
                     />
                     <Form.Select
-                        className="form-input-get-more"
+                        className="form-input-get-more form-select-get-more  shadow--ridge"
                         aria-label="Destination"
                         value={destination}
                         onChange={(event) => setDestination(event.target.value)}
                     >
-                        <option>Wählen Sie eine Destination</option>
+                        <option>select destination</option>
                         <option value="external">external</option>
                         <option value="ins_pro">ins_pro</option>
                         <option value="snip_gen">snip_gen</option>
@@ -92,33 +93,28 @@ function GetMore({ show, onClose }:Readonly<GetMoreProps>) {
                         <option value="personal">personal</option>
                     </Form.Select>
                     <Form.Control
-                        className="form-input-get-more"
+                        className="form-input-get-more shadow--ridge"
                             placeholder="Dropdown Category"
                             aria-label="Dropdown Category"
                             value={dropdownCategory}
                         onChange={(event) => setDropdownCategory(event.target.value)}
                     />
                     <Form.Control
-                            className="form-input-get-more"
-                            placeholder="Tags"
-                            aria-label="Tags"
-                            value={tags}
-                        onChange={(event) => setTags(event.target.value)}
-                    />
-                    <Form.Control
-                            className="form-input-get-more"
+                            className="form-input-get-more shadow--ridge"
                             placeholder="Title"
                             aria-label="Title"
                             value={title}
                         onChange={(event) => setTitle(event.target.value)}
                     />
+                    <Form.Control
+                        className="form-input-get-more shadow--ridge"
+                        placeholder="Tags"
+                        aria-label="Tags"
+                        value={tags}
+                        onChange={(event) => setTags(event.target.value)}
+                    />
                     <Button type="submit" className="submit">
-                        <img
-                            title={"Add the new Bookmark."}
-                            alt="Add Icon"
-                            id="add-png"
-                            src="../src/assets/add.png"
-                        />
+                        save bookmark
                     </Button>
                 </InputGroup>
             </Form>

@@ -14,11 +14,13 @@ function Panel({ className }: PanelProps) {
 
     return (
         <Container className={`panel-items-container ${className}`}>
+            <span className={"panel-name"}>{className}</span>
             <div className="iframe-bounding shadow--sunken">
                 <iframe ref={iframeRef}></iframe>
             </div>
             <div className="panel-controls">
-                <Navigation onLinkClick={openInIframe} panelName={className} isExternal={false} />
+
+                <Navigation onLinkClick={openInIframe} panelName={className} isExternal={false}/>
             </div>
         </Container>
     );
