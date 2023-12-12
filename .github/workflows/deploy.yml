@@ -35,7 +35,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: frontend-build
-          path: backend/src/main/resources/static
+          path: backend_e-source/src/main/resources/static
 
       - name: Set up JDK
         uses: actions/setup-java@v3
