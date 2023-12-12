@@ -29,3 +29,4 @@
 /frontend/dist
 /frontend/dist-ssr
 /frontend/*.local
+/backend_e-source/src/main/resources/static/
