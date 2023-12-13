@@ -13,7 +13,7 @@ function EditBookmark({
     const onDeleteBookmarkClick = () => {
         console.log("onDeleteBookmarkClick has been called");
         console.log("Deleting bookmark with ID ", selectedBookmark);
-        handleDeleteBookmark(selectedBookmark || null);
+        handleDeleteBookmark(selectedBookmark ?? null);
     };
 
     return (
@@ -26,13 +26,13 @@ function EditBookmark({
                         className={"form-input-edit-bookmark shadow--ridge"}
                         type="text"
                         aria-label={"URL"}
-                        value={selectedBookmark?.url || ''}
+                        value={selectedBookmark?.url ?? ''}
                         onChange={(e) => handleInputChange('url', e.target.value)}
                     />
                     <Form.Select
                         className={"form-select-edit-bookmark form-input-edit-bookmark shadow--ridge"}
                         aria-label={"Destination"}
-                        value={selectedBookmark?.destination || ''}
+                        value={selectedBookmark?.destination ?? ''}
                         onChange={(e) => handleInputChange('destination', e.target.value)}
                     >
                         <option value="external">external</option>
