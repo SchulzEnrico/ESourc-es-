@@ -126,7 +126,7 @@ class BookmarkServiceTest {
         }
 
     @Test
-    public void testDeleteBookmark_throwsException() {
+    void testDeleteBookmark_throwsException() {
         doThrow(new EmptyResultDataAccessException(1)).when(bookmarkRepository).deleteById(any());
 
         assertThrows(BookmarkDeletionException.class, () -> {

@@ -60,7 +60,7 @@ const Timer: React.FC = () => {
 
             {showTimer && (
                 <>
-                    <label>Choose...</label>
+                    <p>Choose...</p>
                     <select
                         className={"timer-input"}
                         onChange={handleChange}
@@ -72,7 +72,7 @@ const Timer: React.FC = () => {
                         ))}
                     </select>
 
-                    <label>or set</label>
+                    <p>or set</p>
                     <input
                         className={"timer-input"}
                         type="number"

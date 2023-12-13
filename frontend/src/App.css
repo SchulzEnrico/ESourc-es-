@@ -26,7 +26,7 @@
 .modal-90w {
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
-  z-index: 1050; /* Passen Sie den z-index-Wert nach Bedarf an */
+  z-index: 1050;
 }
 
 .modal.show .modal-90w {
@@ -44,11 +44,6 @@
   user-select: none;
   max-width: 100%;
 }
-/*@media screen and (min-width: 30em) {
-    .shadow--outset, .shadow--raised, .shadow--inset, .shadow--sunken, .shadow--ridge {
-        padding: 1rem 3rem ;
-    }
-}*/
 
 .shadow--outset {
   box-shadow: 0.5rem 0.5rem .5rem var(--color-1),
