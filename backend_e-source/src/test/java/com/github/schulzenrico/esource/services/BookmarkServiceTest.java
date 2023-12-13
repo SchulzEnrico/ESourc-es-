@@ -81,7 +81,6 @@ class BookmarkServiceTest {
                     .destination("Frame1")
                     .dropdownCategory("Test Dropdown Category")
                     .title("Test Titel")
-                    .name("Test Name")
                     .build();
 
             BookmarkDTO updatedBookmarkDTO = BookmarkDTO.builder()
@@ -90,7 +89,6 @@ class BookmarkServiceTest {
                     .destination("EDIT Frame1")
                     .dropdownCategory("EDIT Dropdown Category")
                     .title("EDIT Titel")
-                    .name("EDIT Name")
                     .build();
 
             Bookmark expectedBookmark = Bookmark.builder()
@@ -99,7 +97,6 @@ class BookmarkServiceTest {
                     .destination("EDIT Frame1")
                     .dropdownCategory("EDIT Dropdown Category")
                     .title("EDIT Titel")
-                    .name("EDIT Name")
                     .build();
 
             when(bookmarkRepository.findById(bookmarkId)).thenReturn(Optional.of(bookmark));
