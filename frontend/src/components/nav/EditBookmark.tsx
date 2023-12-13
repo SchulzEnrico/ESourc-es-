@@ -48,7 +48,7 @@ function EditBookmark({
                         className={"form-input-edit-bookmark shadow--ridge"}
                         type="text"
                         aria-label={"Dropdown Category"}
-                        value={selectedBookmark?.dropdownCategory || ''}
+                        value={selectedBookmark?.dropdownCategory ?? ''}
                         onChange={(e) => handleInputChange('dropdownCategory', e.target.value)}
                     />
 
@@ -56,14 +56,15 @@ function EditBookmark({
                         className={"form-input-edit-bookmark shadow--ridge"}
                         type="text"
                         aria-label={"Title"}
-                        value={selectedBookmark?.title || ''}
+                        value={selectedBookmark?.title ?? ''}
                         onChange={(e) => handleInputChange('title', e.target.value)}
                     />
+
                     <Form.Control
                         className={"form-input-edit-bookmark shadow--ridge"}
                         type="text"
                         aria-label={"Tags"}
-                        value={selectedBookmark?.tags || ''}
+                        value={selectedBookmark?.tags ?? ''}
                         onChange={(e) => handleInputChange('name', e.target.value)}
                     />
 
