@@ -10,7 +10,7 @@ footer {
     width: 98%;
     margin: 0 auto;
     color: var(--color-4);
-    background-color: var(--color-0);
+    background-color: var(--color-01);
     border-radius: 20px 20px 0 0;
     border: solid 1px var(--color-4);
     border-bottom: none;
@@ -105,7 +105,7 @@ p {
     grayscale(0)
     brightness(100%)
     hue-rotate(0deg)
-    invert(0%)
+  /**/  invert(0%)
     sepia(0%);
 }
 

@@ -6,14 +6,15 @@
   text-rendering: optimizeLegibility;
   -moz-osx-font-smoothing: grayscale;
 
-  --color-0: #000000;
-  --color-1: #181818;
-  --color-2: #333333;
-  --color-21: #444444;
+  --color-0: #020202;
+  --color-01: #101010;
+  --color-1: #1e1e1f;
+  --color-2: #333334;
+  --color-21: #414144;
   --color-3: #5d0101;
   --color-31: #830401;
-  --color-4: #808080;
-  --color-41: #c0c0c0;
+  --color-4: #7d7e83;
+  --color-41: #a7acb2;
   --color-5: #0219c0;
 
   background-color: var(--color-0);
@@ -33,14 +34,8 @@ h6 {
 }
 
 a {
-  text-decoration: inherit;
-  background-image: -webkit-linear-gradient(270deg, #808080 53%, #808080 54%, #c0c0c0 64%, #808080 72%);
+  text-decoration: none;
   background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-a:hover {
-  color: var(--color-5);
 }
 
 body {
@@ -56,18 +51,16 @@ body {
 
 button {
   border-radius: 25px;
-  border: 2px solid var(--color-0);
-  padding: .3em .4em;
+  border: 2px solid transparent;
+  padding: .3em .5em;
   font-size: medium;
   font-weight: 500;
   font-family: inherit;
-  background-image: -webkit-linear-gradient(270deg, #808080 53%, #808080 54%, #c0c0c0 64%, #808080 72%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--color-4);
   cursor: pointer;
-  box-shadow: inset -5px -5px 8px #181818,
-              inset 5px 5px 8px #343434;
+  background: var(--color-0);
+  box-shadow: inset -3px -3px 3px var(--color-1),
+                inset 3px 3px 3px var(--color-21);
 }
 button:hover {
   border: solid 2px var(--color-4);
@@ -82,7 +75,6 @@ button:focus-visible {
               inset -5px -5px 10px #470603,
               inset 5px 5px 10px #b70e07;
 }
-.close-button,
 .get-more-button,
 .manageBookmarksBtn,
 .submit {
@@ -90,12 +82,6 @@ button:focus-visible {
   color: var(--color-4);
   box-shadow: inset -5px -5px 10px #470603,
               inset 5px 5px 10px #a20f08;
-}
-
-.btn-close {
-  width: 40px;
-  height: 40px;
-
 }
 
 .edit-bookmark-btn,
@@ -112,44 +98,20 @@ button:focus-visible {
               inset 5px 5px 6px #373737;
 }
 
+.submit {
+  margin: 10px 20px;
+}
+
 .submit,
 .save-close-btn {
   margin: 25px;
-  border: solid 2px var(--color-1);
+  background-color: var(--color-0);
+  border: solid 2px transparent;
   box-shadow: 7px 7px 10px #0e2d08,
               -3px -3px 10px #0f7501,
-              inset -5px -5px 10px #15440d,
-              inset 5px 5px 10px #38c418;
+              inset -3px -3px 5px #15440d,
+              inset 3px 3px 5px #38c418;
   color: var(--color-4);
-}
-
-.dropdown-toggle-split {
-    border: solid 2px var(--color-1);
-    margin-top: -2px;
-    width: 40px;
-    height: 28px;
-    box-shadow: inset -5px -5px 10px #470603,
-                inset 5px 5px 10px #a20f08;
-}
-
-.dropdown-toggle-split:hover {
-  border: solid 2px var(--color-1);
-  background-color: var(--color-3);
-  color: var(--color-4);
-}
-
-#split-button-basic-secondary > span {
-  margin: 0 10px 0 0;
-  padding: 4px;
-  left: 0;
-  background-image: url(./assets/settings.png);
-  opacity: 0.3;
-  background-repeat: no-repeat;
-  color: transparent;
-}
-
-#split-button-basic-secondary:hover > span {
-  opacity: 1;
 }
 
 .delete-forever-btn {
@@ -174,21 +136,16 @@ button:focus-visible {
               inset 5px 5px 10px var(--color-31);
 }
 
-.submit {
-  padding: 11px;
-  margin: 10px 20px;
-}
 .get-more-button:hover,
-.manageBookmarksBtn:hover,
 .submit:hover {
   border: solid 2px var(--color-1);
-  background-color: var(--color-3);
   color: var(--color-4);
   box-shadow: 5px 5px 10px #001180,
-  -3px -3px 10px #0219C0FF,
-  inset -3px -3px 10px #0219C0FF,
-  inset 3px 3px 10px #0219C0FF;
+              -3px -3px 10px #0219C0FF,
+              inset -3px -3px 10px #0219C0FF,
+              inset 3px 3px 10px #0219C0FF;
 }
+
 .add-png {
   height: 20px;
 }
@@ -208,41 +165,6 @@ button:focus-visible {
   border-radius: 30px;
 }
 
-.nav-button {
-  border: solid 1px transparent;
-  color: var(--color-4);
-  cursor: pointer;
-  margin-right: 5px;
-  border-radius: 25px;
-
-}
-
-.dropdown-item {
-  background-color: var(--color-0);
-  display: flex;
-  flex-direction: row;
-  height: 25px;
-  width: 90%;
-  justify-content: space-between;
-  padding: .2em .3em;
-  border: solid 2px var(--color-1);
-  border-radius: 25px;
-  margin: 5px;
-  box-shadow: inset -5px -5px 8px #181818,
-  inset 8px 10px 15px #343434;
-}
-
-.nav-button:hover,
-.dropdown-item:hover {
-  border: solid 2px var(--color-1);
-  background-color: var(--color-3);
-  color: var(--color-4);
-  box-shadow: 7px 7px 14px #161616,
-              -7px -7px 14px #363636,
-              inset -5px -5px 10px #470603,
-              inset 5px 5px 10px #b70e07;
-}
-
 .dropdown-container {
   position: relative;
   width: 250px;
@@ -258,25 +180,46 @@ button:focus-visible {
 
 .dropdown-button-container {
   display: flex;
-  column-gap: 1px; /* Controls the space between the buttons. May adjust based on preference. */
   border-radius: 25px; /* Controls the radius on the corners that do not touch each other */
 }
 
 .dropdown-button-container > button {
-  flex-basis: 50%;   /* Each button takes up to 50% of the parent's width */
+  flex-basis: 90%;   /* Each button takes up to 50% of the parent's width */
   border-radius: 0;
 }
 
 /* Apply border radius to the first (left-most) button end */
 .dropdown-button-container > button:first-child {
+  width: 100px;
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
+  border-right: none;
 }
 
 /* Apply border radius to the last (right-most) button end */
 .dropdown-button-container > button:last-child {
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
+  border-left: none;
+  max-width: 40px !important;
+}
+
+.dropdown-button-container > button:first-child:hover {
+  border: solid 2px var(--color-1);
+  border-right: none;
+  box-shadow: 5px 5px 10px var(--color-3),
+              -3px -3px 10px var(--color-31),
+              inset -3px -3px 10px var(--color-3),
+              inset 3px 3px 10px var(--color-31);
+
+}
+
+.dropdown-edit:hover {
+  border: solid 2px var(--color-1);
+  box-shadow: 3px 3px 5px #001180,
+              -3px -3px 5px #0219C0FF,
+              inset -3px -3px 5px #0219C0FF,
+              inset 3px 3px 5px #0219C0FF;
 }
 
 .introductions {
@@ -339,7 +282,7 @@ button:focus-visible {
 }
 
 .timer{
-  margin-top: .5rem;
+  margin-top: .1rem;
   display: flex;
   justify-content: center;
 }
@@ -359,7 +302,7 @@ button:focus-visible {
 
 .timer button {
   margin: 0 1rem;
-  height: 30px;
+  height: 50px;
   font-size: small;
   padding: 0 10px;
   border: solid 2 px var(--color-1);
@@ -377,6 +320,7 @@ button:focus-visible {
   -webkit-text-fill-color: transparent;
 }
 
+
 .timer button:hover,
 .start-btn:hover,
 .stop-btn:hover,
@@ -388,25 +332,17 @@ button:focus-visible {
               inset 3px 3px 10px var(--color-31);
 }
 
-.dropdown-edit{
-  background-color: #0219c0;
+
+.btn-close {
+
+  width: 40px !important;
+  height: 40px !important;
 }
 
 .dropdown-edit {
-  border: solid 2px var(--color-4);
-  box-shadow: 5px 5px 10px #001180,
-              -3px -3px 10px #0219C0FF,
-              inset -3px -3px 10px #0219C0FF,
-              inset 3px 3px 10px #0219C0FF;
+  border: solid 2px var(--color-0);
+  width: auto;
 }
-
-.dropdown-edit:hover {
-  box-shadow: 7px 7px 10px #0e2d08,
-  -3px -3px 10px #0f7501,
-  inset -5px -5px 10px #15440d,
-  inset 5px 5px 10px #38c418;
-}
-
 
 .panel-items-container {
   z-index: 0;

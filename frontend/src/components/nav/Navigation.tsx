@@ -22,6 +22,18 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
     const [selectedBookmark, setSelectedBookmark] = useState<BookmarkDTO | null>(null);
 
+    const loadBookmarks = () => {
+        console.log('Loading bookmarks...');  // Neu hinzugefügt
+        axios.get<BookmarkDTO[]>('/api/bookmarks/getAll')
+            .then((response) => {
+                setBookmarks(response.data);
+                console.log('Bookmarks loaded:', response.data);
+            })
+            .catch(error =>
+                console.error("Error retrieving bookmarks:", error)
+            );
+    };
+
 
     const openLink = (url: string, destination: string) => {
         destination === "external" ? window.open(url, '_blank') : onLinkClick?.(url);
@@ -52,7 +64,8 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
 
     const handleCloseModal = () => {
         setShowGetMore(false);
-        document.body.style.overflow = 'auto';  // Neu hinzugefügt
+        document.body.style.overflow = 'auto';
+        loadBookmarks();
     };
 
     const handleCloseModalEdit = () => {
@@ -62,13 +75,16 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
 
     const handleSaveChanges = () => {
         if (selectedBookmark && selectedBookmark._id) {
+            console.log('Starting to update the bookmark...');  // Neu
             axios.put(`/api/bookmarks/edit/${selectedBookmark._id}`, selectedBookmark)
                 .then(response => {
                     console.log('Bookmark updated successfully:', response.data);
-                    showAlert('Bookmark updated successfully'); // Show success alert
+                    showAlert('Bookmark updated successfully');
                     setShowEditModal(false);
-                    setShowEditModal(false);
-                    document.body.style.overflow = 'auto'; // Hinzugefügt
+                    document.body.style.overflow = 'auto';
+                    console.log('Going to load bookmarks...');  // Neu
+                    loadBookmarks();
+                    console.log('Should have loaded bookmarks.');  // Neu
                 })
                 .catch(error => {
                     console.error('Error updating bookmark:', error);
@@ -99,18 +115,13 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
                 console.log('Bookmark deleted successfully:', response.data);
                 showAlert('Bookmark deleted successfully'); // Show success alert
                 setShowEditModal(false);
+                loadBookmarks();
                 document.body.style.overflow = 'auto'; // Neu hinzugefügt
             });
     };
 
     useEffect(() => {
-        axios.get<BookmarkDTO[]>('/api/bookmarks/getAll')
-            .then((response) => {
-                setBookmarks(response.data);
-            })
-            .catch(error =>
-                console.error("Error retrieving bookmarks:", error)
-            );
+        loadBookmarks();
     }, []);
 
     useEffect(() => {
@@ -143,7 +154,7 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
                     className={"dropdown-item dropdown-edit"}
                     onClick={() => openEditModal(bookmark)}
                 >
-                    Edit
+                    <img alt="Settings icon" id="settings-png" src="../../src/assets/settings.png"/>
                 </Button>
             </div>
         ));

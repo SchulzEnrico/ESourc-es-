@@ -1,8 +1,10 @@
 import Navigation from "../nav/Navigation.tsx";
 import "./Header.css";
 import Timer from "../utilities/Timer.tsx";
+import {HeaderProps} from '../types/types.ts';
+import React from "react";
 
-function Header() {
+const Header: React.FC<HeaderProps> = () => {
 
     return (
         <header>

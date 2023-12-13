@@ -41,3 +41,7 @@ export type NavigationProps = {
     isExternal: boolean;
 };
 
+export type HeaderProps = {
+    bookmarks: BookmarkDTO[];
+    loadBookmarks: () => void;
+};

@@ -1,9 +1,9 @@
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import {Container} from 'react-bootstrap';
 import Navigation from "../nav/Navigation";
 import { PanelProps } from '../types/types';
 
-function Panel({ className }: PanelProps) {
+const Panel: React.FC<PanelProps> = ({ className }) => {
     const iframeRef = useRef<HTMLIFrameElement>(null);
 
     const openInIframe = (url: string) => {
@@ -19,7 +19,6 @@ function Panel({ className }: PanelProps) {
                 <iframe ref={iframeRef}></iframe>
             </div>
             <div className="panel-controls">
-
                 <Navigation onLinkClick={openInIframe} panelName={className} isExternal={false}/>
             </div>
         </Container>

@@ -23,8 +23,24 @@
     "panel-controls";
 }
 
-.development > .panel-items-container {
-    grid-template-rows: 91% 9%;
+
+.panel-controls {
+    grid-area: panel-controls;
+    padding-top: .2rem;
+    position: relative;
+}
+
+.development .panel-items-container {
+    grid-template-rows: 92% 8%;
+}
+
+.ins_pro,
+.snip_gen,
+.know_guide,
+.lip_doc,
+.project,
+.personal > .panel-items-container {
+    grid-template-rows: 90% 10%;
 }
 
 .iframe-bounding {
@@ -45,11 +61,6 @@ iframe {
 
 }
 
-.panel-controls {
-    grid-area: panel-controls;
-    padding-top: .5rem;
-    position: relative;
-}
 
 .panel-name {
     position: absolute;

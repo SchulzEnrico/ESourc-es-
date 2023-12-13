@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Form, InputGroup, Button, CloseButton } from "react-bootstrap";
+import { Form, InputGroup, Button } from "react-bootstrap";
 import {GetMoreProps} from "../types/types.ts";
 
 function GetMore({ show, onClose }:Readonly<GetMoreProps>) {
@@ -10,6 +10,7 @@ function GetMore({ show, onClose }:Readonly<GetMoreProps>) {
     const [title, setTitle] = useState("");
     const [destination, setDestination] = useState("");
     const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+
 
     function handleSubmit(event: { preventDefault: () => void }) {
         event.preventDefault();
@@ -56,24 +57,27 @@ function GetMore({ show, onClose }:Readonly<GetMoreProps>) {
     }, [showSuccessPopup, setShowSuccessPopup]);
 
     return (
-        <div className={"get-more"} style={{ display: show ? "block" : "none" }}>
-            <CloseButton
-                className="close-button"
+        <div className={`get-more ${show ? 'show' : 'hide'}`}>
+            <Button
+                id={"close-button"}
+                className={"close-button"}
                 onClick={onClose}
                 aria-label="Close"
                 title="Close"
                 name="Close"
-            />
+            >
+                Close
+            </Button>
             <p className={"introductions"}>
                 Add a new bookmark by filling in these fields
             </p>
             <Form onSubmit={handleSubmit}>
                 <InputGroup className="container-fluid md-3 d-flex justify-content-between">
                     <Form.Control
-                            className="form-input-get-more shadow--ridge"
-                            placeholder="URL"
-                            aria-label="URL"
-                            value={url}
+                        className="form-input-get-more shadow--ridge"
+                        placeholder="URL"
+                        aria-label="URL"
+                        value={url}
                         onChange={(event) => setUrl(event.target.value)}
                     />
                     <Form.Select
@@ -94,16 +98,16 @@ function GetMore({ show, onClose }:Readonly<GetMoreProps>) {
                     </Form.Select>
                     <Form.Control
                         className="form-input-get-more shadow--ridge"
-                            placeholder="Dropdown Category"
-                            aria-label="Dropdown Category"
-                            value={dropdownCategory}
+                        placeholder="Dropdown Category"
+                        aria-label="Dropdown Category"
+                        value={dropdownCategory}
                         onChange={(event) => setDropdownCategory(event.target.value)}
                     />
                     <Form.Control
-                            className="form-input-get-more shadow--ridge"
-                            placeholder="Title"
-                            aria-label="Title"
-                            value={title}
+                        className="form-input-get-more shadow--ridge"
+                        placeholder="Title"
+                        aria-label="Title"
+                        value={title}
                         onChange={(event) => setTitle(event.target.value)}
                     />
                     <Form.Control
