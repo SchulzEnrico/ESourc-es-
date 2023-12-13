@@ -12,11 +12,10 @@ function EditBookmark({
 
     const onDeleteBookmarkClick = () => {
         console.log("onDeleteBookmarkClick has been called");
-
-            console.log("Deleting bookmark with ID ", selectedBookmark);
-            handleDeleteBookmark(selectedBookmark);
-
+        console.log("Deleting bookmark with ID ", selectedBookmark);
+        handleDeleteBookmark(selectedBookmark || null);
     };
+
     return (
             <Modal className={"edit-modal shadow--raised"} show={showEditModal} onHide={handleCloseModalEdit}>
                 <Modal.Header>

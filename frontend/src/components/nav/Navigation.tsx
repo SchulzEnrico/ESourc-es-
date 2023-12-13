@@ -74,7 +74,7 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
     };
 
     const handleSaveChanges = () => {
-        if (selectedBookmark && selectedBookmark._id) {
+        if (selectedBookmark?._id) {
             console.log('Starting to update the bookmark...');  // Neu
             axios.put(`/api/bookmarks/edit/${selectedBookmark._id}`, selectedBookmark)
                 .then(response => {
