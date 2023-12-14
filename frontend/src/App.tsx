@@ -6,7 +6,6 @@ import Footer from "./components/footer/Footer.tsx";
 import Desk from "./components/main/Desk.tsx";
 import { BookmarkDTO } from "./components/types/types.ts";
 
-
 function App() {
     const [bookmarks, setBookmarks] = useState<BookmarkDTO[]>([]);
 
@@ -27,9 +26,7 @@ function App() {
 
     return (
         <div className="app">
-
             <Header bookmarks={bookmarks} loadBookmarks={loadBookmarks} />
-
             <Desk />
             <Footer />
         </div>

@@ -20,8 +20,8 @@ const Footer = () => {
         <footer>
             <Clock />
             <form onSubmit={handleSearchSubmit}>
-                <input className={"search-input shadow--ridge"} type="text" value={searchText} onChange={handleSearchChange} placeholder="Google search..." />
-                <button type="submit">Search</button>
+                <input className={"search-input shadow--sunken"} type="text" value={searchText} onChange={handleSearchChange} placeholder="Google search..." />
+                <button className={"search-google-btn"} type="submit">Search</button>
             </form>
             <Container>
                 <Row className="footer-row">

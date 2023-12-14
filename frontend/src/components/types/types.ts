@@ -15,13 +15,14 @@ export type LinkParameters = {
     destination: string;
     target: string;
     name: string;
-    tags: string;
+    tags: string[];
 };
 
 export type GetMoreProps ={
     show: boolean;
     onClose: () => void;
-}
+};
+
 export type EditBookmarkProps = {
     showEditModal: boolean;
     handleCloseModalEdit: () => void;
@@ -33,7 +34,7 @@ export type EditBookmarkProps = {
 
 export type PanelProps = {
     className: string;
-}
+};
 
 export type NavigationProps = {
     onLinkClick?: (url: string) => void;

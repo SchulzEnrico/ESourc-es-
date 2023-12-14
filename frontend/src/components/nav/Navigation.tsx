@@ -13,7 +13,6 @@ import './EditBookmark.tsx'
 import EditBookmark from "./EditBookmark";
 import {NavigationProps, BookmarkDTO} from "../types/types.ts";
 
-
 const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExternal }) => {
     const tempBookmark = useRef<BookmarkDTO | null>(null);
     const [showEditModal, setShowEditModal] = useState(false);
@@ -34,7 +33,6 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
             );
     };
 
-
     const openLink = (url: string, destination: string) => {
         destination === "external" ? window.open(url, '_blank') : onLinkClick?.(url);
     };
@@ -53,9 +51,8 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
 
     const showAlert = (message: string, variant: string = 'success') => {
         setAlert({ open: true, message, variant });
-        setTimeout(() => setAlert({ ...alert, open: false }), 1500); // Auto close the alert after 3 seconds
+        setTimeout(() => setAlert({ ...alert, open: false }), 1500);
     }
-
 
     const handleGetMoreClick = () => {
         setShowGetMore(true);
@@ -135,7 +132,6 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
             window.removeEventListener('resize', handleResize);
         };
     }, []);
-
 
 
     const renderDropdownItems = (category: string) => {

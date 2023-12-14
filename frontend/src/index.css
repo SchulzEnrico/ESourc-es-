@@ -8,14 +8,14 @@
 
   --color-0: #020202;
   --color-01: #101010;
-  --color-1: #1e1e1f;
+  --color-1: #252526;
   --color-2: #333334;
   --color-21: #414144;
   --color-3: #5d0101;
   --color-31: #830401;
   --color-4: #7d7e83;
   --color-41: #a7acb2;
-  --color-5: #0219c0;
+  --color-5: #021cf5;
 
   background-color: var(--color-0);
   color: var(--color-4);
@@ -46,12 +46,27 @@ body {
   align-items: center;
   height: 100vh;
   width: 100vw;
-  overflow: auto;
+  overflow: scroll;
+}
+body::-webkit-scrollbar {
+  width: 15px;
+  height: 15px;
+}
+::-webkit-scrollbar-track {
+  background-color: #070707;
+}
+::-webkit-scrollbar-corner {
+  background-color: #070707;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: rgba(70, 0, 0, 0.51);
+  border: 2px solid var(--color-41);
+  border-radius: 25px;
 }
 
 button {
   border-radius: 25px;
-  border: 2px solid transparent;
+  border: 2px solid var(--color-01);
   padding: .3em .5em;
   font-size: medium;
   font-weight: 500;
@@ -63,7 +78,10 @@ button {
                 inset 3px 3px 3px var(--color-21);
 }
 button:hover {
-  border: solid 2px var(--color-4);
+  border: 2px solid var(--color-0);
+  color: var(--color-4);
+  box-shadow: inset -5px -5px 10px #470603,
+  inset 5px 5px 10px #a20f08;
 }
 button:focus,
 button:focus-visible {
@@ -75,6 +93,14 @@ button:focus-visible {
               inset -5px -5px 10px #470603,
               inset 5px 5px 10px #b70e07;
 }
+
+.close-button {
+  margin-left: 20px;
+  width: 50px;
+  height: 50px;
+}
+
+.close-button,
 .get-more-button,
 .manageBookmarksBtn,
 .submit {
@@ -104,7 +130,9 @@ button:focus-visible {
 
 .submit,
 .save-close-btn {
+  height: 50px;
   margin: 25px;
+  padding: 5px 15px;
   background-color: var(--color-0);
   border: solid 2px transparent;
   box-shadow: 7px 7px 10px #0e2d08,
@@ -118,7 +146,7 @@ button:focus-visible {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 3rem 30px 10px;
+  margin: 5rem 30px 1rem 25px;
   padding: 0 10px;
   right: 0;
   border: solid 2px var(--color-1);
@@ -136,6 +164,7 @@ button:focus-visible {
               inset 5px 5px 10px var(--color-31);
 }
 
+.save-close-btn:hover,
 .get-more-button:hover,
 .submit:hover {
   border: solid 2px var(--color-1);
@@ -168,7 +197,7 @@ button:focus-visible {
 .dropdown-container {
   position: relative;
   width: 250px;
-  padding: 10px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   background-color: var(--color-2);
@@ -180,24 +209,33 @@ button:focus-visible {
 
 .dropdown-button-container {
   display: flex;
-  border-radius: 25px; /* Controls the radius on the corners that do not touch each other */
+  border-radius: 25px;
+  height: 40px;
+  padding: 2px;
 }
 
 .dropdown-button-container > button {
-  flex-basis: 90%;   /* Each button takes up to 50% of the parent's width */
+  flex-basis: 90%;
   border-radius: 0;
+  margin: 2px 0;
+  background: var(--color-01);
+  box-shadow: inset -3px -3px 3px var(--color-1),
+  inset 3px 3px 3px var(--color-21);
+  border: transparent;
 }
 
-/* Apply border radius to the first (left-most) button end */
 .dropdown-button-container > button:first-child {
+  padding: 2px;
+  margin: 2px 0;
   width: 100px;
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
   border-right: none;
 }
 
-/* Apply border radius to the last (right-most) button end */
 .dropdown-button-container > button:last-child {
+  padding: 2px;
+  margin: 2px 0;
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
   border-left: none;
@@ -205,26 +243,27 @@ button:focus-visible {
 }
 
 .dropdown-button-container > button:first-child:hover {
-  border: solid 2px var(--color-1);
+  padding: 2px;
   border-right: none;
-  box-shadow: 5px 5px 10px var(--color-3),
-              -3px -3px 10px var(--color-31),
-              inset -3px -3px 10px var(--color-3),
-              inset 3px 3px 10px var(--color-31);
-
+  box-shadow: inset -5px -5px 10px #470603,
+  inset 5px 5px 10px #a20f08;
 }
 
 .dropdown-edit:hover {
-  border: solid 2px var(--color-1);
-  box-shadow: 3px 3px 5px #001180,
-              -3px -3px 5px #0219C0FF,
-              inset -3px -3px 5px #0219C0FF,
-              inset 3px 3px 5px #0219C0FF;
+  padding: 2px;
+  margin: 2px 0;
+  box-shadow: 5px 5px 10px #001180,
+  -3px -3px 10px #0219C0FF,
+  inset -3px -3px 10px #0219C0FF,
+  inset 3px 3px 10px #0219C0FF;
 }
 
 .introductions {
-  font-size: larger;
+  display: flex;
+  justify-content: center;
+  font-size: x-large;
   color: var(--color-41);
+
   background-image: -webkit-linear-gradient(270deg, #808080 53%, #808080 54%, #c0c0c0 64%, #808080 72%);
   background-clip: text;
   -webkit-background-clip: text;
@@ -254,22 +293,30 @@ button:focus-visible {
   top: 50%;
   left: 50%;
   width: 300px;
-  height: 500px;
+  height: 600px;
   transform: translate(-50%, -50%);
   padding: 20px;
   transition: transform 0.5s ease-in-out;
   border: solid 1px var(--color-0);
   border-radius: 20px;
   background: var(--color-0);
-  box-shadow: 1px 4px 10px var(--color-3),
-              1px -1px 10px var(--color-2),
+  box-shadow: 7px 7px 10px var(--color-3),
+              3px 3px 8px var(--color-2),
               inset -5px -5px 10px #121212,
               inset 5px 5px 10px #3a3a3a;
 }
 
+.edit-modal {
+  padding-top: 50px;
+}
+
+.edit-modal-title {
+  margin-bottom: 30px;
+}
+
 .form-select-get-more,
 .form-select-edit-bookmark {
-  height: 50px;
+  height: 55px;
   width: 240px;
 }
 
@@ -320,7 +367,6 @@ button:focus-visible {
   -webkit-text-fill-color: transparent;
 }
 
-
 .timer button:hover,
 .start-btn:hover,
 .stop-btn:hover,
@@ -330,18 +376,6 @@ button:focus-visible {
               -3px -3px 10px var(--color-31),
               inset -3px -3px 10px var(--color-3),
               inset 3px 3px 10px var(--color-31);
-}
-
-
-.btn-close {
-
-  width: 40px !important;
-  height: 40px !important;
-}
-
-.dropdown-edit {
-  border: solid 2px var(--color-0);
-  width: auto;
 }
 
 .panel-items-container {

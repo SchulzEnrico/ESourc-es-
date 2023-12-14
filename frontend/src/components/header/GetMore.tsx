@@ -59,18 +59,15 @@ function GetMore({ show, onClose }:Readonly<GetMoreProps>) {
     return (
         <div className={`get-more ${show ? 'show' : 'hide'}`}>
             <Button
-                id={"close-button"}
                 className={"close-button"}
                 onClick={onClose}
                 aria-label="Close"
                 title="Close"
                 name="Close"
             >
-                Close
+                <img alt="Close Icon" id="close-png" src="../src/assets/close.png"/>
             </Button>
-            <p className={"introductions"}>
-                Add a new bookmark by filling in these fields
-            </p>
+            <p className={"introductions"}>A new bookmark?<br/>Filling in these fields!</p>
             <Form onSubmit={handleSubmit}>
                 <InputGroup className="container-fluid md-3 d-flex justify-content-between">
                     <Form.Control
