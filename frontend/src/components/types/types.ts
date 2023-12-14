@@ -30,6 +30,7 @@ export type EditBookmarkProps = {
     handleSaveChanges: () => void;
     handleDeleteBookmark: (bookmark: BookmarkDTO | null) => void;
     selectedBookmark: BookmarkDTO | null;
+    showSuccessPopup: boolean;
 };
 
 export type PanelProps = {

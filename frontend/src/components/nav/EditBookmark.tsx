@@ -8,6 +8,7 @@ function EditBookmark({
                           handleSaveChanges,
                           handleDeleteBookmark,
                           selectedBookmark,
+                          showSuccessPopup,
                       }: Readonly<EditBookmarkProps>) {
 
     const onDeleteBookmarkClick = () => {
@@ -90,6 +91,10 @@ function EditBookmark({
                     <img alt="Delete Forever Icon" id="deleteForever-png" src="../src/assets/deleteForever.png" />
                 </Button>
             </Modal.Footer>
+            {/* Erfolgs-Popup anzeigen, wenn showSuccessPopup true ist */}
+            {showSuccessPopup && (
+                <div className="success-popup">Bookmark updated/deleted successfully!</div>
+            )}
         </Modal>
     );
 }

@@ -20,6 +20,7 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
     const [showGetMore, setShowGetMore] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
     const [selectedBookmark, setSelectedBookmark] = useState<BookmarkDTO | null>(null);
+    const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
     const loadBookmarks = () => {
         console.log('Loading bookmarks...');  // Neu hinzugefügt
@@ -49,11 +50,6 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
         variant: 'success'
     });
 
-    const showAlert = (message: string, variant: string = 'success') => {
-        setAlert({ open: true, message, variant });
-        setTimeout(() => setAlert({ ...alert, open: false }), 1500);
-    }
-
     const handleGetMoreClick = () => {
         setShowGetMore(true);
         document.body.style.overflow = 'hidden';  // Neu hinzugefügt
@@ -67,24 +63,25 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
 
     const handleCloseModalEdit = () => {
         setShowEditModal(false);
+        setShowSuccessPopup(false);
         document.body.style.overflow = 'auto';  // Neu hinzugefügt
     };
 
     const handleSaveChanges = () => {
         if (selectedBookmark?._id) {
-            console.log('Starting to update the bookmark...');  // Neu
+            console.log('Starting to update the bookmark...');
             axios.put(`/api/bookmarks/edit/${selectedBookmark._id}`, selectedBookmark)
                 .then(response => {
                     console.log('Bookmark updated successfully:', response.data);
-                    showAlert('Bookmark updated successfully');
+                    setShowSuccessPopup(true);
                     setShowEditModal(false);
                     document.body.style.overflow = 'auto';
-                    console.log('Going to load bookmarks...');  // Neu
                     loadBookmarks();
-                    console.log('Should have loaded bookmarks.');  // Neu
+                    setTimeout(() => setShowSuccessPopup(false), 1500);
                 })
                 .catch(error => {
                     console.error('Error updating bookmark:', error);
+                    // Hier können Sie auch einen Fehler-Popup anzeigen
                 });
         } else {
             console.error('Selected bookmark is null or does not have an _id:', selectedBookmark);
@@ -110,10 +107,15 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
             .delete(`/api/bookmarks/delete/${id}`)
             .then(response => {
                 console.log('Bookmark deleted successfully:', response.data);
-                showAlert('Bookmark deleted successfully'); // Show success alert
+                setShowSuccessPopup(true);
                 setShowEditModal(false);
                 loadBookmarks();
-                document.body.style.overflow = 'auto'; // Neu hinzugefügt
+                document.body.style.overflow = 'auto';
+                setTimeout(() => setShowSuccessPopup(false), 1500);
+            })
+            .catch(error => {
+                console.error('Error deleting bookmark:', error);
+                // Hier können Sie auch einen Fehler-Popup anzeigen
             });
     };
 
@@ -208,6 +210,7 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
                         }
                     }}
                     selectedBookmark={selectedBookmark}
+                    showSuccessPopup={showSuccessPopup}
                 />
             </ButtonGroup>
         );
@@ -221,9 +224,8 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
                 </Alert>
             )}
             <Modal show={showGetMore} onHide={handleCloseModal}>
-                <GetMore onClose={handleCloseModal}  show/>
+                <GetMore onClose={handleCloseModal} show={showSuccessPopup} />
             </Modal>
-
         </>
     );
 }

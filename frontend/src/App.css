@@ -74,15 +74,5 @@
               0.1rem -0.1rem 0.4rem var(--color-2);
 }
 
-.success-popup {
-    position: fixed;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: green;
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    z-index: 999;
-}
+
 
