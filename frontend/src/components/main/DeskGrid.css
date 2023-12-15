@@ -1,0 +1,69 @@
+.esources-desk {
+    display: grid;
+    margin: auto auto;
+    gap: 25px 25px;
+    max-width: 3840px;
+    max-height: 701px;
+    box-sizing: border-box;
+    justify-content: center;
+    align-content: center;
+    grid-template-areas: "garage workstation library managements";
+}
+
+.garage {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    margin-top: .5rem;
+    gap: 25px 25px;
+    grid-template-areas: "ins_pro" "snip_gen";
+    grid-area: garage;
+}
+
+.ins_pro { grid-area: ins_pro; }
+
+.snip_gen { grid-area: snip_gen; }
+
+.workstation {
+    display: grid;
+    margin-top: .5rem;
+    max-height: 700px;
+    grid-template-rows: 1fr;
+    gap: 25px 25px;
+    grid-template-areas: "development";
+    grid-area: workstation;
+    resize: both;
+}
+
+.development { grid-area: development; }
+
+.library {
+    display: grid;
+    margin-top: .5rem;
+    grid-template-rows: 1fr 1fr;
+    gap: 25px 25px;
+    grid-template-areas: "know_guide" "lip_doc";
+    grid-area: library;
+}
+
+.know_guide { grid-area: know_guide; }
+
+.lip_doc { grid-area: lip_doc; }
+
+.managements {
+    display: grid;
+    margin-top: .5rem;
+    grid-template-rows: 1fr 1fr;
+    gap: 25px 25px;
+    grid-template-areas: "project" "personal";
+    grid-area: managements;
+}
+
+.project { grid-area: project; }
+
+.personal { grid-area: personal; }
+
+.resizable-container {
+    position: relative;
+    max-width: calc(3840px - 50px); /* Maximale Breite abzüglich 25px Gap auf jeder Seite */
+    max-height: calc(701px - 50px); /* Maximale Höhe abzüglich 25px Gap oben und unten */
+}

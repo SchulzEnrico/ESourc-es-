@@ -1,7 +1,10 @@
 import Navigation from "../nav/Navigation.tsx";
 import "./Header.css";
+import Timer from "../utilities/Timer.tsx";
+import {HeaderProps} from '../types/types.ts';
+import React from "react";
 
-function Header() {
+const Header: React.FC<HeaderProps> = () => {
 
     return (
         <header>
@@ -9,8 +12,9 @@ function Header() {
                 <img alt={"Dashboard Icon"} id={"dash-icon-header"} src="../src/assets/dashboard.svg"/>
                 <h1 className={"modal-{sm}"}>Sourc(es)</h1>
             </div>
-            <div data-bs-theme={"dark"} className={"d-flex justify-content-between"}>
-                <Navigation />
+            <Timer />
+            <div data-bs-theme={"dark"}>
+                <Navigation isExternal={true} />
             </div>
         </header>
     );

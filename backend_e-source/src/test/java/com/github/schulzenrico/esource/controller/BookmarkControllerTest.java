@@ -84,7 +84,6 @@ class BookmarkControllerTest {
                 .destination("EDIT Frame1")
                 .dropdownCategory("EDIT Dropdown Category")
                 .title("EDIT Titel")
-                .name("EDIT Name")
                 .build();
 
         Bookmark expectedBookmark = Bookmark.builder()
@@ -93,7 +92,6 @@ class BookmarkControllerTest {
                 .destination("EDIT Frame1")
                 .dropdownCategory("EDIT Dropdown Category")
                 .title("EDIT Titel")
-                .name("EDIT Name")
                 .build();
 
         when(bookmarkService.editBookmark(eq(bookmarkId), any(BookmarkDTO.class))).thenReturn(expectedBookmark);

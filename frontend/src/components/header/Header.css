@@ -3,22 +3,23 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 9999;
     top: 0;
     left: 0;
     right: 0;
-    width: 90%;
-    height: 80px;
+    width: 98%;
+    height: 60px;
     margin: 0 auto;
     padding: 0 20px 0 0;
     color: var(--color-4);
-    background-color: var(--color-2);
+    background-color: var(--color-1);
     border-radius: 0 0 20px 20px;
     border: solid 1px var(--color-4);
     border-top: none;
     box-shadow:  4px 1px 12px var(--color-31),
-    4px 5px 18px var(--color-3),
-    inset 8px 8px 16px #121212,
-    inset -8px -8px 16px #3a3a3a;
+                 4px 5px 18px var(--color-3),
+                 inset 8px 8px 16px #121212,
+                 inset -8px -8px 16px #3a3a3a;
 }
 
 #dash-icon-header {
@@ -42,6 +43,6 @@ header {
 
 #heading {
     display: flex;
-    margin: auto 15px;
+    margin: 15px 15px 5px 15px;
 }
 

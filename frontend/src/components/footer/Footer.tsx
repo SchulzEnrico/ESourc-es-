@@ -1,10 +1,28 @@
 import "./Footer.css";
 import {Col, Container, Row} from "react-bootstrap";
+import React, {useState} from "react";
+import Clock from "../utilities/Clock.tsx";
 
-function Footer() {
+
+const Footer = () => {
+    const [searchText, setSearchText] = useState('');
+
+    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchText(event.target.value);
+    };
+
+    const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        window.open(`https://www.google.com/search?q=${encodeURIComponent(searchText)}`, '_blank');
+    };
 
     return (
         <footer>
+            <Clock />
+            <form onSubmit={handleSearchSubmit}>
+                <input className={"search-input shadow--sunken"} type="text" value={searchText} onChange={handleSearchChange} placeholder="Google search..." />
+                <button className={"search-google-btn"} type="submit">Search</button>
+            </form>
             <Container>
                 <Row className="footer-row">
                     <Col className="footer-item">

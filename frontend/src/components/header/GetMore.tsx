@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Form, InputGroup, Button, CloseButton } from "react-bootstrap";
-import "./GetMore.css";
+import { Form, InputGroup, Button } from "react-bootstrap";
 import {GetMoreProps} from "../types/types.ts";
 
 function GetMore({ show, onClose }:Readonly<GetMoreProps>) {
     const [url, setUrl] = useState("");
     const [dropdownCategory, setDropdownCategory] = useState("");
-    const [name, setName] = useState("");
+    const [tags, setTags] = useState("");
     const [title, setTitle] = useState("");
     const [destination, setDestination] = useState("");
     const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+
 
     function handleSubmit(event: { preventDefault: () => void }) {
         event.preventDefault();
@@ -23,7 +23,7 @@ function GetMore({ show, onClose }:Readonly<GetMoreProps>) {
             url: url,
             destination: destination,
             dropdownCategory: dropdownCategory,
-            name: name,
+            tags: tags.split(/[, .#/]+/),
             title: title,
         };
 
@@ -32,7 +32,7 @@ function GetMore({ show, onClose }:Readonly<GetMoreProps>) {
             .then(() => {
                 setUrl("");
                 setDropdownCategory("");
-                setName("");
+                setTags("");
                 setTitle("");
                 setDestination("");
                 setShowSuccessPopup(true);
@@ -57,59 +57,65 @@ function GetMore({ show, onClose }:Readonly<GetMoreProps>) {
     }, [showSuccessPopup, setShowSuccessPopup]);
 
     return (
-        <div className={"get-more"} style={{ display: show ? "block" : "none" }}>
-            <CloseButton
-                className="close-button"
+        <div className={`get-more ${show ? 'show' : 'hide'}`}>
+            <Button
+                className={"close-button"}
                 onClick={onClose}
                 aria-label="Close"
-            />
-            <p className={"introductions"}>
-                Add a new bookmark by filling in these fields
-            </p>
+                title="Close"
+                name="Close"
+            >
+                <img alt="Close Icon" id="close-png" src="../src/assets/close.png"/>
+            </Button>
+            <p className={"introductions"}>A new bookmark?<br/>Filling in these fields!</p>
             <Form onSubmit={handleSubmit}>
                 <InputGroup className="container-fluid md-3 d-flex justify-content-between">
                     <Form.Control
-                            className="form-input-get-more"
-                            placeholder="URL"
-                            aria-label="URL"
-                            value={url}
+                        className="form-input-get-more shadow--ridge"
+                        placeholder="URL"
+                        aria-label="URL"
+                        value={url}
                         onChange={(event) => setUrl(event.target.value)}
                     />
-                    <Form.Control
-                            className="form-input-get-more"
-                            placeholder="Destination"
-                            aria-label="Destination"
-                            value={destination}
+                    <Form.Select
+                        className="form-input-get-more form-select-get-more  shadow--ridge"
+                        aria-label="Destination"
+                        value={destination}
                         onChange={(event) => setDestination(event.target.value)}
-                    />
+                    >
+                        <option>select destination</option>
+                        <option value="external">external</option>
+                        <option value="ins_pro">ins_pro</option>
+                        <option value="snip_gen">snip_gen</option>
+                        <option value="development">development</option>
+                        <option value="know_guide">know_guide</option>
+                        <option value="lip_doc">lip_doc</option>
+                        <option value="project">project</option>
+                        <option value="personal">personal</option>
+                    </Form.Select>
                     <Form.Control
-                            className="form-input-get-more"
-                            placeholder="Dropdown Category"
-                            aria-label="Dropdown Category"
-                            value={dropdownCategory}
+                        className="form-input-get-more shadow--ridge"
+                        placeholder="Dropdown Category"
+                        aria-label="Dropdown Category"
+                        value={dropdownCategory}
                         onChange={(event) => setDropdownCategory(event.target.value)}
                     />
                     <Form.Control
-                            className="form-input-get-more"
-                            placeholder="Name"
-                            aria-label="Name"
-                            value={name}
-                        onChange={(event) => setName(event.target.value)}
-                    />
-                    <Form.Control
-                            className="form-input-get-more"
-                            placeholder="Title"
-                            aria-label="Title"
-                            value={title}
+                        className="form-input-get-more shadow--ridge"
+                        placeholder="Title"
+                        aria-label="Title"
+                        value={title}
                         onChange={(event) => setTitle(event.target.value)}
                     />
+                    <Form.Control
+                        className="form-input-get-more shadow--ridge"
+                        placeholder="Tags"
+                        aria-label="Tags"
+                        value={tags}
+                        onChange={(event) => setTags(event.target.value)}
+                    />
                     <Button type="submit" className="submit">
-                        <img
-                            title={"Add the new Bookmark."}
-                            alt="Add Icon"
-                            id="add-png"
-                            src="../src/assets/add.png"
-                        />
+                        save bookmark
                     </Button>
                 </InputGroup>
             </Form>

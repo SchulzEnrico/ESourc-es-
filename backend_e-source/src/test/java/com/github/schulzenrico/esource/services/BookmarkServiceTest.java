@@ -1,5 +1,6 @@
 package com.github.schulzenrico.esource.services;
 
+import com.github.schulzenrico.esource.exceptions.BookmarkDeletionException;
 import com.github.schulzenrico.esource.models.Bookmark;
 import com.github.schulzenrico.esource.models.BookmarkDTO;
 import com.github.schulzenrico.esource.repositories.BookmarkRepository;
@@ -8,12 +9,14 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.dao.EmptyResultDataAccessException;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -78,7 +81,6 @@ class BookmarkServiceTest {
                     .destination("Frame1")
                     .dropdownCategory("Test Dropdown Category")
                     .title("Test Titel")
-                    .name("Test Name")
                     .build();
 
             BookmarkDTO updatedBookmarkDTO = BookmarkDTO.builder()
@@ -87,7 +89,6 @@ class BookmarkServiceTest {
                     .destination("EDIT Frame1")
                     .dropdownCategory("EDIT Dropdown Category")
                     .title("EDIT Titel")
-                    .name("EDIT Name")
                     .build();
 
             Bookmark expectedBookmark = Bookmark.builder()
@@ -96,7 +97,6 @@ class BookmarkServiceTest {
                     .destination("EDIT Frame1")
                     .dropdownCategory("EDIT Dropdown Category")
                     .title("EDIT Titel")
-                    .name("EDIT Name")
                     .build();
 
             when(bookmarkRepository.findById(bookmarkId)).thenReturn(Optional.of(bookmark));
@@ -124,4 +124,13 @@ class BookmarkServiceTest {
             // Verify that deleteById method was called
             verify(bookmarkRepository, times(1)).deleteById(bookmarkId);
         }
+
+    @Test
+    void testDeleteBookmark_throwsException() {
+        doThrow(new EmptyResultDataAccessException(1)).when(bookmarkRepository).deleteById(any());
+
+        assertThrows(BookmarkDeletionException.class, () -> {
+            bookmarkService.deleteBookmark("1");
+        });
     }
+}
