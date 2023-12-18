@@ -47,3 +47,8 @@ export type HeaderProps = {
     bookmarks: BookmarkDTO[];
     loadBookmarks: () => void;
 };
+
+export type DeskProps = {
+    className: string;
+    onClassNameChange: (newClassName: string) => void;
+}

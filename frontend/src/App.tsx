@@ -1,3 +1,4 @@
+// App.tsx
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './App.css'
@@ -8,6 +9,7 @@ import { BookmarkDTO } from "./components/types/types.ts";
 
 function App() {
     const [bookmarks, setBookmarks] = useState<BookmarkDTO[]>([]);
+    const [deskClassName, setDeskClassName] = useState("development");
 
     const loadBookmarks = () => {
         axios.get<BookmarkDTO[]>('/api/bookmarks/getAll')
@@ -27,7 +29,7 @@ function App() {
     return (
         <div className="app">
             <Header bookmarks={bookmarks} loadBookmarks={loadBookmarks} />
-            <Desk />
+            <Desk className={deskClassName} onClassNameChange={setDeskClassName} />
             <Footer />
         </div>
     );

@@ -394,12 +394,6 @@ button:focus-visible {
               inset 3px 3px 10px var(--color-31);
 }
 
-.panel-items-container {
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-}
-
 .get-more.open {
   transform: translateY(0);
 }

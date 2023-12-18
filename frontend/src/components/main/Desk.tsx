@@ -1,71 +1,39 @@
-import { ResizableBox } from 'react-resizable';
-import 'react-resizable/css/styles.css';
-import './DeskGrid.css';
-import './DeskStyles.css'
-import Panel from "./Panel.tsx";
-import './Resizeable.css'
+// Desk.tsx
+import React from 'react';
+import Panel from './Panel.tsx';
+import { DeskProps } from '../types/types';
 
-const insProWidth = 700;
-const devWidth = 1200;
-const libraryWidth = 900;
-const managementsWidth = 600;
-
-const halfHeight = 330;
-const fullHeight = 772;
-
-
-function Desk() {
+const Desk: React.FC<DeskProps> = ({ className }) => {
     return (
-        <div className="esources-desk">
-            <div className="garage row">
-                <ResizableBox className="ins_pro panel shadow--raised col"
-                              width={insProWidth}
-                              height={halfHeight}
-                              resizeHandles={["se", "s", "e"]}>
+        <div className="desk-container esources-desk">
+            <div className="garage desk-section">
+                <div className={`ins_pro panel-container shadow--raised ${className === 'ins_pro' ? 'full-height' : 'half-height'}`}>
                     <Panel className="ins_pro" />
-                </ResizableBox>
-                <ResizableBox className="snip_gen panel shadow--raised col"
-                              width={insProWidth}
-                              height={halfHeight}
-                              resizeHandles={["ne", "e", "n"]}>
+                </div>
+                <div className={`snip_gen panel-container shadow--raised ${className === 'snip_gen' ? 'full-height' : 'half-height'}`}>
                     <Panel className="snip_gen" />
-                </ResizableBox>
+                </div>
             </div>
-            <div className="workstation row">
-                <ResizableBox className="development panel shadow--raised col"
-                              width={devWidth}
-                              height={fullHeight}
-                              resizeHandles={["w", "e", "n", "s"]}>
+            <div className="workstation desk-section">
+                <div className={`development panel-container shadow--raised ${className === 'development' ? 'full-height' : 'half-height'}`}>
                     <Panel className="development" />
-                </ResizableBox>
+                </div>
             </div>
-            <div className="library row">
-                <ResizableBox className="know_guide panel shadow--raised col"
-                              width={libraryWidth}
-                              height={halfHeight}
-                              resizeHandles={["sw", "se", "w", "e", "s"]}>
+            <div className="library desk-section">
+                <div className={`know_guide panel-container shadow--raised ${className === 'know_guide' ? 'full-height' : 'half-height'}`}>
                     <Panel className="know_guide" />
-                </ResizableBox>
-                <ResizableBox className="lip_doc panel shadow--raised col"
-                              width={libraryWidth}
-                              height={halfHeight}
-                              resizeHandles={["sw", "se", "nw", "ne", "w", "e", "n", "s"]}>
+                </div>
+                <div className={`lip_doc panel-container shadow--raised ${className === 'lip_doc' ? 'full-height' : 'half-height'}`}>
                     <Panel className="lip_doc" />
-                </ResizableBox>
+                </div>
             </div>
-            <div className="managements row">
-                <ResizableBox className="project panel shadow--raised col"
-                              width={managementsWidth}
-                              height={halfHeight}
-                              resizeHandles={["sw", "w", "s"]}>
+            <div className="managements desk-section">
+                <div className={`project panel-container shadow--raised ${className === 'project' ? 'full-height' : 'half-height'}`}>
                     <Panel className="project" />
-                </ResizableBox>
-                <ResizableBox className="personal panel shadow--raised col"
-                              width={managementsWidth}
-                              height={halfHeight}
-                              resizeHandles={["sw", "w", "s"]}>
+                </div>
+                <div className={`personal panel-container shadow--raised ${className === 'personal' ? 'full-height' : 'half-height'}`}>
                     <Panel className="personal" />
-                </ResizableBox>
+                </div>
             </div>
         </div>
     );

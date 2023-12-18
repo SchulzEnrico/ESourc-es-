@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
-import {Container} from 'react-bootstrap';
+import './Panel.css';
+import './Flexbox.css';
 import Navigation from "../nav/Navigation";
 import { PanelProps } from '../types/types';
 
@@ -13,16 +14,17 @@ const Panel: React.FC<PanelProps> = ({ className }) => {
     }
 
     return (
-        <Container className={`panel-items-container ${className}`}>
+        <div className={`panel-items-container ${className}`}>
             <span className={"panel-name"}>{className}</span>
-            <div className="iframe-bounding shadow--sunken">
+            <div className={`iframe-bounding shadow--sunken ${className === 'full-height' ? 'full-height' : ''}`}>
                 <iframe ref={iframeRef}></iframe>
             </div>
             <div className="panel-controls">
                 <Navigation onLinkClick={openInIframe} panelName={className} isExternal={false}/>
             </div>
-        </Container>
+        </div>
     );
 }
+
 
 export default Panel;
