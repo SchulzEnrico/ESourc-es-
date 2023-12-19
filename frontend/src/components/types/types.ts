@@ -1,3 +1,5 @@
+import {ResizableBoxProps} from "react-resizable";
+
 export type BookmarkDTO = {
     _id: string;
     url: string;
@@ -46,4 +48,9 @@ export type NavigationProps = {
 export type HeaderProps = {
     bookmarks: BookmarkDTO[];
     loadBookmarks: () => void;
+};
+
+export type CustomResizableBoxProps = ResizableBoxProps & {
+    onResizeEnd: (size: { width: number; height: number }) => void;
+    id: string;
 };
