@@ -1,38 +1,16 @@
-import React, { useCallback, useState } from 'react';
+import React, { SyntheticEvent } from 'react';
 import { ResizableBox, ResizableBoxProps } from 'react-resizable';
 
-interface CustomResizableBoxProps extends ResizableBoxProps {
-    onResizeEnd?: (size: { width: number; height: number }) => void;
-}
+type CustomResizableBoxProps = ResizableBoxProps & {
+    onResizeEnd: (size: { width: number; height: number }) => void;
+};
 
-const CustomResizableBox: React.FC<CustomResizableBoxProps> = ({ onResizeEnd, ...props }) => {
-    const [isResizing, setIsResizing] = useState(false);
+const CustomResizableBox: React.FC<CustomResizableBoxProps> = ({ onResizeEnd, ...restProps }) => {
+    const handleResize = (_: SyntheticEvent, data: { size: { width: number; height: number } }) => {
+        onResizeEnd(data.size);
+    };
 
-    const handleResize = useCallback(
-        (e: React.SyntheticEvent, data: { size: { width: number; height: number } }) => {
-            if (onResizeEnd && !isResizing) {
-                onResizeEnd(data.size);
-            }
-        },
-        [onResizeEnd, isResizing]
-    );
-
-    const handleResizeStart = useCallback(() => {
-        setIsResizing(true);
-    }, []);
-
-    const handleResizeStop = useCallback(() => {
-        setIsResizing(false);
-    }, []);
-
-    return (
-        <ResizableBox
-            {...props}
-            onResize={handleResize}
-            onResizeStart={handleResizeStart}
-            onResizeStop={handleResizeStop}
-        />
-    );
+    return <ResizableBox {...restProps} onResize={handleResize} />;
 };
 
 export default CustomResizableBox;
