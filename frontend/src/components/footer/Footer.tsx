@@ -30,7 +30,7 @@ const Footer = () => {
                             <div className="svg-container">
                                 <img
                                     title={"Overview on Github"}
-                                    src="../src/assets/overview.svg"
+                                    src="../../assets/overview.svg"
                                     className={"logo overview"}
                                     alt="Overview Icon"
                                 />
