@@ -65,7 +65,7 @@ function GetMore({ show, onClose }:Readonly<GetMoreProps>) {
                 title="Close"
                 name="Close"
             >
-                <img alt="Close Icon" id="close-png" src="../src/assets/close.png"/>
+                <img alt="Close Icon" id="close-png" src="../../assets/close.png"/>
             </Button>
             <p className={"introductions"}>A new bookmark?<br/>Filling in these fields!</p>
             <Form onSubmit={handleSubmit}>

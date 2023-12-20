@@ -1,9 +1,9 @@
 .esources-desk {
     display: grid;
-    margin: 0 auto;
-    gap: 25px 90px;
+    margin: 10px auto;
+    gap: 25px 70px;
     max-width: 3840px;
-    max-height: 701px;
+    height: 85vh;
     box-sizing: border-box;
     justify-content: center;
     align-content: center;
@@ -13,7 +13,6 @@
 .garage {
     display: grid;
     grid-template-rows: 1fr 1fr;
-    margin-top: .5rem;
     gap: 25px 25px;
     grid-template-areas: "ins_pro" "snip_gen";
     grid-area: garage;
@@ -25,10 +24,8 @@
 
 .workstation {
     display: grid;
-    margin-top: .5rem;
-    max-height: 700px;
+    height: 750px;
     grid-template-rows: 1fr;
-    gap: 25px 25px;
     grid-template-areas: "development";
     grid-area: workstation;
     resize: both;
@@ -38,7 +35,6 @@
 
 .library {
     display: grid;
-    margin-top: .5rem;
     grid-template-rows: 1fr 1fr;
     gap: 25px 25px;
     grid-template-areas: "know_guide" "lip_doc";
@@ -51,7 +47,6 @@
 
 .managements {
     display: grid;
-    margin-top: .5rem;
     grid-template-rows: 1fr 1fr;
     gap: 25px 25px;
     grid-template-areas: "project" "personal";
@@ -62,8 +57,10 @@
 
 .personal { grid-area: personal; }
 
+/*
 .resizable-container {
     position: relative;
-    max-width: calc(3840px - 50px); /* Maximale Breite abzüglich 25px Gap auf jeder Seite */
-    max-height: calc(701px - 50px); /* Maximale Höhe abzüglich 25px Gap oben und unten */
+    max-width: calc(3840px - 50px); !* Maximale Breite abzüglich 25px Gap auf jeder Seite *!
+    max-height: calc(700px - 50px); !* Maximale Höhe abzüglich 25px Gap oben und unten *!
 }
+*/

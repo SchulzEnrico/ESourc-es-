@@ -12,13 +12,14 @@ const libraryWidth = 900;
 const managementsWidth = 600;
 
 const halfHeight = 330;
-const fullHeight = 772;
+const fullHeight = 755;
 
 function Desk() {
     const [garageWidthInner, setGarageWidthInner] = useState(garageWidth);
     const [workstationWidthInner, setWorkstationWidthInner] = useState(workstationWidth);
     const [libraryWidthInner, setLibraryWidthInner] = useState(libraryWidth);
     const [managementsWidthInner, setManagementsWidthInner] = useState(managementsWidth);
+    const paddingValue = 5;
 
     const handleGarageResizeEnd = (size: { width: number; height: number }) => {
         setGarageWidthInner(size.width);
@@ -40,7 +41,7 @@ function Desk() {
         <div className="esources-desk">
             <CustomResizableBox
                 className="garage row"
-                width={garageWidth}
+                width={garageWidth + 2 * paddingValue}
                 height={halfHeight}
                 resizeHandles={["e"]}
                 onResizeEnd={handleGarageResizeEnd}
@@ -73,7 +74,7 @@ function Desk() {
             </CustomResizableBox>
             <CustomResizableBox
                 className="workstation row"
-                width={workstationWidth}
+                width={workstationWidth + 2 * paddingValue}
                 height={fullHeight}
                 resizeHandles={["w", "e"]}
                 onResizeEnd={handleWorkstationResizeEnd}
@@ -94,7 +95,7 @@ function Desk() {
             </CustomResizableBox>
             <CustomResizableBox
                 className="library row"
-                width={libraryWidth}
+                width={libraryWidth + 2 * paddingValue}
                 height={halfHeight}
                 resizeHandles={["e", "w"]}
                 onResizeEnd={handleLibraryResizeEnd}
@@ -127,7 +128,7 @@ function Desk() {
             </CustomResizableBox>
             <CustomResizableBox
                 className="managements row"
-                width={managementsWidth}
+                width={managementsWidth + 2 * paddingValue}
                 height={halfHeight}
                 resizeHandles={["w"]}
                 onResizeEnd={handleManagementsResizeEnd}
