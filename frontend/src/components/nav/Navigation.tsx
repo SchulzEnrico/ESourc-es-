@@ -12,6 +12,8 @@ import GetMore from '../header/GetMore.tsx';
 import './EditBookmark.tsx'
 import EditBookmark from "./EditBookmark";
 import {NavigationProps, BookmarkDTO} from "../types/types.ts";
+import {TiPlus} from "react-icons/ti";
+import {MdOutlineSettings} from "react-icons/md";
 
 const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExternal }) => {
     const tempBookmark = useRef<BookmarkDTO | null>(null);
@@ -152,7 +154,7 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
                     className={"dropdown-item dropdown-edit"}
                     onClick={() => openEditModal(bookmark)}
                 >
-                    <img alt="Settings icon" id="settings-png" src="../../src/assets/settings.png"/>
+                    <MdOutlineSettings title={"Edit bookmark"} className={"settings-icon"} />
                 </Button>
             </div>
         ));
@@ -187,7 +189,7 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
 
                 {!isMobile && (
                     <Button title={"Add a new Bookmark to your collection"} variant="primary" className={"get-more-button"} onClick={handleGetMoreClick}>
-                        <img alt="Add Icon" id="add-png" src="../../assets/add.png" />
+                        <TiPlus title={"Add a new Bookmark"} className={"add-icon"}/>
                     </Button>
                 )}
 

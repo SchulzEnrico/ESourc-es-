@@ -1,5 +1,7 @@
 import { Modal, Form, Button } from 'react-bootstrap';
 import { EditBookmarkProps } from '../types/types.ts';
+import {GiMineExplosion} from "react-icons/gi";
+import {RiSave3Fill} from "react-icons/ri";
 
 function EditBookmark({
                           showEditModal,
@@ -72,12 +74,13 @@ function EditBookmark({
                 <Button
                     className={"save-close-btn"}
                     variant="primary"
+                    title={"save/close"}
                     onClick={() => {
                         handleSaveChanges();
                         handleCloseModalEdit();
                     }}
                 >
-                    close/save
+                    <RiSave3Fill className={"save-close-icon"}/>
                 </Button>
                 <Button
                     title={"Delete bookmark forever"}
@@ -88,7 +91,7 @@ function EditBookmark({
                         handleCloseModalEdit();
                     }}
                 >
-                    <img alt="Delete Forever Icon" id="deleteForever-png" src="../src/assets/deleteForever.png" />
+                    <GiMineExplosion className={"delete-forever-icon"}/>
                 </Button>
             </Modal.Footer>
             {/* Erfolgs-Popup anzeigen, wenn showSuccessPopup true ist */}

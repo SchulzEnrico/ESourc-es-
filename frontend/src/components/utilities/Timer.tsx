@@ -1,13 +1,19 @@
-import React, { useEffect, useState } from 'react';
-
+import React, { useEffect, useState, useCallback } from 'react';
+import { IoIosTimer } from 'react-icons/io';
+import { Button, Modal } from 'react-bootstrap';
+import { TfiControlPlay, TfiControlStop } from 'react-icons/tfi';
+import { RxReset } from 'react-icons/rx';
+import { IoClose } from 'react-icons/io5';
+import TimeIsUpPopup from '../popUps/TimeIsUpPopup.tsx';
 
 const Timer: React.FC = () => {
-    const [showTimer, setShowTimer] = useState(false);
-    const [showModal, setShowModal] = useState(false);
+    const [showTimerModal, setShowTimerModal] = useState(false);
     const [customTime, setCustomTime] = useState(0);
     const [seconds, setSeconds] = useState(0);
     const [isActive, setIsActive] = useState(false);
     const [selectedTime, setSelectedTime] = useState(60);
+    const [showTimeIsUpPopup, setShowTimeIsUpPopup] = useState(false);
+    const intervalIdRef = React.useRef<number | undefined>(undefined);
 
     const timeOptions = [
         { label: "60 sec", value: 60 },
@@ -28,43 +34,93 @@ const Timer: React.FC = () => {
         { label: "300 min", value: 18000 },
     ];
 
+    const handleTimerTick = useCallback(() => {
+        setSeconds((prevSeconds) => {
+            const newSeconds = prevSeconds + 1;
+
+            if (newSeconds >= selectedTime) {
+                setIsActive(false);
+                setShowTimeIsUpPopup(true);
+                clearInterval(intervalIdRef.current!);
+                return 0;
+            }
+
+            return newSeconds;
+        });
+    }, [selectedTime]);
+
+    const startInterval = useCallback(() => {
+        const newIntervalId = window.setInterval(() => {
+            handleTimerTick();
+        }, 1000);
+        intervalIdRef.current = newIntervalId;
+    }, [handleTimerTick]);
+
     useEffect(() => {
-        let interval: number | undefined;
-
         if (isActive) {
-            interval = window.setInterval(() => {
-                setSeconds((seconds) => seconds + 1);
-
-                if (seconds >= selectedTime) {
-                    setIsActive(false);
-                    setSeconds(0);
-                    setShowModal(true);
-                }
-            }, 1000);
-        } else if (!isActive) {
-            window.clearInterval(interval);
+            startInterval();
+        } else {
+            clearInterval(intervalIdRef.current);
         }
-
-        return () => {
-            if (interval) window.clearInterval(interval);
-        };
-    }, [isActive, seconds]);
+    }, [isActive, startInterval]);
 
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedTime(Number(e.target.value));
     };
 
-    return (
-        <div className={"timer"}>
-            <button onClick={() => setShowTimer(!showTimer)}>Timer</button>
+    const handleSetCustomTime = () => {
+        setSelectedTime(Number(customTime));
+        setCustomTime(0);
+    };
 
-            {showTimer && (
-                <>
-                    <p>Choose...</p>
-                    <select
-                        className={"timer-input"}
-                        onChange={handleChange}
+    const handleCloseTimerModal = () => {
+        setShowTimerModal(false);
+        // setIsActive(false); // Kommentiere diese Zeile aus, um den Timer weiter laufen zu lassen
+        // setSeconds(0); // Kommentiere diese Zeile aus, um den Timer weiter laufen zu lassen
+        setShowTimeIsUpPopup(false);
+        // clearInterval(intervalIdRef.current); // Kommentiere diese Zeile aus, um den Timer weiter laufen zu lassen
+    };
+
+    const handleStartTimer = () => {
+        setIsActive(true);
+    };
+
+    const handleStopTimer = () => {
+        setIsActive(false);
+        clearInterval(intervalIdRef.current);
+    };
+
+    const handleResetTimer = () => {
+        setSeconds(0);
+        clearInterval(intervalIdRef.current);
+    };
+
+    return (
+        <div className={'timer'}>
+            <button onClick={() => setShowTimerModal(true)}>
+                <IoIosTimer className={'timer-icon'} />
+            </button>
+
+            <Modal
+                className={'edit-modal shadow--raised centered-modal'}
+                show={showTimerModal}
+                onHide={handleCloseTimerModal}
+            >
+                <Modal.Header>
+                    <Button
+                        className="close-button"
+                        onClick={handleCloseTimerModal}
+                        aria-label="Close"
+                        title="Close"
+                        name="Close"
                     >
+                        <IoClose title="close" className="close-icon" />
+                    </Button>
+                    <Modal.Title className="introductions edit-modal-title">Choose Timer Options</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <p>Choose...</p>
+                    <select className={'timer-input'} onChange={handleChange}>
                         {timeOptions.map((option) => (
                             <option key={option.value} value={option.value}>
                                 {option.label}
@@ -74,34 +130,33 @@ const Timer: React.FC = () => {
 
                     <p>or set</p>
                     <input
-                        className={"timer-input"}
+                        className={'timer-input'}
                         type="number"
                         min="0"
                         step="1"
                         value={customTime}
                         onChange={(e) => setCustomTime(Number(e.target.value))}
                     />
-                    <button onClick={() => setSelectedTime(Number(customTime))}>Set your own</button>
+                    <button onClick={handleSetCustomTime}>Set your own</button>
 
-                    <div className={"time-left"}>
-                        Time left {selectedTime - seconds} sec
-                    </div>
+                    <div className={'time-left'}>Time left {selectedTime - seconds} sec</div>
 
-                    <button className={"start-btn"} onClick={() => setIsActive(true)}>Start</button>
-                    <button className={"stop-btn"} onClick={() => setIsActive(false)}>Stop</button>
-                    <button className={"reset-btn"} onClick={() => setSeconds(0)}>reset</button>
+                    <button className={'start-btn'} onClick={handleStartTimer}>
+                        <TfiControlPlay className={'start-icon'} />
+                    </button>
+                    <button className={'stop-btn'} onClick={handleStopTimer}>
+                        <TfiControlStop className={'stop-icon'} />
+                    </button>
+                    <button className={'reset-btn'} onClick={handleResetTimer}>
+                        <RxReset className={'reset-icon'} />
+                    </button>
+                </Modal.Body>
+            </Modal>
 
-
-                {showModal && (
-                    <div className="timer-modal">
-                        <h2>Time's up!</h2>
-                        <button onClick={() => setShowModal(false)}>close</button>
-                    </div>
-
-                )}
-                </>
-            )}
+            {/* Popup-Komponente für das Popup */}
+            {showTimeIsUpPopup && <TimeIsUpPopup onClose={handleCloseTimerModal} />}
         </div>
     );
-}
+};
+
 export default Timer;

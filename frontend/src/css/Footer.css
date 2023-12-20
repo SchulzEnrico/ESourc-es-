@@ -27,12 +27,6 @@ footer {
     margin-right: 25px;
 }
 
-.svg-container,
-.svg-container p {
-    margin: 0 15px;
-    padding: 0;
-}
-
 p {
     background-image: -webkit-linear-gradient(270deg, #808080 53%, #808080 54%, #c0c0c0 64%, #808080 72%);
     background-clip: text;
@@ -40,72 +34,25 @@ p {
     -webkit-text-fill-color: transparent;
 }
 
-.footer-item {
-    text-align: center;
-    margin: 0;
+.footer-icon {
+    margin-top: 10px;
+    font-size: 1.5rem;
+    color: var(--color-0)
+}
+.footer-icon:hover {
     filter: grayscale(100%)
-    brightness(100%)
-    saturate(100%)
+    brightness(30%)
+    saturate(150%)
     invert(10%)
     sepia(98%)
     saturate(1500%)
-    hue-rotate(354deg)
-    brightness(100%)
+    hue-rotate(335deg)
+    brightness(120%)
     contrast(100%)
     grayscale(0)
     brightness(100%)
     hue-rotate(0deg)
     invert(0%)
-    sepia(0%);
-}
-
-.overview {
-    margin-top: 5px;
-}
-
-.repositories {
-    height: 31px;
-    margin-top: 5px;
-}
-
-.code {
-    margin-top: 5px;
-}
-
-.issues {
-    height: 35px;
-    margin-top: 5px;
-}
-
-.pullRequests {
-    height: 30px;
-    margin-top: 5px;
-}
-
-.actions {
-    height: 30px;
-    margin-top: 5px;
-}
-
-.projects {
-    height: 30px;
-    margin-top: 5px;
-}
-
-.footer-item a:hover img {
-    filter: grayscale(100%)
-    brightness(100%)
-    saturate(100%)
-    invert(10%)
-    sepia(98%)
-    saturate(1500%)
-    hue-rotate(354deg)
-    brightness(100%)
-    contrast(100%)
-    grayscale(0)
-    brightness(100%)
-    hue-rotate(0deg)
-  /**/  invert(0%)
     sepia(0%);
 }
 
@@ -116,8 +63,12 @@ p {
     height: 1px;
     font-size: medium;
     font-weight: bolder;
-    margin-right: 15px;
     align-items: center;
+}
+
+.search-google-btn {
+    width: 40px;
+    height: 40px;
 }
 
 .clock {

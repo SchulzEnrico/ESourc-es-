@@ -1,10 +1,10 @@
 import 'react-resizable/css/styles.css';
-import './DeskGrid.css';
-import './DeskStyles.css';
+import '../../css/DeskGrid.css';
+import '../../css/DeskStyles.css';
 import Panel from './Panel.tsx';
-import './Resizeable.css';
+import '../../css/Resizeable.css';
 import { useState } from 'react';
-import CustomResizableBox from './CustomResizableBox';
+import CustomResizableBox from './CustomResizableBox.tsx';
 
 const garageWidth = 700;
 const workstationWidth = 1200;

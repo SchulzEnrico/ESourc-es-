@@ -1,3 +1,6 @@
+@import url("css/Icons.css");
+@import url("css/Buttons.css");
+
 :root {
   font-family: "Helvetica Neue", Arial, Verdana, Tahoma, sans-serif;
   line-height: 1.5;
@@ -62,120 +65,6 @@ body::-webkit-scrollbar-thumb {
   border-radius: 25px;
 }
 
-button {
-  border-radius: 25px;
-  border: 2px solid var(--color-01);
-  padding: .3em .5em;
-  font-size: medium;
-  font-weight: 500;
-  font-family: inherit;
-  color: var(--color-4);
-  cursor: pointer;
-  background: var(--color-0);
-  box-shadow: inset -3px -3px 3px var(--color-1),
-                inset 3px 3px 3px var(--color-21);
-}
-button:hover {
-  border: 2px solid var(--color-0);
-  color: var(--color-4);
-  box-shadow: inset -5px -5px 10px #470603,
-  inset 5px 5px 10px #a20f08;
-}
-button:focus,
-button:focus-visible {
-  border: solid 1px var(--color-1);
-  background-color: var(--color-3);
-  color: var(--color-4);
-  box-shadow: 7px 7px 14px #161616,
-              -7px -7px 14px #363636,
-              inset -5px -5px 10px #470603,
-              inset 5px 5px 10px #b70e07;
-}
-
-.close-button {
-  margin-left: 20px;
-  width: 50px;
-  height: 50px;
-}
-
-.close-button,
-.get-more-button,
-.manageBookmarksBtn,
-.submit {
-  border: 2px solid var(--color-0);
-  color: var(--color-4);
-  box-shadow: inset -5px -5px 10px #470603,
-              inset 5px 5px 10px #a20f08;
-}
-
-.edit-bookmark-btn,
-.delete-forever-btn{
-  margin: auto 0;
-  border-radius: 8px;
-}
-.edit-bookmark-btn {
-  padding: 5px 20px 5px 20px;
-  height: 30px;
-  background: #262626;
-  border: solid 2px var(--color-1);
-  box-shadow: inset -5px -5px 6px #151515,
-              inset 5px 5px 6px #373737;
-}
-
-.submit {
-  margin: 10px 20px;
-}
-
-.submit,
-.save-close-btn {
-  height: 50px;
-  margin: 25px;
-  padding: 5px 15px;
-  background-color: var(--color-0);
-  border: solid 2px transparent;
-  box-shadow: 7px 7px 10px #0e2d08,
-              -3px -3px 10px #0f7501,
-              inset -3px -3px 5px #15440d,
-              inset 3px 3px 5px #38c418;
-  color: var(--color-4);
-}
-
-.delete-forever-btn {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 5rem 30px 1rem 25px;
-  padding: 0 10px;
-  right: 0;
-  border: solid 2px var(--color-1);
-  box-shadow:  -8px -8px 16px #111111,
-                5px 5px 16px #3b3b3b;
-}
-
-.delete-forever-btn:hover {
-  border: solid 2px var(--color-31);
-  background-color: var(--color-3);
-  color: var(--color-4);
-  box-shadow: 7px 7px 10px var(--color-3),
-              -3px -3px 10px var(--color-31),
-              inset -5px -5px 10px var(--color-3),
-              inset 5px 5px 10px var(--color-31);
-}
-
-.save-close-btn:hover,
-.get-more-button:hover,
-.submit:hover {
-  border: solid 2px var(--color-1);
-  color: var(--color-4);
-  box-shadow: 5px 5px 10px #001180,
-              -3px -3px 10px #0219C0FF,
-              inset -3px -3px 10px #0219C0FF,
-              inset 3px 3px 10px #0219C0FF;
-}
-
-.add-png {
-  height: 20px;
-}
 
 .dropdown-menu {
   display: none;
@@ -212,50 +101,6 @@ button:focus-visible {
   padding: 2px;
 }
 
-.dropdown-button-container > button {
-  flex-basis: 90%;
-  border-radius: 0;
-  margin: 2px 0;
-  background: var(--color-01);
-  box-shadow: inset -3px -3px 3px var(--color-1),
-  inset 3px 3px 3px var(--color-21);
-  border: transparent;
-}
-
-.dropdown-button-container > button:first-child {
-  padding: 2px;
-  margin: 2px 0;
-  width: 100px;
-  border-top-left-radius: 25px;
-  border-bottom-left-radius: 25px;
-  border-right: none;
-}
-
-.dropdown-button-container > button:last-child {
-  padding: 2px;
-  margin: 2px 0;
-  border-top-right-radius: 25px;
-  border-bottom-right-radius: 25px;
-  border-left: none;
-  max-width: 40px !important;
-}
-
-.dropdown-button-container > button:first-child:hover {
-  padding: 2px;
-  border-right: none;
-  box-shadow: inset -5px -5px 10px #470603,
-  inset 5px 5px 10px #a20f08;
-}
-
-.dropdown-edit:hover {
-  padding: 2px;
-  margin: 2px 0;
-  box-shadow: 5px 5px 10px #001180,
-  -3px -3px 10px #0219C0FF,
-  inset -3px -3px 10px #0219C0FF,
-  inset 3px 3px 10px #0219C0FF;
-}
-
 .introductions {
   display: flex;
   justify-content: center;
@@ -281,6 +126,7 @@ button:focus-visible {
   background-color: transparent;
   height: 5px;
 }
+
 
 .get-more,
 .edit-modal {
@@ -342,35 +188,6 @@ button:focus-visible {
   overflow-y: auto;
 }
 
-.timer{
-  margin-top: .1rem;
-  display: flex;
-  justify-content: center;
-}
-
-.timer-input {
-  margin: 0 15px;
-  padding: 1px 5px;
-  font-size: medium;
-  font-weight: bold;
-  color: var(--color-5);
-  width: 100px;
-  height: 30px;
-  border-radius: 25px;
-  border: var(--color-2) solid 1px;
-  background-color: transparent;
-}
-
-.timer button {
-  margin: 0 1rem;
-  height: 50px;
-  font-size: small;
-  padding: 0 10px;
-  border: solid 2 px var(--color-1);
-  box-shadow: inset -5px -5px 10px #470603,
-  inset 5px 5px 10px #a20f08;
-}
-
 .time-left {
   font-size: x-large;
   font-weight: bolder;
@@ -381,15 +198,16 @@ button:focus-visible {
   -webkit-text-fill-color: transparent;
 }
 
-.timer button:hover,
-.start-btn:hover,
-.stop-btn:hover,
-.reset-btn:hover {
-  border: solid 2px var(--color-4);
-  box-shadow: 5px 5px 10px var(--color-3),
-              -3px -3px 10px var(--color-31),
-              inset -3px -3px 10px var(--color-3),
-              inset 3px 3px 10px var(--color-31);
+.timer-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1040;
+}
+
+.timer-popup h2 {
+  margin-bottom: 10px;
 }
 
 .panel-items-container {

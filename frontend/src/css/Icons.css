@@ -1,0 +1,30 @@
+.add-icon {
+    font-size: 1.5rem;
+    margin: .05rem .2rem;
+}
+.close-icon,
+.timer-icon {
+    margin: .15rem 0;
+    height: 30px;
+    width: 30px;
+}
+
+.settings-icon {
+    font-size: 1.5rem;
+}
+
+.save-close-icon {
+    font-size: 2rem;
+}
+
+.delete-forever-icon {
+    margin: .2rem;
+    font-size: 2rem;
+}
+
+.start-icon,
+.stop-icon,
+.reset-icon {
+    margin: 0;
+    font-size: 2rem;
+}
