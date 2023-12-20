@@ -1,0 +1,182 @@
+button {
+    border-radius: 25px;
+    border: 2px solid var(--color-01);
+    padding: .3em .5em;
+    font-size: medium;
+    font-weight: 500;
+    font-family: inherit;
+    color: var(--color-4);
+    cursor: pointer;
+    background: var(--color-0);
+    box-shadow: inset -3px -3px 3px var(--color-1),
+    inset 3px 3px 3px var(--color-21);
+}
+button:hover {
+    border: 2px solid var(--color-0);
+    color: var(--color-4);
+    box-shadow: inset -5px -5px 10px #470603,
+    inset 5px 5px 10px #a20f08;
+}
+button:focus,
+button:focus-visible {
+    border: solid 1px var(--color-1);
+    background-color: var(--color-3);
+    color: var(--color-4);
+    box-shadow: 7px 7px 14px #161616,
+    -7px -7px 14px #363636,
+    inset -5px -5px 10px #470603,
+    inset 5px 5px 10px #b70e07;
+}
+
+.close-button {
+    margin-left: 20px;
+    width: 40px;
+    height: 40px;
+}
+
+.close-button,
+.get-more-button,
+.manageBookmarksBtn,
+.submit {
+    margin-left: 5px;
+    padding: 0;
+    border: 2px solid var(--color-0);
+    color: var(--color-4);
+    box-shadow: inset -5px -5px 10px #470603,
+    inset 5px 5px 10px #a20f08;
+}
+
+.edit-bookmark-btn,
+.delete-forever-btn{
+    margin: auto 0;
+    border-radius: 8px;
+}
+.edit-bookmark-btn {
+    padding: 5px 20px 5px 20px;
+    height: 30px;
+    background: #262626;
+    border: solid 2px var(--color-1);
+    box-shadow: inset -5px -5px 6px #151515,
+    inset 5px 5px 6px #373737;
+}
+
+.submit {
+    margin: 10px 20px;
+}
+
+.submit,
+.save-close-btn {
+    height: 50px;
+    margin: 25px;
+    padding: 5px 15px;
+    background-color: var(--color-0);
+    border: solid 2px transparent;
+    box-shadow: 7px 7px 10px #0e2d08,
+    -3px -3px 10px #0f7501,
+    inset -3px -3px 5px #15440d,
+    inset 3px 3px 5px #38c418;
+    color: var(--color-4);
+}
+
+.delete-forever-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 4rem 30px 0 25px;
+    padding: 0 10px;
+    right: 0;
+    border: solid 2px var(--color-3);
+    box-shadow:  -8px -8px 16px #111111,
+    5px 5px 16px #3b3b3b;
+}
+
+.delete-forever-btn:hover {
+    border: solid 2px var(--color-31);
+    background-color: var(--color-3);
+    color: var(--color-4);
+    box-shadow: 7px 7px 10px var(--color-3),
+    -3px -3px 10px var(--color-31),
+    inset -5px -5px 10px var(--color-3),
+    inset 5px 5px 10px var(--color-31);
+}
+
+.save-close-btn:hover,
+.get-more-button:hover,
+.submit:hover {
+    border: solid 2px var(--color-1);
+    color: var(--color-4);
+    box-shadow: 5px 5px 10px #001180,
+    -3px -3px 10px #0219C0FF,
+    inset -3px -3px 10px #0219C0FF,
+    inset 3px 3px 10px #0219C0FF;
+}
+.dropdown-button-container > button {
+    flex-basis: 90%;
+    border-radius: 0;
+    margin: 2px 0;
+    background: var(--color-01);
+    box-shadow: inset -3px -3px 3px var(--color-1),
+    inset 3px 3px 3px var(--color-21);
+    border: transparent;
+}
+
+.dropdown-button-container > button:first-child {
+    padding: 2px;
+    margin: 2px 0;
+    width: 100px;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border-right: none;
+}
+
+.dropdown-button-container > button:last-child {
+    padding: 2px;
+    margin: 2px 0;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-left: none;
+    max-width: 40px !important;
+}
+
+.dropdown-button-container > button:first-child:hover {
+    padding: 2px;
+    border-right: none;
+    box-shadow: inset -5px -5px 10px #470603,
+    inset 5px 5px 10px #a20f08;
+}
+
+.dropdown-edit:hover {
+    padding: 2px;
+    margin: 2px 0;
+    box-shadow: 5px 5px 10px #001180,
+    -3px -3px 10px #0219C0FF,
+    inset -3px -3px 10px #0219C0FF,
+    inset 3px 3px 10px #0219C0FF;
+}
+
+.timer button {
+    padding: 0;
+    height: 40px;
+    width: 40px;
+    border: solid 2 px var(--color-1);
+    box-shadow: inset -5px -5px 10px #470603,
+    inset 5px 5px 10px #a20f08;
+}
+
+.start-btn,
+.stop-btn,
+.reset-btn {
+    margin: .5rem;
+}
+
+.close-button:hover,
+.timer button:hover,
+.start-btn:hover,
+.stop-btn:hover,
+.reset-btn:hover {
+    border: solid 2px var(--color-31);
+    box-shadow: 5px 5px 10px var(--color-3),
+    -3px -3px 10px var(--color-31),
+    inset -3px -3px 10px var(--color-3),
+    inset 3px 3px 10px var(--color-31);
+}

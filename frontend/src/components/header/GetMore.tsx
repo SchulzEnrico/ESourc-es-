@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Form, InputGroup, Button } from "react-bootstrap";
 import {GetMoreProps} from "../types/types.ts";
+import {IoClose} from "react-icons/io5";
 
 function GetMore({ show, onClose }:Readonly<GetMoreProps>) {
     const [url, setUrl] = useState("");
@@ -65,7 +66,7 @@ function GetMore({ show, onClose }:Readonly<GetMoreProps>) {
                 title="Close"
                 name="Close"
             >
-                <img alt="Close Icon" id="close-png" src="../../assets/close.png"/>
+                <IoClose title={"close"} className={"close-icon"}/>
             </Button>
             <p className={"introductions"}>A new bookmark?<br/>Filling in these fields!</p>
             <Form onSubmit={handleSubmit}>

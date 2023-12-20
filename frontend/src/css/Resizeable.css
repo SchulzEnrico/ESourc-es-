@@ -9,7 +9,7 @@
 }
 
 .react-resizable-handle-w {
-    background-image: url(../../assets/resize.png);
+    background-image: url(../assets/resize.png);
     transform: rotate(180deg);
     top: 55%;
     left: -7px;
@@ -17,7 +17,7 @@
 }
 
 .react-resizable-handle-e {
-    background-image: url(../../assets/resize.png);
+    background-image: url(../assets/resize.png);
     transform: rotate(0deg);
     top: 55%;
     right: -40px;
@@ -26,7 +26,7 @@
 }
 
 .react-resizable-handle-n {
-    background-image: url(../../assets/resize.png);
+    background-image: url(../assets/resize.png);
     transform: rotate(270deg);
     left: 50%;
     top: -7px;
@@ -35,7 +35,7 @@
 }
 
 .react-resizable-handle-s {
-    background-image: url(../../assets/resize.png);
+    background-image: url(../assets/resize.png);
     transform: rotate(90deg);
     left: 50%;
     bottom: -7px;
@@ -44,7 +44,7 @@
 }
 
 .react-resizable-handle-sw {
-    background-image: url(../../assets/resize.png);
+    background-image: url(../assets/resize.png);
     transform: rotate(135deg);
     bottom: -5px;
     left: -5px;
@@ -52,7 +52,7 @@
 }
 
 .react-resizable-handle-se {
-    background-image: url(../../assets/resize.png);
+    background-image: url(../assets/resize.png);
     transform: rotate(45deg);
     bottom: -5px;
     right: -5px;
@@ -61,7 +61,7 @@
 }
 
 .react-resizable-handle-nw {
-    background-image: url(../../assets/resize.png);
+    background-image: url(../assets/resize.png);
     transform: rotate(225deg);
     top: -5px;
     left: -5px;
@@ -69,7 +69,7 @@
 }
 
 .react-resizable-handle-ne {
-    background-image: url(../../assets/resize.png);
+    background-image: url(../assets/resize.png);
     transform: rotate(315deg);
     top: -5px;
     right: -5px;

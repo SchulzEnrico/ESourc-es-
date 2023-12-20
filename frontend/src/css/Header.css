@@ -22,7 +22,7 @@ header {
                  inset -8px -8px 16px #3a3a3a;
 }
 
-#dash-icon-header {
+.dashboard-icon-header {
     height: 40px;
     margin: 18px 5px 0 10px;
     filter: grayscale(100%)
