@@ -187,7 +187,7 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
 
                 {!isMobile && (
                     <Button title={"Add a new Bookmark to your collection"} variant="primary" className={"get-more-button"} onClick={handleGetMoreClick}>
-                        <img alt="Add Icon" id="add-png" src="../src/assets/add.png" />
+                        <img alt="Add Icon" id="add-png" src="../../assets/add.png" />
                     </Button>
                 )}
 
