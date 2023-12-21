@@ -11,8 +11,8 @@ const workstationWidth = 1200;
 const libraryWidth = 900;
 const managementsWidth = 600;
 
-const halfHeight = 330;
-const fullHeight = 755;
+const halfHeight = 342;
+const fullHeight = 780;
 
 function Desk() {
     const [garageWidthInner, setGarageWidthInner] = useState(garageWidth);
