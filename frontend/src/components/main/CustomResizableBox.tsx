@@ -11,8 +11,6 @@ const CustomResizableBox: React.FC<CustomResizableBoxProps> = ({ onResizeEnd, id
     const handleResize = (_: SyntheticEvent, data: { size: { width: number; height: number } }) => {
         onResizeEnd(data.size);
     };
-    console.log(id);
-
     return <ResizableBox {...restProps} onResize={handleResize} />;
 };
 

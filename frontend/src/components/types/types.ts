@@ -1,4 +1,5 @@
 import {ResizableBoxProps} from "react-resizable";
+import React from "react";
 
 export type BookmarkDTO = {
     _id: string;
@@ -20,10 +21,14 @@ export type LinkParameters = {
     tags: string[];
 };
 
-export type GetMoreProps ={
-    show: boolean;
+export type GetMoreProps = {
     onClose: () => void;
-};
+    show: boolean;
+    getAvailableCategories: () => string[];
+    destination: string;
+    setDestination: React.Dispatch<React.SetStateAction<string>> | ((destination: string) => void);
+    setCurrentNavigation: React.Dispatch<React.SetStateAction<string>>;
+}
 
 export type EditBookmarkProps = {
     showEditModal: boolean;
@@ -43,6 +48,7 @@ export type NavigationProps = {
     onLinkClick?: (url: string) => void;
     panelName?: string;
     isExternal: boolean;
+    currentNavigation?: string;
 };
 
 export type HeaderProps = {

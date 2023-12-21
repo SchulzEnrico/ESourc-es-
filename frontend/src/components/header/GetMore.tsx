@@ -1,19 +1,58 @@
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Form, InputGroup, Button } from "react-bootstrap";
-import {GetMoreProps} from "../types/types.ts";
-import {IoClose} from "react-icons/io5";
+import { GetMoreProps } from "../types/types.ts";
+import { IoClose } from "react-icons/io5";
 
-function GetMore({ show, onClose }:Readonly<GetMoreProps>) {
+
+function GetMore({ show, onClose, destination, setDestination, getAvailableCategories }: Readonly<GetMoreProps>) {
     const [url, setUrl] = useState("");
-    const [dropdownCategory, setDropdownCategory] = useState("");
+    const [dropdownCategory, setDropdownCategory] = useState("");  // Benenne es um, wenn nötig
     const [tags, setTags] = useState("");
     const [title, setTitle] = useState("");
-    const [destination, setDestination] = useState("");
     const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+    const [newCategory, setNewCategory] = useState("");
+    const availableCategories = getAvailableCategories();
 
+    useEffect(() => {
+        // Aktualisiere die destination bei Bedarf
+        setDropdownCategory(destination);
+    }, [destination]);
 
-    function handleSubmit(event: { preventDefault: () => void }) {
+    useEffect(() => {
+        console.log("Before useEffect - Current Navigation:", destination);
+
+        const switchDestination = () => {
+            console.log("Switching destination based on:", destination);
+            let updatedDestination = "";
+
+            switch (destination) {
+                case "ins_pro":
+                case "snip_gen":
+                case "development":
+                case "know_guide":
+                case "lip_doc":
+                case "project":
+                case "personal":
+                    console.log("Setting destination:", destination);
+                    updatedDestination = destination;
+                    break;
+                default:
+                    console.log("Setting default destination");
+                    updatedDestination = "";
+                    break;
+            }
+
+            setDropdownCategory(updatedDestination);
+            setNewCategory(""); // Setze die Dropdown-Kategorie zurück
+        };
+
+        const timeout = setTimeout(switchDestination, 0);
+
+        return () => clearTimeout(timeout);
+    }, [destination]);
+
+    const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
 
         const showErrorNotification = (message: string) => {
@@ -22,8 +61,8 @@ function GetMore({ show, onClose }:Readonly<GetMoreProps>) {
 
         const newBookmarkDTO = {
             url: url,
-            destination: destination,
-            dropdownCategory: dropdownCategory,
+            destination: dropdownCategory,
+            dropdownCategory: newCategory || dropdownCategory,
             tags: tags.split(/[, .#/]+/),
             title: title,
         };
@@ -33,9 +72,9 @@ function GetMore({ show, onClose }:Readonly<GetMoreProps>) {
             .then(() => {
                 setUrl("");
                 setDropdownCategory("");
+                setNewCategory("");
                 setTags("");
                 setTitle("");
-                setDestination("");
                 setShowSuccessPopup(true);
             })
             .catch((error) => {
@@ -45,17 +84,7 @@ function GetMore({ show, onClose }:Readonly<GetMoreProps>) {
                     showErrorNotification("Something went wrong");
                 }
             });
-    }
-
-    useEffect(() => {
-        if (showSuccessPopup) {
-            const timeout = setTimeout(() => {
-                setShowSuccessPopup(false);
-            }, 1500);
-
-            return () => clearTimeout(timeout);
-        }
-    }, [showSuccessPopup, setShowSuccessPopup]);
+    };
 
     return (
         <div className={`get-more ${show ? 'show' : 'hide'}`}>
@@ -95,11 +124,25 @@ function GetMore({ show, onClose }:Readonly<GetMoreProps>) {
                         <option value="personal">personal</option>
                     </Form.Select>
                     <Form.Control
+                        as="select"
                         className="form-input-get-more shadow--ridge"
-                        placeholder="Dropdown Category"
                         aria-label="Dropdown Category"
                         value={dropdownCategory}
                         onChange={(event) => setDropdownCategory(event.target.value)}
+                    >
+                        <option>select dropdownCategory</option>
+                        {availableCategories.map((category) => (
+                            <option key={category} value={category}>
+                                {category}
+                            </option>
+                        ))}
+                    </Form.Control>
+                    <Form.Control
+                        className="form-input-get-more shadow--ridge"
+                        placeholder="New Category"
+                        aria-label="New Category"
+                        value={newCategory}
+                        onChange={(event) => setNewCategory(event.target.value)}  // Füge diese Zeile hinzu
                     />
                     <Form.Control
                         className="form-input-get-more shadow--ridge"
@@ -115,16 +158,16 @@ function GetMore({ show, onClose }:Readonly<GetMoreProps>) {
                         value={tags}
                         onChange={(event) => setTags(event.target.value)}
                     />
+                    </InputGroup>
                     <Button type="submit" className="submit">
                         save bookmark
                     </Button>
-                </InputGroup>
             </Form>
             {showSuccessPopup && (
                 <div className="success-popup">Bookmark successfully added!</div>
             )}
         </div>
-    );
+);
 }
 
 export default GetMore;
