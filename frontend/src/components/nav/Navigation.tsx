@@ -23,13 +23,24 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
     const [selectedBookmark, setSelectedBookmark] = useState<BookmarkDTO | null>(null);
     const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+    const [currentNavigation, setCurrentNavigation] = useState("default");
+    const [destination, setDestination] = useState("default");
+
+
+    const getAvailableCategories = (): string[] => {
+        return Array.from(
+            new Set(
+                bookmarks
+                    .filter((bookmark) => isExternal ? bookmark.destination === "external" : bookmark.destination === panelName)
+                    .map((bookmark) => bookmark.dropdownCategory)
+            )
+        );
+    };
 
     const loadBookmarks = () => {
-        console.log('Loading bookmarks...');  // Neu hinzugefügt
         axios.get<BookmarkDTO[]>('/api/bookmarks/getAll')
             .then((response) => {
                 setBookmarks(response.data);
-                console.log('Bookmarks loaded:', response.data);
             })
             .catch(error =>
                 console.error("Error retrieving bookmarks:", error)
@@ -43,7 +54,7 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
     const openEditModal = (bookmark: BookmarkDTO) => {
         setSelectedBookmark(bookmark);
         setShowEditModal(true);
-        document.body.style.overflow = 'hidden';  // Neu hinzugefügt
+        document.body.style.overflow = 'hidden';
     };
 
     const [alert, setAlert] = useState({
@@ -54,7 +65,7 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
 
     const handleGetMoreClick = () => {
         setShowGetMore(true);
-        document.body.style.overflow = 'hidden';  // Neu hinzugefügt
+        document.body.style.overflow = 'hidden';
     };
 
     const handleCloseModal = () => {
@@ -66,7 +77,7 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
     const handleCloseModalEdit = () => {
         setShowEditModal(false);
         setShowSuccessPopup(false);
-        document.body.style.overflow = 'auto';  // Neu hinzugefügt
+        document.body.style.overflow = 'auto';
     };
 
     const handleSaveChanges = () => {
@@ -137,6 +148,10 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
         };
     }, []);
 
+    useEffect(() => {
+        console.log("Current Navigation in Navigation:", currentNavigation);
+        // Weitere Logs oder Code hier, um sicherzustellen, dass currentNavigation korrekt aktualisiert wird
+    }, [currentNavigation]);
 
     const renderDropdownItems = (category: string) => {
         const relatedBookmarks = bookmarks.filter(bookmark => bookmark.dropdownCategory === category && (isExternal ? bookmark.destination === "external" : bookmark.destination === panelName));
@@ -217,6 +232,7 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
             </ButtonGroup>
         );
     };
+
     return (
         <>
             {renderDropdowns()}
@@ -226,7 +242,14 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
                 </Alert>
             )}
             <Modal show={showGetMore} onHide={handleCloseModal}>
-                <GetMore onClose={handleCloseModal} show={showSuccessPopup} />
+                <GetMore
+                    onClose={handleCloseModal}
+                    show={showSuccessPopup}
+                    getAvailableCategories={getAvailableCategories}
+                    destination={destination} // Verwende destination statt currentNavigation hier
+                    setDestination={setDestination}
+                    setCurrentNavigation={setCurrentNavigation}
+                />
             </Modal>
         </>
     );

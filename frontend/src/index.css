@@ -1,5 +1,11 @@
-@import url("css/Icons.css");
+@import url("css/App.css");
 @import url("css/Buttons.css");
+@import url("css/DeskGrid.css");
+@import url("css/DeskStyles.css");
+@import url("css/Footer.css");
+@import url("css/Header.css");
+@import url("css/Icons.css");
+@import url("css/Resizeable.css");
 
 :root {
   font-family: "Helvetica Neue", Arial, Verdana, Tahoma, sans-serif;
@@ -42,7 +48,8 @@ a {
 }
 
 body {
-  margin: 0;
+  width: fit-content;
+  margin: 0 auto;
   padding: 0;
   display: flex;
   justify-content: center;
@@ -104,7 +111,6 @@ body::-webkit-scrollbar-thumb {
 .introductions {
   display: flex;
   justify-content: center;
-  font-size: x-large;
   color: var(--color-41);
 
   background-image: -webkit-linear-gradient(270deg, #808080 53%, #808080 54%, #c0c0c0 64%, #808080 72%);
@@ -114,6 +120,7 @@ body::-webkit-scrollbar-thumb {
   font-weight: bolder;
 }
 
+.form-input-timer,
 .form-input-get-more,
 .form-input-edit-bookmark {
   margin: 10px 20px;
@@ -124,7 +131,14 @@ body::-webkit-scrollbar-thumb {
   border-radius: 25px;
   border: var(--color-2) solid 1px;
   background-color: transparent;
-  height: 5px;
+  height: 20px;
+}
+
+.form-select-timer,
+.form-select-get-more,
+.form-select-edit-bookmark {
+  height: 55px;
+  width: 240px;
 }
 
 
@@ -141,7 +155,7 @@ body::-webkit-scrollbar-thumb {
   transform: translate(-50%, -50%);
   padding: 20px;
   transition: transform 0.5s ease-in-out;
-  border: solid 1px var(--color-0);
+  border: solid 1px var(--color-4);
   border-radius: 20px;
   background: var(--color-0);
   box-shadow: 7px 7px 10px var(--color-3),
@@ -167,17 +181,11 @@ body::-webkit-scrollbar-thumb {
 }
 
 .edit-modal {
-  padding-top: 50px;
+  padding-top: 10px;
 }
 
 .edit-modal-title {
-  margin-bottom: 30px;
-}
-
-.form-select-get-more,
-.form-select-edit-bookmark {
-  height: 55px;
-  width: 240px;
+  margin-bottom: 10px;
 }
 
 .centered-modal .modal-dialog {
@@ -189,13 +197,18 @@ body::-webkit-scrollbar-thumb {
 }
 
 .time-left {
-  font-size: x-large;
+  font-size: xx-large;
   font-weight: bolder;
   padding-bottom: .5rem;
+  margin: 2rem 0 2rem 2rem;
   background-image: -webkit-linear-gradient(270deg, #808080 53%, #808080 54%, #c0c0c0 64%, #808080 72%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.or-set-your-own {
+  margin: 0 0 0 4.5rem;
 }
 
 .timer-popup {
@@ -208,6 +221,7 @@ body::-webkit-scrollbar-thumb {
 
 .timer-popup h2 {
   margin-bottom: 10px;
+  font-size: 10rem;
 }
 
 .panel-items-container {
@@ -219,4 +233,3 @@ body::-webkit-scrollbar-thumb {
 .get-more.open {
   transform: translateY(0);
 }
-

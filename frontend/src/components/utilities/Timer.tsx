@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import { IoIosTimer } from 'react-icons/io';
-import { Button, Modal } from 'react-bootstrap';
-import { TfiControlPlay, TfiControlStop } from 'react-icons/tfi';
-import { RxReset } from 'react-icons/rx';
-import { IoClose } from 'react-icons/io5';
+import React, {useCallback, useEffect, useState} from 'react';
+import {IoIosTimer} from 'react-icons/io';
+import {Button, Modal} from 'react-bootstrap';
+import {TfiControlPlay, TfiControlStop} from 'react-icons/tfi';
+import {RxReset} from 'react-icons/rx';
+import {IoClose} from 'react-icons/io5';
 import TimeIsUpPopup from '../popUps/TimeIsUpPopup.tsx';
 
 const Timer: React.FC = () => {
@@ -50,10 +50,9 @@ const Timer: React.FC = () => {
     }, [selectedTime]);
 
     const startInterval = useCallback(() => {
-        const newIntervalId = window.setInterval(() => {
+        intervalIdRef.current = window.setInterval(() => {
             handleTimerTick();
         }, 1000);
-        intervalIdRef.current = newIntervalId;
     }, [handleTimerTick]);
 
     useEffect(() => {
@@ -114,13 +113,17 @@ const Timer: React.FC = () => {
                         title="Close"
                         name="Close"
                     >
-                        <IoClose title="close" className="close-icon" />
+                        <IoClose title="close" className="close-icon"/>
                     </Button>
-                    <Modal.Title className="introductions edit-modal-title">Choose Timer Options</Modal.Title>
+
+                    <div className={'time-left'}>Time left: {selectedTime - seconds} s</div>
+
+                    <Modal.Title className="introductions edit-modal-title">Choose Timer Option</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <p>Choose...</p>
-                    <select className={'timer-input'} onChange={handleChange}>
+
+                    <select className={'form-input-timer form-select-timer shadow--ridge'}
+                            onChange={handleChange}>
                         {timeOptions.map((option) => (
                             <option key={option.value} value={option.value}>
                                 {option.label}
@@ -128,28 +131,31 @@ const Timer: React.FC = () => {
                         ))}
                     </select>
 
-                    <p>or set</p>
+                    <p className={"or-set-your-own"}>... or set your own</p>
                     <input
-                        className={'timer-input'}
+                        className={'form-input-timer shadow--ridge'}
                         type="number"
                         min="0"
                         step="1"
                         value={customTime}
                         onChange={(e) => setCustomTime(Number(e.target.value))}
                     />
-                    <button onClick={handleSetCustomTime}>Set your own</button>
+                    <button onClick={handleSetCustomTime}
+                            className={"set-your-own-btn"}
+                    >Set your own
+                    </button>
 
-                    <div className={'time-left'}>Time left {selectedTime - seconds} sec</div>
-
-                    <button className={'start-btn'} onClick={handleStartTimer}>
-                        <TfiControlPlay className={'start-icon'} />
-                    </button>
-                    <button className={'stop-btn'} onClick={handleStopTimer}>
-                        <TfiControlStop className={'stop-icon'} />
-                    </button>
-                    <button className={'reset-btn'} onClick={handleResetTimer}>
-                        <RxReset className={'reset-icon'} />
-                    </button>
+                    <div className={"timer-controls"}>
+                        <button className={'start-btn'} onClick={handleStartTimer}>
+                            <TfiControlPlay className={'start-icon'}/>
+                        </button>
+                        <button className={'stop-btn'} onClick={handleStopTimer}>
+                            <TfiControlStop className={'stop-icon'}/>
+                        </button>
+                        <button className={'reset-btn'} onClick={handleResetTimer}>
+                            <RxReset className={'reset-icon'}/>
+                        </button>
+                    </div>
                 </Modal.Body>
             </Modal>
 

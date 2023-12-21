@@ -13,7 +13,6 @@ function App() {
         axios.get<BookmarkDTO[]>('/api/bookmarks/getAll')
             .then((response) => {
                 setBookmarks(response.data);
-                console.log('Bookmarks loaded:', response.data);
             })
             .catch(error =>
                 console.error("Error retrieving bookmarks:", error)

@@ -64,6 +64,7 @@ button:focus-visible {
     margin: 10px 20px;
 }
 
+.set-your-own-btn,
 .submit,
 .save-close-btn {
     height: 50px;
@@ -82,7 +83,7 @@ button:focus-visible {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 4rem 30px 0 25px;
+    margin: 2.5rem 30px 0 25px;
     padding: 0 10px;
     right: 0;
     border: solid 2px var(--color-3);
@@ -99,7 +100,7 @@ button:focus-visible {
     inset -5px -5px 10px var(--color-3),
     inset 5px 5px 10px var(--color-31);
 }
-
+.set-your-own-btn:hover,
 .save-close-btn:hover,
 .get-more-button:hover,
 .submit:hover {
@@ -154,19 +155,30 @@ button:focus-visible {
     inset 3px 3px 10px #0219C0FF;
 }
 
+.start-btn,
+.stop-btn,
+.reset-btn,
 .timer button {
     padding: 0;
     height: 40px;
     width: 40px;
     border: solid 2 px var(--color-1);
     box-shadow: inset -5px -5px 10px #470603,
-    inset 5px 5px 10px #a20f08;
+                inset 5px 5px 10px #a20f08;
+}
+
+.set-your-own-btn {
+    margin: .5rem 0 1rem 5rem;
 }
 
 .start-btn,
 .stop-btn,
 .reset-btn {
     margin: .5rem;
+}
+
+.timer-controls {
+    margin: 6rem 0 0 3.5rem;
 }
 
 .close-button:hover,
