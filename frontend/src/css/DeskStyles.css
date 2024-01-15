@@ -68,11 +68,10 @@ iframe
     top: -9px;
     right: 10px;
     color: var(--color-21);
-/*    background-image: -webkit-linear-gradient(270deg, #808080 53%, #808080 54%, #c0c0c0 64%, #808080 72%);
+    background-image: -webkit-linear-gradient(270deg, #808080 53%, #808080 54%, #c0c0c0 64%, #808080 72%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-*/
 }
 
 .workstation .panel-name {

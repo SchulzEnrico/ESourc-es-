@@ -56,7 +56,9 @@ export type HeaderProps = {
     loadBookmarks: () => void;
 };
 
-export type CustomResizableBoxProps = ResizableBoxProps & {
+export type CustomResizableBoxProps = Omit<ResizableBoxProps, "width" | "height"> & {
     onResizeEnd: (size: { width: number; height: number }) => void;
     id: string;
+    width: number | string;
+    height: number | string;
 };
