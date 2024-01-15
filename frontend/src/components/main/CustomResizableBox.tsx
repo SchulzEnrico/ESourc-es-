@@ -8,7 +8,7 @@ type CustomResizableBoxProps = Omit<ResizableBoxProps, "width" | "height"> & {
     height: number;
 };
 
-const CustomResizableBox: React.FC<CustomResizableBoxProps> = ({ onResizeEnd, id, width, height, ...restProps }) => {
+const CustomResizableBox: React.FC<CustomResizableBoxProps> = ({ onResizeEnd, width, height, ...restProps }) => {
 
     const handleResize = (_: SyntheticEvent, { size }: { size: { width: number; height: number } }) => {
         onResizeEnd(size);
