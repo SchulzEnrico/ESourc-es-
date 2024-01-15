@@ -15,7 +15,6 @@ function GetMore({ show, onClose, destination, setDestination, getAvailableCateg
     const availableCategories = getAvailableCategories();
 
     useEffect(() => {
-        // Aktualisiere die destination bei Bedarf
         setDropdownCategory(destination);
     }, [destination]);
 
@@ -43,13 +42,13 @@ function GetMore({ show, onClose, destination, setDestination, getAvailableCateg
                     break;
             }
 
+            // Setze die Dropdown-Kategorie basierend auf der neuen destination
             setDropdownCategory(updatedDestination);
             setNewCategory(""); // Setze die Dropdown-Kategorie zurück
         };
 
-        const timeout = setTimeout(switchDestination, 0);
+        switchDestination(); // Rufe die Funktion direkt auf, um das Problem mit der Verzögerung zu umgehen
 
-        return () => clearTimeout(timeout);
     }, [destination]);
 
     const handleSubmit = (event: React.FormEvent) => {
@@ -61,8 +60,8 @@ function GetMore({ show, onClose, destination, setDestination, getAvailableCateg
 
         const newBookmarkDTO = {
             url: url,
-            destination: dropdownCategory,
-            dropdownCategory: newCategory || dropdownCategory,
+            destination: destination,
+            dropdownCategory: dropdownCategory || newCategory,  // Verwende die ausgewählte destination, wenn newCategory leer ist
             tags: tags.split(/[, .#/]+/),
             title: title,
         };
