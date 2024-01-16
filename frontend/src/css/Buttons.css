@@ -155,10 +155,6 @@ button:focus-visible {
     inset 3px 3px 10px #0219C0FF;
 }
 
-.panel-menu-btn {
-    margin-top: 15px;
-}
-
 .start-btn,
 .stop-btn,
 .reset-btn {
@@ -201,9 +197,6 @@ button:focus-visible {
     height: 40px;
 }
 
-.timer-controls {
-    margin: 6rem 0 0 3.5rem;
-}
 
 .external-links-btn {
     position: absolute;

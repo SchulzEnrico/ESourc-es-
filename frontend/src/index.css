@@ -242,3 +242,7 @@ body::-webkit-scrollbar-thumb {
   position: absolute;
   z-index: 10000;
 }
+
+.timer-controls {
+  margin: 6rem 0 0 3.5rem;
+}
