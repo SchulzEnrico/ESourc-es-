@@ -7,13 +7,13 @@ import { useState } from 'react';
 import CustomResizableBox from './CustomResizableBox.tsx';
 
 const viewportToPixels = (value: string) => {
-    const parts = value.match(/([0-9.]+)(vh|vw)/)
+    const parts = value.match(/^([0-9.]+)(vh|vw)$/);
 
     if (!parts) return 0;
 
-    const q = Number(parts[1])
-    const side = parts[2] === "vw" ? window.innerWidth : window.innerHeight
-    return side * (q / 100)
+    const q = Number(parts[1]);
+    const side = parts[2] === "vw" ? window.innerWidth : window.innerHeight;
+    return side * (q / 100);
 }
 
 const garageInitialWidth = viewportToPixels("20vw");
