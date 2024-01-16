@@ -56,23 +56,15 @@ p {
     sepia(0%);
 }
 
-.search-input {
-    border: var(--color-1) solid 2px;
-    background-color: var(--color-01);
-    color: var(--color-5);
-    height: 1px;
-    font-size: medium;
-    font-weight: bolder;
-    align-items: center;
-}
 
-.search-google-btn {
-    width: 40px;
-    height: 40px;
+
+.clock-timer {
+    display: flex;
+    padding: 10px 0 7px;
 }
 
 .clock {
-    margin-left: 20px;
+    margin: 0 5px 0 20px;
     font-weight: bolder;
     border-radius: 25px;
     border: var(--color-1) solid 2px;
@@ -83,4 +75,9 @@ p {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+.google-ai {
+    display: flex;
+    padding: 0;
 }

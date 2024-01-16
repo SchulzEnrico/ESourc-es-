@@ -46,3 +46,12 @@ header {
     margin: 15px 15px 5px 15px;
 }
 
+.search-input {
+    border: var(--color-1) solid 2px;
+    background-color: var(--color-01);
+    color: var(--color-5);
+    height: 1px;
+    width: 100px;
+    font-size: small;
+    font-weight: bolder;
+}

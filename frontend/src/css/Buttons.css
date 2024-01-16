@@ -155,15 +155,20 @@ button:focus-visible {
     inset 3px 3px 10px #0219C0FF;
 }
 
+.panel-menu-btn {
+    margin-top: 15px;
+}
+
 .start-btn,
 .stop-btn,
-.reset-btn,
-.timer button {
+.reset-btn {
     padding: 0;
     height: 40px;
     width: 40px;
     border: solid 2 px var(--color-1);
-    box-shadow: inset -5px -5px 10px #470603,
+    box-shadow: 5px 5px 10px transparent,
+                -3px -3px 10px transparent,
+                inset -5px -5px 10px #470603,
                 inset 5px 5px 10px #a20f08;
 }
 
@@ -177,18 +182,31 @@ button:focus-visible {
     margin: .5rem;
 }
 
+.close-button:hover,
+.start-btn:hover,
+.stop-btn:hover,
+.reset-btn:hover {
+    padding: 0;
+    border: solid 2px var(--color-31);
+    box-shadow: 5px 5px 10px var(--color-3),
+                -3px -3px 10px var(--color-31),
+                inset -3px -3px 10px var(--color-3),
+                inset 3px 3px 10px var(--color-31);
+}
+
+.footer-btn {
+    margin-right: 20px;
+    padding:0;
+    width: 40px;
+    height: 40px;
+}
+
 .timer-controls {
     margin: 6rem 0 0 3.5rem;
 }
 
-.close-button:hover,
-.timer button:hover,
-.start-btn:hover,
-.stop-btn:hover,
-.reset-btn:hover {
-    border: solid 2px var(--color-31);
-    box-shadow: 5px 5px 10px var(--color-3),
-    -3px -3px 10px var(--color-31),
-    inset -3px -3px 10px var(--color-3),
-    inset 3px 3px 10px var(--color-31);
+.external-links-btn {
+    position: absolute;
+    right: 0;
+    margin-right: 20px;
 }

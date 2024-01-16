@@ -2,6 +2,7 @@ import React, {useRef, useState} from 'react';
 import {Container} from 'react-bootstrap';
 import Navigation from "../nav/Navigation";
 import { PanelProps } from '../types/types';
+import { TiThMenu } from "react-icons/ti";
 
 const Panel: React.FC<PanelProps> = ({ className }) => {
     const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -19,8 +20,8 @@ const Panel: React.FC<PanelProps> = ({ className }) => {
                 <iframe ref={iframeRef}></iframe>
             </div>
             <div className="panel-controls">
-                <button onClick={() => setShowNavigationModal(true)}>
-                    Open Navigation
+                <button className={"panel-menu-btn"} onClick={() => setShowNavigationModal(true)}>
+                    <TiThMenu />
                 </button>
                 <Navigation
                     onLinkClick={openInIframe}

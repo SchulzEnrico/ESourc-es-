@@ -2,8 +2,7 @@
     font-size: 1.5rem;
     margin: .05rem .2rem;
 }
-.close-icon,
-.timer-icon {
+.close-icon {
     margin: .15rem 0;
     height: 30px;
     width: 30px;
@@ -27,4 +26,10 @@
 .reset-icon {
     margin: 0;
     font-size: 2rem;
+}
+
+.timer-icon {
+    height: 25px;
+    width: 25px;
+    margin-right: 2px;
 }
