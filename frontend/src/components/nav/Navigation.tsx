@@ -246,7 +246,7 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
                     onClose={handleCloseModal}
                     show={showSuccessPopup}
                     getAvailableCategories={getAvailableCategories}
-                    destination={destination} // Verwende destination statt currentNavigation hier
+                    destination={destination}
                     setDestination={setDestination}
                     setCurrentNavigation={setCurrentNavigation}
                 />

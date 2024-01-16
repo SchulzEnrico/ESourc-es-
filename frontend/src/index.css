@@ -54,7 +54,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: scroll  ;
+  overflow: scroll;
 }
 body::-webkit-scrollbar {
   width: auto;
@@ -71,7 +71,6 @@ body::-webkit-scrollbar-thumb {
   border: 2px solid var(--color-41);
   border-radius: 25px;
 }
-
 
 .dropdown-menu {
   display: none;
@@ -112,7 +111,6 @@ body::-webkit-scrollbar-thumb {
   display: flex;
   justify-content: center;
   color: var(--color-41);
-
   background-image: -webkit-linear-gradient(270deg, #808080 53%, #808080 54%, #c0c0c0 64%, #808080 72%);
   background-clip: text;
   -webkit-background-clip: text;
@@ -140,7 +138,6 @@ body::-webkit-scrollbar-thumb {
   height: 55px;
   width: 240px;
 }
-
 
 .get-more,
 .edit-modal {

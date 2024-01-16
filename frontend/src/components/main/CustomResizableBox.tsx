@@ -1,19 +1,20 @@
 import React, { SyntheticEvent } from 'react';
 import { ResizableBox, ResizableBoxProps } from 'react-resizable';
 
-type CustomResizableBoxProps = ResizableBoxProps & {
+type CustomResizableBoxProps = Omit<ResizableBoxProps, "width" | "height"> & {
     onResizeEnd: (size: { width: number; height: number }) => void;
     id: string;
+    width: number;
+    height: number;
 };
 
+const CustomResizableBox: React.FC<CustomResizableBoxProps> = ({ onResizeEnd, width, height, ...restProps }) => {
 
-const CustomResizableBox: React.FC<CustomResizableBoxProps> = ({ onResizeEnd, id, ...restProps }) => {
-    const handleResize = (_: SyntheticEvent, data: { size: { width: number; height: number } }) => {
-        onResizeEnd(data.size);
+    const handleResize = (_: SyntheticEvent, { size }: { size: { width: number; height: number } }) => {
+        onResizeEnd(size);
     };
-    return <ResizableBox {...restProps} onResize={handleResize} />;
+
+    return <ResizableBox {...restProps} width={width} height={height} onResize={handleResize} />;
 };
 
 export default CustomResizableBox;
-
-

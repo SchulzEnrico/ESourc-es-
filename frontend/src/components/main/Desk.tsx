@@ -6,42 +6,52 @@ import '../../css/Resizeable.css';
 import { useState } from 'react';
 import CustomResizableBox from './CustomResizableBox.tsx';
 
-const garageWidth = 700;
-const workstationWidth = 1200;
-const libraryWidth = 900;
-const managementsWidth = 600;
+const viewportToPixels = (value: string) => {
+    const regex = new RegExp(/^([0-9.]+)(vh|vw)$/);
+    const parts = regex.exec(value);
 
-const halfHeight = 342;
-const fullHeight = 780;
+    if (!parts) return 0;
+
+    const q = Number(parts[1]);
+    const side = parts[2] === 'vw' ? window.innerWidth : window.innerHeight;
+    return side * (q / 100);
+}
+
+const garageInitialWidth = viewportToPixels("20vw");
+const workstationInitialWidth = viewportToPixels("30vw");
+const libraryInitialWidth = viewportToPixels("20vw");
+const managementsInitialWidth = viewportToPixels("15vw");
+
+const halfHeight = viewportToPixels("35vh");
+const fullHeight = viewportToPixels("79vh");
 
 function Desk() {
-    const [garageWidthInner, setGarageWidthInner] = useState(garageWidth);
-    const [workstationWidthInner, setWorkstationWidthInner] = useState(workstationWidth);
-    const [libraryWidthInner, setLibraryWidthInner] = useState(libraryWidth);
-    const [managementsWidthInner, setManagementsWidthInner] = useState(managementsWidth);
-    const paddingValue = 5;
+    const [garageWidthPixels, setGarageWidthPixels] = useState<number>(garageInitialWidth);
+    const [workstationWidthPixels, setWorkstationWidthPixels] = useState<number>(workstationInitialWidth);
+    const [libraryWidthPixels, setLibraryWidthPixels] = useState<number>(libraryInitialWidth);
+    const [managementsWidthPixels, setManagementsWidthPixels] = useState<number>(managementsInitialWidth);
 
     const handleGarageResizeEnd = (size: { width: number; height: number }) => {
-        setGarageWidthInner(size.width);
+        setGarageWidthPixels(size.width);
     };
 
     const handleWorkstationResizeEnd = (size: { width: number; height: number }) => {
-        setWorkstationWidthInner(size.width);
+        setWorkstationWidthPixels(size.width);
     };
 
     const handleLibraryResizeEnd = (size: { width: number; height: number }) => {
-        setLibraryWidthInner(size.width);
+        setLibraryWidthPixels(size.width);
     };
 
     const handleManagementsResizeEnd = (size: { width: number; height: number }) => {
-        setManagementsWidthInner(size.width);
+        setManagementsWidthPixels(size.width);
     };
 
     return (
         <div className="esources-desk">
             <CustomResizableBox
                 className="garage row"
-                width={garageWidth + 2 * paddingValue}
+                width={garageWidthPixels}
                 height={halfHeight}
                 resizeHandles={["e"]}
                 onResizeEnd={handleGarageResizeEnd}
@@ -50,7 +60,7 @@ function Desk() {
                 <div className="ins_pro panel shadow--raised col">
                     <CustomResizableBox
                         className="ins_pro"
-                        width={garageWidthInner}
+                        width={garageWidthPixels}
                         height={halfHeight}
                         resizeHandles={["s"]}
                         onResizeEnd={handleGarageResizeEnd}
@@ -62,7 +72,7 @@ function Desk() {
                 <div className="snip_gen panel shadow--raised col">
                     <CustomResizableBox
                         className="snip_gen"
-                        width={garageWidthInner}
+                        width={garageWidthPixels}
                         height={halfHeight}
                         resizeHandles={["n"]}
                         onResizeEnd={handleGarageResizeEnd}
@@ -74,7 +84,7 @@ function Desk() {
             </CustomResizableBox>
             <CustomResizableBox
                 className="workstation row"
-                width={workstationWidth + 2 * paddingValue}
+                width={workstationWidthPixels}
                 height={fullHeight}
                 resizeHandles={["w", "e"]}
                 onResizeEnd={handleWorkstationResizeEnd}
@@ -82,12 +92,12 @@ function Desk() {
             >
                 <div className="development panel shadow--raised col">
                     <CustomResizableBox
-                        className="devolpment"
-                        width={workstationWidthInner}
+                        className="development"
+                        width={workstationWidthPixels}
                         height={fullHeight}
                         resizeHandles={["n", "s"]}
                         onResizeEnd={handleWorkstationResizeEnd}
-                        id="devolpment"
+                        id="development"
                     >
                         <Panel className="development" />
                     </CustomResizableBox>
@@ -95,7 +105,7 @@ function Desk() {
             </CustomResizableBox>
             <CustomResizableBox
                 className="library row"
-                width={libraryWidth + 2 * paddingValue}
+                width={libraryWidthPixels}
                 height={halfHeight}
                 resizeHandles={["e", "w"]}
                 onResizeEnd={handleLibraryResizeEnd}
@@ -104,7 +114,7 @@ function Desk() {
                 <div className="know_guide panel shadow--raised col">
                     <CustomResizableBox
                         className="know_guide"
-                        width={libraryWidthInner}
+                        width={libraryWidthPixels}
                         height={halfHeight}
                         resizeHandles={["s"]}
                         onResizeEnd={handleLibraryResizeEnd}
@@ -116,7 +126,7 @@ function Desk() {
                 <div className="lip_doc panel shadow--raised col">
                     <CustomResizableBox
                         className="lip_doc"
-                        width={libraryWidthInner}
+                        width={libraryWidthPixels}
                         height={halfHeight}
                         resizeHandles={["n"]}
                         onResizeEnd={handleLibraryResizeEnd}
@@ -128,7 +138,7 @@ function Desk() {
             </CustomResizableBox>
             <CustomResizableBox
                 className="managements row"
-                width={managementsWidth + 2 * paddingValue}
+                width={managementsWidthPixels}
                 height={halfHeight}
                 resizeHandles={["w"]}
                 onResizeEnd={handleManagementsResizeEnd}
@@ -137,7 +147,7 @@ function Desk() {
                 <div className="project panel shadow--raised col">
                     <CustomResizableBox
                         className="project"
-                        width={managementsWidthInner}
+                        width={managementsWidthPixels}
                         height={halfHeight}
                         resizeHandles={["s"]}
                         onResizeEnd={handleManagementsResizeEnd}
@@ -149,7 +159,7 @@ function Desk() {
                 <div className="personal panel shadow--raised col">
                     <CustomResizableBox
                         className="personal"
-                        width={managementsWidthInner}
+                        width={managementsWidthPixels}
                         height={halfHeight}
                         resizeHandles={["n"]}
                         onResizeEnd={handleManagementsResizeEnd}
