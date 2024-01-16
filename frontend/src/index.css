@@ -230,3 +230,8 @@ body::-webkit-scrollbar-thumb {
 .get-more.open {
   transform: translateY(0);
 }
+
+.navigation-modal {
+  position: absolute;
+  z-index: 10000;
+}
