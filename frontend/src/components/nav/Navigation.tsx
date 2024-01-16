@@ -15,7 +15,7 @@ import {NavigationProps, BookmarkDTO} from "../types/types.ts";
 import {TiPlus} from "react-icons/ti";
 import {MdOutlineSettings} from "react-icons/md";
 
-const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExternal }) => {
+const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExternal, showModal, closeModal }) => {
     const tempBookmark = useRef<BookmarkDTO | null>(null);
     const [showEditModal, setShowEditModal] = useState(false);
     const [bookmarks, setBookmarks] = useState<BookmarkDTO[]>([]);
@@ -25,7 +25,6 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
     const [showSuccessPopup, setShowSuccessPopup] = useState(false);
     const [currentNavigation, setCurrentNavigation] = useState("default");
     const [destination, setDestination] = useState("default");
-
 
     const getAvailableCategories = (): string[] => {
         return Array.from(
@@ -49,6 +48,7 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
 
     const openLink = (url: string, destination: string) => {
         destination === "external" ? window.open(url, '_blank') : onLinkClick?.(url);
+        closeModal();
     };
 
     const openEditModal = (bookmark: BookmarkDTO) => {
@@ -234,24 +234,26 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
     };
 
     return (
-        <>
-            {renderDropdowns()}
-            {alert.open && (
-                <Alert variant={alert.variant} onClose={() => setAlert({ ...alert, open: false })} dismissible>
-                    {alert.message}
-                </Alert>
-            )}
-            <Modal show={showGetMore} onHide={handleCloseModal}>
-                <GetMore
-                    onClose={handleCloseModal}
-                    show={showSuccessPopup}
-                    getAvailableCategories={getAvailableCategories}
-                    destination={destination}
-                    setDestination={setDestination}
-                    setCurrentNavigation={setCurrentNavigation}
-                />
-            </Modal>
-        </>
+        <Modal className={"navigation-modal"} show={showModal} onHide={closeModal}>
+            <>
+                {renderDropdowns()}
+                {alert.open && (
+                    <Alert variant={alert.variant} onClose={() => setAlert({ ...alert, open: false })} dismissible>
+                        {alert.message}
+                    </Alert>
+                )}
+                <Modal show={showGetMore} onHide={handleCloseModal}>
+                    <GetMore
+                        onClose={handleCloseModal}
+                        show={showSuccessPopup}
+                        getAvailableCategories={getAvailableCategories}
+                        destination={destination}
+                        setDestination={setDestination}
+                        setCurrentNavigation={setCurrentNavigation}
+                    />
+                </Modal>
+            </>
+        </Modal>
     );
 }
 

@@ -49,6 +49,8 @@ export type NavigationProps = {
     panelName?: string;
     isExternal: boolean;
     currentNavigation?: string;
+    showModal: boolean;  // neu
+    closeModal: () => void; // neu
 };
 
 export type HeaderProps = {

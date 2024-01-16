@@ -1,11 +1,11 @@
-import React, { useRef } from 'react';
+import React, {useRef, useState} from 'react';
 import {Container} from 'react-bootstrap';
 import Navigation from "../nav/Navigation";
 import { PanelProps } from '../types/types';
 
 const Panel: React.FC<PanelProps> = ({ className }) => {
     const iframeRef = useRef<HTMLIFrameElement>(null);
-
+    const [showNavigationModal, setShowNavigationModal] = useState(false);
     const openInIframe = (url: string) => {
         if (iframeRef.current) {
             iframeRef.current.src = url;
@@ -19,7 +19,16 @@ const Panel: React.FC<PanelProps> = ({ className }) => {
                 <iframe ref={iframeRef}></iframe>
             </div>
             <div className="panel-controls">
-                <Navigation onLinkClick={openInIframe} panelName={className} isExternal={false}/>
+                <button onClick={() => setShowNavigationModal(true)}>
+                    Open Navigation
+                </button>
+                <Navigation
+                    onLinkClick={openInIframe}
+                    panelName={className}
+                    isExternal={false}
+                    showModal={showNavigationModal}
+                    closeModal={() => setShowNavigationModal(false)}
+                />
             </div>
         </Container>
     );
