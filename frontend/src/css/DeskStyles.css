@@ -7,7 +7,7 @@
 .development {
     height: 100%;
     border-radius: 20px;
-    padding: .6rem 1.3rem 0 .7rem;
+    padding: .6rem .9rem 0 .6rem;
 }
 
 .panel-items-container {
@@ -25,12 +25,20 @@
 
 .panel-controls {
     grid-area: panel-controls;
-    padding-top: .2rem;
-    position: relative;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: -10px;
+    left: 0;
+    margin-left: -10px;
+}
+
+.development  .panel-controls {
+    margin-bottom: 0;
+    margin-left: 0;
 }
 
 .development .panel-items-container {
-    grid-template-rows: 92% 8%;
+    grid-template-rows: 94% 6%;
 }
 
 .ins_pro,
@@ -75,7 +83,11 @@ iframe
 }
 
 .workstation .panel-name {
-    top: 2px;
-    right: 30px;
+    top: 10px;
+    right: 40px;
+}
+
+.workstation {
+    margin-right: 1.5rem;
 }
 

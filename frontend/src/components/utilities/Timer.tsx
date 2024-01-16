@@ -74,10 +74,8 @@ const Timer: React.FC = () => {
 
     const handleCloseTimerModal = () => {
         setShowTimerModal(false);
-        // setIsActive(false); // Kommentiere diese Zeile aus, um den Timer weiter laufen zu lassen
-        // setSeconds(0); // Kommentiere diese Zeile aus, um den Timer weiter laufen zu lassen
         setShowTimeIsUpPopup(false);
-        // clearInterval(intervalIdRef.current); // Kommentiere diese Zeile aus, um den Timer weiter laufen zu lassen
+
     };
 
     const handleStartTimer = () => {
@@ -96,7 +94,7 @@ const Timer: React.FC = () => {
 
     return (
         <div className={'timer'}>
-            <button onClick={() => setShowTimerModal(true)}>
+            <button className={"footer-btn"} onClick={() => setShowTimerModal(true)}>
                 <IoIosTimer className={'timer-icon'} />
             </button>
 

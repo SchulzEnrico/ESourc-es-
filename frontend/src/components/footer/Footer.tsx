@@ -1,86 +1,92 @@
 import "../../css/Footer.css";
-import {Col, Container, Row} from "react-bootstrap";
-import React, {useState} from "react";
+import { Dropdown } from "react-bootstrap";
+import { useState } from "react";
+import { GoBook, GoCode, GoGitPullRequest, GoIssueOpened, GoRepo, GoTable } from "react-icons/go";
+import { PiPlayCircleLight } from "react-icons/pi";
+import { ImGithub } from "react-icons/im";
 import Clock from "../utilities/Clock.tsx";
-import {GoBook, GoCode, GoGitPullRequest, GoIssueOpened, GoRepo, GoTable} from "react-icons/go";
-import {FaSearch} from "react-icons/fa";
-import {PiPlayCircleLight} from "react-icons/pi";
+import Timer from "../utilities/Timer.tsx";
+import {SiMicrosoftbing, SiOpenai} from "react-icons/si";
+import {RiBardLine} from "react-icons/ri";
 
 
 const Footer = () => {
-    const [searchText, setSearchText] = useState('');
+    const [open, setOpen] = useState(false);
 
-    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchText(event.target.value);
-    };
-
-    const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        window.open(`https://www.google.com/search?q=${encodeURIComponent(searchText)}`, '_blank');
-    };
+    const toggleOpen = () => setOpen(prevOpen => !prevOpen);
 
     return (
         <footer>
-            <Clock />
-            <form onSubmit={handleSearchSubmit}>
-                <input className={"search-input shadow--sunken"} type="text" value={searchText} onChange={handleSearchChange} placeholder="Google search..." />
-                <button className={"search-google-btn"} type="submit">
-                    <FaSearch className={"search-icon"}/>
-                </button>
-            </form>
-            <Container>
-                <Row className="footer-row">
-                    <Col className="footer-item">
-                        <a href="https://github.com/SchulzEnrico" target="_blank" rel="noopener noreferrer">
-                            <GoBook title={"Github Overview"} className={"footer-icon logo"} />
-                        </a>
-                    </Col>
-                    <Col className="footer-item">
-                        <a href="https://github.com/SchulzEnrico?tab=repositories" target="_blank" rel="noopener noreferrer">
-                            <div className="svg-container">
-                                <GoRepo title={"Github Repositories"} className={"footer-icon logo"} />
-                            </div>
-                        </a>
-                    </Col>
-                    <Col className="footer-item">
-                        <a href="https://github.com/SchulzEnrico/ESourc-es-" target="_blank" rel="noopener noreferrer">
-                            <div className="svg-container">
-                                <GoCode title={"Github Code"} className={"footer-icon logo"} />
-                            </div>
-                        </a>
-                    </Col>
-                    <Col className="footer-item">
-                        <a href="https://github.com/SchulzEnrico/ESourc-es-/issues" target="_blank" rel="noopener noreferrer">
-                            <div className="svg-container">
-                                <GoIssueOpened title={"Github Issues"} className={"footer-icon logo"} />
-                            </div>
-                        </a>
-                    </Col>
-                    <Col className="footer-item">
-                        <a href="https://github.com/SchulzEnrico/ESourc-es-/pulls" target="_blank" rel="noopener noreferrer">
-                            <div className="svg-container">
-                                <GoGitPullRequest title={"Github Pull Request"} className={"footer-icon logo"} />
-                            </div>
-                        </a>
-                    </Col>
-                    <Col xs={12} md={4} className="footer-item">
-                        <a href="https://github.com/SchulzEnrico/ESourc-es-/actions" target="_blank" rel="noopener noreferrer">
-                            <div className="svg-container">
-                                <PiPlayCircleLight title={"Github Actions"} className={"footer-icon logo"} />
-                            </div>
-                        </a>
-                    </Col>
-                    <Col className="footer-item">
-                        <a href="https://github.com/users/SchulzEnrico/projects/3" target="_blank" rel="noopener noreferrer">
-                            <div className="svg-container">
-                                <GoTable title={"Github Projects"} className={"footer-icon logo"} />
-                            </div>
-                        </a>
-                    </Col>
-                </Row>
-            </Container>
+
+            <div className={"clock-timer"}>
+                <Clock/>
+                <Timer/>
+            </div>
+
+            <div className={"google-ai"}>
+                <a href="https://chat.openai.com/" target="_blank">
+                    <button className={"footer-btn"} type="button">
+                        <SiOpenai/>
+                    </button>
+                </a>
+
+                <a href="https://bard.google.com/chat" target="_blank">
+                    <button className={"footer-btn"} type="button">
+                        <RiBardLine/>
+                    </button>
+                </a>
+                <a href="https://www.bing.com/search?q=Bing+AI&showconv=1&FORM=hpcodx" target="_blank">
+                    <button className={"footer-btn"} type="button">
+                        <SiMicrosoftbing/>
+                    </button>
+                </a>
+            </div>
+
+            <Dropdown className="footer-item"
+                      show={open}
+                      onToggle={toggleOpen}>
+                <Dropdown.Toggle
+                    className={"footer-btn"}
+                    variant="success"
+                    id="dropdown-basic"
+                    onClick={toggleOpen}>
+                    <ImGithub/>
+                </Dropdown.Toggle>
+                <Dropdown.Menu className={"dropdown-container dc-github"}>
+                    <Dropdown.Item href="https://github.com/SchulzEnrico"
+                                   target="_blank">
+                        <GoBook title={"Github Overview"} className={"footer-icon logo"}/>
+                    </Dropdown.Item>
+                    <Dropdown.Item href="https://github.com/SchulzEnrico?tab=repositories"
+                                   target="_blank">
+                        <GoRepo title={"Github Repositories"} className={"footer-icon logo"}/>
+                    </Dropdown.Item>
+                    <Dropdown.Item href="https://github.com/SchulzEnrico/ESourc-es-"
+                                   target="_blank">
+                        <GoCode title={"Github Code"} className={"footer-icon logo"}/>
+                    </Dropdown.Item>
+                    <Dropdown.Item href="https://github.com/SchulzEnrico/ESourc-es-/issues"
+                                   target="_blank">
+                        <GoIssueOpened title={"Github Issues"} className={"footer-icon logo"}/>
+                    </Dropdown.Item>
+                    <Dropdown.Item href="https://github.com/SchulzEnrico/ESourc-es-/pulls"
+                                   target="_blank">
+                        <GoGitPullRequest title={"Github Pull Request"} className={"footer-icon logo"}/>
+                    </Dropdown.Item>
+                    <Dropdown.Item href="https://github.com/SchulzEnrico/ESourc-es-/actions"
+                                   target="_blank">
+                        <PiPlayCircleLight title={"Github Actions"} className={"footer-icon logo"}/>
+                    </Dropdown.Item>
+                    <Dropdown.Item href="https://github.com/users/SchulzEnrico/projects/3"
+                                   target="_blank">
+                        <GoTable title={"Github Projects"} className={"footer-icon logo"}/>
+                    </Dropdown.Item>
+
+                </Dropdown.Menu>
+
+            </Dropdown>
         </footer>
     );
 }
 
-export default Footer
+export default Footer;
