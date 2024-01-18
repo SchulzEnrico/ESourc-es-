@@ -1,70 +1,47 @@
-.esources-desk {
-    display: grid;
-    margin: 10px auto;
+.esources-desk { display: grid;
+    grid-template-areas: "garage workstation library managements";
     gap: 25px 50px;
-    max-width: 3800px;
-    height: 85vh;
-    box-sizing: border-box;
+
     justify-content: center;
     align-content: center;
-    grid-template-areas: "garage workstation library managements";
+    box-sizing: border-box;
+
+    margin: 0 auto;
 }
 
-.garage {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    gap: 25px 25px;
-    margin: 0 2rem 0 -2.5rem;
+.garage { grid-area: garage; display: grid;
     grid-template-areas: "ins_pro" "snip_gen";
-    grid-area: garage;
+    gap: 25px 25px;
 }
-
 .ins_pro { grid-area: ins_pro; }
-
 .snip_gen { grid-area: snip_gen; }
 
-.workstation {
-    display: grid;
-    height: 750px;
-    grid-template-rows: 1fr;
-    margin: 0 .5rem;
+.workstation { grid-area: workstation; display: grid;
     grid-template-areas: "development";
-    grid-area: workstation;
-    resize: both;
+
+    margin: 0 .5rem;
+}
+.development { grid-area: development;
+
+    height: 100%;
+    border-radius: 20px;
 }
 
-.development { grid-area: development; }
+.library { grid-area: library; display: grid;
+    grid-template-areas: "know_guide" "lip_doc";
 
-.library {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
     gap: 25px 25px;
     margin-right: 2rem;
-    grid-template-areas: "know_guide" "lip_doc";
-    grid-area: library;
 }
-
 .know_guide { grid-area: know_guide; }
 
 .lip_doc { grid-area: lip_doc; }
 
-.managements {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    gap: 25px 25px;
-    margin-right: 1rem;
+.managements { grid-area: managements; display: grid;
     grid-template-areas: "project" "personal";
-    grid-area: managements;
-}
+    gap: 25px 25px;
 
+    margin-right: 1.5rem;
+}
 .project { grid-area: project; }
-
 .personal { grid-area: personal; }
-
-/*
-.resizable-container {
-    position: relative;
-    max-width: calc(3840px - 50px); !* Maximale Breite abzüglich 25px Gap auf jeder Seite *!
-    max-height: calc(700px - 50px); !* Maximale Höhe abzüglich 25px Gap oben und unten *!
-}
-*/

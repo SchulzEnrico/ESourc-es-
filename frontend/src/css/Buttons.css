@@ -161,6 +161,7 @@ button:focus-visible {
     padding: 0;
     height: 40px;
     width: 40px;
+    margin: .5rem;
     border: solid 2 px var(--color-1);
     box-shadow: 5px 5px 10px transparent,
                 -3px -3px 10px transparent,
@@ -170,12 +171,6 @@ button:focus-visible {
 
 .set-your-own-btn {
     margin: .5rem 0 1rem 5rem;
-}
-
-.start-btn,
-.stop-btn,
-.reset-btn {
-    margin: .5rem;
 }
 
 .close-button:hover,
@@ -196,7 +191,6 @@ button:focus-visible {
     width: 40px;
     height: 40px;
 }
-
 
 .external-links-btn {
     position: absolute;

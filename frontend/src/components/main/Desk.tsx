@@ -18,12 +18,12 @@ const viewportToPixels = (value: string) => {
 }
 
 const garageInitialWidth = viewportToPixels("20vw");
-const workstationInitialWidth = viewportToPixels("30vw");
+const workstationInitialWidth = viewportToPixels("35vw");
 const libraryInitialWidth = viewportToPixels("20vw");
 const managementsInitialWidth = viewportToPixels("15vw");
 
 const halfHeight = viewportToPixels("35vh");
-const fullHeight = viewportToPixels("79vh");
+const fullHeight = viewportToPixels("76.5vh");
 
 function Desk() {
     const [garageWidthPixels, setGarageWidthPixels] = useState<number>(garageInitialWidth);
@@ -86,21 +86,12 @@ function Desk() {
                 className="workstation row"
                 width={workstationWidthPixels}
                 height={fullHeight}
-                resizeHandles={["w", "e"]}
+                resizeHandles={["w", "e", "n", "s"]}
                 onResizeEnd={handleWorkstationResizeEnd}
                 id="workstation"
             >
                 <div className="development panel shadow--raised col">
-                    <CustomResizableBox
-                        className="development"
-                        width={workstationWidthPixels}
-                        height={fullHeight}
-                        resizeHandles={["n", "s"]}
-                        onResizeEnd={handleWorkstationResizeEnd}
-                        id="development"
-                    >
                         <Panel className="development" />
-                    </CustomResizableBox>
                 </div>
             </CustomResizableBox>
             <CustomResizableBox
