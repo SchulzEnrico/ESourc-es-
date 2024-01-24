@@ -1,26 +1,39 @@
 .esources-desk { display: grid;
     grid-template-areas: "garage workstation library managements";
-    gap: 25px 50px;
+    gap: 50px;
 
     justify-content: center;
     align-content: center;
-    box-sizing: border-box;
 
+    width: 100vw;
+    height: 100vh;
     margin: 0 auto;
+
+}
+
+.placeholder-gap {
+    height: 1.5rem;
 }
 
 .garage { grid-area: garage; display: grid;
     grid-template-areas: "ins_pro" "snip_gen";
-    gap: 25px 25px;
+/*    gap: 25px 25px;*/
+
+    min-width: fit-content;
+    min-height: fit-content;
+}
+.ins_pro { grid-area: ins_pro;
+    min-width: fit-content;
+}
+.snip_gen { grid-area: snip_gen;
+    min-width: fit-content;
 
 }
-.ins_pro { grid-area: ins_pro; }
-.snip_gen { grid-area: snip_gen; }
 
 .workstation { grid-area: workstation; display: grid;
     grid-template-areas: "development";
 
-/*    margin: 0 0 0 4rem;*/
+    margin: 0 -1.5rem 0 2.5rem;
 }
 .development { grid-area: development;
 
@@ -30,19 +43,28 @@
 
 .library { grid-area: library; display: grid;
     grid-template-areas: "know_guide" "lip_doc";
+    min-width: fit-content;
 
-    gap: 25px 25px;
-    margin-right: 3rem;
+    margin-right: 2.5rem;
 }
-.know_guide { grid-area: know_guide; }
+.know_guide { grid-area: know_guide;
+    min-width: fit-content;
+}
+.lip_doc { grid-area: lip_doc;
+    min-width: fit-content;
+}
 
-.lip_doc { grid-area: lip_doc; }
-
-.managements { grid-area: managements; display: grid;
+.managements {
+    grid-area: managements;
+    display: grid;
     grid-template-areas: "project" "personal";
-    gap: 25px 25px;
 
-    margin-right: 1.5rem;
+    min-width: fit-content;
 }
-.project { grid-area: project; }
-.personal { grid-area: personal; }
+
+.project { grid-area: project;
+    min-width: fit-content;
+}
+.personal { grid-area: personal;
+    min-width: fit-content;
+}

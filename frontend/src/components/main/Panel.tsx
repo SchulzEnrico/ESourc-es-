@@ -4,7 +4,7 @@ import Navigation from '../nav/Navigation';
 import { PanelProps } from '../types/types';
 import { TiThMenu } from 'react-icons/ti';
 
-const Panel: React.FC<PanelProps> = ({ className }) => {
+const Panel: React.FC<PanelProps> = ({ className, width }) => {
     const iframeRef = useRef<HTMLIFrameElement>(null);
     const [showNavigationModal, setShowNavigationModal] = useState(false);
     const [originalWidth, setOriginalWidth] = useState(0);
@@ -17,13 +17,18 @@ const Panel: React.FC<PanelProps> = ({ className }) => {
                 const widthDifference = iframeRef.current.offsetWidth - originalWidth;
                 const heightDifference = iframeRef.current.offsetHeight - originalHeight;
 
-                // Passe die Breiten- und Höhenverhältnisse der inneren Elemente entsprechend an
+                // Passe die Breiten- und Höhenverhältnisse des Iframes an
+                const style = iframeRef.current.style;
+                style.width = `${parseFloat(style.width) + widthDifference}px`;
+                style.height = `${parseFloat(style.height) + heightDifference}px`;
+
+                // Passe auch die Breiten- und Höhenverhältnisse der inneren Elemente entsprechend an
                 const innerElements = iframeRef.current.contentDocument?.querySelectorAll('.resizable-inner');
                 if (innerElements) {
                     innerElements.forEach((element) => {
-                        const style = (element as HTMLElement).style;
-                        style.width = `${parseFloat(getComputedStyle(element as HTMLElement).width) + widthDifference}px`;
-                        style.height = `${parseFloat(getComputedStyle(element as HTMLElement).height) + heightDifference}px`;
+                        const innerStyle = (element as HTMLElement).style;
+                        innerStyle.width = `${parseFloat(innerStyle.width) + widthDifference}px`;
+                        innerStyle.height = `${parseFloat(innerStyle.height) + heightDifference}px`;
                     });
                 }
             }
@@ -68,6 +73,7 @@ const Panel: React.FC<PanelProps> = ({ className }) => {
                 <iframe
                     ref={iframeRef}
                     title={className}
+                    width={width}  // Hier hinzugefügt
                     onLoad={() => {
                         // Initiales Berechnen der Breiten- und Höhenverhältnisse beim Laden des IFrames
                         iframeRef.current?.contentWindow?.dispatchEvent(new Event('resize'));
