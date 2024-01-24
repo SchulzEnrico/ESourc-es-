@@ -9,9 +9,9 @@ import Timer from "../utilities/Timer.tsx";
 import {SiMicrosoftbing, SiOpenai} from "react-icons/si";
 import {RiBardLine} from "react-icons/ri";
 
-
 const Footer = () => {
     const [open, setOpen] = useState(false);
+
 
     const toggleOpen = () => setOpen(prevOpen => !prevOpen);
 

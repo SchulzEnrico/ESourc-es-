@@ -42,6 +42,7 @@ export type EditBookmarkProps = {
 
 export type PanelProps = {
     className: string;
+    width?: number; // Hier hinzugefügt
 };
 
 export type NavigationProps = {
