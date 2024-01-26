@@ -69,7 +69,7 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
                     closeModal={() => setShowNavigationModal(false)}
                 />
             </div>
-            <div className="iframe-bounding shadow--sunken">
+            <div className="iframe-bounding shadow--ridge">
                 <iframe
                     ref={iframeRef}
                     title={className}

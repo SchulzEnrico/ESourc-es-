@@ -1,15 +1,12 @@
 #root {
-  margin: auto auto;
+  margin: 0;
   text-align: center;
 }
 
 .app {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   box-sizing: border-box;
   min-height: 100vh;
+  min-width: 100vw;
 }
 
 .logo {
@@ -33,7 +30,11 @@
 }
 
 /* === SHADOW TYPES ===*/
-.shadow--outset, .shadow--raised, .shadow--inset, .shadow--sunken, .shadow--ridge {
+.shadow--outset,
+.shadow--raised,
+.shadow--inset,
+.shadow--sunken,
+.shadow--ridge {
   padding: 1rem 1.5rem;
   border-radius: 1.2rem;
   background: var(--color-21);
@@ -49,12 +50,11 @@
               -0.25rem -0.25rem 0.4rem var(--color-2);
 }
 .shadow--raised {
-    box-shadow:
-                0.25rem 0.25rem .5rem var(--color-3),
-                    inset 0.1rem 0.1rem .6rem var(--color-21),
-
-                0.063rem -0.063rem 1rem var(--color-1),
-                    inset -0.1rem -0.1rem 0.625rem var(--color-2);
+ box-shadow:
+            0.25rem 0.25rem .5rem var(--color-3),
+            0.063rem -0.063rem 1rem var(--color-2),
+            inset 0.1rem 0.1rem .6rem var(--color-2),
+            inset -0.1rem -0.1rem 0.625rem var(--color-2);
 
 }
 .shadow--inset {
@@ -63,8 +63,8 @@
 }
 .shadow--sunken {
   border: solid 1px var(--color-2);
-  box-shadow: -0.2rem -0.2rem .5rem var(--color-1),
-              0.3rem 0.3rem 2rem var(--color-21);
+  box-shadow: -0.2rem -0.2rem .3rem var(--color-1),
+              0.3rem 0.3rem 1.3rem var(--color-21);
 }
 .shadow--ridge {
   box-shadow: inset 0.1rem 0.1rem 0.9rem var(--color-1),

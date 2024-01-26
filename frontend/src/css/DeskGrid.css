@@ -1,39 +1,37 @@
 .esources-desk { display: grid;
     grid-template-areas: "garage workstation library managements";
-    gap: 50px;
+/*    place-items: center;*/
+    place-content: center;
 
-    justify-content: center;
-    align-content: center;
+    gap: 90px;
 
-    width: 100vw;
+    min-width: 100vw;
     height: 100vh;
-    margin: 0 auto;
 
+    /*padding-right: 1.5rem;*/ /* wegen der position fixed im body aus der index.css eingefügt*/
 }
 
-.placeholder-gap {
-    height: 1.5rem;
+.placeholder-gap-row {
+    height: 1rem;
 }
 
 .garage { grid-area: garage; display: grid;
     grid-template-areas: "ins_pro" "snip_gen";
-/*    gap: 25px 25px;*/
 
     min-width: fit-content;
     min-height: fit-content;
+    margin: -3rem 1.5rem 0 .1rem; /* -3rem wegen der position fixed im body aus der index.css von -1.4rem verändert*/
 }
 .ins_pro { grid-area: ins_pro;
     min-width: fit-content;
 }
 .snip_gen { grid-area: snip_gen;
     min-width: fit-content;
-
 }
 
 .workstation { grid-area: workstation; display: grid;
     grid-template-areas: "development";
-
-    margin: 0 -1.5rem 0 2.5rem;
+    margin: -3rem -4.5rem 0 -2.7rem; /* -3rem wegen der position fixed im body aus der index.css von -1.4rem verändert*/
 }
 .development { grid-area: development;
 
@@ -45,7 +43,7 @@
     grid-template-areas: "know_guide" "lip_doc";
     min-width: fit-content;
 
-    margin-right: 2.5rem;
+    margin: -3rem -1rem 0 0; /* -3rem wegen der position fixed im body aus der index.css von -1.4rem verändert*/
 }
 .know_guide { grid-area: know_guide;
     min-width: fit-content;
@@ -60,6 +58,7 @@
     grid-template-areas: "project" "personal";
 
     min-width: fit-content;
+    margin: -3rem 2rem 0 0; /* -3rem wegen der position fixed im body aus der index.css von -1.4rem verändert*/
 }
 
 .project { grid-area: project;

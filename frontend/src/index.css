@@ -42,6 +42,11 @@ h6 {
   -webkit-text-fill-color: transparent;
 }
 
+h1 {
+  scale: 0.7;
+  margin: 20px 0 0 -28px;
+}
+
 a {
   text-decoration: none;
   background-clip: text;
@@ -49,9 +54,13 @@ a {
 
 body {
   width: fit-content;
-  margin: 0 auto;
+  height: fit-content;
+  margin: 0;
   padding: 0;
   display: flex;
+
+  position: sticky; /* Das muss noch gut ausgetestet werden */
+
   justify-content: center;
   align-items: center;
   overflow: scroll;
@@ -228,11 +237,6 @@ body::-webkit-scrollbar-thumb {
   font-size: 10rem;
 }
 
-.panel-items-container {
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-}
 
 .get-more.open {
   transform: translateY(0);

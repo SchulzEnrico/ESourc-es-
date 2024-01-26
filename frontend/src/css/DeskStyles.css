@@ -1,15 +1,11 @@
 .panel {
     border: solid 2px var(--color-2);
     border-radius: 20px;
-    padding: 1.4rem 2.5rem 1.4rem 1.4rem;
+    padding: 1rem 2.2rem 1rem 1rem;
     background: var(--color-0);
-
-/*    margin: 1rem;*/
 }
 
 .inner-panels-wrapper {
-/*    min-width: fit-content;*/
-
 }
 
 .panel-items-container { display: grid;
@@ -17,26 +13,28 @@
     grid-template-rows: calc(100% - 25px) 25px; /* Beispiel: 50px für die unteren 13% */
     gap: 5px;
 
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+
     margin: 0;
     padding: 0;
 
     box-sizing: border-box;
     align-content: center;
-
-
 }
 
 .panel-controls { grid-area: panel-controls;
     position: absolute;
     bottom: 0;
-    margin-bottom: -12px;
+    margin-bottom: -14px;
     left: 0;
-    margin-left: -10px;
+    margin-left: -12px;
 }
 
 .development  .panel-controls {
-    margin-bottom: -36px;
-    margin-left: 13px;
+    margin-bottom: -30px;
+    margin-left: 5px;
 }
 
 .development .panel-items-container {
