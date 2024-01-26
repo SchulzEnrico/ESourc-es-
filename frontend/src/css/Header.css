@@ -7,10 +7,10 @@ header {
     top: 0;
     left: 0;
     right: 0;
-    width: 98%;
-    height: 60px;
+    max-width: 98%;
+    height: 55px;
     margin: 0 auto;
-    padding: 0 20px 0 0;
+    padding: 0 15px 0 0;
     color: var(--color-4);
     background-color: var(--color-1);
     border-radius: 0 0 20px 20px;
@@ -23,7 +23,7 @@ header {
 }
 
 .dashboard-icon-header {
-    height: 40px;
+    height: 34px;
     margin: 18px 5px 0 10px;
     filter: grayscale(100%)
     brightness(100%)
@@ -43,15 +43,22 @@ header {
 
 #heading {
     display: flex;
-    margin: 15px 15px 5px 15px;
+    margin: 0 -55px 5px 5px;
+}
+
+#google-search {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 4px;
 }
 
 .search-input {
     border: var(--color-1) solid 2px;
-    background-color: var(--color-01);
+    background-color: var(--color-0);
     color: var(--color-5);
-    height: 1px;
-    width: 100px;
-    font-size: small;
-    font-weight: bolder;
+    height: 0;
+    width: 90px;
+    padding: 15px;
+    font-size: smaller;
 }

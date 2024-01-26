@@ -11,7 +11,7 @@ const Clock: React.FC = () => {
         return () => clearInterval(intervalId);
     }, []);
 
-    return <div className={"clock shadow--sunken"} >{time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>;
+    return <div className={"clock shadow--outset"} >{time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>;
 };
 
 export default Clock;

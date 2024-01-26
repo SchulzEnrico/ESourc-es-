@@ -22,17 +22,18 @@ const proportionToPixels = (proportion: number) => {
 }
 
 function Desk() {
-    const garageProportion = 19.5;
-    const workstationProportion = 34.5;
-    const libraryProportion = 19.5;
-    const managementsProportion = 10;
+    const garageProportion = 20;
+    const workstationProportion = 35;
+    const libraryProportion = 20;
+    const managementsProportion = 11;
 
     const [garageWidthPixels, setGarageWidthPixels] = useState<number>(proportionToPixels(garageProportion));
     const [workstationWidthPixels, setWorkstationWidthPixels] = useState<number>(proportionToPixels(workstationProportion));
     const [libraryWidthPixels, setLibraryWidthPixels] = useState<number>(proportionToPixels(libraryProportion));
     const [managementsWidthPixels, setManagementsWidthPixels] = useState<number>(proportionToPixels(managementsProportion));
 
-    const fullHeight = viewportToPixels("77.5vh");
+
+    const fullHeight = viewportToPixels("78vh");
 
     const handleGarageResizeEnd = (size: { width: number; height: number }) => {
         setGarageWidthPixels(size.width);
@@ -60,30 +61,30 @@ function Desk() {
                 onResizeEnd={handleGarageResizeEnd}
                 id="garage"
             >
-                <div className="inner-panels-wrapper" >
+                <div className="inner-panels-wrapper">
                     <div className="ins_pro panel shadow--raised col">
                         <CustomResizableBox
                             className="ins_pro"
                             width={garageWidthPixels}
-                            height={viewportToPixels("35vh")}
+                            height={viewportToPixels("36.3vh")}
                             resizeHandles={["s"]}
                             onResizeEnd={handleGarageResizeEnd}
                             id="ins_pro"
                         >
-                            <Panel className="ins_pro" />
+                            <Panel className="ins_pro"/>
                         </CustomResizableBox>
                     </div>
-    <div className={"placeholder-gap"}></div>
+        <div className={"placeholder-gap-row"}></div>
                     <div className="snip_gen panel shadow--raised col">
                         <CustomResizableBox
                             className="snip_gen"
                             width={garageWidthPixels}
-                            height={viewportToPixels("35vh")}
+                            height={viewportToPixels("36.3vh")}
                             resizeHandles={["s"]}
                             onResizeEnd={handleGarageResizeEnd}
                             id="snip_gen"
                         >
-                            <Panel className="snip_gen" />
+                            <Panel className="snip_gen"/>
                         </CustomResizableBox>
                     </div>
                 </div>
@@ -96,9 +97,9 @@ function Desk() {
                 onResizeEnd={handleWorkstationResizeEnd}
                 id="workstation"
             >
-                <div className="inner-panels-wrapper" >
+                <div className="inner-panels-wrapper">
                     <div className="development panel shadow--raised col">
-                        <Panel className="development" />
+                        <Panel className="development"/>
                     </div>
                 </div>
             </CustomResizableBox>
@@ -115,7 +116,7 @@ function Desk() {
                         <CustomResizableBox
                             className="know_guide"
                             width={libraryWidthPixels}
-                            height={viewportToPixels("35vh")}
+                            height={viewportToPixels("36.3vh")}
                             resizeHandles={["s"]}
                             onResizeEnd={handleLibraryResizeEnd}
                             id="know_guide"
@@ -123,12 +124,12 @@ function Desk() {
                             <Panel className="know_guide"/>
                         </CustomResizableBox>
                     </div>
-    <div className={"placeholder-gap"}></div>
+        <div className={"placeholder-gap-row"}></div>
                     <div className="lip_doc panel shadow--raised col">
                         <CustomResizableBox
                             className="lip_doc"
                             width={libraryWidthPixels}
-                            height={viewportToPixels("35vh")}
+                            height={viewportToPixels("36.3vh")}
                             resizeHandles={["s"]}
                             onResizeEnd={handleLibraryResizeEnd}
                             id="lip_doc"
@@ -151,7 +152,7 @@ function Desk() {
                         <CustomResizableBox
                             className="project"
                             width={managementsWidthPixels}
-                            height={viewportToPixels("35vh")}
+                            height={viewportToPixels("36.3vh")}
                             resizeHandles={["s"]}
                             onResizeEnd={handleManagementsResizeEnd}
                             id="project"
@@ -159,12 +160,12 @@ function Desk() {
                             <Panel className="project"/>
                         </CustomResizableBox>
                     </div>
-    <div className={"placeholder-gap"}></div>
+        <div className={"placeholder-gap-row"}></div>
                     <div className="personal panel shadow--raised col">
                         <CustomResizableBox
                             className="personal"
                             width={managementsWidthPixels}
-                            height={viewportToPixels("35vh")}
+                            height={viewportToPixels("36.3vh")}
                             resizeHandles={["s"]}
                             onResizeEnd={handleManagementsResizeEnd}
                             id="personal"

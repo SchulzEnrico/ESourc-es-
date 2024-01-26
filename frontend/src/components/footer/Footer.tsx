@@ -8,6 +8,8 @@ import Clock from "../utilities/Clock.tsx";
 import Timer from "../utilities/Timer.tsx";
 import {SiMicrosoftbing, SiOpenai} from "react-icons/si";
 import {RiBardLine} from "react-icons/ri";
+import {MdGrain} from "react-icons/md";
+import {TfiSharethis} from "react-icons/tfi";
 
 const Footer = () => {
     const [open, setOpen] = useState(false);
@@ -23,26 +25,38 @@ const Footer = () => {
                 <Timer/>
             </div>
 
-            <div className={"google-ai"}>
-                <a href="https://chat.openai.com/" target="_blank">
+            <div className={"AI-area"}>
+                <a title={"ChatGPT 3.5 openAI"} href="https://chat.openai.com/" target="_blank">
                     <button className={"footer-btn"} type="button">
-                        <SiOpenai/>
+                        <SiOpenai id={"openAI-icon"} title={"ChatGPT 3.5 openAI"}/>
                     </button>
                 </a>
-
-                <a href="https://bard.google.com/chat" target="_blank">
+                <a title={"BLACKBOX AI"} href="https://www.blackbox.ai/" target="_blank">
                     <button className={"footer-btn"} type="button">
-                        <RiBardLine/>
+                        <MdGrain id={"blackbox-icon"} title={"BLACKBOX AI"}/>
                     </button>
                 </a>
-                <a href="https://www.bing.com/search?q=Bing+AI&showconv=1&FORM=hpcodx" target="_blank">
+                <a title={"Bard Google"} href="https://bard.google.com/chat" target="_blank">
                     <button className={"footer-btn"} type="button">
-                        <SiMicrosoftbing/>
+                        <RiBardLine id={"bard-icon"} title={"Bard Google"}/>
+                    </button>
+                </a>
+                <a title={"bing Copilot"} href="https://www.bing.com/search?q=Bing+AI&showconv=1&FORM=hpcodx"
+                   target="_blank">
+                    <button className={"footer-btn"} type="button">
+                        <SiMicrosoftbing id={"bing-icon"} title={"bing Copilot"}/>
+                    </button>
+                </a>
+                <a title={"DeepL Write"} href="https://www.deepl.com/de/write?utm_term=&utm_campaign=DE%7CSearch%7CC%7CWrite%7CDSA%7CGerman&utm_source=adwords&utm_medium=ppc&hsa_acc=1083354268&hsa_cam=20494065589&hsa_grp=152392033363&hsa_ad=671244402383&hsa_src=g&hsa_tgt=dsa-2215640289084&hsa_kw=&hsa_mt=&hsa_net=adwords&hsa_ver=3&gad_source=1&gclid=CjwKCAiAzc2tBhA6EiwArv-i6YylCoSXtOGxhB-n7BbCrUOs3JEfWKQxI8XBSrjUefNYjVZfRxmtmBoCs-YQAvD_BwE"
+                   target="_blank">
+                    <button className={"footer-btn"} type="button">
+                        <TfiSharethis id={"deepl-icon"} title={"DeepL Write"}/>
                     </button>
                 </a>
             </div>
 
-            <Dropdown className="footer-item"
+            <Dropdown id={"github-dropdown"}
+                      className="footer-item"
                       show={open}
                       onToggle={toggleOpen}>
                 <Dropdown.Toggle
@@ -50,7 +64,7 @@ const Footer = () => {
                     variant="success"
                     id="dropdown-basic"
                     onClick={toggleOpen}>
-                    <ImGithub/>
+                    <ImGithub id={"github-icon"}/>
                 </Dropdown.Toggle>
                 <Dropdown.Menu className={"dropdown-container dc-github"}>
                     <Dropdown.Item href="https://github.com/SchulzEnrico"
