@@ -12,6 +12,7 @@
     background-image: url(../assets/resize.png);
     transform: rotate(270deg);
     cursor: ns-resize;
+    margin: -20px 0 0 -6px
 }
 
 .react-resizable-handle-e {
