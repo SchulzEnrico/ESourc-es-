@@ -97,3 +97,19 @@ iframe {
     right: 52px;
 }
 
+.panel-proportions-control {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-bottom: -14px;
+    margin-right: -12px;
+}
+
+.panel-proportions-control button {
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    margin: 0 4px;
+    color: var(--color-4);
+    opacity: .7;
+}

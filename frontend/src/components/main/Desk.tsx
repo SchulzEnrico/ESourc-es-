@@ -5,6 +5,9 @@ import Panel from './Panel.tsx';
 import '../../css/Resizeable.css';
 import { useState } from 'react';
 import CustomResizableBox from './CustomResizableBox.tsx';
+import {TbArrowAutofitHeight} from "react-icons/tb";
+import {TiArrowSyncOutline} from "react-icons/ti";
+import {FaArrowsRotate} from "react-icons/fa6";
 
 const viewportToPixels = (value: string) => {
     const regex = new RegExp(/^([0-9.]+)(vh|vw)$/);
@@ -43,46 +46,33 @@ function Desk() {
     const [expandedPanel, setExpandedPanel] = useState<string>('ins_pro');
 
     const fullHeight = viewportToPixels("78vh");
-
-    const handleGarageResizeEnd = (size: { width: number; height: number }) => {
-        setGarageWidthPixels(size.width);
-    };
-
-    const handleWorkstationResizeEnd = (size: { width: number; height: number }) => {
-        setWorkstationWidthPixels(size.width);
-    };
-
-    const handleLibraryResizeEnd = (size: { width: number; height: number }) => {
-        setLibraryWidthPixels(size.width);
-    };
-
-    const handleManagementsResizeEnd = (size: { width: number; height: number }) => {
-        setManagementsWidthPixels(size.width);
-    };
-
-
     const PANEL_MIN_HEIGHT = 10;
 
-    const handlePanelToggle = (panelName: string, panelHeightState: number, otherPanelHeightState: number) => {
+    const handleResizeEnd = (panelName: string, panelHeightState: number, newHeight: number) => {
         const maxPanelHeight = fullHeight - PANEL_MIN_HEIGHT;
-
         let newPanelHeight = PANEL_MIN_HEIGHT;
         let newOtherPanelHeight = PANEL_MIN_HEIGHT;
 
-        if (expandedPanel === panelName) {
-            if (panelHeightState === PANEL_MIN_HEIGHT) {
-                newPanelHeight = Math.min(maxPanelHeight, panelHeightState + otherPanelHeightState - PANEL_MIN_HEIGHT);
-                newOtherPanelHeight = PANEL_MIN_HEIGHT;
-            } else {
-                newPanelHeight = PANEL_MIN_HEIGHT;
-                newOtherPanelHeight = Math.min(maxPanelHeight, panelHeightState + otherPanelHeightState - PANEL_MIN_HEIGHT);
-            }
+        if (panelHeightState === PANEL_MIN_HEIGHT) {
+            newPanelHeight = Math.min(maxPanelHeight, newHeight - PANEL_MIN_HEIGHT);
+            newOtherPanelHeight = maxPanelHeight - newPanelHeight;
         } else {
-            newPanelHeight = Math.min(maxPanelHeight, panelHeightState + otherPanelHeightState - PANEL_MIN_HEIGHT);
-            newOtherPanelHeight = PANEL_MIN_HEIGHT;
-            setExpandedPanel(panelName);
+            newOtherPanelHeight = Math.min(maxPanelHeight, fullHeight - newHeight - PANEL_MIN_HEIGHT);
+            newPanelHeight = maxPanelHeight - newOtherPanelHeight;
         }
 
+        const totalHeight = newPanelHeight + newOtherPanelHeight + PANEL_MIN_HEIGHT;
+        if (totalHeight > fullHeight) {
+            // Wenn die Gesamthöhe die maximale Höhe überschreitet, die Höhen entsprechend anpassen
+            const heightDiff = totalHeight - fullHeight;
+            newPanelHeight -= heightDiff / 2;
+            newOtherPanelHeight -= heightDiff / 2;
+        }
+
+        updatePanelHeights(panelName, newPanelHeight, newOtherPanelHeight);
+    };
+
+    const updatePanelHeights = (panelName: string, newPanelHeight: number, newOtherPanelHeight: number) => {
         if (panelName === 'ins_pro') {
             setInsProHeight(newPanelHeight);
             setSnipGenHeight(newOtherPanelHeight);
@@ -102,6 +92,45 @@ function Desk() {
             setPersonalHeight(newPanelHeight);
             setProjectHeight(newOtherPanelHeight);
         }
+    };
+
+    const handleGarageResizeEnd = (size: { width: number; height: number }) => {
+        setGarageWidthPixels(size.width);
+        handleResizeEnd('ins_pro', insProHeight, size.height);
+    };
+
+    const handleWorkstationResizeEnd = (size: { width: number; height: number }) => {
+        setWorkstationWidthPixels(size.width);
+    };
+
+    const handleLibraryResizeEnd = (size: { width: number; height: number }) => {
+        setLibraryWidthPixels(size.width);
+        handleResizeEnd('know_guide', knowGuideHeight, size.height);
+    };
+
+    const handleManagementsResizeEnd = (size: { width: number; height: number }) => {
+        setManagementsWidthPixels(size.width);
+        handleResizeEnd('project', projectHeight, size.height);
+    };
+
+    const handlePanelToggle = (panelName: string, panelHeightState: number, otherPanelHeightState: number) => {
+        const maxPanelHeight = fullHeight - PANEL_MIN_HEIGHT;
+        let newPanelHeight = PANEL_MIN_HEIGHT;
+        let newOtherPanelHeight = PANEL_MIN_HEIGHT;
+
+        if (expandedPanel === panelName) {
+            if (panelHeightState === PANEL_MIN_HEIGHT) {
+                newPanelHeight = Math.min(maxPanelHeight, panelHeightState + otherPanelHeightState - PANEL_MIN_HEIGHT);
+            } else {
+                newOtherPanelHeight = Math.min(maxPanelHeight, panelHeightState + otherPanelHeightState - PANEL_MIN_HEIGHT);
+            }
+        } else {
+            newPanelHeight = Math.min(maxPanelHeight, panelHeightState + otherPanelHeightState - PANEL_MIN_HEIGHT);
+            newOtherPanelHeight = PANEL_MIN_HEIGHT;
+            setExpandedPanel(panelName);
+        }
+
+        updatePanelHeights(panelName, newPanelHeight, newOtherPanelHeight);
     };
 
     const handleEqualizeHeight = () => {
@@ -134,8 +163,14 @@ function Desk() {
                             id="ins_pro"
                         >
                             <Panel className="ins_pro"/>
-                            <button onClick={() => handlePanelToggle('ins_pro', insProHeight, snipGenHeight)}>Toggle Panel</button>
-                            <button onClick={handleEqualizeHeight}>Equalize Height</button>
+                            <div className={"panel-proportions-control"}>
+                                <button onClick={() => handlePanelToggle('ins_pro', insProHeight, snipGenHeight)}>
+                                    <TbArrowAutofitHeight/>
+                                </button>
+                                <button onClick={handleEqualizeHeight}>
+                                    <FaArrowsRotate/>
+                                </button>
+                            </div>
                         </CustomResizableBox>
                     </div>
                     <div className={"placeholder-gap-row"}></div>
@@ -149,8 +184,14 @@ function Desk() {
                             id="snip_gen"
                         >
                             <Panel className="snip_gen"/>
-                            <button onClick={() => handlePanelToggle('snip_gen', snipGenHeight, insProHeight)}>Toggle Panel</button>
-                            <button onClick={handleEqualizeHeight}>Equalize Height</button>
+                            <div className={"panel-proportions-control"}>
+                                <button onClick={() => handlePanelToggle('snip_gen', snipGenHeight, insProHeight)}>
+                                    <TbArrowAutofitHeight/>
+                                </button>
+                                <button onClick={handleEqualizeHeight}>
+                                    <FaArrowsRotate/>
+                                </button>
+                            </div>
                         </CustomResizableBox>
                     </div>
                 </div>
@@ -188,8 +229,14 @@ function Desk() {
                             id="know_guide"
                         >
                             <Panel className="know_guide"/>
-                            <button onClick={() => handlePanelToggle('know_guide', knowGuideHeight, lipDocHeight)}>Toggle Panel</button>
-                            <button onClick={handleEqualizeHeight}>Equalize Height</button>
+                            <div className={"panel-proportions-control"}>
+                                <button onClick={() => handlePanelToggle('know_guide', knowGuideHeight, lipDocHeight)}>
+                                    <TbArrowAutofitHeight/>
+                                </button>
+                                <button onClick={handleEqualizeHeight}>
+                                    <FaArrowsRotate/>
+                                </button>
+                            </div>
                         </CustomResizableBox>
                     </div>
                     <div className={"placeholder-gap-row"}></div>
@@ -203,8 +250,14 @@ function Desk() {
                             id="lip_doc"
                         >
                             <Panel className="lip_doc"/>
-                            <button onClick={() => handlePanelToggle('lip_doc', lipDocHeight, knowGuideHeight)}>Toggle Panel</button>
-                            <button onClick={handleEqualizeHeight}>Equalize Height</button>
+                            <div className={"panel-proportions-control"}>
+                                <button onClick={() => handlePanelToggle('lip_doc', lipDocHeight, knowGuideHeight)}>
+                                    <TbArrowAutofitHeight/>
+                                </button>
+                                <button onClick={handleEqualizeHeight}>
+                                    <FaArrowsRotate/>
+                                </button>
+                            </div>
                         </CustomResizableBox>
                     </div>
                 </div>
@@ -228,8 +281,14 @@ function Desk() {
                             id="project"
                         >
                             <Panel className="project"/>
-                            <button onClick={() => handlePanelToggle('project', projectHeight, personalHeight)}>Toggle Panel</button>
-                            <button onClick={handleEqualizeHeight}>Equalize Height</button>
+                            <div className={"panel-proportions-control"}>
+                                <button onClick={() => handlePanelToggle('project', projectHeight, personalHeight)}>
+                                    <TbArrowAutofitHeight/>
+                                </button>
+                                <button onClick={handleEqualizeHeight}>
+                                    <FaArrowsRotate/>
+                                </button>
+                            </div>
                         </CustomResizableBox>
                     </div>
                     <div className={"placeholder-gap-row"}></div>
@@ -243,8 +302,14 @@ function Desk() {
                             id="personal"
                         >
                             <Panel className="personal"/>
-                            <button onClick={() => handlePanelToggle('personal', personalHeight, projectHeight)}>Toggle Panel</button>
-                            <button onClick={handleEqualizeHeight}>Equalize Height</button>
+                            <div className={"panel-proportions-control"}>
+                                <button onClick={() => handlePanelToggle('personal', personalHeight, projectHeight)}>
+                                    <TbArrowAutofitHeight />
+                                </button>
+                                <button onClick={handleEqualizeHeight}>
+                                    <FaArrowsRotate />
+                                </button>
+                            </div>
                         </CustomResizableBox>
                     </div>
                 </div>
