@@ -88,7 +88,7 @@ button:focus-visible {
     right: 0;
     border: solid 2px var(--color-3);
     box-shadow:  -8px -8px 16px #111111,
-    5px 5px 16px #3b3b3b;
+                 5px 5px 16px #3b3b3b;
 }
 
 .delete-forever-btn:hover {
@@ -96,9 +96,9 @@ button:focus-visible {
     background-color: var(--color-3);
     color: var(--color-4);
     box-shadow: 7px 7px 10px var(--color-3),
-    -3px -3px 10px var(--color-31),
-    inset -5px -5px 10px var(--color-3),
-    inset 5px 5px 10px var(--color-31);
+                -3px -3px 10px var(--color-31),
+                inset -5px -5px 10px var(--color-3),
+                inset 5px 5px 10px var(--color-31);
 }
 .set-your-own-btn:hover,
 .save-close-btn:hover,
@@ -107,9 +107,9 @@ button:focus-visible {
     border: solid 2px var(--color-1);
     color: var(--color-4);
     box-shadow: 5px 5px 10px #001180,
-    -3px -3px 10px #0219C0FF,
-    inset -3px -3px 10px #0219C0FF,
-    inset 3px 3px 10px #0219C0FF;
+                -3px -3px 10px #0219C0FF,
+                inset -3px -3px 10px #0219C0FF,
+                inset 3px 3px 10px #0219C0FF;
 }
 .dropdown-button-container > button {
     flex-basis: 90%;
@@ -117,7 +117,7 @@ button:focus-visible {
     margin: 2px 0;
     background: var(--color-01);
     box-shadow: inset -3px -3px 3px var(--color-1),
-    inset 3px 3px 3px var(--color-21);
+                inset 3px 3px 3px var(--color-21);
     border: transparent;
 }
 
@@ -150,9 +150,9 @@ button:focus-visible {
     padding: 2px;
     margin: 2px 0;
     box-shadow: 5px 5px 10px #001180,
-    -3px -3px 10px #0219C0FF,
-    inset -3px -3px 10px #0219C0FF,
-    inset 3px 3px 10px #0219C0FF;
+                -3px -3px 10px #0219C0FF,
+                inset -3px -3px 10px #0219C0FF,
+                inset 3px 3px 10px #0219C0FF;
 }
 
 
@@ -216,4 +216,21 @@ button:focus-visible {
 
 .google-btn {
     margin: 0;
+}
+
+#close-navigation-btn {
+    position: absolute;
+    border: solid 2px var(--color-21);
+    margin: -50px 55% 0 45%;
+    scale: 1.1;
+    height: 40px;
+    width: 40px;
+}
+
+#close-navigation-btn:hover {
+    border: solid 1px var(--color-31);
+    box-shadow: 5px 5px 10px var(--color-1),
+                -3px -3px 10px var(--color-1),
+                inset -5px -5px 10px var(--color-21),
+                inset 5px 5px 10px var(--color-21);
 }

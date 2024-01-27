@@ -14,6 +14,7 @@ import EditBookmark from "./EditBookmark";
 import {NavigationProps, BookmarkDTO} from "../types/types.ts";
 import {TiPlus} from "react-icons/ti";
 import {MdOutlineSettings} from "react-icons/md";
+import {VscEyeClosed} from "react-icons/vsc";
 
 const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExternal, showModal, closeModal }) => {
     const tempBookmark = useRef<BookmarkDTO | null>(null);
@@ -186,6 +187,9 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
 
         return (
             <ButtonGroup className={isMobile ? "nav-group-mobile" : "nav-group"}>
+                <Button id={"close-navigation-btn"} onClick={closeModal}>
+                    <VscEyeClosed id={"close-navigation-icon"} />
+                </Button>
                 {!isMobile &&
                     uniqueCategories.map((category) => (
                         <DropdownButton
