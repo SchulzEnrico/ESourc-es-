@@ -6,7 +6,6 @@ import '../../css/Resizeable.css';
 import { useState } from 'react';
 import CustomResizableBox from './CustomResizableBox.tsx';
 import {TbArrowAutofitHeight} from "react-icons/tb";
-import {TiArrowSyncOutline} from "react-icons/ti";
 import {FaArrowsRotate} from "react-icons/fa6";
 
 const viewportToPixels = (value: string) => {
