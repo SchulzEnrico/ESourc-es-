@@ -27,6 +27,7 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
     const [currentNavigation, setCurrentNavigation] = useState("default");
     const [destination, setDestination] = useState("default");
 
+
     const getAvailableCategories = (): string[] => {
         return Array.from(
             new Set(
