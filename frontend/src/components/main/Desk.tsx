@@ -3,11 +3,12 @@ import '../../css/DeskGrid.css';
 import '../../css/DeskStyles.css';
 import Panel from './Panel.tsx';
 import '../../css/Resizeable.css';
-import {useState} from 'react';
+import React, {useState} from 'react';
 import CustomResizableBox from './CustomResizableBox.tsx';
 import {TbArrowAutofitHeight} from "react-icons/tb";
 import {TiArrowSync} from "react-icons/ti";
 import {PiArrowFatLinesLeftBold} from "react-icons/pi";
+import DashboardIcon from "../svg/DashboardIcon.tsx";
 
 const viewportToPixels = (value: string) => {
     const regex = new RegExp(/^([0-9.]+)(vh|vw)$/);
@@ -48,6 +49,15 @@ function Desk() {
     const fullHeight = viewportToPixels("78vh");
     const fullResizeHeight = fullHeight - 43;
     const PANEL_MIN_HEIGHT = 10;
+
+    const resetAll = () => {
+        setWorkstationWidthPixels(proportionToPixels(workstationProportion));
+        setGarageWidthPixels(proportionToPixels(garageProportion));
+        setLibraryWidthPixels(proportionToPixels(libraryProportion));
+        setManagementsWidthPixels(proportionToPixels(managementsProportion));
+
+        handleEqualizeHeight();
+    };
 
     const updatePanelHeights = (panelName: string, newPanelHeight: number, newOtherPanelHeight: number) => {
         if (panelName === 'ins_pro') {
@@ -160,7 +170,13 @@ function Desk() {
     };
 
     return (
+
         <div className="esources-desk">
+
+            <button id={"reset-all-dimensions-btn"} onClick={resetAll}>
+                <DashboardIcon className={"dashboard-icon-header"}/>
+            </button>
+
             <CustomResizableBox
                 className="garage row"
                 width={garageWidthPixels}
@@ -170,7 +186,7 @@ function Desk() {
                 id="garage"
             >
                 <button className={"reset-width-btn"} onClick={() => resetWidth('garage')}>
-                    <PiArrowFatLinesLeftBold />
+                    <PiArrowFatLinesLeftBold/>
                 </button>
                 <div className="inner-panels-wrapper">
                     <div className="ins_pro panel shadow--raised col">
@@ -220,7 +236,7 @@ function Desk() {
                 id="workstation"
             >
                 <button className={"reset-width-btn"} onClick={() => resetWidth('workstation')}>
-                    <PiArrowFatLinesLeftBold />
+                    <PiArrowFatLinesLeftBold/>
                 </button>
                 <div className="inner-panels-wrapper">
                     <div className="development panel shadow--raised col">

@@ -2,7 +2,6 @@ import Navigation from "../nav/Navigation.tsx";
 import "../../css/Header.css";
 import {HeaderProps} from '../types/types.ts';
 import React, {useState} from "react";
-import DashboardIcon from "../svg/DashboardIcon.tsx";
 import { Button } from "react-bootstrap";
 import {BsBookmarksFill} from "react-icons/bs";
 import {FcGoogle} from "react-icons/fc";
@@ -24,7 +23,7 @@ const Header: React.FC<HeaderProps> = () => {
     return (
         <header>
             <div id={"heading"} className={"align-items-baseline"}>
-                <DashboardIcon className={"dashboard-icon-header"}/>
+                {/*<DashboardIcon className={"dashboard-icon-header"}/>*/}
                 <h1 className={"modal-{sm}"}>Sourc(es)</h1>
             </div>
             <form id={"google-search"} onSubmit={handleSearchSubmit}>
