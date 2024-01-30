@@ -6,7 +6,7 @@ import '../../css/Resizeable.css';
 import { useState } from 'react';
 import CustomResizableBox from './CustomResizableBox.tsx';
 import {TbArrowAutofitHeight} from "react-icons/tb";
-import {FaArrowsRotate} from "react-icons/fa6";
+import {TiArrowSync} from "react-icons/ti";
 
 const viewportToPixels = (value: string) => {
     const regex = new RegExp(/^([0-9.]+)(vh|vw)$/);
@@ -162,14 +162,7 @@ function Desk() {
                             id="ins_pro"
                         >
                             <Panel className="ins_pro"/>
-                            <div className={"panel-proportions-control"}>
-                                <button onClick={() => handlePanelToggle('ins_pro', insProHeight, snipGenHeight)}>
-                                    <TbArrowAutofitHeight/>
-                                </button>
-                                <button onClick={handleEqualizeHeight}>
-                                    <FaArrowsRotate/>
-                                </button>
-                            </div>
+
                         </CustomResizableBox>
                     </div>
                     <div className={"placeholder-gap-row"}></div>
@@ -178,28 +171,30 @@ function Desk() {
                             className="snip_gen"
                             width={garageWidthPixels}
                             height={snipGenHeight}
-                            resizeHandles={["s"]}
                             onResizeEnd={handleGarageResizeEnd}
                             id="snip_gen"
                         >
                             <Panel className="snip_gen"/>
-                            <div className={"panel-proportions-control"}>
-                                <button onClick={() => handlePanelToggle('snip_gen', snipGenHeight, insProHeight)}>
-                                    <TbArrowAutofitHeight/>
-                                </button>
-                                <button onClick={handleEqualizeHeight}>
-                                    <FaArrowsRotate/>
-                                </button>
-                            </div>
                         </CustomResizableBox>
                     </div>
                 </div>
+
+                <div className={"panel-proportions-control"}>
+                    <button onClick={() => handlePanelToggle('ins_pro', insProHeight, snipGenHeight)}>
+                        <TbArrowAutofitHeight/>
+                    </button>
+                    <button onClick={handleEqualizeHeight}>
+                        <TiArrowSync />
+                    </button>
+                </div>
+
             </CustomResizableBox>
+
             <CustomResizableBox
                 className="workstation row"
                 width={workstationWidthPixels}
                 height={fullHeight}
-                resizeHandles={["w", "e"]}
+                resizeHandles={["e"]}
                 onResizeEnd={handleWorkstationResizeEnd}
                 id="workstation"
             >
@@ -213,7 +208,7 @@ function Desk() {
                 className="library row"
                 width={libraryWidthPixels}
                 height={fullHeight}
-                resizeHandles={["e", "w"]}
+                resizeHandles={["e"]}
                 onResizeEnd={handleLibraryResizeEnd}
                 id="library"
             >
@@ -228,14 +223,7 @@ function Desk() {
                             id="know_guide"
                         >
                             <Panel className="know_guide"/>
-                            <div className={"panel-proportions-control"}>
-                                <button onClick={() => handlePanelToggle('know_guide', knowGuideHeight, lipDocHeight)}>
-                                    <TbArrowAutofitHeight/>
-                                </button>
-                                <button onClick={handleEqualizeHeight}>
-                                    <FaArrowsRotate/>
-                                </button>
-                            </div>
+
                         </CustomResizableBox>
                     </div>
                     <div className={"placeholder-gap-row"}></div>
@@ -244,28 +232,29 @@ function Desk() {
                             className="lip_doc"
                             width={libraryWidthPixels}
                             height={lipDocHeight}
-                            resizeHandles={["s"]}
                             onResizeEnd={handleLibraryResizeEnd}
                             id="lip_doc"
                         >
                             <Panel className="lip_doc"/>
-                            <div className={"panel-proportions-control"}>
-                                <button onClick={() => handlePanelToggle('lip_doc', lipDocHeight, knowGuideHeight)}>
-                                    <TbArrowAutofitHeight/>
-                                </button>
-                                <button onClick={handleEqualizeHeight}>
-                                    <FaArrowsRotate/>
-                                </button>
-                            </div>
                         </CustomResizableBox>
                     </div>
                 </div>
+
+                <div className={"panel-proportions-control"}>
+                    <button onClick={() => handlePanelToggle('know_guide', knowGuideHeight, lipDocHeight)}>
+                        <TbArrowAutofitHeight/>
+                    </button>
+                    <button onClick={handleEqualizeHeight}>
+                        <TiArrowSync />
+                    </button>
+                </div>
+
             </CustomResizableBox>
             <CustomResizableBox
                 className="managements row"
                 width={managementsWidthPixels}
                 height={fullHeight}
-                resizeHandles={["w"]}
+                resizeHandles={["e"]}
                 onResizeEnd={handleManagementsResizeEnd}
                 id="managements"
             >
@@ -280,14 +269,6 @@ function Desk() {
                             id="project"
                         >
                             <Panel className="project"/>
-                            <div className={"panel-proportions-control"}>
-                                <button onClick={() => handlePanelToggle('project', projectHeight, personalHeight)}>
-                                    <TbArrowAutofitHeight/>
-                                </button>
-                                <button onClick={handleEqualizeHeight}>
-                                    <FaArrowsRotate/>
-                                </button>
-                            </div>
                         </CustomResizableBox>
                     </div>
                     <div className={"placeholder-gap-row"}></div>
@@ -296,22 +277,23 @@ function Desk() {
                             className="personal"
                             width={managementsWidthPixels}
                             height={personalHeight}
-                            resizeHandles={["s"]}
                             onResizeEnd={handleManagementsResizeEnd}
                             id="personal"
                         >
                             <Panel className="personal"/>
-                            <div className={"panel-proportions-control"}>
-                                <button onClick={() => handlePanelToggle('personal', personalHeight, projectHeight)}>
-                                    <TbArrowAutofitHeight />
-                                </button>
-                                <button onClick={handleEqualizeHeight}>
-                                    <FaArrowsRotate />
-                                </button>
-                            </div>
                         </CustomResizableBox>
                     </div>
                 </div>
+
+                <div className={"panel-proportions-control"}>
+                    <button onClick={() => handlePanelToggle('project', projectHeight, personalHeight)}>
+                        <TbArrowAutofitHeight/>
+                    </button>
+                    <button onClick={handleEqualizeHeight}>
+                        <TiArrowSync />
+                    </button>
+                </div>
+
             </CustomResizableBox>
         </div>
     );
