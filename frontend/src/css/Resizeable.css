@@ -37,9 +37,6 @@
     invert(0%)
     sepia(0%);
 }
-.react-resizable-handle-e:hover {
-    scale: 1.5;
-}
 
 .react-resizable-handle-s {
     background-image: url(../assets/resize.png);
@@ -50,9 +47,7 @@
     width: 50px;
     cursor: ns-resize;
 }
-.react-resizable-handle-s:hover {
-    scale: 1.5;
-}
+
 
 .react-resizable-handle-w {
     background-image: url(../assets/resize.png);

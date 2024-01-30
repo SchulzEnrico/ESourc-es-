@@ -250,3 +250,22 @@ button:focus-visible {
     color: var(--color-4);
     opacity: 1;
 }
+
+.reset-width-btn {
+    position: absolute;
+    left: -5px;
+    top: 50.8%;
+    color: var(--color-3);
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+    scale: 1.5;
+}
+
+.reset-width-btn:hover,
+.reset-width-btn:focus{
+    color: var(--color-4);
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+}
