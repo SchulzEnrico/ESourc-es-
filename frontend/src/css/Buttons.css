@@ -234,3 +234,38 @@ button:focus-visible {
                 inset -5px -5px 10px var(--color-21),
                 inset 5px 5px 10px var(--color-21);
 }
+
+.panel-proportions-control button {
+    width: 19px;
+    height: 40px;
+    padding: 0;
+    margin: 33px 4px;
+    color: var(--color-4);
+    opacity: .7;
+
+
+}
+
+.panel-proportions-control button:hover {
+    color: var(--color-4);
+    opacity: 1;
+}
+
+.reset-width-btn {
+    position: absolute;
+    left: -5px;
+    top: 50.8%;
+    color: var(--color-3);
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+    scale: 1.5;
+}
+
+.reset-width-btn:hover,
+.reset-width-btn:focus{
+    color: var(--color-4);
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+}
