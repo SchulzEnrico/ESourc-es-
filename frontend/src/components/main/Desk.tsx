@@ -93,23 +93,49 @@ function Desk() {
         }
     };
 
-    const handleGarageResizeEnd = (size: { width: number; height: number }) => {
-        setGarageWidthPixels(size.width);
-        handleResizeEnd('ins_pro', insProHeight, size.height);
-    };
-
-    const handleWorkstationResizeEnd = (size: { width: number; height: number }) => {
+    const handleWorkstationResizeEnd = (size: { width: number }) => {
         setWorkstationWidthPixels(size.width);
     };
 
-    const handleLibraryResizeEnd = (size: { width: number; height: number }) => {
-        setLibraryWidthPixels(size.width);
-        handleResizeEnd('know_guide', knowGuideHeight, size.height);
+    const handleGarageResizeWidth = (size: { width: number }) => {
+        setGarageWidthPixels(size.width);
     };
 
-    const handleManagementsResizeEnd = (size: { width: number; height: number }) => {
+    const handleGarageResizeHeight = (size: { height: number }) => {
+        // Die Breite des Garage-Panels nicht ändern, daher kein Aufruf von setGarageWidthPixels
+
+        // Hier aktualisieren Sie die Höhen der inneren Panels basierend auf der neuen Höhe des Garage-Panels
+        const updatedInsProHeight = size.height; // Passen Sie dies entsprechend an, wenn Sie die Höhe anpassen möchten
+        const updatedSnipGenHeight = fullHeight - updatedInsProHeight - PANEL_MIN_HEIGHT;
+        setInsProHeight(updatedInsProHeight);
+        setSnipGenHeight(updatedSnipGenHeight);
+    };
+
+    const handleLibraryResizeWidth = (size: { width: number }) => {
+        setLibraryWidthPixels(size.width);
+    };
+
+    const handleLibraryResizeHeight = (size: { height: number }) => {
+        // Die Breite des Library-Panels nicht ändern, daher kein Aufruf von setLibraryWidthPixels
+
+        // Hier aktualisieren Sie die Höhen der inneren Panels basierend auf der neuen Höhe des Library-Panels
+        const updatedKnowGuideHeight = size.height; // Passen Sie dies entsprechend an, wenn Sie die Höhe anpassen möchten
+        const updatedLipDocHeight = fullHeight - updatedKnowGuideHeight - PANEL_MIN_HEIGHT;
+        setKnowGuideHeight(updatedKnowGuideHeight);
+        setLipDocHeight(updatedLipDocHeight);
+    };
+
+    const handleManagementsResizeWidth = (size: { width: number }) => {
         setManagementsWidthPixels(size.width);
-        handleResizeEnd('project', projectHeight, size.height);
+    };
+    const handleManagementsResizeHeight = (size: { height: number }) => {
+        // Die Breite des Managements-Panels nicht ändern, daher kein Aufruf von setManagementsWidthPixels
+
+        // Hier aktualisieren Sie die Höhen der inneren Panels basierend auf der neuen Höhe des Managements-Panels
+        const updatedProjectHeight = size.height; // Passen Sie dies entsprechend an, wenn Sie die Höhe anpassen möchten
+        const updatedPersonalHeight = fullHeight - updatedProjectHeight - PANEL_MIN_HEIGHT;
+        setProjectHeight(updatedProjectHeight);
+        setPersonalHeight(updatedPersonalHeight);
     };
 
     const handlePanelToggle = (panelName: string, panelHeightState: number, otherPanelHeightState: number) => {
@@ -148,7 +174,7 @@ function Desk() {
                 width={garageWidthPixels}
                 height={fullHeight}
                 resizeHandles={["e"]}
-                onResizeEnd={handleGarageResizeEnd}
+                onResizeEnd={handleGarageResizeWidth}
                 id="garage"
             >
                 <div className="inner-panels-wrapper">
@@ -158,7 +184,7 @@ function Desk() {
                             width={garageWidthPixels}
                             height={insProHeight}
                             resizeHandles={["s"]}
-                            onResizeEnd={handleGarageResizeEnd}
+                            onResizeEnd={handleGarageResizeHeight}
                             id="ins_pro"
                         >
                             <Panel className="ins_pro"/>
@@ -171,7 +197,7 @@ function Desk() {
                             className="snip_gen"
                             width={garageWidthPixels}
                             height={snipGenHeight}
-                            onResizeEnd={handleGarageResizeEnd}
+                            onResizeEnd={handleGarageResizeHeight}
                             id="snip_gen"
                         >
                             <Panel className="snip_gen"/>
@@ -209,7 +235,7 @@ function Desk() {
                 width={libraryWidthPixels}
                 height={fullHeight}
                 resizeHandles={["e"]}
-                onResizeEnd={handleLibraryResizeEnd}
+                onResizeEnd={handleLibraryResizeWidth}
                 id="library"
             >
                 <div className="inner-panels-wrapper">
@@ -219,7 +245,7 @@ function Desk() {
                             width={libraryWidthPixels}
                             height={knowGuideHeight}
                             resizeHandles={["s"]}
-                            onResizeEnd={handleLibraryResizeEnd}
+                            onResizeEnd={handleLibraryResizeHeight}
                             id="know_guide"
                         >
                             <Panel className="know_guide"/>
@@ -232,7 +258,7 @@ function Desk() {
                             className="lip_doc"
                             width={libraryWidthPixels}
                             height={lipDocHeight}
-                            onResizeEnd={handleLibraryResizeEnd}
+                            onResizeEnd={handleLibraryResizeHeight}
                             id="lip_doc"
                         >
                             <Panel className="lip_doc"/>
@@ -255,7 +281,7 @@ function Desk() {
                 width={managementsWidthPixels}
                 height={fullHeight}
                 resizeHandles={["e"]}
-                onResizeEnd={handleManagementsResizeEnd}
+                onResizeEnd={handleManagementsResizeWidth}
                 id="managements"
             >
                 <div className="inner-panels-wrapper">
@@ -265,7 +291,7 @@ function Desk() {
                             width={managementsWidthPixels}
                             height={projectHeight}
                             resizeHandles={["s"]}
-                            onResizeEnd={handleManagementsResizeEnd}
+                            onResizeEnd={handleManagementsResizeHeight}
                             id="project"
                         >
                             <Panel className="project"/>
@@ -277,7 +303,7 @@ function Desk() {
                             className="personal"
                             width={managementsWidthPixels}
                             height={personalHeight}
-                            onResizeEnd={handleManagementsResizeEnd}
+                            onResizeEnd={handleManagementsResizeHeight}
                             id="personal"
                         >
                             <Panel className="personal"/>
