@@ -191,7 +191,7 @@ function Desk() {
                             onResizeEnd={handleGarageResizeHeight}
                             id="ins_pro"
                         >
-                            <Panel className="ins_pro"/>
+                            <Panel className="ins_pro" />
                         </CustomResizableBox>
                     </div>
                     <div className={"placeholder-gap-row"}></div>

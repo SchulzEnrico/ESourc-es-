@@ -46,12 +46,12 @@ export type PanelProps = {
 };
 
 export type NavigationProps = {
-    onLinkClick?: (url: string) => void;
+    onLinkClick?: (url: string, title: string, destination: string) => void;
     panelName?: string;
     isExternal: boolean;
     currentNavigation?: string;
-    showModal: boolean;  // neu
-    closeModal: () => void; // neu
+    showModal: boolean;
+    closeModal: () => void;
 };
 
 export type HeaderProps = {
@@ -66,6 +66,6 @@ export type CustomResizableBoxProps = Omit<ResizableBoxProps, "width" | "height"
     height: number | string;
 };
 
-export interface DashboardIconProps {
+export type  DashboardIconProps = {
     className?: string;
 }

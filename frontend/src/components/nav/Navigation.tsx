@@ -31,7 +31,6 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick,
     const [currentNavigation, setCurrentNavigation] = useState("default");
     const [destination, setDestination] = useState("default");
 
-
     const getAvailableCategories = (): string[] => {
         return Array.from(
             new Set(
@@ -52,8 +51,8 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick,
             );
     };
 
-    const openLink = (url: string, destination: string) => {
-        destination === "external" ? window.open(url, '_blank') : onLinkClick?.(url);
+    const openLink = (url: string, title: string, destination: string = "internal") => {
+        destination === "external" ? window.open(url, '_blank') : onLinkClick?.(url, title, destination);
         closeModal();
     };
 
@@ -154,7 +153,7 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick,
                 <Button
                     className="dropdown-item"
                     target={bookmark.target}
-                    onClick={() => openLink(bookmark.url, bookmark.destination)}
+                    onClick={() => openLink(bookmark.url, bookmark.title, bookmark.destination)}
                 >
                     {bookmark.title}
                 </Button>

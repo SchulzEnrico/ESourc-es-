@@ -105,3 +105,17 @@ iframe {
     top: 30vh;
 }
 
+#currently-displayed-bookmark {
+    position: absolute;
+    height: 15px;
+    top: -26px;
+    left: 30px;
+    font-size: small;
+}
+
+.development #currently-displayed-bookmark {
+    position: absolute;
+    height: 20px;
+    top: -9px;
+    left: 50px;
+}
