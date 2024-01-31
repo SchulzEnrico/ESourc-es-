@@ -10,6 +10,8 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
     const [originalWidth, setOriginalWidth] = useState(0);
     const [originalHeight, setOriginalHeight] = useState(0);
 
+
+
     useEffect(() => {
         const handleResize = () => {
             if (iframeRef.current) {
@@ -56,7 +58,7 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
     };
 
     return (
-        <Container className={`panel-items-container ${className}`}>
+        <Container className={`panel-items-container ${className}`} title={className}>
             <div className="panel-controls">
                 <button className={'panel-menu-btn'} onClick={() => setShowNavigationModal(true)}>
                     <TiThMenu />

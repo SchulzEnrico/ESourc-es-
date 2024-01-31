@@ -43,9 +43,7 @@ function Desk() {
     const [lipDocHeight, setLipDocHeight] = useState<number>(viewportToPixels("36.3vh"));
     const [projectHeight, setProjectHeight] = useState<number>(viewportToPixels("36.3vh"));
     const [personalHeight, setPersonalHeight] = useState<number>(viewportToPixels("36.3vh"));
-
     const [expandedPanel, setExpandedPanel] = useState<string>('ins_pro');
-
     const fullHeight = viewportToPixels("78vh");
     const fullResizeHeight = fullHeight - 43;
     const PANEL_MIN_HEIGHT = 10;
@@ -88,7 +86,6 @@ function Desk() {
     const handleGarageResizeWidth = (size: { width: number }) => {
         setGarageWidthPixels(size.width);
     };
-
     const handleGarageResizeHeight = (size: { height: number }) => {
 
         const updatedInsProHeight = size.height;
@@ -100,7 +97,6 @@ function Desk() {
     const handleLibraryResizeWidth = (size: { width: number }) => {
         setLibraryWidthPixels(size.width);
     };
-
     const handleLibraryResizeHeight = (size: { height: number }) => {
 
         const updatedKnowGuideHeight = size.height;
@@ -120,7 +116,6 @@ function Desk() {
         setPersonalHeight(updatedPersonalHeight);
     };
 
-    // Function that resets the width of a single element
     const resetWidth = (element: string) => {
         switch(element) {
             case 'workstation':
@@ -170,10 +165,8 @@ function Desk() {
     };
 
     return (
-
         <div className="esources-desk">
-
-            <button id={"reset-all-dimensions-btn"} onClick={resetAll}>
+            <button title={"Reset dashboard dimensions"} id={"reset-all-dimensions-btn"} onClick={resetAll}>
                 <DashboardIcon className={"dashboard-icon-header"}/>
             </button>
 
@@ -199,7 +192,6 @@ function Desk() {
                             id="ins_pro"
                         >
                             <Panel className="ins_pro"/>
-
                         </CustomResizableBox>
                     </div>
                     <div className={"placeholder-gap-row"}></div>

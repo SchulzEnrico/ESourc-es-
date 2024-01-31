@@ -16,12 +16,16 @@ import {TiPlus} from "react-icons/ti";
 import {MdOutlineSettings} from "react-icons/md";
 import {VscEyeClosed} from "react-icons/vsc";
 
-const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExternal, showModal, closeModal }) => {
+const Navigation: React.FC<NavigationProps> = ({ onLinkClick,
+                                                   panelName,
+                                                   isExternal,
+                                                   showModal,
+                                                   closeModal
+}) => {
     const tempBookmark = useRef<BookmarkDTO | null>(null);
     const [showEditModal, setShowEditModal] = useState(false);
     const [bookmarks, setBookmarks] = useState<BookmarkDTO[]>([]);
     const [showGetMore, setShowGetMore] = useState(false);
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
     const [selectedBookmark, setSelectedBookmark] = useState<BookmarkDTO | null>(null);
     const [showSuccessPopup, setShowSuccessPopup] = useState(false);
     const [currentNavigation, setCurrentNavigation] = useState("default");
@@ -96,7 +100,6 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
                 })
                 .catch(error => {
                     console.error('Error updating bookmark:', error);
-                    // Hier können Sie auch einen Fehler-Popup anzeigen
                 });
         } else {
             console.error('Selected bookmark is null or does not have an _id:', selectedBookmark);
@@ -139,18 +142,6 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
     }, []);
 
     useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth <= 768);
-        };
-
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
-
-    useEffect(() => {
         console.log("Current Navigation in Navigation:", currentNavigation);
         // Weitere Logs oder Code hier, um sicherzustellen, dass currentNavigation korrekt aktualisiert wird
     }, [currentNavigation]);
@@ -187,11 +178,11 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
         );
 
         return (
-            <ButtonGroup className={isMobile ? "nav-group-mobile" : "nav-group"}>
+            <ButtonGroup className={"nav-group"}>
                 <Button id={"close-navigation-btn"} onClick={closeModal}>
                     <VscEyeClosed id={"close-navigation-icon"} />
                 </Button>
-                {!isMobile &&
+                {
                     uniqueCategories.map((category) => (
                         <DropdownButton
                             as={ButtonGroup}
@@ -207,7 +198,7 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, panelName, isExter
                         </DropdownButton>
                     ))}
 
-                {!isMobile && (
+                { (
                     <Button title={"Add a new Bookmark to your collection"} variant="primary" className={"get-more-button"} onClick={handleGetMoreClick}>
                         <TiPlus title={"Add a new Bookmark"} className={"add-icon"}/>
                     </Button>

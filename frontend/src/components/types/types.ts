@@ -65,3 +65,7 @@ export type CustomResizableBoxProps = Omit<ResizableBoxProps, "width" | "height"
     width: number | string;
     height: number | string;
 };
+
+export interface DashboardIconProps {
+    className?: string;
+}
