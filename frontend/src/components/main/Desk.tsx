@@ -3,7 +3,7 @@ import '../../css/DeskGrid.css';
 import '../../css/DeskStyles.css';
 import Panel from './Panel.tsx';
 import '../../css/Resizeable.css';
-import React, {useState} from 'react';
+import {useState} from 'react';
 import CustomResizableBox from './CustomResizableBox.tsx';
 import {TbArrowAutofitHeight} from "react-icons/tb";
 import {TiArrowSync} from "react-icons/ti";
