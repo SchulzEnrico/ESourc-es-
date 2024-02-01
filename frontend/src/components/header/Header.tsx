@@ -37,7 +37,7 @@ const Header: React.FC<HeaderProps> = () => {
             </form>
             <Button
                 className={"external-links-btn"}
-                title={"External bookmarks"}
+                data-tooltip={"External bookmarks"}
                 onClick={() => setShowNavigationModal(true)}
             >
                 <BsBookmarksFill />

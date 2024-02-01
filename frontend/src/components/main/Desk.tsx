@@ -166,10 +166,13 @@ function Desk() {
 
     return (
         <div className="esources-desk">
-            <button title={"Reset dashboard dimensions"} id={"reset-all-dimensions-btn"} onClick={resetAll}>
+            <button
+                className={"tooltip-btn"}
+                data-tooltip={"Reset dashboard dimensions"}
+                id={"reset-all-dimensions-btn"}
+                onClick={resetAll}>
                 <DashboardIcon className={"dashboard-icon-header"}/>
             </button>
-
             <CustomResizableBox
                 className="garage row"
                 width={garageWidthPixels}
@@ -178,7 +181,10 @@ function Desk() {
                 onResizeEnd={handleGarageResizeWidth}
                 id="garage"
             >
-                <button className={"reset-width-btn"} onClick={() => resetWidth('garage')}>
+                <button
+                    title={"Reset width"}
+                    className={"reset-width-btn"}
+                    onClick={() => resetWidth('garage')}>
                     <PiArrowFatLinesLeftBold/>
                 </button>
                 <div className="inner-panels-wrapper">
@@ -191,7 +197,7 @@ function Desk() {
                             onResizeEnd={handleGarageResizeHeight}
                             id="ins_pro"
                         >
-                            <Panel className="ins_pro" />
+                            <Panel className="ins_pro"/>
                         </CustomResizableBox>
                     </div>
                     <div className={"placeholder-gap-row"}></div>
@@ -209,16 +215,20 @@ function Desk() {
                 </div>
 
                 <div className={"panel-proportions-control"}>
-                    <button onClick={() => handlePanelToggle('ins_pro', insProHeight, snipGenHeight)}>
+                    <button
+                        className={"tooltip-btn"}
+                        data-tooltip={"Toggle panel height 9/10"}
+                        onClick={() => handlePanelToggle('ins_pro', insProHeight, snipGenHeight)}>
                         <TbArrowAutofitHeight/>
                     </button>
-                    <button onClick={handleEqualizeHeight}>
+                    <button
+                        className={"tooltip-btn"}
+                        data-tooltip={"Reset panel proportions"}
+                        onClick={handleEqualizeHeight}>
                         <TiArrowSync/>
                     </button>
                 </div>
-
             </CustomResizableBox>
-
             <CustomResizableBox
                 className="workstation row"
                 width={workstationWidthPixels}
@@ -227,7 +237,10 @@ function Desk() {
                 onResizeEnd={handleWorkstationResizeEnd}
                 id="workstation"
             >
-                <button className={"reset-width-btn"} onClick={() => resetWidth('workstation')}>
+                <button
+                    title={"Reset width"}
+                    className={"reset-width-btn"}
+                    onClick={() => resetWidth('workstation')}>
                     <PiArrowFatLinesLeftBold/>
                 </button>
                 <div className="inner-panels-wrapper">
@@ -244,7 +257,10 @@ function Desk() {
                 onResizeEnd={handleLibraryResizeWidth}
                 id="library"
             >
-                <button className={"reset-width-btn"} onClick={() => resetWidth('library')}>
+                <button
+                    title={"Reset width"}
+                    className={"reset-width-btn"}
+                    onClick={() => resetWidth('library')}>
                     <PiArrowFatLinesLeftBold/>
                 </button>
                 <div className="inner-panels-wrapper">
@@ -276,10 +292,16 @@ function Desk() {
                 </div>
 
                 <div className={"panel-proportions-control"}>
-                    <button onClick={() => handlePanelToggle('know_guide', knowGuideHeight, lipDocHeight)}>
+                    <button
+                        className={"tooltip-btn"}
+                        data-tooltip={"Toggle panel height 9/10"}
+                        onClick={() => handlePanelToggle('know_guide', knowGuideHeight, lipDocHeight)}>
                         <TbArrowAutofitHeight/>
                     </button>
-                    <button onClick={handleEqualizeHeight}>
+                    <button
+                        className={"tooltip-btn"}
+                        data-tooltip={"Reset panel proportions"}
+                        onClick={handleEqualizeHeight}>
                         <TiArrowSync/>
                     </button>
                 </div>
@@ -293,7 +315,10 @@ function Desk() {
                 onResizeEnd={handleManagementsResizeWidth}
                 id="managements"
             >
-                <button className={"reset-width-btn"} onClick={() => resetWidth('managements')}>
+                <button
+                    title={"Reset width"}
+                    className={"reset-width-btn"}
+                    onClick={() => resetWidth('managements')}>
                     <PiArrowFatLinesLeftBold/>
                 </button>
                 <div className="inner-panels-wrapper">
@@ -324,10 +349,16 @@ function Desk() {
                 </div>
 
                 <div className={"panel-proportions-control"}>
-                    <button onClick={() => handlePanelToggle('project', projectHeight, personalHeight)}>
+                    <button
+                        className={"tooltip-btn"}
+                        data-tooltip={"Toggle panel height 9/10"}
+                        onClick={() => handlePanelToggle('project', projectHeight, personalHeight)}>
                         <TbArrowAutofitHeight/>
                     </button>
-                    <button onClick={handleEqualizeHeight}>
+                    <button
+                        className={"tooltip-btn"}
+                        data-tooltip={"Reset panel proportions"}
+                        onClick={handleEqualizeHeight}>
                         <TiArrowSync/>
                     </button>
                 </div>

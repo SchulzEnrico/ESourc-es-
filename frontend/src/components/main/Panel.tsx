@@ -3,6 +3,9 @@ import { Container } from 'react-bootstrap';
 import Navigation from '../nav/Navigation';
 import { PanelProps, BookmarkDTO } from '../types/types';
 import { TiThMenu } from 'react-icons/ti';
+import { HiOutlineClipboardCopy } from "react-icons/hi";
+import { GrClear } from "react-icons/gr";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 const Panel: React.FC<PanelProps> = ({ className, width }) => {
     const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -83,8 +86,8 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
         }
     };
 
-    const navigateBookmarks = (direction: 'prev' | 'next') => {
-        const newIndex = direction === 'prev' ? currentBookmarkIndex - 1 : currentBookmarkIndex + 1;
+    const navigateBookmarks = (direction: 'prior' | 'next') => {
+        const newIndex = direction === 'prior' ? currentBookmarkIndex - 1 : currentBookmarkIndex + 1;
         if (newIndex >= 0 && newIndex < bookmarks.length) {
             setCurrentBookmarkIndex(newIndex);
             const { url, title } = bookmarks[newIndex];
@@ -99,7 +102,23 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
             onMouseEnter={handlePanelHover}
             onMouseLeave={() => setHoverText('')}
         >
-            <p id={"currently-displayed-bookmark"} >{bookmarks[currentBookmarkIndex]?.title}</p>
+            <button title={"Clear display"} id={"clear-iframe-btn"} className={"iframe-handler-btn"}
+                    onClick={clearIframe}>
+                <GrClear/>
+            </button>
+            <p id={"currently-displayed-bookmark"}>{bookmarks[currentBookmarkIndex]?.title}</p>
+            <div className={"prev-prior-handler"}>
+                <button title={"Previous bookmark"}
+                        className={"iframe-handler-btn"}
+                        onClick={() => navigateBookmarks('prior')}>
+                    <FaArrowLeft/>
+                </button>
+                <button title={"Prior bookmark"}
+                        className={"iframe-handler-btn next-bookmark-btn"}
+                        onClick={() => navigateBookmarks('next')}>
+                    <FaArrowRight/>
+                </button>
+            </div>
             <div
                 className="panel-controls"
                 onMouseEnter={handlePanelHover}
@@ -110,12 +129,20 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
                     onClick={() => setShowNavigationModal(true)}
                     onMouseEnter={handleNavigationButtonHover}
                 >
-                    <TiThMenu />
+                    <TiThMenu/>
                 </button>
                 <Navigation
                     onLinkClick={(url, title) => {
                         openInIframe(url, title);
-                        const newBookmark: BookmarkDTO = { _id: 'some-id', url, destination: '', target: '', dropdownCategory: '', title, links: [] };
+                        const newBookmark: BookmarkDTO = {
+                            _id: 'some-id',
+                            url,
+                            destination: '',
+                            target: '',
+                            dropdownCategory: '',
+                            title,
+                            links: []
+                        };
                         setBookmarks([...bookmarks, newBookmark]);
                         setCurrentBookmarkIndex(bookmarks.length);
                     }}
@@ -124,19 +151,26 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
                     closeModal={() => setShowNavigationModal(false)}
                     isExternal={false}
                 />
-                <form onSubmit={handleSubmit}>
+                <div className={"temporary-input-area"}>
+                <form id={"panel-temporary-link-input"}
+                      onSubmit={handleSubmit}>
                     <input
+                        title={"Insert the link to temporarily display your desired website here and press Enter"}
+                        className={"form-input shadow--sunken"}
                         type="text"
                         value={inputLink}
                         onChange={handleInputLinkChange}
-                        placeholder="Paste link here"
+                        placeholder="Paste link & press return"
                     />
-                    <button type="submit" style={{ display: 'none' }}>Submit</button>
+                    <button type="submit"
+                            style={{display: 'none'}}>Submit
+                    </button>
                 </form>
-                <button onClick={handleCopyToClipboard}>Copy to Clipboard</button>
-                <button onClick={clearIframe}>Clear iFrame</button>
-                <button onClick={() => navigateBookmarks('prev')}>Previous Bookmark</button>
-                <button onClick={() => navigateBookmarks('next')}>Next Bookmark</button>
+                <button title={"Copy to clipboard"} id={"copy-to-clipboard-btn"} className={"iframe-handler-btn"}
+                        onClick={handleCopyToClipboard}>
+                    <HiOutlineClipboardCopy/>
+                </button>
+                </div>
             </div>
             <div className="iframe-bounding shadow--ridge">
                 <iframe
