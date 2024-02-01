@@ -119,3 +119,10 @@ iframe {
     top: -9px;
     left: 50px;
 }
+
+.form-link-text {
+    background-image: -webkit-linear-gradient(270deg, #830401 50%, #830401 10%, #a7acb2  90%, #414144 60%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

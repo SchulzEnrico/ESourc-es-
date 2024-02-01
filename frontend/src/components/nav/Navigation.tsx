@@ -145,6 +145,8 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick,
         // Weitere Logs oder Code hier, um sicherzustellen, dass currentNavigation korrekt aktualisiert wird
     }, [currentNavigation]);
 
+
+
     const renderDropdownItems = (category: string) => {
         const relatedBookmarks = bookmarks.filter(bookmark => bookmark.dropdownCategory === category && (isExternal ? bookmark.destination === "external" : bookmark.destination === panelName));
 

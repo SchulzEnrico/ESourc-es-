@@ -36,6 +36,7 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
         if (iframeRef.current) {
             iframeRef.current.src = url;
             setHoverText(title);
+            setInputLink(url); // Update inputLink with the current URL
         }
     };
 
@@ -78,6 +79,7 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
         if (iframeRef.current) {
             iframeRef.current.src = '';
             setHoverText('');
+            setInputLink(''); // Clear inputLink when clearing the iframe
         }
     };
 
@@ -97,7 +99,7 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
             onMouseEnter={handlePanelHover}
             onMouseLeave={() => setHoverText('')}
         >
-            <p>{bookmarks[currentBookmarkIndex]?.title}</p>
+            <p id={"currently-displayed-bookmark"} >{bookmarks[currentBookmarkIndex]?.title}</p>
             <div
                 className="panel-controls"
                 onMouseEnter={handlePanelHover}
