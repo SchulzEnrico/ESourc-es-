@@ -23,6 +23,7 @@
     "react-spotify-player": "^1.0.4"
   },
   "devDependencies": {
+    "@types/node": "^20.11.14",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
     "@types/react-resizable": "^3.0.7",

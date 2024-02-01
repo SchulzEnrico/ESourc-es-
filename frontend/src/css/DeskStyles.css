@@ -105,3 +105,39 @@ iframe {
     top: 30vh;
 }
 
+#currently-displayed-bookmark {
+    position: absolute;
+    height: 15px;
+    top: -26px;
+    left: 30px;
+    font-size: small;
+}
+
+.development #currently-displayed-bookmark {
+    position: absolute;
+    height: 20px;
+    top: -9px;
+    left: 50px;
+}
+
+#panel-temporary-link-input input{
+    height: 18px !important;
+    padding: 0 0 0 10px;
+    margin-right: 40%;
+    font-size: xx-small;
+    border: solid 1px var(--color-21);
+    background-color: var(--color-01);
+    box-shadow: outset 4px 4px 10px var(--color-21),
+                inset 10px 10px 10px var(--color-0);
+    opacity: .7;
+    color: var(--color-41);
+}
+
+.temporary-input-area {
+    position: relative;
+    top: 0;
+    margin: 0 5px 5px 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
