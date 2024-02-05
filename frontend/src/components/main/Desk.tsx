@@ -44,7 +44,7 @@ function Desk() {
     const [projectHeight, setProjectHeight] = useState<number>(viewportToPixels("36.3vh"));
     const [personalHeight, setPersonalHeight] = useState<number>(viewportToPixels("36.3vh"));
     const [expandedPanel, setExpandedPanel] = useState<string>('ins_pro');
-    const fullHeight = viewportToPixels("78vh");
+    const fullHeight = viewportToPixels("78.8vh");
     const fullResizeHeight = fullHeight - 43;
     const PANEL_MIN_HEIGHT = 10;
 
@@ -213,7 +213,6 @@ function Desk() {
                         </CustomResizableBox>
                     </div>
                 </div>
-
                 <div className={"panel-proportions-control"}>
                     <button
                         className={"tooltip-btn"}
@@ -229,6 +228,7 @@ function Desk() {
                     </button>
                 </div>
             </CustomResizableBox>
+
             <CustomResizableBox
                 className="workstation row"
                 width={workstationWidthPixels}
@@ -243,11 +243,14 @@ function Desk() {
                     onClick={() => resetWidth('workstation')}>
                     <PiArrowFatLinesLeftBold/>
                 </button>
+
+
                 <div className="inner-panels-wrapper">
                     <div className="development panel shadow--raised col">
                         <Panel className="development"/>
                     </div>
                 </div>
+
             </CustomResizableBox>
             <CustomResizableBox
                 className="library row"

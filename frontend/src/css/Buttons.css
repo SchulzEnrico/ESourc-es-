@@ -248,7 +248,7 @@ button:focus-visible {
 .reset-width-btn {
     position: absolute;
     left: -5px;
-    top: 50.8%;
+    top: 51.8%;
     color: var(--color-3);
     background-color: transparent;
     box-shadow: none;

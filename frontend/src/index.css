@@ -56,14 +56,15 @@ a {
 body {
   width: fit-content;
   height: fit-content;
-  margin: 0;
-  padding: 0;
+
   display: flex;
 
-  position: sticky; /* Das muss noch gut ausgetestet werden */
+  position: absolute; /* Das muss noch gut ausgetestet werden */
 
   justify-content: center;
   align-items: center;
+  margin: 0;
+  padding: 0;
   overflow: scroll;
 }
 body::-webkit-scrollbar {

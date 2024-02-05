@@ -28,6 +28,8 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
                 setHoverText(bookmarkTitle);
             }
             if (iframeRef.current) {
+                iframeRef.current.removeEventListener('load', handleIframeLoad);
+
             }
         };
 
