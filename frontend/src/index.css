@@ -20,6 +20,7 @@
   --color-1: #252526;
   --color-2: #333334;
   --color-21: #414144;
+  --color-22: #4a4a4d;
   --color-3: #5d0101;
   --color-31: #830401;
   --color-4: #7d7e83;
@@ -55,14 +56,15 @@ a {
 body {
   width: fit-content;
   height: fit-content;
-  margin: 0;
-  padding: 0;
+
   display: flex;
 
-  position: sticky; /* Das muss noch gut ausgetestet werden */
+  position: absolute; /* Das muss noch gut ausgetestet werden */
 
   justify-content: center;
   align-items: center;
+  margin: 0;
+  padding: 0;
   overflow: scroll;
 }
 body::-webkit-scrollbar {

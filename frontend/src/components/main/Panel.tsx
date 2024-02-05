@@ -13,7 +13,12 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
     const [hoverText, setHoverText] = useState('');
     const [bookmarks, setBookmarks] = useState<BookmarkDTO[]>([]);
     const [currentBookmarkIndex, setCurrentBookmarkIndex] = useState<number>(-1);
+    const [secondLastBookmarkIndex, setSecondLastBookmarkIndex] = useState<number>(-1);
+    const [lastBookmarkIndex, setLastBookmarkIndex] = useState<number>(-1);
+    const [nextBookmarkIndex, setNextBookmarkIndex] = useState<number>(-1);
+    const [secondNextBookmarkIndex, setSecondNextBookmarkIndex] = useState<number>(-1);
     const [inputLink, setInputLink] = useState('');
+
 
     useEffect(() => {
         const handleIframeLoad = () => {
@@ -22,18 +27,32 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
             if (bookmarkTitle) {
                 setHoverText(bookmarkTitle);
             }
-        };
-
-        if (iframeRef.current) {
-            iframeRef.current.addEventListener('load', handleIframeLoad);
-        }
-
-        return () => {
             if (iframeRef.current) {
                 iframeRef.current.removeEventListener('load', handleIframeLoad);
             }
         };
+
+        const currentIframeRef = iframeRef.current; // Kopiere den aktuellen Wert in eine lokale Variable
+
+        if (currentIframeRef) {
+            currentIframeRef.addEventListener('load', handleIframeLoad);
+        }
+
+        return () => {
+            if (currentIframeRef) { // Verwende die lokale Variable in der Aufräumfunktion
+                currentIframeRef.removeEventListener('load', handleIframeLoad);
+            }
+        };
     }, []);
+
+    useEffect(() => {
+        if (currentBookmarkIndex >= 0) {
+            setSecondLastBookmarkIndex(currentBookmarkIndex - 2);
+            setLastBookmarkIndex(currentBookmarkIndex - 1);
+            setNextBookmarkIndex(currentBookmarkIndex + 1);
+            setSecondNextBookmarkIndex(currentBookmarkIndex + 2);
+        }
+    }, [currentBookmarkIndex]);
 
     const openInIframe = (url: string, title: string) => {
         if (iframeRef.current) {
@@ -102,11 +121,24 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
             onMouseEnter={handlePanelHover}
             onMouseLeave={() => setHoverText('')}
         >
-            <button title={"Clear display"} id={"clear-iframe-btn"} className={"iframe-handler-btn"}
+            <button title={"Clear display"}
+                    id={"clear-iframe-btn"}
+                    className={"iframe-handler-btn"}
                     onClick={clearIframe}>
                 <GrClear/>
             </button>
-            <p id={"currently-displayed-bookmark"}>{bookmarks[currentBookmarkIndex]?.title}</p>
+            <div className={"loaded-bookmark-history"}>
+                <div className={"loaded-bookmark-element"}>
+                    <p id={"second-last-displayed-bookmark"}>{bookmarks[secondLastBookmarkIndex]?.title}</p></div>
+                <div className={"loaded-bookmark-element"}>
+                    <p id={"last-displayed-bookmark"}>{bookmarks[lastBookmarkIndex]?.title}</p></div>
+                <div className={"loaded-bookmark-element"}>
+                    <p id={"currently-displayed-bookmark"}>{bookmarks[currentBookmarkIndex]?.title}</p></div>
+                <div className={"loaded-bookmark-element"}>
+                    <p id={"next-displayed-bookmark"}>{bookmarks[nextBookmarkIndex]?.title}</p></div>
+                <div className={"loaded-bookmark-element"}>
+                    <p id={"second-next-displayed-bookmark"}>{bookmarks[secondNextBookmarkIndex]?.title}</p></div>
+            </div>
             <div className={"prev-prior-handler"}>
                 <button title={"Previous bookmark"}
                         className={"iframe-handler-btn"}
@@ -152,32 +184,42 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
                     isExternal={false}
                 />
                 <div className={"temporary-input-area"}>
-                <form id={"panel-temporary-link-input"}
-                      onSubmit={handleSubmit}>
-                    <input
-                        title={"Insert the link to temporarily display your desired website here and press Enter"}
-                        className={"form-input shadow--sunken"}
-                        type="text"
-                        value={inputLink}
-                        onChange={handleInputLinkChange}
-                        placeholder="Paste link & press return"
-                    />
-                    <button type="submit"
-                            style={{display: 'none'}}>Submit
+                    <form id={"panel-temporary-link-input"}
+                          onSubmit={handleSubmit}>
+                        <input
+                            title={"Insert the link to temporarily display your desired website here and press Enter"}
+                            className={"form-input shadow--sunken"}
+                            type="text"
+                            value={inputLink}
+                            onChange={handleInputLinkChange}
+                            placeholder="Paste link & press return"
+                        />
+                        <button type="submit"
+                                style={{display: 'none'}}>Submit
+                        </button>
+                    </form>
+                    <button title={"Copy to clipboard"}
+                            id={"copy-to-clipboard-btn"}
+                            className={"iframe-handler-btn"}
+                            onClick={handleCopyToClipboard}>
+                        <HiOutlineClipboardCopy/>
                     </button>
-                </form>
-                <button title={"Copy to clipboard"} id={"copy-to-clipboard-btn"} className={"iframe-handler-btn"}
-                        onClick={handleCopyToClipboard}>
-                    <HiOutlineClipboardCopy/>
-                </button>
                 </div>
             </div>
             <div className="iframe-bounding shadow--ridge">
+                <div className="ruler">
+                    <div className="horizontal-line"></div>
+                    <div className="vertical-line"></div>
+                </div>
                 <iframe
                     ref={iframeRef}
                     title={className}
                     width={width}
                 ></iframe>
+                <div title={"Size indicator"} id={"size-indicator"}>
+                    <p>X: {iframeRef.current?.offsetWidth}px</p>
+                    <p>Y: {iframeRef.current?.offsetHeight}px</p>
+                </div>
             </div>
         </Container>
     );
