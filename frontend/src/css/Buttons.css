@@ -248,7 +248,7 @@ button:focus-visible {
 .reset-width-btn {
     position: absolute;
     left: -5px;
-    top: 51.8%;
+    top: 51.3%;
     color: var(--color-3);
     background-color: transparent;
     box-shadow: none;
@@ -262,7 +262,6 @@ button:focus-visible {
     padding: 0 0 5px 0;
     margin: 2px;
     font-size: small;
-
 }
 
 #clear-iframe-btn {
@@ -270,7 +269,7 @@ button:focus-visible {
     padding: 1px 1px 0 0;
     width: 22px;
     height: 22px;
-    top: -16px;
+    top: -20px;
     left: -14px;
     box-shadow: inset -5px -5px 10px #470603,
     inset 5px 5px 10px #a20f08;
@@ -278,7 +277,7 @@ button:focus-visible {
 }
 
 .development > #clear-iframe-btn {
-    top: 3px;
+    top: 6px;
     left: 6px;
 }
 
@@ -319,6 +318,10 @@ button:focus-visible {
     padding: 1px 0 0 0;
     width: 32px;
     height: 30px;
+}
+
+.development .panel-menu-btn {
+    bottom: 5px;
 }
 
 #copy-to-clipboard-btn {

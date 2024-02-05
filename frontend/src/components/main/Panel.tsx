@@ -29,17 +29,18 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
             }
             if (iframeRef.current) {
                 iframeRef.current.removeEventListener('load', handleIframeLoad);
-
             }
         };
 
-        if (iframeRef.current) {
-            iframeRef.current.addEventListener('load', handleIframeLoad);
+        const currentIframeRef = iframeRef.current; // Kopiere den aktuellen Wert in eine lokale Variable
+
+        if (currentIframeRef) {
+            currentIframeRef.addEventListener('load', handleIframeLoad);
         }
 
         return () => {
-            if (iframeRef.current) {
-                iframeRef.current.removeEventListener('load', handleIframeLoad);
+            if (currentIframeRef) { // Verwende die lokale Variable in der Aufräumfunktion
+                currentIframeRef.removeEventListener('load', handleIframeLoad);
             }
         };
     }, []);
