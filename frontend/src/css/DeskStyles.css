@@ -161,8 +161,28 @@ iframe {
 .temporary-input-area {
     position: relative;
     top: 0;
-    margin: 0 5px 5px 45px;
+    margin: 0 5px 5px 35px;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#size-indicator {
+    position: absolute;
+    bottom: -20px;
+    right: -13px;
+    margin: 0 5px 5px 0;
+    font-size: x-small;
+    font-weight: bold;
+    color: var(--color-21);
+}
+
+.development #size-indicator {
+    bottom: -45px;
+    right: 25px;
+}
+
+#size-indicator p {
+    margin: 0;
+    padding: 0;
 }

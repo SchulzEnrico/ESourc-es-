@@ -19,12 +19,15 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
     const [secondNextBookmarkIndex, setSecondNextBookmarkIndex] = useState<number>(-1);
     const [inputLink, setInputLink] = useState('');
 
+
     useEffect(() => {
         const handleIframeLoad = () => {
             const iframeDocument = iframeRef.current?.contentDocument;
             const bookmarkTitle = iframeDocument?.querySelector('title')?.textContent;
             if (bookmarkTitle) {
                 setHoverText(bookmarkTitle);
+            }
+            if (iframeRef.current) {
             }
         };
 
@@ -121,13 +124,18 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
                     onClick={clearIframe}>
                 <GrClear/>
             </button>
-                <div className={"loaded-bookmark-history"}>
-                    <div className={"loaded-bookmark-element"}><p id={"second-last-displayed-bookmark"} >{bookmarks[secondLastBookmarkIndex]?.title}</p></div>
-                    <div className={"loaded-bookmark-element"}><p id={"last-displayed-bookmark"} >{bookmarks[lastBookmarkIndex]?.title}</p></div>
-                    <div className={"loaded-bookmark-element"}><p id={"currently-displayed-bookmark"} >{bookmarks[currentBookmarkIndex]?.title}</p></div>
-                    <div className={"loaded-bookmark-element"}><p id={"next-displayed-bookmark"} >{bookmarks[nextBookmarkIndex]?.title}</p></div>
-                    <div className={"loaded-bookmark-element"}><p id={"second-next-displayed-bookmark"} >{bookmarks[secondNextBookmarkIndex]?.title}</p></div>
-                </div>
+            <div className={"loaded-bookmark-history"}>
+                <div className={"loaded-bookmark-element"}>
+                    <p id={"second-last-displayed-bookmark"}>{bookmarks[secondLastBookmarkIndex]?.title}</p></div>
+                <div className={"loaded-bookmark-element"}>
+                    <p id={"last-displayed-bookmark"}>{bookmarks[lastBookmarkIndex]?.title}</p></div>
+                <div className={"loaded-bookmark-element"}>
+                    <p id={"currently-displayed-bookmark"}>{bookmarks[currentBookmarkIndex]?.title}</p></div>
+                <div className={"loaded-bookmark-element"}>
+                    <p id={"next-displayed-bookmark"}>{bookmarks[nextBookmarkIndex]?.title}</p></div>
+                <div className={"loaded-bookmark-element"}>
+                    <p id={"second-next-displayed-bookmark"}>{bookmarks[secondNextBookmarkIndex]?.title}</p></div>
+            </div>
             <div className={"prev-prior-handler"}>
                 <button title={"Previous bookmark"}
                         className={"iframe-handler-btn"}
@@ -196,11 +204,19 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
                 </div>
             </div>
             <div className="iframe-bounding shadow--ridge">
+                <div className="ruler">
+                    <div className="horizontal-line"></div>
+                    <div className="vertical-line"></div>
+                </div>
                 <iframe
                     ref={iframeRef}
                     title={className}
                     width={width}
                 ></iframe>
+                <div title={"Size indicator"} id={"size-indicator"}>
+                    <p>X: {iframeRef.current?.offsetWidth}px</p>
+                    <p>Y: {iframeRef.current?.offsetHeight}px</p>
+                </div>
             </div>
         </Container>
     );
