@@ -10,7 +10,8 @@ footer {
     width: 99%;
     margin: 0 auto;
     color: var(--color-4);
-    background-color: var(--color-01);
+    background-color: var(--color-00);
+
     border-radius: 20px 20px 0 0;
     border: solid 1px var(--color-4);
     border-bottom: none;

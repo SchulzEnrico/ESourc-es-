@@ -12,7 +12,7 @@ header {
     margin: 0 auto;
     padding: 0 15px 0 0;
     color: var(--color-4);
-    background-color: var(--color-1);
+    background-color: var(--color-01);
     border-radius: 0 0 20px 20px;
     border: solid 1px var(--color-4);
     border-top: none;
