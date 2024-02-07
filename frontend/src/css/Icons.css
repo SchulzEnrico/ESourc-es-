@@ -71,3 +71,8 @@
     scale: 1.5;
     color: var(--color-31);
 }
+
+#ruler-icon {
+    rotate: 315deg;
+    scale: 1.1;
+}

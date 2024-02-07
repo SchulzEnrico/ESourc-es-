@@ -9,6 +9,7 @@
 
 :root {
   font-family: "Helvetica Neue", Arial, Verdana, Tahoma, sans-serif;
+  width: 100%;
   line-height: 1.5;
   font-weight: 400;
   font-synthesis: none;
@@ -16,11 +17,15 @@
   -moz-osx-font-smoothing: grayscale;
 
   --color-0: #020202;
+  --color-00: #050505;
   --color-01: #101010;
   --color-1: #252526;
   --color-2: #333334;
   --color-21: #414144;
   --color-22: #4a4a4d;
+  --color-3-3: #0a0000;
+  --color-3-2: #1c0000;
+  --color-3-1: #440000;
   --color-3: #5d0101;
   --color-31: #830401;
   --color-4: #7d7e83;

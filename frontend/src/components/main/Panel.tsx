@@ -6,6 +6,9 @@ import { TiThMenu } from 'react-icons/ti';
 import { HiOutlineClipboardCopy } from "react-icons/hi";
 import { GrClear } from "react-icons/gr";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import Ruler from "../utilities/Ruler.tsx";
+import {LuRuler} from "react-icons/lu";
+
 
 const Panel: React.FC<PanelProps> = ({ className, width }) => {
     const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -18,7 +21,7 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
     const [nextBookmarkIndex, setNextBookmarkIndex] = useState<number>(-1);
     const [secondNextBookmarkIndex, setSecondNextBookmarkIndex] = useState<number>(-1);
     const [inputLink, setInputLink] = useState('');
-
+    const [showRuler, setShowRuler] = useState(false); // Zustand für Ruler ein-/ausschalten
 
     useEffect(() => {
         const handleIframeLoad = () => {
@@ -192,7 +195,7 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
                             type="text"
                             value={inputLink}
                             onChange={handleInputLinkChange}
-                            placeholder="Paste link & press return"
+                            placeholder="Paste URL & press &#x23CE;"
                         />
                         <button type="submit"
                                 style={{display: 'none'}}>Submit
@@ -207,20 +210,23 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
                 </div>
             </div>
             <div className="iframe-bounding shadow--ridge">
-                <div className="ruler">
-                    <div className="horizontal-line"></div>
-                    <div className="vertical-line"></div>
-                </div>
+                {showRuler && <Ruler/>} {/* Ruler anzeigen, wenn showRuler true ist */}
                 <iframe
                     ref={iframeRef}
                     title={className}
                     width={width}
                 ></iframe>
-                <div title={"Size indicator"} id={"size-indicator"}>
-                    <p>X: {iframeRef.current?.offsetWidth}px</p>
-                    <p>Y: {iframeRef.current?.offsetHeight}px</p>
+                <div title={"Size indicator"}
+                     id={"size-indicator"}>
+                    <p>X-{iframeRef.current?.offsetWidth}px</p>
+                    <p>Y-{iframeRef.current?.offsetHeight}px</p>
                 </div>
             </div>
+            <button
+                className={"ruler-btn iframe-handler-btn"}
+                onClick={() => setShowRuler(!showRuler)}>
+                <LuRuler id={"ruler-icon"} />
+            </button> {/* Button zum Ein-/Ausschalten des Rulers */}
         </Container>
     );
 };
