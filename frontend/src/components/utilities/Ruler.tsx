@@ -67,7 +67,7 @@ const Ruler: React.FC = () => {
                 <div
                     key={`label-${i}`}
                     style={{
-                        position: 'absolute',
+                        position: 'relative',
                         color: isMultipleOfHundred ? 'red' : 'black',
                         top: isMultipleOfHundred ? `${i * 10}px` : '0',
                         left: isMultipleOfHundred ? '0' : `${i * 10}px`,
