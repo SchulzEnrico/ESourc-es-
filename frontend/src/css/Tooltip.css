@@ -1,0 +1,104 @@
+/* CSS für den Tooltip-Button */
+.tooltip-btn {
+    position: relative;
+}
+
+/* Standardposition für Tooltips */
+.tooltip-btn::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    white-space: pre-line;
+    padding: 5px;
+    font-size: x-small;
+    font-weight: bold;
+    display: flex;
+    color: var(--color-41);
+    background-color: var(--color-2);
+    border: solid 1px var(--color-4);
+    border-radius: 7px;
+    box-shadow: inset 6px 6px 12px #111111, inset -6px -6px 12px #3b3b3b;
+    z-index: 999999999999 !important;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Tooltip nicht interaktiv */
+
+}
+
+/* Tooltip erscheint beim Hover */
+.tooltip-btn:hover::after {
+    opacity: 1;
+}
+
+/* CSS für den Tooltip-Container */
+.tooltip-cont {
+    position: relative;
+    display: inline-block;
+}
+
+/* Tooltip-Container styling */
+.tooltip-cont::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    white-space: pre-line;
+    padding: 5px;
+    font-size: x-small;
+    font-weight: bold;
+    display: flex;
+    color: var(--color-41);
+    background-color: var(--color-2);
+    border: solid 1px var(--color-4);
+    border-radius: 7px;
+    box-shadow: inset 6px 6px 12px #111111, inset -6px -6px 12px #3b3b3b;
+    z-index: 999999999999 !important;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Damit der Tooltip nicht interaktiv ist */
+}
+
+/* Bei Hover über den Tooltip-Container wird der Tooltip angezeigt */
+.tooltip-cont:hover::after {
+    opacity: 1;
+}
+
+
+.tt_n::after {
+    top: calc(100% - 70px);
+    left: 0;
+}
+
+.tt_nw::after {
+    top: calc(-100% - 5px);
+    right: 0;
+}
+
+.tt_e::after {
+    top: 0;
+    left: calc(100% + 10px);
+}
+
+.tt_sw::after {
+    top: calc(100% + 5px);
+    right: 0;
+}
+
+.tt_s::after {
+    bottom: calc(-100% - 5px);
+    left: 0;
+}
+
+.tt_se::after {
+    top: calc(100% + 5px);
+    left: calc(100% + 5px);
+}
+
+.tt_w::after {
+    top: calc(100% + 1px);
+    right: calc(100% + 1px);
+}
+
+.tt_ne::after {
+    top: calc(-100% - 15px);
+    right: calc(-100% - 100px);
+}
+
+

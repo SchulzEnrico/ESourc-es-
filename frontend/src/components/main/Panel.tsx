@@ -67,7 +67,7 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
 
     const handlePanelHover = () => {
         const hoverTextMap: { [key: string]: string } = {
-            'ins_pro': 'INSPIRATION  ~  PROJECTS',
+            'ins_pro': 'INSPIRATIONS  ~  PROJECTS',
             'snip_gen': 'SNIPPETS  ~  GENERATORS',
             'development': 'DEVELOPMENT  ~  EDITING  ~  CREATION',
             'know_guide': 'KNOWLEDGE  ~  GUIDELINES',
@@ -75,12 +75,10 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
             'project': 'PROJECT MANAGEMENT  ~  TOOLS',
             'personal': 'PERSONALLY  ~  INDIVIDUAL',
         };
-        setHoverText(hoverTextMap[className] || '');
+        const hoverText = `Linked:\n${hoverTextMap[className] || ''}`;
+        setHoverText(hoverText);
     };
 
-    const handleNavigationButtonHover = () => {
-        setHoverText('Linked Panel Topics');
-    };
 
     const handleInputLinkChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setInputLink(event.target.value);
@@ -118,15 +116,10 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
     };
 
     return (
-        <Container
-            className={`panel-items-container ${className}`}
-            title={hoverText}
-            onMouseEnter={handlePanelHover}
-            onMouseLeave={() => setHoverText('')}
-        >
-            <button title={"Clear display"}
+        <Container className={`panel-items-container `}>
+            <button data-tooltip={"Clear display"}
                     id={"clear-iframe-btn"}
-                    className={"iframe-handler-btn"}
+                    className={"iframe-handler-btn tooltip-btn tt_e"}
                     onClick={clearIframe}>
                 <GrClear/>
             </button>
@@ -142,27 +135,18 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
                 <div className={"loaded-bookmark-element"}>
                     <p id={"second-next-displayed-bookmark"}>{bookmarks[secondNextBookmarkIndex]?.title}</p></div>
             </div>
-            <div className={"prev-prior-handler"}>
-                <button title={"Previous bookmark"}
-                        className={"iframe-handler-btn"}
-                        onClick={() => navigateBookmarks('prior')}>
-                    <FaArrowLeft/>
-                </button>
-                <button title={"Prior bookmark"}
-                        className={"iframe-handler-btn next-bookmark-btn"}
-                        onClick={() => navigateBookmarks('next')}>
-                    <FaArrowRight/>
-                </button>
-            </div>
+
             <div
                 className="panel-controls"
                 onMouseEnter={handlePanelHover}
                 onMouseLeave={() => setHoverText('')}
             >
                 <button
-                    className={'panel-menu-btn'}
+                    className={'panel-menu-btn ${className} tooltip-btn tt_ne'}
                     onClick={() => setShowNavigationModal(true)}
-                    onMouseEnter={handleNavigationButtonHover}
+                    onMouseEnter={handlePanelHover}
+                    data-tooltip={hoverText}
+                    onMouseLeave={() => setHoverText('')}
                 >
                     <TiThMenu/>
                 </button>
@@ -186,31 +170,34 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
                     closeModal={() => setShowNavigationModal(false)}
                     isExternal={false}
                 />
-                <div className={"temporary-input-area"}>
+                <div
+                    className={"temporary-input-area"}>
                     <form id={"panel-temporary-link-input"}
                           onSubmit={handleSubmit}>
+                        <div data-tooltip={"Insert temporary link"}
+                             className={"tooltip-cont tt_n"}>
                         <input
-                            title={"Insert the link to temporarily display your desired website here and press Enter"}
-                            className={"form-input shadow--sunken"}
+                            className={"form-input shadow--sunken tooltip-cont tt_n"}
                             type="text"
                             value={inputLink}
                             onChange={handleInputLinkChange}
                             placeholder="Paste URL & press &#x23CE;"
                         />
-                        <button type="submit"
-                                style={{display: 'none'}}>Submit
+                        </div>
+                        <button
+                            type="submit"
+                            style={{display: 'none'}}>Submit
                         </button>
                     </form>
-                    <button title={"Copy to clipboard"}
-                            id={"copy-to-clipboard-btn"}
-                            className={"iframe-handler-btn"}
+                    <button data-tooltip={"Copy to clipboard"}
+                            className={"iframe-handler-btn copy-to-clipboard-btn tooltip-cont tt_n"}
                             onClick={handleCopyToClipboard}>
                         <HiOutlineClipboardCopy/>
                     </button>
                 </div>
             </div>
             <div className="iframe-bounding shadow--ridge">
-                {showRuler && <Ruler/>} {/* Ruler anzeigen, wenn showRuler true ist */}
+                {showRuler && <Ruler/>}
                 <iframe
                     ref={iframeRef}
                     title={className}
@@ -222,11 +209,25 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
                     <p>Y-{iframeRef.current?.offsetHeight}px</p>
                 </div>
             </div>
+            <div className={"prev-prior-handler "}>
+                <button
+                    data-tooltip={"Previous bookmark"}
+                    className={"iframe-handler-btn tooltip-btn tt_w"}
+                    onClick={() => navigateBookmarks('prior')}>
+                    <FaArrowLeft/>
+                </button>
+                <button data-tooltip={"Next bookmark"}
+                        className={"iframe-handler-btn next-bookmark-btn tooltip-btn tt_w"}
+                        onClick={() => navigateBookmarks('next')}>
+                    <FaArrowRight/>
+                </button>
+            </div>
             <button
-                className={"ruler-btn iframe-handler-btn"}
+                data-tooltip={"Toggle ruler"}
+                className={"ruler-btn iframe-handler-btn tooltip-btn tt_n"}
                 onClick={() => setShowRuler(!showRuler)}>
-                <LuRuler id={"ruler-icon"} />
-            </button> {/* Button zum Ein-/Ausschalten des Rulers */}
+                <LuRuler id={"ruler-icon"}/>
+            </button>
         </Container>
     );
 };

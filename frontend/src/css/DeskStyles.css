@@ -163,12 +163,12 @@ iframe {
 
 #size-indicator {
     position: absolute;
-    bottom: -31px;
-    right: -2px;
+    bottom: -30px;
+    right: -10px;
     margin: 0 5px 4px 0;
     font-size: small;
     font-family: monospace;
-    font-weight: bold;
+    font-weight: bolder;
     color: var(--color-3);
 }
 

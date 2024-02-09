@@ -167,7 +167,7 @@ function Desk() {
     return (
         <div className="esources-desk">
             <button
-                className={"tooltip-btn"}
+                className={"tooltip-btn tt_se"}
                 data-tooltip={"Reset dashboard dimensions"}
                 id={"reset-all-dimensions-btn"}
                 onClick={resetAll}>
@@ -182,8 +182,8 @@ function Desk() {
                 id="garage"
             >
                 <button
-                    title={"Reset width"}
-                    className={"reset-width-btn"}
+                    data-tooltip={"Reset width"}
+                    className={"reset-width-btn tooltip-btn tt_e"}
                     onClick={() => resetWidth('garage')}>
                     <PiArrowFatLinesLeftBold/>
                 </button>
@@ -215,13 +215,13 @@ function Desk() {
                 </div>
                 <div className={"panel-proportions-control"}>
                     <button
-                        className={"tooltip-btn"}
+                        className={"tooltip-btn tt_w"}
                         data-tooltip={"Toggle panel height 9/10"}
                         onClick={() => handlePanelToggle('ins_pro', insProHeight, snipGenHeight)}>
                         <TbArrowAutofitHeight/>
                     </button>
                     <button
-                        className={"tooltip-btn"}
+                        className={"tooltip-btn tt_w"}
                         data-tooltip={"Reset panel proportions"}
                         onClick={handleEqualizeHeight}>
                         <TiArrowSync/>
@@ -238,8 +238,8 @@ function Desk() {
                 id="workstation"
             >
                 <button
-                    title={"Reset width"}
-                    className={"reset-width-btn"}
+                    data-tooltip={"Reset width"}
+                    className={"reset-width-btn tooltip-btn tt_e"}
                     onClick={() => resetWidth('workstation')}>
                     <PiArrowFatLinesLeftBold/>
                 </button>
@@ -261,8 +261,8 @@ function Desk() {
                 id="library"
             >
                 <button
-                    title={"Reset width"}
-                    className={"reset-width-btn"}
+                    data-tooltip={"Reset width"}
+                    className={"reset-width-btn tooltip-btn tt_e"}
                     onClick={() => resetWidth('library')}>
                     <PiArrowFatLinesLeftBold/>
                 </button>
@@ -296,13 +296,13 @@ function Desk() {
 
                 <div className={"panel-proportions-control"}>
                     <button
-                        className={"tooltip-btn"}
+                        className={"tooltip-btn tt_w"}
                         data-tooltip={"Toggle panel height 9/10"}
                         onClick={() => handlePanelToggle('know_guide', knowGuideHeight, lipDocHeight)}>
                         <TbArrowAutofitHeight/>
                     </button>
                     <button
-                        className={"tooltip-btn"}
+                        className={"tooltip-btn tt_w"}
                         data-tooltip={"Reset panel proportions"}
                         onClick={handleEqualizeHeight}>
                         <TiArrowSync/>
@@ -319,8 +319,8 @@ function Desk() {
                 id="managements"
             >
                 <button
-                    title={"Reset width"}
-                    className={"reset-width-btn"}
+                    data-tooltip={"Reset width"}
+                    className={"reset-width-btn tooltip-btn tt_e"}
                     onClick={() => resetWidth('managements')}>
                     <PiArrowFatLinesLeftBold/>
                 </button>
@@ -353,13 +353,13 @@ function Desk() {
 
                 <div className={"panel-proportions-control"}>
                     <button
-                        className={"tooltip-btn"}
+                        className={"tooltip-btn tt_w"}
                         data-tooltip={"Toggle panel height 9/10"}
                         onClick={() => handlePanelToggle('project', projectHeight, personalHeight)}>
                         <TbArrowAutofitHeight/>
                     </button>
                     <button
-                        className={"tooltip-btn"}
+                        className={"tooltip-btn tt_w"}
                         data-tooltip={"Reset panel proportions"}
                         onClick={handleEqualizeHeight}>
                         <TiArrowSync/>
@@ -372,4 +372,3 @@ function Desk() {
 }
 
 export default Desk;
-

@@ -21,11 +21,14 @@ const Header: React.FC<HeaderProps> = () => {
 
     return (
         <header>
-            <div id={"heading"} className={"align-items-baseline"}>
+            <div id={"heading"}
+                 className={"align-items-baseline"}>
                 <h1 className={"modal-{sm}"}>Sourc(es)</h1>
             </div>
             <form id={"google-search"} onSubmit={handleSearchSubmit}>
-                <button title={"Search on Google"} className={"footer-btn google-btn"} type="submit">
+                <button data-tooltip={"Search on Google"}
+                        className={"footer-btn google-btn tooltip-btn tt_w"}
+                        type="submit">
                     <FcGoogle id={"google-icon"}/>
                 </button>
                 <input className={"search-input shadow--inset"}
@@ -36,7 +39,7 @@ const Header: React.FC<HeaderProps> = () => {
                 />
             </form>
             <Button
-                className={"external-links-btn"}
+                className={"external-links-btn tooltip-btn tt_sw"}
                 data-tooltip={"External bookmarks"}
                 onClick={() => setShowNavigationModal(true)}
             >
