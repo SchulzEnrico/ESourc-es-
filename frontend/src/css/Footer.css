@@ -56,6 +56,7 @@ footer {
 }
 
 .clock {
+    width: fit-content;
     margin: 0 15px;
     font-weight: bold;
     background-image: -webkit-linear-gradient(270deg, #808080 53%, #808080 54%, #c0c0c0 64%, #808080 72%);
@@ -65,15 +66,17 @@ footer {
 }
 
 .clock-date {
-    font-size: xx-small;
+    font-size: x-small;
     margin: 0;
+    padding: 0 2px 0 0;
 }
 
 .clock-time {
-    font-size: larger;
-    margin: -5px;
+    font-size: large;
+    margin: -7px;
     width: fit-content;
-    padding: 0 5px;
+    padding: 0 6px;
+    letter-spacing: 2px;
 }
 .AI-area {
     display: flex;

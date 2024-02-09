@@ -20,7 +20,7 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick,
                                                    panelName,
                                                    isExternal,
                                                    showModal,
-                                                   closeModal
+                                                   closeModal,
 }) => {
     const tempBookmark = useRef<BookmarkDTO | null>(null);
     const [showEditModal, setShowEditModal] = useState(false);
@@ -179,12 +179,16 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick,
         );
 
         return (
+
             <ButtonGroup className={"nav-group"}>
-                <Button id={"close-navigation-btn"} onClick={closeModal}>
+                <Button
+                    id={"close-navigation-btn"}
+                    onClick={closeModal}>
                     <VscEyeClosed id={"close-navigation-icon"} />
                 </Button>
                 {
                     uniqueCategories.map((category) => (
+
                         <DropdownButton
                             as={ButtonGroup}
                             key={category}
@@ -193,6 +197,7 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick,
                             title={category}
                             drop={isExternal ? "down-centered" : "up-centered"}
                         >
+
                             <div className="dropdown-container">
                                 {renderDropdownItems(category)}
                             </div>

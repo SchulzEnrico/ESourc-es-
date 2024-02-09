@@ -1,6 +1,8 @@
 .add-icon {
     font-size: 1.5rem;
     margin: .05rem .2rem;
+    scale: 1.5;
+    Color: var(--color-51);
 }
 .close-icon {
     margin: .15rem 0;
@@ -68,11 +70,13 @@
 
 #close-navigation-icon {
     margin: 0 0 0 1px;
-    scale: 1.5;
+    scale: 2;
     color: var(--color-31);
 }
 
 #ruler-icon {
-    rotate: 315deg;
+    rotate: -315deg;
     scale: 1.1;
+    margin: 0;
+    color: var(--color-41);
 }
