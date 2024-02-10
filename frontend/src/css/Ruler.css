@@ -21,3 +21,24 @@
     font-size: 12px;
     font-weight: bold;
 }
+
+.color-slider {
+    position: absolute;
+    width: fit-content;
+    border: solid 1px var(--color-4);
+    border-radius: 25px;
+    height: 10px;
+    bottom: 2px;
+    right: 0;
+}
+
+.slider {
+    position: relative;
+    top: -13px;
+    width: 100px;
+    height: 0;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+    transition: 0.2s;
+}

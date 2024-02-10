@@ -23,6 +23,7 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
     const [inputLink, setInputLink] = useState('');
     const [showRuler, setShowRuler] = useState(false); // Zustand für Ruler ein-/ausschalten
 
+
     useEffect(() => {
         const handleIframeLoad = () => {
             const iframeDocument = iframeRef.current?.contentDocument;
@@ -176,13 +177,13 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
                           onSubmit={handleSubmit}>
                         <div data-tooltip={"Insert temporary link"}
                              className={"tooltip-cont tt_n"}>
-                        <input
-                            className={"form-input shadow--sunken tooltip-cont tt_n"}
-                            type="text"
-                            value={inputLink}
-                            onChange={handleInputLinkChange}
-                            placeholder="Paste URL & press &#x23CE;"
-                        />
+                            <input
+                                className={"form-input shadow--sunken tooltip-cont tt_n"}
+                                type="text"
+                                value={inputLink}
+                                onChange={handleInputLinkChange}
+                                placeholder="Paste URL & press &#x23CE;"
+                            />
                         </div>
                         <button
                             type="submit"

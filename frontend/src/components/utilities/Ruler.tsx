@@ -1,11 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
 import '../../css/Ruler.css'; // Importieren Sie Ihre CSS-Datei
+import ColorSlider from './ColorSlider';
 
 const Ruler: React.FC = () => {
-    const colors = ['black', 'brown', 'blue', 'green', 'red', 'orange', 'yellow', 'white'];
+    const initialColors = ['black', 'brown', 'blue', 'green', 'red', 'orange', 'yellow', 'white'];
     const [currentColorIndex, setCurrentColorIndex] = useState(0);
 
     const rulerRef = useRef<HTMLDivElement>(null);
+
+    const handleColorChange = (newIndex: number) => {
+        setCurrentColorIndex(newIndex);
+    };
 
     useEffect(() => {
         const handleWheelEvent = (event: WheelEvent) => {
@@ -14,8 +19,8 @@ const Ruler: React.FC = () => {
             setCurrentColorIndex((prevIndex) => {
                 let newIndex = prevIndex + delta;
                 if (newIndex < 0) {
-                    newIndex = colors.length - 1;
-                } else if (newIndex >= colors.length) {
+                    newIndex = initialColors.length - 1;
+                } else if (newIndex >= initialColors.length) {
                     newIndex = 0;
                 }
                 return newIndex;
@@ -29,7 +34,7 @@ const Ruler: React.FC = () => {
                 rulerElement.removeEventListener('wheel', handleWheelEvent);
             };
         }
-    }, [colors]);
+    }, []);
 
     const rulerStyle: React.CSSProperties = {
         position: 'absolute',
@@ -43,11 +48,11 @@ const Ruler: React.FC = () => {
     const rulerLine: React.CSSProperties = {
         position: 'absolute',
         opacity: 0.5,
-        backgroundColor: colors[currentColorIndex],
+        backgroundColor: initialColors[currentColorIndex],
     };
 
     const rulerLines: JSX.Element[] = [];
-    for (let i = 0; i < 2000; i++) { // Adjust this loop limit as per your requirement
+    for (let i = 0; i < 2000; i++) {
         const isMultipleOfFive = i % 5 === 0;
         const isMultipleOfTen = i % 10 === 0;
 
@@ -84,6 +89,11 @@ const Ruler: React.FC = () => {
 
     return (
         <div className={"ruler"} style={rulerStyle} ref={rulerRef}>
+            <ColorSlider
+                colors={initialColors}
+                currentColorIndex={currentColorIndex}
+                setCurrentColorIndex={handleColorChange}
+            />
             {rulerLines}
         </div>
     );
