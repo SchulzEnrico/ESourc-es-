@@ -21,11 +21,11 @@ const Header: React.FC<HeaderProps> = () => {
 
     return (
         <header>
-            <div id={"heading"}
-                 className={"align-items-baseline"}>
+            <div id={"heading"}>
                 <h1 className={"modal-{sm}"}>Sourc(es)</h1>
             </div>
-            <form id={"google-search"} onSubmit={handleSearchSubmit}>
+            <form id={"google-search"}
+                  onSubmit={handleSearchSubmit}>
                 <button data-tooltip={"Search on Google"}
                         className={"footer-btn google-btn tooltip-btn tt_w"}
                         type="submit">
@@ -43,10 +43,11 @@ const Header: React.FC<HeaderProps> = () => {
                 data-tooltip={"External bookmarks"}
                 onClick={() => setShowNavigationModal(true)}
             >
-                <BsBookmarksFill />
-            </Button >
+                <BsBookmarksFill/>
+            </Button>
             <div data-bs-theme={"dark"}>
-                <Navigation isExternal={true} showModal={showNavigationModal}
+                <Navigation isExternal={true}
+                            showModal={showNavigationModal}
                             closeModal={() => setShowNavigationModal(false)}/>
             </div>
         </header>

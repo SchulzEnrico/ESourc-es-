@@ -173,6 +173,7 @@ function Desk() {
                 onClick={resetAll}>
                 <DashboardIcon className={"dashboard-icon-header"}/>
             </button>
+            <div className={"h1-underline"}></div>
             <CustomResizableBox
                 className="garage row"
                 width={garageWidthPixels}

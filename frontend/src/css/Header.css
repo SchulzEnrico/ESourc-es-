@@ -42,8 +42,11 @@ header {
 }
 
 #heading {
-    display: flex;
-    margin: 8px -55px 5px 62px;
+    position: sticky;
+    margin-bottom: 5px;
+    left: 86px;
+    z-index: 9999999999999;
+    cursor: default;
 }
 
 #google-search {
