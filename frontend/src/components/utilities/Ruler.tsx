@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect, Fragment } from 'react';
 import '../../css/Ruler.css'; // Importieren Sie Ihre CSS-Datei
 import ColorSlider from './ColorSlider';
+import {TbListNumbers} from "react-icons/tb";
 
 const Ruler: React.FC = () => {
     const initialColors = ['darkgray', 'black', 'brown', 'blue', 'green', 'red', 'orange', 'yellow', 'white'];
@@ -142,7 +143,12 @@ const Ruler: React.FC = () => {
                 currentColorIndex={currentColorIndex}
                 setCurrentColorIndex={handleColorChange}
             />
-            <button onClick={toggleLabels}>Toggle Labels</button>
+            <button
+                data-tooltip={"Toggle ruler labels"}
+                className={"toggle-labels-btn tooltip-btn tt_nw"}
+                onClick={toggleLabels}>
+                <TbListNumbers />
+            </button>
             {/* Button zum Ein- und Ausschalten der Beschriftungen */}
             {rulerLines}
             {rulerLabelsHorizontal}
