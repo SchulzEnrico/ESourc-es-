@@ -358,3 +358,11 @@ button:focus-visible {
     bottom: -41px;
     right: 67px;
 }
+
+.toggle-labels-btn {
+    position: absolute;
+    bottom: 14px;
+    padding: 1px 2px;
+    right: -1px;
+    scale: .9;
+}
