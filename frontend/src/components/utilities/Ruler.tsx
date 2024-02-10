@@ -5,7 +5,7 @@ import ColorSlider from './ColorSlider';
 const Ruler: React.FC = () => {
     const initialColors = ['darkgray', 'black', 'brown', 'blue', 'green', 'red', 'orange', 'yellow', 'white'];
     const [currentColorIndex, setCurrentColorIndex] = useState(0);
-    const [showLabels, setShowLabels] = useState(true); // Zustand für Beschriftungen hinzugefügt
+    const [showLabels, setShowLabels] = useState(false); // Zustand für Beschriftungen hinzugefügt
 
     const rulerRef = useRef<HTMLDivElement>(null);
 
@@ -64,8 +64,9 @@ const Ruler: React.FC = () => {
                     style={{
                         position: 'absolute',
                         top: '5px',
-                        left: `${i * (1 * stepSize / 100)}px`, // Positionierung basierend auf der Anzahl der Schritte
+                        left: `${i * (stepSize / 100)}px`, // Positionierung basierend auf der Anzahl der Schritte
                         fontSize: '10px',
+                        color: initialColors[currentColorIndex], // Dynamische Farbe entsprechend dem aktuellen Farbindex
                         visibility: showLabels ? 'visible' : 'hidden',
                     }}
                 >
@@ -81,9 +82,10 @@ const Ruler: React.FC = () => {
                     className="ruler-label"
                     style={{
                         position: 'absolute',
-                        top: `${i * (1 * stepSize / 100)}px`, // Positionierung basierend auf der Anzahl der Schritte
+                        top: `${i * (stepSize / 100)}px`, // Positionierung basierend auf der Anzahl der Schritte
                         left: '5px', // Anpassung für vertikale Beschriftungen
                         fontSize: '10px',
+                        color: initialColors[currentColorIndex], // Dynamische Farbe entsprechend dem aktuellen Farbindex
                         visibility: showLabels ? 'visible' : 'hidden',
                     }}
                 >
@@ -92,7 +94,6 @@ const Ruler: React.FC = () => {
             );
         }
     }
-
 
     const rulerLines: JSX.Element[] = [];
     for (let i = 0; i < 2000; i++) {
