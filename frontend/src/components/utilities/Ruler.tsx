@@ -1,11 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, Fragment } from 'react';
 import '../../css/Ruler.css'; // Importieren Sie Ihre CSS-Datei
 import ColorSlider from './ColorSlider';
 
 const Ruler: React.FC = () => {
     const initialColors = ['darkgray', 'black', 'brown', 'blue', 'green', 'red', 'orange', 'yellow', 'white'];
     const [currentColorIndex, setCurrentColorIndex] = useState(0);
-    const [showLabels, setShowLabels] = useState(false); // Zustand für Beschriftungen hinzugefügt
+    const [showLabels, setShowLabels] = useState(false); // Zustand für Beschriftungen hinzugefügt und auf false gesetzt
 
     const rulerRef = useRef<HTMLDivElement>(null);
 
@@ -54,6 +54,7 @@ const Ruler: React.FC = () => {
 
     const rulerLabelsHorizontal: JSX.Element[] = [];
     const rulerLabelsVertical: JSX.Element[] = [];
+    const rulerLines: JSX.Element[] = [];
 
     for (let i = 0; i <= 2000; i += stepSize) {
         if (i !== 0) { // Überspringen der Beschriftung "0"
@@ -95,7 +96,6 @@ const Ruler: React.FC = () => {
         }
     }
 
-    const rulerLines: JSX.Element[] = [];
     for (let i = 0; i < 2000; i++) {
         const isMultipleOfFive = i % 5 === 0;
         const isMultipleOfTen = i % 10 === 0;
@@ -103,35 +103,33 @@ const Ruler: React.FC = () => {
         const lineHeight = isMultipleOfTen ? 20 : isMultipleOfFive ? 10 : 5;
 
         rulerLines.push(
-            <div
-                key={i}
-                className="ruler-line"
-                style={{
-                    position: 'absolute',
-                    opacity: 0.5,
-                    backgroundColor: initialColors[currentColorIndex],
-                    width: '1px',
-                    height: `${lineHeight}px`,
-                    top: '0',
-                    left: `${i * 10}px`,
-                }}
-            />
-        );
-
-        rulerLines.push(
-            <div
-                key={`vertical-${i}`}
-                className="ruler-line"
-                style={{
-                    position: 'absolute',
-                    opacity: 0.5,
-                    backgroundColor: initialColors[currentColorIndex],
-                    width: `${lineHeight}px`,
-                    height: '1px',
-                    top: `${i * 10}px`,
-                    left: '0',
-                }}
-            />
+            <Fragment key={i}>
+                <div
+                    className="ruler-line"
+                    style={{
+                        position: 'absolute',
+                        opacity: 0.5,
+                        backgroundColor: initialColors[currentColorIndex],
+                        width: '1px',
+                        height: `${lineHeight}px`,
+                        top: '0',
+                        left: `${i * 10}px`,
+                    }}
+                />
+                <div
+                    key={`vertical-${i}`}
+                    className="ruler-line"
+                    style={{
+                        position: 'absolute',
+                        opacity: 0.5,
+                        backgroundColor: initialColors[currentColorIndex],
+                        width: `${lineHeight}px`,
+                        height: '1px',
+                        top: `${i * 10}px`,
+                        left: '0',
+                    }}
+                />
+            </Fragment>
         );
     }
 
