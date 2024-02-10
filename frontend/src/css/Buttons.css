@@ -305,9 +305,9 @@ button:focus-visible {
     background-color: transparent;
     border: none;
     box-shadow: none;
-    top: -12px;
-    left: 8px;
-    scale: 1.1;
+    top: -13px;
+    left: 20px;
+    scale: 1.12;
 }
 
 .prev-prior-handler {
