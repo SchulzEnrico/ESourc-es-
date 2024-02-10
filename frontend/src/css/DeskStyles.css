@@ -184,12 +184,12 @@ iframe {
 
 .h1-underline {
     position: fixed;
-    border-radius: 10px;
+    border-radius: 50px;
     border: solid 1px #000000;
     margin: 0;
     top: 45px;
     left: 77px;
-    width: 100px;
+    width: 103px;
     filter: grayscale(100%)
     brightness(50%)
     saturate(70%)

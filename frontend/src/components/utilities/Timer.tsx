@@ -94,7 +94,10 @@ const Timer: React.FC = () => {
 
     return (
         <div className={'timer'}>
-            <button className={"footer-btn"} onClick={() => setShowTimerModal(true)}>
+            <button
+                data-tooltip={"Open timer"}
+                className={"footer-btn tooltip-btn tt_n"}
+                onClick={() => setShowTimerModal(true)}>
                 <IoIosTimer id={'timer-icon'} />
             </button>
 

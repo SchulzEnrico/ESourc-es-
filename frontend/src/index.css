@@ -122,14 +122,9 @@ body::-webkit-scrollbar-thumb {
   border-radius: 15px;
   box-shadow: inset 6px 6px 12px #111111,
               inset -6px -6px 12px #3b3b3b;
+
 }
 
-.dc-github{
-  width: fit-content;
-  display: flex;
-  flex-direction: row;
-  padding: 5px 10px 5px 0;
-}
 
 .dropdown-button-container {
   display: flex;
