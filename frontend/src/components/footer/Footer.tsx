@@ -57,7 +57,7 @@ const Footer = () => {
 
             <DropdownButton id={"github-dropdown"}
                             title={<ImGithub id={"github-icon"} />}
-                            className="footer-item"
+                            className="ftooltip-btn tt_ne"
                             show={open}
                             onToggle={() => setOpen(!open)}>
                 <div className={"dropdown-container"}>
@@ -67,7 +67,7 @@ const Footer = () => {
                     href="https://github.com/SchulzEnrico"
                     target="_blank"
                     onClick={handleCloseMenu}>
-                    <GoBook className={"footer-icon logo"}/>
+                    <GoBook className={"github-icon logo"}/>
                 </Dropdown.Item>
                 <Dropdown.Item
                     data-tooltip={"Github Repositories"}
@@ -75,7 +75,7 @@ const Footer = () => {
                     href="https://github.com/SchulzEnrico?tab=repositories"
                     target="_blank"
                     onClick={handleCloseMenu}>
-                    <GoRepo className={"footer-icon logo"}/>
+                    <GoRepo className={"github-icon logo"}/>
                 </Dropdown.Item>
                 <Dropdown.Item
                     data-tooltip={"Github Code"}
@@ -83,7 +83,7 @@ const Footer = () => {
                     href="https://github.com/SchulzEnrico/ESourc-es-"
                     target="_blank"
                     onClick={handleCloseMenu}>
-                    <GoCode className={"footer-icon logo"}/>
+                    <GoCode className={"github-icon logo"}/>
                 </Dropdown.Item>
                 <Dropdown.Item
                     data-tooltip={"Github Issues"}
@@ -91,7 +91,7 @@ const Footer = () => {
                     href="https://github.com/SchulzEnrico/ESourc-es-/issues"
                     target="_blank"
                     onClick={handleCloseMenu}>
-                    <GoIssueOpened className={"footer-icon logo"}/>
+                    <GoIssueOpened className={"github-icon logo"}/>
                 </Dropdown.Item>
                 <Dropdown.Item
                     data-tooltip={"Github Pull Requests"}
@@ -99,7 +99,7 @@ const Footer = () => {
                     href="https://github.com/SchulzEnrico/ESourc-es-/pulls"
                     target="_blank"
                     onClick={handleCloseMenu}>
-                    <GoGitPullRequest className={"footer-icon logo"}/>
+                    <GoGitPullRequest className={"github-icon logo"}/>
                 </Dropdown.Item>
                 <Dropdown.Item
                     data-tooltip={"Github Actions"}
@@ -107,7 +107,7 @@ const Footer = () => {
                     href="https://github.com/SchulzEnrico/ESourc-es-/actions"
                     target="_blank"
                     onClick={handleCloseMenu}>
-                    <PiPlayCircleLight className={"footer-icon logo"}/>
+                    <PiPlayCircleLight className={"github-icon logo"}/>
                 </Dropdown.Item>
                 <Dropdown.Item
                     data-tooltip={"Github Projects"}
@@ -115,7 +115,7 @@ const Footer = () => {
                     href="https://github.com/users/SchulzEnrico/projects/3"
                     target="_blank"
                     onClick={handleCloseMenu}>
-                    <GoTable className={"footer-icon logo"}/>
+                    <GoTable className={"github-icon logo"}/>
                 </Dropdown.Item>
                 </div>
             </DropdownButton>

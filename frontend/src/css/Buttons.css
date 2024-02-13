@@ -392,3 +392,7 @@ button:focus-visible {
     right: -4px;
     scale: .9;
 }
+
+#github-dropdown {
+    width: 35px;
+}
