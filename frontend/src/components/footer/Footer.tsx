@@ -2,12 +2,11 @@ import "../../css/Footer.css";
 import { Dropdown } from "react-bootstrap";
 import { useState } from "react";
 import { GoBook, GoCode, GoGitPullRequest, GoIssueOpened, GoRepo, GoTable } from "react-icons/go";
-import { PiPlayCircleLight } from "react-icons/pi";
+import {PiPlayCircleLight, PiStarFourDuotone} from "react-icons/pi";
 import { ImGithub } from "react-icons/im";
 import Clock from "../utilities/Clock.tsx";
 import Timer from "../utilities/Timer.tsx";
 import {SiMicrosoftbing, SiOpenai} from "react-icons/si";
-import {RiBardLine} from "react-icons/ri";
 import {MdGrain} from "react-icons/md";
 import {TfiSharethis} from "react-icons/tfi";
 
@@ -35,9 +34,9 @@ const Footer = () => {
                         <MdGrain id={"blackbox-icon"} title={"BLACKBOX AI"}/>
                     </button>
                 </a>
-                <a href="https://bard.google.com/chat" target="_blank">
-                    <button data-tooltip={"Bard Google"} className={"footer-btn tooltip-btn tt_n"} type="button">
-                        <RiBardLine id={"bard-icon"} title={"Bard Google"}/>
+                <a href="https://gemini.google.com/app" target="_blank">
+                    <button data-tooltip={"Gemeni"} className={"footer-btn tooltip-btn tt_n"} type="button">
+                        <PiStarFourDuotone id={"gemini-icon"} title={"Bard Google"}/>
                     </button>
                 </a>
                 <a href="https://www.bing.com/search?q=Bing+AI&showconv=1&FORM=hpcodx"

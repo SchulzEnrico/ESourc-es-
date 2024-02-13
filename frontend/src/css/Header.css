@@ -22,24 +22,6 @@ header {
                  inset -8px -8px 16px #3a3a3a;
 }
 
-.dashboard-icon-header {
-    height: 34px;
-    margin: 18px 5px 0 10px;
-    filter: grayscale(100%)
-    brightness(100%)
-    saturate(100%)
-    invert(10%)
-    sepia(98%)
-    saturate(1500%)
-    hue-rotate(354deg)
-    brightness(185%)
-    contrast(100%)
-    grayscale(0)
-    brightness(100%)
-    hue-rotate(0deg)
-    invert(0%)
-    sepia(0%);
-}
 
 #heading {
     position: sticky;
@@ -47,6 +29,20 @@ header {
     left: 86px;
     z-index: 9999999999999;
     cursor: default;
+}
+
+.header-brackets {
+    color: #000000;
+    filter: grayscale(100%)
+    brightness(50%)
+    saturate(200%)
+    invert(10%)
+    sepia(98%)
+    saturate(1500%)
+    hue-rotate(354deg)
+    brightness(135%)
+    contrast(100%);
+    z-index: 99999;
 }
 
 #google-search {

@@ -22,7 +22,7 @@ const Header: React.FC<HeaderProps> = () => {
     return (
         <header>
             <div id={"heading"}>
-                <h1 className={"modal-{sm}"}>Sourc(es)</h1>
+                <h1 className={"modal-{sm}"}><span className={"h1-letters"}>Sourc</span><span className={"header-brackets"}>(</span><span className={"h1-letters"}>es</span><span className={"header-brackets"}>)</span></h1>
             </div>
             <form id={"google-search"}
                   onSubmit={handleSearchSubmit}>

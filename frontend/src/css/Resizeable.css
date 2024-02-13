@@ -16,10 +16,8 @@
 }
 
 .react-resizable-handle-e {
-
- /*   border: solid green 1px;*/
-
     background-image: url(../assets/resize.png);
+    data-tooltip: "Resize";
     transform: rotate(0deg);
     right: -4px;
     top: 51.6%;

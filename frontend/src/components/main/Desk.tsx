@@ -186,7 +186,7 @@ function Desk() {
                     data-tooltip={"Reset width"}
                     className={"reset-width-btn tooltip-btn tt_e"}
                     onClick={() => resetWidth('garage')}>
-                    <PiArrowFatLinesLeftBold/>
+                    <PiArrowFatLinesLeftBold className={"reset-width-icon"}/>
                 </button>
                 <div className="inner-panels-wrapper">
                     <div className="ins_pro panel shadow--raised col">
@@ -242,7 +242,7 @@ function Desk() {
                     data-tooltip={"Reset width"}
                     className={"reset-width-btn tooltip-btn tt_e"}
                     onClick={() => resetWidth('workstation')}>
-                    <PiArrowFatLinesLeftBold/>
+                    <PiArrowFatLinesLeftBold className={"reset-width-icon"}/>
                 </button>
 
 
@@ -265,7 +265,7 @@ function Desk() {
                     data-tooltip={"Reset width"}
                     className={"reset-width-btn tooltip-btn tt_e"}
                     onClick={() => resetWidth('library')}>
-                    <PiArrowFatLinesLeftBold/>
+                    <PiArrowFatLinesLeftBold className={"reset-width-icon"}/>
                 </button>
                 <div className="inner-panels-wrapper">
                     <div className="know_guide panel shadow--raised col">
@@ -323,7 +323,7 @@ function Desk() {
                     data-tooltip={"Reset width"}
                     className={"reset-width-btn tooltip-btn tt_e"}
                     onClick={() => resetWidth('managements')}>
-                    <PiArrowFatLinesLeftBold/>
+                    <PiArrowFatLinesLeftBold className={"reset-width-icon"}/>
                 </button>
                 <div className="inner-panels-wrapper">
                     <div className="project panel shadow--raised col">

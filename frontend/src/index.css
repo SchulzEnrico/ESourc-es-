@@ -25,6 +25,7 @@
   --color-2: #333334;
   --color-21: #414144;
   --color-22: #4a4a4d;
+  --color-23: #626265;
   --color-3-3: #0a0000;
   --color-3-2: #1c0000;
   --color-3-1: #440000;
@@ -35,11 +36,11 @@
   --color-5: #021cf5;
   --color-51: #010186;
 
-  background-color: var(--color-3-3);
+  background-color: var(--color-00);
   color: var(--color-4);
 }
 
-h1,
+.h1-letters,
 h2,
 h3,
 h4,
