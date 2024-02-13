@@ -122,7 +122,16 @@ body::-webkit-scrollbar-thumb {
   border-radius: 15px;
   box-shadow: inset 6px 6px 12px #111111,
               inset -6px -6px 12px #3b3b3b;
+}
 
+.dc-timer,
+.dc-github{
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  padding: 5px 10px 5px 0;
+  bottom: 50%;
+  z-index: 2;
 }
 .timer .dropdown-container {
   position: sticky;
@@ -230,10 +239,7 @@ body::-webkit-scrollbar-thumb {
   -webkit-text-fill-color: transparent;
 }
 
-.dc-timer {
-  position: relative;
-  top: 50%;
-}
+
 
 .or-set-your-own {
   margin: 0 0 0 4.5rem;
@@ -241,14 +247,18 @@ body::-webkit-scrollbar-thumb {
 
 .timer-popup {
   position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 96%;
+  height: 85%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1040;
+  z-index: 999999;
 }
 
 .timer-popup h2 {
-  margin-bottom: 10px;
   font-size: 10rem;
 }
 
@@ -263,9 +273,10 @@ body::-webkit-scrollbar-thumb {
 }
 
 .timer-controls {
-  margin: 1rem auto 0;
-  padding-top: 0.5rem;
+  margin: .15rem auto 0;
+  padding-bottom: .5rem;
   width: 70%;
-  border-top: 2px solid var(--color-3-1);
+  border-bottom: 2px solid var(--color-3-1);
 }
+
 

@@ -183,6 +183,7 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
                                 value={inputLink}
                                 onChange={handleInputLinkChange}
                                 placeholder="Paste URL & press &#x23CE;"
+                                onFocus={(e) => e.target.select()} // Select all text on focus
                             />
                         </div>
                         <button

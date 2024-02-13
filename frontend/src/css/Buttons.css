@@ -392,3 +392,8 @@ button:focus-visible {
     scale: .9;
 }
 
+.more-time-controller-online-btn {
+width: 50%;
+    margin: 1rem auto;
+
+}
