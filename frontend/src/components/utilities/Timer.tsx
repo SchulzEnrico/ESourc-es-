@@ -1,13 +1,13 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {IoIosTimer} from 'react-icons/io';
-import {Button, Modal} from 'react-bootstrap';
+import { DropdownButton } from 'react-bootstrap';
 import {TfiControlPlay, TfiControlStop} from 'react-icons/tfi';
 import {RxReset} from 'react-icons/rx';
-import {IoClose} from 'react-icons/io5';
+
 import TimeIsUpPopup from '../popUps/TimeIsUpPopup.tsx';
 
+
 const Timer: React.FC = () => {
-    const [showTimerModal, setShowTimerModal] = useState(false);
     const [customTime, setCustomTime] = useState(0);
     const [seconds, setSeconds] = useState(0);
     const [isActive, setIsActive] = useState(false);
@@ -72,12 +72,6 @@ const Timer: React.FC = () => {
         setCustomTime(0);
     };
 
-    const handleCloseTimerModal = () => {
-        setShowTimerModal(false);
-        setShowTimeIsUpPopup(false);
-
-    };
-
     const handleStartTimer = () => {
         setIsActive(true);
     };
@@ -93,46 +87,24 @@ const Timer: React.FC = () => {
     };
 
     return (
-        <div className={'timer'}>
-            <button
+
+            <DropdownButton
+                title={<IoIosTimer id={'timer-icon'} />}
                 data-tooltip={"Open timer"}
-                className={"footer-btn tooltip-btn tt_n"}
-                onClick={() => setShowTimerModal(true)}>
-                <IoIosTimer id={'timer-icon'} />
-            </button>
-
-            <Modal
-                className={'edit-modal shadow--raised centered-modal'}
-                show={showTimerModal}
-                onHide={handleCloseTimerModal}
-            >
-                <Modal.Header>
-                    <Button
-                        className="close-button"
-                        onClick={handleCloseTimerModal}
-                        aria-label="Close"
-                        title="Close"
-                        name="Close"
-                    >
-                        <IoClose title="close" className="close-icon"/>
-                    </Button>
-
+                className={"tooltip-btn tt_n timer"}>
+                <div className={"dropdown-container dc-timer"}>
                     <div className={'time-left'}>Time left: {selectedTime - seconds} s</div>
-
-                    <Modal.Title className="introductions edit-modal-title">Choose Timer Option</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-
+                    <div className="introductions">Choose a Time</div>
                     <select className={'form-input-timer form-select-timer shadow--ridge'}
                             onChange={handleChange}>
                         {timeOptions.map((option) => (
-                            <option key={option.value} value={option.value}>
+                            <option key={option.value}
+                                    value={option.value}>
                                 {option.label}
                             </option>
                         ))}
                     </select>
-
-                    <p className={"or-set-your-own"}>... or set your own</p>
+                    <p className={"introductions or-set-your-own"}>... or set your own</p>
                     <input
                         className={'form-input-timer shadow--ridge'}
                         type="number"
@@ -147,22 +119,24 @@ const Timer: React.FC = () => {
                     </button>
 
                     <div className={"timer-controls"}>
-                        <button className={'start-btn'} onClick={handleStartTimer}>
+                        <button className={'start-btn'}
+                                onClick={handleStartTimer}>
                             <TfiControlPlay className={'start-icon'}/>
                         </button>
-                        <button className={'stop-btn'} onClick={handleStopTimer}>
+                        <button className={'stop-btn'}
+                                onClick={handleStopTimer}>
                             <TfiControlStop className={'stop-icon'}/>
                         </button>
-                        <button className={'reset-btn'} onClick={handleResetTimer}>
+                        <button className={'reset-btn'}
+                                onClick={handleResetTimer}>
                             <RxReset className={'reset-icon'}/>
                         </button>
                     </div>
-                </Modal.Body>
-            </Modal>
+                </div>
+                {/* Popup-Komponente für das Popup */}
+                {showTimeIsUpPopup && <TimeIsUpPopup onClose={handleCloseTimerModal} />}
+            </DropdownButton>
 
-            {/* Popup-Komponente für das Popup */}
-            {showTimeIsUpPopup && <TimeIsUpPopup onClose={handleCloseTimerModal} />}
-        </div>
     );
 };
 

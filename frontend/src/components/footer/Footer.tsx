@@ -57,7 +57,7 @@ const Footer = () => {
 
             <DropdownButton id={"github-dropdown"}
                             title={<ImGithub id={"github-icon"} />}
-                            className="ftooltip-btn tt_ne"
+                            className="tooltip-btn tt_ne"
                             show={open}
                             onToggle={() => setOpen(!open)}>
                 <div className={"dropdown-container"}>

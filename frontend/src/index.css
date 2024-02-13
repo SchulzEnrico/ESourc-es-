@@ -124,7 +124,11 @@ body::-webkit-scrollbar-thumb {
               inset -6px -6px 12px #3b3b3b;
 
 }
-
+.timer .dropdown-container {
+  position: sticky;
+  display: flex;
+  flex-direction: column;
+}
 
 .dropdown-button-container {
   display: flex;
@@ -136,12 +140,9 @@ body::-webkit-scrollbar-thumb {
 .introductions {
   display: flex;
   justify-content: center;
-  color: var(--color-41);
-  background-image: -webkit-linear-gradient(270deg, #808080 53%, #808080 54%, #c0c0c0 64%, #808080 72%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: bolder;
+  font-weight: bold;
+  color: var(--color-00);
+
 }
 
 .form-input-timer,
@@ -151,7 +152,7 @@ body::-webkit-scrollbar-thumb {
   font-size: medium;
   font-weight: bold;
   width: 190px;
-  color: var(--color-5);
+  color: var(--color-4);
   border-radius: 25px;
   border: var(--color-2) solid 1px;
   background-color: transparent;
@@ -223,11 +224,15 @@ body::-webkit-scrollbar-thumb {
   font-size: xx-large;
   font-weight: bolder;
   padding-bottom: .5rem;
-  margin: 2rem 0 2rem 2rem;
   background-image: -webkit-linear-gradient(270deg, #808080 53%, #808080 54%, #c0c0c0 64%, #808080 72%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.dc-timer {
+  position: relative;
+  top: 50%;
 }
 
 .or-set-your-own {
@@ -258,6 +263,9 @@ body::-webkit-scrollbar-thumb {
 }
 
 .timer-controls {
-  margin: 6rem 0 0 3.5rem;
+  margin: 1rem auto 0;
+  padding-top: 0.5rem;
+  width: 70%;
+  border-top: 2px solid var(--color-3-1);
 }
 

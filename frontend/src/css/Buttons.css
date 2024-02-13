@@ -66,7 +66,6 @@ button:focus-visible {
     margin: 10px 20px;
 }
 
-.set-your-own-btn,
 .submit,
 .save-close-btn {
     height: 50px;
@@ -102,7 +101,7 @@ button:focus-visible {
                 inset -5px -5px 10px var(--color-3),
                 inset 5px 5px 10px var(--color-31);
 }
-.set-your-own-btn:hover,
+
 .save-close-btn:hover,
 .get-more-button:hover,
 .submit:hover {
@@ -157,10 +156,7 @@ button:focus-visible {
                 inset 5px 5px 10px #0219C0FF;
 }
 
-.external-links-btn,
-.start-btn,
-.stop-btn,
-.reset-btn {
+.external-links-btn{
     padding: 0;
     height: 40px;
     width: 40px;
@@ -173,13 +169,16 @@ button:focus-visible {
 }
 
 .set-your-own-btn {
-    margin: .5rem 0 1rem 5rem;
+    margin: auto;
+    font-size: x-small;
+    font-weight: bold;
 }
 
-.close-button:hover,
-.start-btn:hover,
-.stop-btn:hover,
-.reset-btn:hover {
+.timer-controls button {
+    scale: .65;
+}
+
+.close-button:hover{
     padding: 0;
     border: solid 2px var(--color-31);
     box-shadow: 5px 5px 10px var(--color-3),
@@ -393,6 +392,3 @@ button:focus-visible {
     scale: .9;
 }
 
-#github-dropdown {
-    width: 35px;
-}
