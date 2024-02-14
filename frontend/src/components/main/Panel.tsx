@@ -4,10 +4,10 @@ import Navigation from '../nav/Navigation';
 import { PanelProps, BookmarkDTO } from '../types/types';
 import { TiThMenu } from 'react-icons/ti';
 import { HiOutlineClipboardCopy } from "react-icons/hi";
-import { GrClear } from "react-icons/gr";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Ruler from "../utilities/Ruler.tsx";
 import {LuRuler} from "react-icons/lu";
+import { AiFillEyeInvisible } from "react-icons/ai";
 
 
 const Panel: React.FC<PanelProps> = ({ className, width }) => {
@@ -120,9 +120,9 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
         <Container className={`panel-items-container `}>
             <button data-tooltip={"Clear display"}
                     id={"clear-iframe-btn"}
-                    className={"iframe-handler-btn tooltip-btn tt_e"}
+                    className={"panel-menu-btn tooltip-btn tt_e"}
                     onClick={clearIframe}>
-                <GrClear/>
+                <AiFillEyeInvisible id={'clear-display-icon'}/>
             </button>
             <div className={"loaded-bookmark-history"}>
                 <div className={"loaded-bookmark-element"}>
@@ -183,6 +183,7 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
                                 value={inputLink}
                                 onChange={handleInputLinkChange}
                                 placeholder="Paste URL & press &#x23CE;"
+                                onFocus={(e) => e.target.select()} // Select all text on focus
                             />
                         </div>
                         <button
@@ -193,7 +194,7 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
                     <button data-tooltip={"Copy to clipboard"}
                             className={"iframe-handler-btn copy-to-clipboard-btn tooltip-cont tt_n"}
                             onClick={handleCopyToClipboard}>
-                        <HiOutlineClipboardCopy/>
+                        <HiOutlineClipboardCopy id={"copy-to-clipboard-icon"} />
                     </button>
                 </div>
             </div>
@@ -225,7 +226,7 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
             </div>
             <button
                 data-tooltip={"Toggle ruler"}
-                className={"ruler-btn iframe-handler-btn tooltip-btn tt_n"}
+                className={"iframe-handler-btn ruler-btn tooltip-btn tt_n"}
                 onClick={() => setShowRuler(!showRuler)}>
                 <LuRuler id={"ruler-icon"}/>
             </button>

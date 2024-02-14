@@ -60,7 +60,6 @@
 
 .iframe-bounding { grid-area: iframe-bounding;
     position: relative;
-    border: 1px solid var(--color-1);
     margin: 0.5rem;
     padding: 0;
     width: 100%;
@@ -70,11 +69,12 @@
 }
 
 iframe {
-    border: 1px solid transparent;
+    border: 1px solid var(--color-1);
     border-radius: 20px;
     background: var(--color-0);
     overflow: scroll;
-
+    right: 2px;
+    bottom: 5px;
     width: 100%;
     height: 100%;
 
@@ -104,7 +104,7 @@ iframe {
     flex-direction: column;
     position: absolute;
     right: 0;
-    top: 30.58vh;
+    top: 27vh;
 }
 
 .loaded-bookmark-history {
@@ -140,6 +140,8 @@ iframe {
 
 #panel-temporary-link-input input{
     height: 18px !important;
+    max-width: 100px;
+    min-width: 10px;
     padding: 0 0 0 5px;
     margin-right: 40%;
     font-size: xx-small;
@@ -155,6 +157,8 @@ iframe {
 .temporary-input-area {
     position: relative;
     top: 0;
+    max-width: 120px;
+    min-width: 20px;
     margin: 0 5px 5px 35px;
     display: flex;
     justify-content: center;
@@ -164,7 +168,7 @@ iframe {
 #size-indicator {
     position: absolute;
     bottom: -30px;
-    right: -10px;
+    right: -13px;
     margin: 0 5px 4px 0;
     font-size: small;
     font-family: monospace;
@@ -180,4 +184,24 @@ iframe {
 
 .ruler {
     overflow: hidden;
+}
+
+.h1-underline {
+    position: fixed;
+    border-radius: 50%;
+    border: solid 1px #000000;
+    margin: 0;
+    top: 45px;
+    left: 42px;
+    width: 131px;
+    filter: grayscale(100%)
+    brightness(50%)
+    saturate(200%)
+    invert(10%)
+    sepia(98%)
+    saturate(1500%)
+    hue-rotate(354deg)
+    brightness(135%)
+    contrast(100%);
+    z-index: 99999;
 }

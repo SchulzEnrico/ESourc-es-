@@ -1,21 +1,21 @@
 import "../../css/Footer.css";
-import { Dropdown } from "react-bootstrap";
+import {Dropdown, DropdownButton} from "react-bootstrap";
 import { useState } from "react";
 import { GoBook, GoCode, GoGitPullRequest, GoIssueOpened, GoRepo, GoTable } from "react-icons/go";
-import { PiPlayCircleLight } from "react-icons/pi";
+import {PiPlayCircleLight, PiStarFourDuotone} from "react-icons/pi";
 import { ImGithub } from "react-icons/im";
 import Clock from "../utilities/Clock.tsx";
 import Timer from "../utilities/Timer.tsx";
 import {SiMicrosoftbing, SiOpenai} from "react-icons/si";
-import {RiBardLine} from "react-icons/ri";
 import {MdGrain} from "react-icons/md";
 import {TfiSharethis} from "react-icons/tfi";
 
 const Footer = () => {
     const [open, setOpen] = useState(false);
 
-
-    const toggleOpen = () => setOpen(prevOpen => !prevOpen);
+    const handleCloseMenu = () => {
+        setOpen(false);
+    };
 
     return (
         <footer>
@@ -36,9 +36,9 @@ const Footer = () => {
                         <MdGrain id={"blackbox-icon"} title={"BLACKBOX AI"}/>
                     </button>
                 </a>
-                <a href="https://bard.google.com/chat" target="_blank">
-                    <button data-tooltip={"Bard Google"} className={"footer-btn tooltip-btn tt_n"} type="button">
-                        <RiBardLine id={"bard-icon"} title={"Bard Google"}/>
+                <a href="https://gemini.google.com/app" target="_blank">
+                    <button data-tooltip={"Gemeni"} className={"footer-btn tooltip-btn tt_n"} type="button">
+                        <PiStarFourDuotone id={"gemini-icon"} title={"Bard Google"}/>
                     </button>
                 </a>
                 <a href="https://www.bing.com/search?q=Bing+AI&showconv=1&FORM=hpcodx"
@@ -55,50 +55,70 @@ const Footer = () => {
                 </a>
             </div>
 
-            <Dropdown id={"github-dropdown"}
-                      className="footer-item"
-                      show={open}
-                      onToggle={toggleOpen}>
-                <Dropdown.Toggle
-                    className={"footer-btn"}
-                    variant="success"
-                    id="dropdown-basic"
-                    onClick={toggleOpen}>
-                    <ImGithub id={"github-icon"}/>
-                </Dropdown.Toggle>
-                <Dropdown.Menu className={"dropdown-container dc-github"}>
-                    <Dropdown.Item href="https://github.com/SchulzEnrico"
-                                   target="_blank">
-                        <GoBook title={"Github Overview"} className={"footer-icon logo"}/>
-                    </Dropdown.Item>
-                    <Dropdown.Item href="https://github.com/SchulzEnrico?tab=repositories"
-                                   target="_blank">
-                        <GoRepo title={"Github Repositories"} className={"footer-icon logo"}/>
-                    </Dropdown.Item>
-                    <Dropdown.Item href="https://github.com/SchulzEnrico/ESourc-es-"
-                                   target="_blank">
-                        <GoCode title={"Github Code"} className={"footer-icon logo"}/>
-                    </Dropdown.Item>
-                    <Dropdown.Item href="https://github.com/SchulzEnrico/ESourc-es-/issues"
-                                   target="_blank">
-                        <GoIssueOpened title={"Github Issues"} className={"footer-icon logo"}/>
-                    </Dropdown.Item>
-                    <Dropdown.Item href="https://github.com/SchulzEnrico/ESourc-es-/pulls"
-                                   target="_blank">
-                        <GoGitPullRequest title={"Github Pull Request"} className={"footer-icon logo"}/>
-                    </Dropdown.Item>
-                    <Dropdown.Item href="https://github.com/SchulzEnrico/ESourc-es-/actions"
-                                   target="_blank">
-                        <PiPlayCircleLight title={"Github Actions"} className={"footer-icon logo"}/>
-                    </Dropdown.Item>
-                    <Dropdown.Item href="https://github.com/users/SchulzEnrico/projects/3"
-                                   target="_blank">
-                        <GoTable title={"Github Projects"} className={"footer-icon logo"}/>
-                    </Dropdown.Item>
-
-                </Dropdown.Menu>
-
-            </Dropdown>
+            <DropdownButton id={"github-dropdown"}
+                            title={<ImGithub id={"github-icon"} />}
+                            className="tooltip-btn tt_ne"
+                            show={open}
+                            onToggle={() => setOpen(!open)}>
+                <div className={"dropdown-container"}>
+                <Dropdown.Item
+                    data-tooltip={"Github Overview"}
+                    className={"tooltip-btn tt_n"}
+                    href="https://github.com/SchulzEnrico"
+                    target="_blank"
+                    onClick={handleCloseMenu}>
+                    <GoBook className={"github-icon logo"}/>
+                </Dropdown.Item>
+                <Dropdown.Item
+                    data-tooltip={"Github Repositories"}
+                    className={"tooltip-btn tt_n"}
+                    href="https://github.com/SchulzEnrico?tab=repositories"
+                    target="_blank"
+                    onClick={handleCloseMenu}>
+                    <GoRepo className={"github-icon logo"}/>
+                </Dropdown.Item>
+                <Dropdown.Item
+                    data-tooltip={"Github Code"}
+                    className={"tooltip-btn tt_n"}
+                    href="https://github.com/SchulzEnrico/ESourc-es-"
+                    target="_blank"
+                    onClick={handleCloseMenu}>
+                    <GoCode className={"github-icon logo"}/>
+                </Dropdown.Item>
+                <Dropdown.Item
+                    data-tooltip={"Github Issues"}
+                    className={"tooltip-btn tt_n"}
+                    href="https://github.com/SchulzEnrico/ESourc-es-/issues"
+                    target="_blank"
+                    onClick={handleCloseMenu}>
+                    <GoIssueOpened className={"github-icon logo"}/>
+                </Dropdown.Item>
+                <Dropdown.Item
+                    data-tooltip={"Github Pull Requests"}
+                    className={"tooltip-btn tt_n"}
+                    href="https://github.com/SchulzEnrico/ESourc-es-/pulls"
+                    target="_blank"
+                    onClick={handleCloseMenu}>
+                    <GoGitPullRequest className={"github-icon logo"}/>
+                </Dropdown.Item>
+                <Dropdown.Item
+                    data-tooltip={"Github Actions"}
+                    className={"tooltip-btn tt_n"}
+                    href="https://github.com/SchulzEnrico/ESourc-es-/actions"
+                    target="_blank"
+                    onClick={handleCloseMenu}>
+                    <PiPlayCircleLight className={"github-icon logo"}/>
+                </Dropdown.Item>
+                <Dropdown.Item
+                    data-tooltip={"Github Projects"}
+                    className={"tooltip-btn tt_n"}
+                    href="https://github.com/users/SchulzEnrico/projects/3"
+                    target="_blank"
+                    onClick={handleCloseMenu}>
+                    <GoTable className={"github-icon logo"}/>
+                </Dropdown.Item>
+                </div>
+            </DropdownButton>
         </footer>
     );
 }

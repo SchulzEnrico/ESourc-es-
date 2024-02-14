@@ -19,6 +19,7 @@ footer {
                  1px -1px 15px var(--color-3),
                  inset 8px -8px 16px #121212,
                  inset -8px 8px 16px #3a3a3a;
+    z-index: 9999999999;
 }
 
 .footer-row{
@@ -28,7 +29,7 @@ footer {
     margin-right: 25px;
 }
 
-.footer-icon {
+.github-icon {
     margin-top: 10px;
     font-size: 1.5rem;
     color: var(--color-0)
@@ -57,7 +58,7 @@ footer {
 
 .clock {
     width: fit-content;
-    margin: 0 15px;
+    margin: 2px 5px 0 20px;
     font-weight: bold;
     background-image: -webkit-linear-gradient(270deg, #808080 53%, #808080 54%, #c0c0c0 64%, #808080 72%);
     background-clip: text;
@@ -73,7 +74,7 @@ footer {
 
 .clock-time {
     font-size: large;
-    margin: -7px;
+    margin: -7px -3px;
     width: fit-content;
     padding: 0 6px;
     letter-spacing: 2px;
@@ -85,4 +86,5 @@ footer {
 
 #github-dropdown {
     margin-right: 8px;
+    width: 35px;
 }

@@ -25,6 +25,7 @@
   --color-2: #333334;
   --color-21: #414144;
   --color-22: #4a4a4d;
+  --color-23: #626265;
   --color-3-3: #0a0000;
   --color-3-2: #1c0000;
   --color-3-1: #440000;
@@ -35,11 +36,11 @@
   --color-5: #021cf5;
   --color-51: #010186;
 
-  background-color: var(--color-3-3);
+  background-color: var(--color-00);
   color: var(--color-4);
 }
 
-h1,
+.h1-letters,
 h2,
 h3,
 h4,
@@ -74,6 +75,7 @@ body {
   margin: 0;
   padding: 0;
   overflow: scroll;
+  cursor: default;
 }
 body::-webkit-scrollbar {
   width: 8px;
@@ -112,10 +114,9 @@ body::-webkit-scrollbar-thumb {
 
 .dropdown-container {
   position: relative;
-  width: 250px;
-  padding: 20px;
+  padding: 5px 20px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   background-color: var(--color-2);
   border: solid 1px var(--color-4);
   border-radius: 15px;
@@ -123,11 +124,19 @@ body::-webkit-scrollbar-thumb {
               inset -6px -6px 12px #3b3b3b;
 }
 
+.dc-timer,
 .dc-github{
   width: fit-content;
   display: flex;
   flex-direction: row;
   padding: 5px 10px 5px 0;
+  bottom: 50%;
+  z-index: 2;
+}
+.timer .dropdown-container {
+  position: sticky;
+  display: flex;
+  flex-direction: column;
 }
 
 .dropdown-button-container {
@@ -140,12 +149,9 @@ body::-webkit-scrollbar-thumb {
 .introductions {
   display: flex;
   justify-content: center;
-  color: var(--color-41);
-  background-image: -webkit-linear-gradient(270deg, #808080 53%, #808080 54%, #c0c0c0 64%, #808080 72%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: bolder;
+  font-weight: bold;
+  color: var(--color-00);
+
 }
 
 .form-input-timer,
@@ -155,7 +161,7 @@ body::-webkit-scrollbar-thumb {
   font-size: medium;
   font-weight: bold;
   width: 190px;
-  color: var(--color-5);
+  color: var(--color-4);
   border-radius: 25px;
   border: var(--color-2) solid 1px;
   background-color: transparent;
@@ -227,12 +233,13 @@ body::-webkit-scrollbar-thumb {
   font-size: xx-large;
   font-weight: bolder;
   padding-bottom: .5rem;
-  margin: 2rem 0 2rem 2rem;
   background-image: -webkit-linear-gradient(270deg, #808080 53%, #808080 54%, #c0c0c0 64%, #808080 72%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+
 
 .or-set-your-own {
   margin: 0 0 0 4.5rem;
@@ -240,14 +247,18 @@ body::-webkit-scrollbar-thumb {
 
 .timer-popup {
   position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 96%;
+  height: 85%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1040;
+  z-index: 999999;
 }
 
 .timer-popup h2 {
-  margin-bottom: 10px;
   font-size: 10rem;
 }
 
@@ -262,6 +273,10 @@ body::-webkit-scrollbar-thumb {
 }
 
 .timer-controls {
-  margin: 6rem 0 0 3.5rem;
+  margin: .15rem auto 0;
+  padding-bottom: .5rem;
+  width: 70%;
+  border-bottom: 2px solid var(--color-3-1);
 }
+
 

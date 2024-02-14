@@ -4,7 +4,7 @@ import ColorSlider from './ColorSlider';
 import {TbListNumbers} from "react-icons/tb";
 
 const Ruler: React.FC = () => {
-    const initialColors = ['darkgray', 'black', 'brown', 'blue', 'green', 'red', 'orange', 'yellow', 'white'];
+    const initialColors = ['white', 'yellow', 'orange', 'red', 'green', 'blue', 'brown', 'black', 'darkgray'];
     const [currentColorIndex, setCurrentColorIndex] = useState(0);
     const [showLabels, setShowLabels] = useState(false); // Zustand für Beschriftungen hinzugefügt und auf false gesetzt
 
