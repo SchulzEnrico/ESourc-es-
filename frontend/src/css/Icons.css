@@ -1,6 +1,6 @@
 .dashboard-icon-header {
     height: 34px;
-    margin: 18px 5px 0 9px;
+    margin: 15px 5px 0 9px;
     filter: grayscale(100%)
     brightness(50%)
     saturate(200%)
@@ -13,10 +13,8 @@
 }
 
 .add-icon {
-    font-size: 1.5rem;
-    margin: .05rem .2rem;
     scale: 1.5;
-    Color: var(--color-51);
+    Color: var(--color-5);
 }
 .close-icon {
     margin: .15rem 0;
@@ -85,9 +83,9 @@
     margin: 0 1px 0 0;
 }
 
-#close-navigation-icon {
-    margin: 0 0 0 1px;
-    scale: 2;
+.close-navigation-icon {
+    margin: 1px 0 0 1px;
+    scale: 1.4;
     color: var(--color-31);
 }
 

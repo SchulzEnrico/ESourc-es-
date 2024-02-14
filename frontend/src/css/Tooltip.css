@@ -1,22 +1,26 @@
 /* CSS für den Tooltip-Button */
-.tooltip-btn {
+.tooltip-btn,
+.tooltip-cont {
     position: relative;
 }
 
 /* Standardposition für Tooltips */
-.tooltip-btn::after {
+.tooltip-btn::after,
+.tooltip-cont::after {
     content: attr(data-tooltip);
     position: absolute;
     white-space: pre-line;
-    padding: 5px;
+    padding: 7px;
     font-size: x-small;
     font-weight: bold;
     display: flex;
-    color: var(--color-41);
+    color: var(--color-4);
     background-color: var(--color-2);
-    border: solid 1px var(--color-4);
+    border: solid 2px var(--color-3-1);
+    outline: solid 1px var(--color-41);
     border-radius: 7px;
-    box-shadow: inset 6px 6px 12px #111111, inset -6px -6px 12px #3b3b3b;
+    box-shadow: inset 6px 6px 12px #111111,
+    inset -6px -6px 12px #3b3b3b;
     z-index: 999999999999 !important;
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -24,42 +28,10 @@
 
 }
 
-/* Tooltip erscheint beim Hover */
-.tooltip-btn:hover::after {
-    opacity: 1;
-}
-
-/* CSS für den Tooltip-Container */
-.tooltip-cont {
-    position: relative;
-    display: inline-block;
-}
-
-/* Tooltip-Container styling */
-.tooltip-cont::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    white-space: pre-line;
-    padding: 5px;
-    font-size: x-small;
-    font-weight: bold;
-    display: flex;
-    color: var(--color-41);
-    background-color: var(--color-2);
-    border: solid 1px var(--color-4);
-    border-radius: 7px;
-    box-shadow: inset 6px 6px 12px #111111, inset -6px -6px 12px #3b3b3b;
-    z-index: 999999999999 !important;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none; /* Damit der Tooltip nicht interaktiv ist */
-}
-
-/* Bei Hover über den Tooltip-Container wird der Tooltip angezeigt */
+.tooltip-btn:hover::after,
 .tooltip-cont:hover::after {
     opacity: 1;
 }
-
 
 .tt_n::after {
     top: calc(100% - 70px);

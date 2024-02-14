@@ -182,15 +182,17 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick,
 
             <ButtonGroup className={"nav-group"}>
                 <Button
-                    id={"close-navigation-btn"}
+                    data-tooltip={"Close Navigation"}
+                    className={"close-navigation-btn tooltip-btn tt_n"}
                     onClick={closeModal}>
-                    <VscEyeClosed id={"close-navigation-icon"} />
+                    <VscEyeClosed className={"close-navigation-icon"} />
                 </Button>
                 {
                     uniqueCategories.map((category) => (
 
                         <DropdownButton
                             as={ButtonGroup}
+                            className={"dropdown-category dropdown-category-btn"}
                             key={category}
                             id={`dropdown-variants-${category}`}
                             variant="secondary"
@@ -198,15 +200,19 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick,
                             drop={isExternal ? "down-centered" : "up-centered"}
                         >
 
-                            <div className="dropdown-container">
+                            <div className="dropdown-container navigation">
                                 {renderDropdownItems(category)}
                             </div>
                         </DropdownButton>
                     ))}
 
                 { (
-                    <Button title={"Add a new Bookmark to your collection"} variant="primary" className={"get-more-button"} onClick={handleGetMoreClick}>
-                        <TiPlus title={"Add a new Bookmark"} className={"add-icon"}/>
+                    <Button
+                        data-tooltip={"Add a new Bookmark to your collection"}
+                        className={"get-more-button tooltip-btn tt_ne"}
+                        variant="primary"
+                        onClick={handleGetMoreClick}>
+                        <TiPlus className={"add-icon"}/>
                     </Button>
                 )}
 

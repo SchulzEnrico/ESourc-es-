@@ -63,13 +63,10 @@ a {
 }
 
 body {
+  position: absolute;
   width: fit-content;
   height: fit-content;
-
   display: flex;
-
-  position: absolute; /* Das muss noch gut ausgetestet werden */
-
   justify-content: center;
   align-items: center;
   margin: 0;
@@ -104,23 +101,31 @@ body::-webkit-scrollbar-thumb {
 
 .nav-group {
   display: flex;
-  padding: 10px 45px 10px 60px;
-  background-color: var(--color-2);
-  border: solid 1px var(--color-4);
-  border-radius: 15px;
-  box-shadow: inset 6px 6px 12px #111111,
-              inset -6px -6px 12px #3b3b3b;
+  padding: 0 50px 0 50px;
+  height: fit-content;
+  width: max-content;    /* Dies stellt sicher, dass der Container so breit wie sein Inhalt ist */
+  min-width: fit-content;
+  box-sizing: border-box; /* Dies stellt sicher, dass Padding und Border in die Breite des Elements einbezogen werden */
+  background-color: var(--color-1);
+  border: solid 3px var(--color-41);
+  outline: solid 1px var(--color-31);
+  border-radius: 25px;
+  box-shadow: 0 0 10px 5px var(--color-31),
+  inset 6px 6px 12px #111111,
+  inset -6px -6px 12px #3b3b3b;
 }
 
 .dropdown-container {
   position: relative;
   padding: 5px 20px;
   display: flex;
-  flex-direction: row;
-  background-color: var(--color-2);
-  border: solid 1px var(--color-4);
+  flex-direction: column;
+  background-color: var(--color-1);
+  border: solid 2px var(--color-3-1);
+  outline: solid 1px var(--color-41);
   border-radius: 15px;
-  box-shadow: inset 6px 6px 12px #111111,
+  box-shadow: 0 0 10px 5px var(--color-31),
+              inset 6px 6px 12px #111111,
               inset -6px -6px 12px #3b3b3b;
 }
 
@@ -129,7 +134,7 @@ body::-webkit-scrollbar-thumb {
   width: fit-content;
   display: flex;
   flex-direction: row;
-  padding: 5px 10px 5px 0;
+  padding: 5px 5px 5px 5px;
   bottom: 50%;
   z-index: 2;
 }
@@ -158,19 +163,21 @@ body::-webkit-scrollbar-thumb {
 .form-input-get-more,
 .form-input-edit-bookmark {
   margin: 10px 20px;
-  font-size: medium;
-  font-weight: bold;
+  font-size: smaller;
+  font-weight: bolder;
   width: 190px;
-  color: var(--color-4);
+  color: var(--color-0);
   border-radius: 25px;
   border: var(--color-2) solid 1px;
   background-color: transparent;
-  height: 20px;
+  height: auto;
+  cursor: text;
 }
 
 .form-select-timer,
 .form-select-get-more,
-.form-select-edit-bookmark {
+.form-select-edit-bookmark,
+.select-dropdown-category{
   height: 55px;
   width: 240px;
 }
@@ -184,17 +191,11 @@ body::-webkit-scrollbar-thumb {
   top: 50%;
   left: 50%;
   width: 300px;
-  height: 600px;
+  height: auto;
   transform: translate(-50%, -50%);
   padding: 20px;
   transition: transform 0.5s ease-in-out;
   border: solid 1px var(--color-4);
-  border-radius: 20px;
-  background: var(--color-0);
-  box-shadow: 7px 7px 10px var(--color-3),
-              3px 3px 8px var(--color-2),
-              inset -5px -5px 10px #121212,
-              inset 5px 5px 10px #3a3a3a;
 }
 
 .success-popup {
@@ -203,10 +204,10 @@ body::-webkit-scrollbar-thumb {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: var(--color-4);
-  border: solid 3px #0f7501;
+  border: solid 3px #4c23f3;
   box-shadow: inset -3px -3px 3px var(--color-1),
                     inset 3px 3px 3px var(--color-21);
-  color: #15440d;
+  color: var(--color-0);
   font-weight: bolder;
   padding: 20px;
   border-radius: 15px;
@@ -215,7 +216,6 @@ body::-webkit-scrollbar-thumb {
 .edit-modal {
   padding-top: 10px;
 }
-
 
 .edit-modal-title {
   margin-bottom: 10px;
@@ -239,8 +239,6 @@ body::-webkit-scrollbar-thumb {
   -webkit-text-fill-color: transparent;
 }
 
-
-
 .or-set-your-own {
   margin: 0 0 0 4.5rem;
 }
@@ -261,7 +259,6 @@ body::-webkit-scrollbar-thumb {
 .timer-popup h2 {
   font-size: 10rem;
 }
-
 
 .get-more.open {
   transform: translateY(0);

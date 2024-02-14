@@ -120,7 +120,7 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
         <Container className={`panel-items-container `}>
             <button data-tooltip={"Clear display"}
                     id={"clear-iframe-btn"}
-                    className={"panel-menu-btn tooltip-btn tt_e"}
+                    className={"clear-iframe-btn panel-menu-btn tooltip-btn tt_e"}
                     onClick={clearIframe}>
                 <AiFillEyeInvisible id={'clear-display-icon'}/>
             </button>

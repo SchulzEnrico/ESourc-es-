@@ -20,7 +20,20 @@ const Timer: React.FC = () => {
     const timeOptions = [
         { label: "60 sec", value: 60 },
         { label: "90 sec", value: 90 },
-        // Other time options...
+        { label: "2 min", value: 120 },
+        { label: "5 min", value: 300 },
+        { label: "10 min", value: 600 },
+        { label: "15 min", value: 900 },
+        { label: "20 min", value: 1200 },
+        { label: "25 min", value: 1500 },
+        { label: "30 min", value: 1800 },
+        { label: "45 min", value: 2700 },
+        { label: "60 min", value: 3600 },
+        { label: "90 min", value: 5400 },
+        { label: "120 min", value: 7200 },
+        { label: "180 min", value: 10800 },
+        { label: "240 min", value: 14400 },
+        { label: "300 min", value: 18000 },
     ];
 
     const handleTimerTick = useCallback(() => {

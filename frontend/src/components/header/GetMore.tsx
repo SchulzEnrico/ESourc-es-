@@ -86,7 +86,7 @@ function GetMore({ show, onClose, destination, setDestination, getAvailableCateg
     };
 
     return (
-        <div className={`get-more ${show ? 'show' : 'hide'}`}>
+        <div className={`get-more ${show ? 'show' : 'hide'} dropdown-container`}>
             <Button
                 className={"close-button"}
                 onClick={onClose}
@@ -96,7 +96,7 @@ function GetMore({ show, onClose, destination, setDestination, getAvailableCateg
             >
                 <IoClose title={"close"} className={"close-icon"}/>
             </Button>
-            <p className={"introductions"}>A new bookmark?<br/>Filling in these fields!</p>
+            <h2 className={"introductions"}>A new bookmark?<br/>Filling in these fields!</h2>
             <Form onSubmit={handleSubmit}>
                 <InputGroup className="container-fluid md-3 d-flex justify-content-between">
                     <Form.Control
@@ -112,7 +112,7 @@ function GetMore({ show, onClose, destination, setDestination, getAvailableCateg
                         value={destination}
                         onChange={(event) => setDestination(event.target.value)}
                     >
-                        <option>select destination</option>
+                        <option>select Destination</option>
                         <option value="external">external</option>
                         <option value="ins_pro">ins_pro</option>
                         <option value="snip_gen">snip_gen</option>
@@ -124,12 +124,12 @@ function GetMore({ show, onClose, destination, setDestination, getAvailableCateg
                     </Form.Select>
                     <Form.Control
                         as="select"
-                        className="form-input-get-more shadow--ridge"
+                        className="form-input-get-more select-dropdown-category shadow--ridge"
                         aria-label="Dropdown Category"
                         value={dropdownCategory}
                         onChange={(event) => setDropdownCategory(event.target.value)}
                     >
-                        <option>select dropdownCategory</option>
+                        <option>pick Dropdown Category</option>
                         {availableCategories.map((category) => (
                             <option key={category} value={category}>
                                 {category}
@@ -138,22 +138,22 @@ function GetMore({ show, onClose, destination, setDestination, getAvailableCateg
                     </Form.Control>
                     <Form.Control
                         className="form-input-get-more shadow--ridge"
-                        placeholder="New Category"
-                        aria-label="New Category"
+                        placeholder="create a new Category"
+                        aria-label="create a new Category"
                         value={newCategory}
                         onChange={(event) => setNewCategory(event.target.value)}  // Füge diese Zeile hinzu
                     />
                     <Form.Control
                         className="form-input-get-more shadow--ridge"
-                        placeholder="Title"
-                        aria-label="Title"
+                        placeholder="Title of the link"
+                        aria-label="Title of the link"
                         value={title}
                         onChange={(event) => setTitle(event.target.value)}
                     />
                     <Form.Control
                         className="form-input-get-more shadow--ridge"
-                        placeholder="Tags"
-                        aria-label="Tags"
+                        placeholder="Content tags"
+                        aria-label="Content tags"
                         value={tags}
                         onChange={(event) => setTags(event.target.value)}
                     />
