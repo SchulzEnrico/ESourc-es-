@@ -1,5 +1,6 @@
 .panel {
-    border: solid 2px var(--color-2);
+    border: solid 2px var(--color-01);
+
     border-radius: 20px;
     padding: 1.5rem 2.2rem 1rem 1rem;
     background: var(--color-0);
@@ -152,6 +153,7 @@ iframe {
                 inset 10px 10px 10px var(--color-0);
     opacity: .7;
     color: var(--color-4);
+    cursor: text;
 }
 
 .temporary-input-area {
@@ -191,7 +193,7 @@ iframe {
     border-radius: 50%;
     border: solid 1px #000000;
     margin: 0;
-    top: 45px;
+    top: 43px;
     left: 42px;
     width: 131px;
     filter: grayscale(100%)
@@ -204,4 +206,15 @@ iframe {
     brightness(135%)
     contrast(100%);
     z-index: 99999;
+}
+
+.h1-under-underline {
+    position: fixed;
+    border-radius: 50%;
+    border: solid 2px var(--color-4);
+    margin: 0;
+    top: 43px;
+    left: 43px;
+    width: 128px;
+    z-index: 99997;
 }

@@ -19,7 +19,6 @@ const Footer = () => {
 
     return (
         <footer>
-
             <div className={"clock-timer"}>
                 <Clock/>
                 <Timer/>
@@ -57,10 +56,11 @@ const Footer = () => {
 
             <DropdownButton id={"github-dropdown"}
                             title={<ImGithub id={"github-icon"} />}
-                            className="tooltip-btn tt_ne"
+                            className="tooltip-btn tt_n"
+                            data-tooltip={"Github links"}
                             show={open}
                             onToggle={() => setOpen(!open)}>
-                <div className={"dropdown-container"}>
+                <div className={"dropdown-container dc-github"}>
                 <Dropdown.Item
                     data-tooltip={"Github Overview"}
                     className={"tooltip-btn tt_n"}
