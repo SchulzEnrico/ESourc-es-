@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState, useRef } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { IoIosTimer } from 'react-icons/io';
 import { DropdownButton } from 'react-bootstrap';
 import { TfiControlPlay, TfiControlStop } from 'react-icons/tfi';
@@ -14,8 +14,14 @@ const Timer: React.FC = () => {
     const [selectedTime, setSelectedTime] = useState(60);
     const [showTimeIsUpPopup, setShowTimeIsUpPopup] = useState(false);
     const [dropdownOpen, setDropdownOpen] = useState(false);
-    const intervalIdRef = useRef<number>(0);
-    const timeoutIdRef = useRef<number>(0);
+    const intervalIdRef = React.useRef<number>(0);
+    const timeoutIdRef = React.useRef<number>(0);
+
+    const timeOptions = [
+        { label: "60 sec", value: 60 },
+        { label: "90 sec", value: 90 },
+        // Other time options...
+    ];
 
     const handleTimerTick = useCallback(() => {
         setSeconds((prevSeconds) => {
@@ -79,24 +85,6 @@ const Timer: React.FC = () => {
         setDropdownOpen(!dropdownOpen);
     };
 
-    // Define your fixed options
-    const fixedTimeOptions = [
-        { label: "60 sec", value: 60 },
-        { label: "90 sec", value: 90 },
-        // Other fixed time options...
-    ];
-
-    // Generate the last 5 custom options based on the fixed options
-    const lastFiveCustomOptions = fixedTimeOptions.map((option, index) => {
-        return {
-            label: `${option.value - index * 30} sec`,
-            value: option.value - index * 30
-        };
-    });
-
-    // Combine the fixed options and the last 5 custom options
-    const timeOptions = [...lastFiveCustomOptions, ...fixedTimeOptions];
-
     return (
         <DropdownButton
             title={<IoIosTimer id={'timer-icon'} />}
@@ -110,8 +98,8 @@ const Timer: React.FC = () => {
                 <div className="introductions">Choose a Time</div>
                 <select className={'form-input-timer form-select-timer shadow--ridge'}
                         onChange={handleChange}>
-                    {timeOptions.map((option, index) => (
-                        <option key={index}
+                    {timeOptions.map((option) => (
+                        <option key={option.value}
                                 value={option.value}>
                             {option.label}
                         </option>

@@ -157,11 +157,14 @@ button:focus-visible {
 }
 
 .external-links-btn{
+    position: absolute;
     padding: 0;
     height: 40px;
     width: 40px;
-    margin: .5rem;
-    border: solid 2 px var(--color-1);
+    right: 0;
+    scale: .9;
+    margin: 0 10px 0 0;
+    border: solid 2 px var(--color-4);
     box-shadow: 5px 5px 10px transparent,
                 -3px -3px 10px transparent,
                 inset -5px -5px 10px #470603,
@@ -192,21 +195,12 @@ button:focus-visible {
     padding: 0;
     width: 33px;
     height: 33px;
-
     border: solid 1px var(--color-0);
     box-shadow:
             inset -2px -2px 2px var(--color-01),
             inset 3px 3px 3px var(--color-1),
             -5px -5px 25px var(--color-01),
             1px 1px 3px var(--color-2);
-}
-
-.external-links-btn {
-    position: absolute;
-    right: 0;
-    scale: .9;
-    margin: 0 10px 0 0;
-    border: solid 2 px var(--color-4);
 }
 
 .google-btn {
@@ -283,7 +277,6 @@ button:focus-visible {
     padding: 1px 0 0 0;
     border: none;
     border-left: 2px solid var(--color-4);
-    /*cursor: revert;*/
 }
 
 #reset-all-dimensions-btn {
@@ -306,7 +299,6 @@ button:focus-visible {
     left: -18px;
     color: var(--color-23);
     z-index: 999;
-
 }
 
 .development  #clear-iframe-btn {
@@ -324,7 +316,6 @@ button:focus-visible {
     top: 0;
     right: 35px;
 }
-
 
 .panel-menu-btn {
     position: absolute;
@@ -395,5 +386,4 @@ button:focus-visible {
 .more-time-controller-online-btn {
 width: 50%;
     margin: 1rem auto;
-
 }
