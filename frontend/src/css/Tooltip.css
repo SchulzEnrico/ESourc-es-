@@ -33,6 +33,13 @@
     opacity: 1;
 }
 
+.delete-forever-btn.tooltip-btn::after {
+    color: var(--color-31);
+    font-size: 1.5rem;
+    top: calc(100% - 150px);
+    left: calc(-100% - 150px);
+}
+
 .tt_n::after {
     top: calc(100% - 70px);
     left: 0;

@@ -1,7 +1,8 @@
 import { Modal, Form, Button } from 'react-bootstrap';
 import { EditBookmarkProps } from '../types/types.ts';
-import {GiMineExplosion} from "react-icons/gi";
+
 import {RiSave3Fill} from "react-icons/ri";
+import {BsFillTrash3Fill} from "react-icons/bs";
 
 function EditBookmark({
                           showEditModal,
@@ -21,60 +22,69 @@ function EditBookmark({
 
 
     return (
-        <Modal className={"edit-modal shadow--raised"} show={showEditModal} onHide={handleCloseModalEdit}>
+        <Modal className={"edit-modal dropdown-container"} show={showEditModal} onHide={handleCloseModalEdit}>
             <Modal.Header>
-                <Modal.Title className={"introductions edit-modal-title"}>Edit Bookmark</Modal.Title>
+                <Modal.Title className={"edit-modal-title"}>
+                    <h2>Edit Bookmark</h2>
+                </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <Form.Control
-                    className={"form-input-edit-bookmark shadow--ridge"}
-                    type="text"
-                    aria-label={"URL"}
-                    value={selectedBookmark?.url ?? ''}
-                    onChange={(e) => handleInputChange('url', e.target.value)}
-                />
-                <Form.Select
-                    className={"form-select-edit-bookmark form-input-edit-bookmark shadow--ridge"}
-                    aria-label={"Destination"}
-                    value={selectedBookmark?.destination ?? ''}
-                    onChange={(e) => handleInputChange('destination', e.target.value)}
-                >
-                    <option value="external">external</option>
-                    <option value="ins_pro">ins_pro</option>
-                    <option value="snip_gen">snip_gen</option>
-                    <option value="development">development</option>
-                    <option value="know_guide">know_guide</option>
-                    <option value="lip_doc">lip_doc</option>
-                    <option value="project">project</option>
-                    <option value="personal">personal</option>
-                </Form.Select>
-                <Form.Control
-                    className={"form-input-edit-bookmark shadow--ridge"}
-                    type="text"
-                    aria-label={"Dropdown Category"}
-                    value={selectedBookmark?.dropdownCategory ?? ''}
-                    onChange={(e) => handleInputChange('dropdownCategory', e.target.value)}
-                />
-                <Form.Control
-                    className={"form-input-edit-bookmark shadow--ridge"}
-                    type="text"
-                    aria-label={"Title"}
-                    value={selectedBookmark?.title ?? ''}
-                    onChange={(e) => handleInputChange('title', e.target.value)}
-                />
-                <Form.Control
-                    className={"form-input-edit-bookmark shadow--ridge"}
-                    type="text"
-                    aria-label={"Tags"}
-                    value={selectedBookmark?.tags ?? ''}
-                    onChange={(e) => handleInputChange('tags', e.target.value)}
-                />
+                <Form className={"form-proportions"} onSubmit={(e) => { e.preventDefault(); handleSaveChanges(); }}>
+                    <Form.Label className={"input-label"}>URL</Form.Label>
+                    <Form.Control
+                        className={"form-control-custom shadow--inset"}
+                        type="text"
+                        aria-label={"change the URL"}
+                        value={selectedBookmark?.url ?? ''}
+                        onChange={(e) => handleInputChange('url', e.target.value)}
+                    />
+                    <Form.Label className={"input-label"}>PICK DESTINATION</Form.Label>
+                    <Form.Select
+                        className={"form-control-custom select-field shadow--inset"}
+                        aria-label={"change the destination"}
+                        value={selectedBookmark?.destination ?? ''}
+                        onChange={(e) => handleInputChange('destination', e.target.value)}
+                    >
+                        <option value="external">EXTERNAL WINDOW</option>
+                        <option value="ins_pro">INSPIRATIONS  ~  PROJECTS</option>
+                        <option value="snip_gen">SNIPPETS  ~  GENERATORS</option>
+                        <option value="development">DEVELOPMENT  ~  EDITING  ~  CREATION</option>
+                        <option value="know_guide">KNOWLEDGE  ~  GUIDELINES</option>
+                        <option value="lip_doc">LIBRARIES  ~  DOCUMENTATIONS</option>
+                        <option value="project">PROJECT MANAGEMENT  ~  TOOLS</option>
+                        <option value="personal">PERSONALLY  ~  INDIVIDUAL</option>
+                    </Form.Select>
+                    <Form.Label className={"input-label"}>DROPDOWN CATEGORY</Form.Label>
+                    <Form.Control
+                        className={"form-control-custom shadow--inset"}
+                        type="text"
+                        aria-label={"change the dropdown category"}
+                        value={selectedBookmark?.dropdownCategory ?? ''}
+                        onChange={(e) => handleInputChange('dropdownCategory', e.target.value)}
+                    />
+                    <Form.Label className={"input-label"}>IDENTIFIER</Form.Label>
+                    <Form.Control
+                        className={"form-control-custom shadow--inset"}
+                        type="text"
+                        aria-label={"change the menu item identifier"}
+                        value={selectedBookmark?.title ?? ''}
+                        onChange={(e) => handleInputChange('title', e.target.value)}
+                    />
+                    <Form.Label className={"input-label"}>CONTENT TAGS</Form.Label>
+                    <Form.Control
+                        className={"form-control-custom shadow--inset"}
+                        type="text"
+                        aria-label={"change content tags, topics and use cases"}
+                        value={selectedBookmark?.tags ?? ''}
+                        onChange={(e) => handleInputChange('tags', e.target.value)}
+                    />
+                </Form>
             </Modal.Body>
             <Modal.Footer>
                 <Button
-                    className={"save-close-btn"}
+                    className={"save-close-btn tooltip-btn tt_n"}
                     variant="primary"
-                    title={"save/close"}
+                    data-tooltip={"SAVE/CLOSE"}
                     onClick={() => {
                         handleSaveChanges();
                         handleCloseModalEdit();
@@ -83,15 +93,15 @@ function EditBookmark({
                     <RiSave3Fill className={"save-close-icon"}/>
                 </Button>
                 <Button
-                    title={"Delete bookmark forever"}
+                    data-tooltip={"Delete bookmark forever?"}
                     variant="danger"
-                    className={"delete-forever-btn"}
+                    className={"delete-forever-btn tooltip-btn tt_n"}
                     onClick={() => {
                         onDeleteBookmarkClick();
                         handleCloseModalEdit();
                     }}
                 >
-                    <GiMineExplosion className={"delete-forever-icon"}/>
+                    <BsFillTrash3Fill className={"delete-forever-icon"}/>
                 </Button>
             </Modal.Footer>
             {/* Erfolgs-Popup anzeigen, wenn showSuccessPopup true ist */}

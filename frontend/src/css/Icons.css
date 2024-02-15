@@ -31,8 +31,8 @@
 }
 
 .delete-forever-icon {
-    margin: .2rem;
-    font-size: 2rem;
+    margin: .4rem 0;
+    font-size: 1.5rem;
 }
 
 .start-icon,
@@ -103,4 +103,8 @@
 
 .reset-width-icon {
     margin: 2px 0 0 0;
+}
+
+#online-timer-icon {
+    scale: 1.5;
 }

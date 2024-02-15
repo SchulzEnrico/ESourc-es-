@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { IoIosTimer } from 'react-icons/io';
-import { DropdownButton } from 'react-bootstrap';
+import {DropdownButton, Form} from 'react-bootstrap';
 import { TfiControlPlay, TfiControlStop } from 'react-icons/tfi';
 import { RxReset } from 'react-icons/rx';
 
@@ -106,59 +106,64 @@ const Timer: React.FC = () => {
             show={dropdownOpen}
             onToggle={handleToggleDropdown} // Toggle dropdown
         >
-            <div className={"dropdown-container dc-timer"}>
-                <div className={'time-left'}>Time left: {Math.max(selectedTime - seconds, 0)} s</div>
-                <div className="introductions">Choose a Time</div>
-                <select className={'form-input-timer form-select-timer shadow--ridge'}
-                        onChange={handleChange}>
-                    {timeOptions.map((option) => (
-                        <option key={option.value}
-                                value={option.value}>
-                            {option.label}
-                        </option>
-                    ))}
-                </select>
-                <p className={"introductions or-set-your-own"}>... or set your own</p>
-                <input
-                    className={'form-input-timer shadow--ridge'}
-                    type="number"
-                    min="0"
-                    step="1"
-                    value={customTime}
-                    onChange={(e) => setCustomTime(Number(e.target.value))}
-                    onFocus={(e) => e.target.select()} // Select all text on focus
-                />
-                <button onClick={handleSetCustomTime}
-                        className={"set-your-own-btn"}>
-                    Set your own
-                </button>
 
-                <div className={"timer-controls"}>
-                    <button className={'start-btn'}
-                            onClick={handleStartTimer}>
-                        <TfiControlPlay className={'start-icon'}/>
+            <div className={"dropdown-container dc-timer"}>
+                <Form className={"form-proportions timer"}>
+                    <div className={'time-left'}>Time left: </div>
+                            <div className={"time-left-seconds"}>{Math.max(selectedTime - seconds, 0)}</div>
+
+                    <Form.Label className={"input-label"}>CHOOSE A TIME</Form.Label>
+                    <select className={'form-control-custom select-field timer-options shadow--ridge'}
+                            onChange={handleChange}>
+                        {timeOptions.map((option) => (
+                            <option key={option.value}
+                                    value={option.value}>
+                                {option.label}
+                            </option>
+                        ))}
+                    </select>
+                    <Form.Label className={"input-label"}>set your own</Form.Label>
+                    <input
+                        className={'form-control-custom select-field timer-input shadow--ridge'}
+                        type="number"
+                        min="0"
+                        step="1"
+                        value={customTime}
+                        onChange={(e) => setCustomTime(Number(e.target.value))}
+                        onFocus={(e) => e.target.select()} // Select all text on focus
+                    />
+                    <button onClick={handleSetCustomTime}
+                            className={"set-your-own-btn"}>
+                        Set your own
                     </button>
-                    <button className={'stop-btn'}
-                            onClick={handleStopTimer}>
-                        <TfiControlStop className={'stop-icon'}/>
-                    </button>
-                    <button className={'reset-btn'}
-                            onClick={handleResetTimer}>
-                        <RxReset className={'reset-icon'}/>
-                    </button>
-                </div>
-                <div className={"online-timer"}>
-                    <a href="https://webuhr.de/"
-                       target="_blank"
-                       rel="noreferrer">
-                        <button
-                            data-tooltip={"Get more time controller online"}
-                            className={"more-time-controller-online-btn tooltip-btn tt_n"}
-                            type="button">
-                            <MdMoreTime title={"Time and Date"}/>
+
+                    <div className={"timer-controls"}>
+                        <button className={'start-btn'}
+                                onClick={handleStartTimer}>
+                            <TfiControlPlay className={'start-icon'}/>
                         </button>
-                    </a>
-                </div>
+                        <button className={'stop-btn'}
+                                onClick={handleStopTimer}>
+                            <TfiControlStop className={'stop-icon'}/>
+                        </button>
+                        <button className={'reset-btn'}
+                                onClick={handleResetTimer}>
+                            <RxReset className={'reset-icon'}/>
+                        </button>
+                    </div>
+                    <div className={"online-timer"}>
+                        <a href="https://webuhr.de/"
+                           target="_blank"
+                           rel="noreferrer">
+                            <button
+                                data-tooltip={"Get more time controller online"}
+                                className={"more-time-controller-online-btn tooltip-btn tt_n"}
+                                type="button">
+                                <MdMoreTime id={"online-timer-icon"}/>
+                            </button>
+                        </a>
+                    </div>
+                </Form>
             </div>
             {/* Popup-Komponente für das Popup */}
             {showTimeIsUpPopup && <TimeIsUpPopup onClose={handleCloseTimerModal}/>}
