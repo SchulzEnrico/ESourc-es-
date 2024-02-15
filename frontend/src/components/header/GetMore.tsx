@@ -88,78 +88,86 @@ function GetMore({ show, onClose, destination, setDestination, getAvailableCateg
     return (
         <div className={`get-more ${show ? 'show' : 'hide'} dropdown-container`}>
             <Button
-                className={"close-button"}
+                data-tooltip="Close window"
+                className={"close-button tooltip-btn tt_n"}
                 onClick={onClose}
-                aria-label="Close"
-                title="Close"
+                aria-label="Close window"
                 name="Close"
             >
                 <IoClose title={"close"} className={"close-icon"}/>
             </Button>
-            <h2 className={"introductions"}>A new bookmark?<br/>Filling in these fields!</h2>
-            <Form onSubmit={handleSubmit}>
+            <h2 className={"introductions"}>A NEW BOOKMARK? ...fill in these fields !</h2>
+            <Form className={"form-proportions"} onSubmit={handleSubmit}>
                 <InputGroup className="container-fluid md-3 d-flex justify-content-between">
+                    <Form.Label className={"input-label"}>URL</Form.Label>
                     <Form.Control
-                        className="form-input-get-more shadow--ridge"
-                        placeholder="URL"
-                        aria-label="URL"
+                        className="form-control-custom shadow--inset"
+                        placeholder="paste URL"
+                        aria-label="paste URL"
                         value={url}
                         onChange={(event) => setUrl(event.target.value)}
                     />
+                    <Form.Label className={"input-label"}>DESTINATION</Form.Label>
                     <Form.Select
-                        className="form-input-get-more form-select-get-more  shadow--ridge"
-                        aria-label="Destination"
+                        className="form-control-custom select-field shadow--inset"
+                        aria-label="pick a existing destination"
                         value={destination}
                         onChange={(event) => setDestination(event.target.value)}
                     >
-                        <option>select Destination</option>
-                        <option value="external">external</option>
-                        <option value="ins_pro">ins_pro</option>
-                        <option value="snip_gen">snip_gen</option>
-                        <option value="development">development</option>
-                        <option value="know_guide">know_guide</option>
-                        <option value="lip_doc">lip_doc</option>
-                        <option value="project">project</option>
-                        <option value="personal">personal</option>
+                        <option>pick a existing destination</option>
+                        <option value="external">EXTERNAL WINDOW</option>
+                        <option value="ins_pro">INSPIRATIONS ~ PROJECTS</option>
+                        <option value="snip_gen">SNIPPETS ~ GENERATORS</option>
+                        <option value="development">DEVELOPMENT ~ EDITING ~ CREATION</option>
+                        <option value="know_guide">KNOWLEDGE ~ GUIDELINES</option>
+                        <option value="lip_doc">LIBRARIES ~ DOCUMENTATIONS</option>
+                        <option value="project">PROJECT MANAGEMENT ~ TOOLS</option>
+                        <option value="personal">PERSONALLY ~ INDIVIDUAL</option>
                     </Form.Select>
+                    <Form.Label className={"input-label"}>DROPDOWN CATEGORY</Form.Label>
                     <Form.Control
                         as="select"
-                        className="form-input-get-more select-dropdown-category shadow--ridge"
-                        aria-label="Dropdown Category"
+                        className="form-control-custom select-field shadow--inset"
+                        aria-label="pick a existing dropdown category"
                         value={dropdownCategory}
                         onChange={(event) => setDropdownCategory(event.target.value)}
                     >
-                        <option>pick Dropdown Category</option>
+                        <option>pick a existing dropdown category</option>
                         {availableCategories.map((category) => (
                             <option key={category} value={category}>
                                 {category}
                             </option>
                         ))}
                     </Form.Control>
+                    <Form.Label className={"input-label"}>NEW CATEGORY</Form.Label>
                     <Form.Control
-                        className="form-input-get-more shadow--ridge"
-                        placeholder="create a new Category"
-                        aria-label="create a new Category"
+                        className="form-control-custom shadow--inset"
+                        placeholder="create a new dropdown category"
+                        aria-label="create a new dropdown category"
                         value={newCategory}
                         onChange={(event) => setNewCategory(event.target.value)}  // Füge diese Zeile hinzu
                     />
+                    <Form.Label className={"input-label"}>IDENTIFIER</Form.Label>
                     <Form.Control
-                        className="form-input-get-more shadow--ridge"
-                        placeholder="Title of the link"
-                        aria-label="Title of the link"
+                        className="form-control-custom shadow--inset"
+                        placeholder="define a menu item identifier"
+                        aria-label="define a menu item identifier"
                         value={title}
                         onChange={(event) => setTitle(event.target.value)}
                     />
+                    <Form.Label className={"input-label"}>CONTENT TAGS</Form.Label>
                     <Form.Control
-                        className="form-input-get-more shadow--ridge"
-                        placeholder="Content tags"
-                        aria-label="Content tags"
+                        className="form-control-custom shadow--inset"
+                        placeholder="add here some content tags, topics and use cases"
+                        aria-label="add here some content tags, topics and use cases"
                         value={tags}
                         onChange={(event) => setTags(event.target.value)}
                     />
                     </InputGroup>
-                    <Button type="submit" className="submit">
-                        save bookmark
+                    <Button data-tooltip={"Save your bookmark"}
+                            type="submit"
+                            className="submit save-bookmark-btn tooltip-btn tt_n">
+                        Save your bookmark
                     </Button>
             </Form>
             {showSuccessPopup && (

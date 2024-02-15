@@ -57,6 +57,10 @@ h1 {
   margin: 20px 0 0 -28px;
 }
 
+h2 {
+  margin: 0;
+}
+
 a {
   text-decoration: none;
   background-clip: text;
@@ -106,7 +110,7 @@ body::-webkit-scrollbar-thumb {
   width: max-content;    /* Dies stellt sicher, dass der Container so breit wie sein Inhalt ist */
   min-width: fit-content;
   box-sizing: border-box; /* Dies stellt sicher, dass Padding und Border in die Breite des Elements einbezogen werden */
-  background-color: var(--color-1);
+  background-color: var(--color-00);
   border: solid 3px var(--color-41);
   outline: solid 1px var(--color-31);
   border-radius: 25px;
@@ -117,10 +121,10 @@ body::-webkit-scrollbar-thumb {
 
 .dropdown-container {
   position: relative;
-  padding: 5px 20px;
   display: flex;
   flex-direction: column;
-  background-color: var(--color-1);
+  padding: 0;
+  background-color: var(--color-2);
   border: solid 2px var(--color-3-1);
   outline: solid 1px var(--color-41);
   border-radius: 15px;
@@ -129,7 +133,11 @@ body::-webkit-scrollbar-thumb {
               inset -6px -6px 12px #3b3b3b;
 }
 
-.dc-timer,
+.nav-group .dropdown-container {
+ min-width: 300px;
+ padding: 8px 15px;
+}
+
 .dc-github{
   width: fit-content;
   display: flex;
@@ -138,10 +146,11 @@ body::-webkit-scrollbar-thumb {
   bottom: 50%;
   z-index: 2;
 }
-.timer .dropdown-container {
-  position: sticky;
+
+.dc-timer {
   display: flex;
   flex-direction: column;
+  padding: 25px;
 }
 
 .dropdown-button-container {
@@ -156,30 +165,95 @@ body::-webkit-scrollbar-thumb {
   justify-content: center;
   font-weight: bold;
   color: var(--color-00);
-
 }
 
-.form-input-timer,
-.form-input-get-more,
-.form-input-edit-bookmark {
-  margin: 10px 20px;
+.form-proportions {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+padding: 15px;
+}
+.form-proportions.timer {
+  align-items: center;
+  padding: 0;
+}
+
+.form-control-custom {
+  margin: 0 20px;
   font-size: smaller;
   font-weight: bolder;
-  width: 190px;
-  color: var(--color-0);
-  border-radius: 25px;
-  border: var(--color-2) solid 1px;
-  background-color: transparent;
+  min-width: 86%;
+  max-width: 86%;
+  color: var(--color-3);
+  border-radius: 50px;
+  border: var(--color-1) solid 5px;
+  outline: solid 2px var(--color-22);
+  background-color: var(--color-00);
   height: auto;
   cursor: text;
 }
 
-.form-select-timer,
-.form-select-get-more,
-.form-select-edit-bookmark,
-.select-dropdown-category{
-  height: 55px;
-  width: 240px;
+.form-control-custom.select-field {
+  color: var(--color-23);
+  min-width: 92.5%;
+  max-width: 92.5%;
+  cursor: grabbing;
+}
+
+.timer .form-control-custom.select-field.timer-options {
+  min-width: 80%;
+  max-width: 80%;
+}
+.timer .form-control-custom.select-field{
+    min-width: 57%;
+    max-width: 57%;
+  margin-bottom: 1rem;
+}
+
+.form-control-custom:focus {
+  outline: solid 2px var(--color-3);
+  background-color: var(--color-01);
+  box-shadow: 0 0 25px 8px var(--color-41);
+}
+
+.input-label {
+  position: relative;
+  margin: 0 0 0 40px;
+  bottom: -5px;
+  left: 8px;
+  color: var(--color-01);
+  font-family: DialogInput, sans-serif;
+  font-size: smaller;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.timer .input-label {
+  letter-spacing: 1px;
+  left: -43px;
+}
+
+.form-control-custom::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: var(--color-2);
+  opacity: 1; /* Firefox */
+}
+
+.form-control-custom:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: var(--color-2);
+}
+
+.form-control-custom::-ms-input-placeholder { /* Microsoft Edge */
+  color: var(--color-2);
+}
+
+
+.timer-options {
+  width: 50%;
+  color: var(--color-3);
+}
+
+.timer-input {
+
 }
 
 .get-more,
@@ -190,12 +264,24 @@ body::-webkit-scrollbar-thumb {
   z-index: 100000;
   top: 50%;
   left: 50%;
-  width: 300px;
-  height: auto;
+  max-height: 80vh;
+  width: 50vw;
   transform: translate(-50%, -50%);
   padding: 20px;
   transition: transform 0.5s ease-in-out;
   border: solid 1px var(--color-4);
+}
+
+@media (max-width: 900px) {
+  .get-more.dropdown-container,
+  .edit-modal.dropdown-container,
+  .dc-timer.dropdown-container {
+    min-width: 100vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 
 .success-popup {
@@ -218,7 +304,8 @@ body::-webkit-scrollbar-thumb {
 }
 
 .edit-modal-title {
-  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
 }
 
 .centered-modal .modal-dialog {
@@ -230,17 +317,12 @@ body::-webkit-scrollbar-thumb {
 }
 
 .time-left {
-  font-size: xx-large;
+  font-size: x-large;
   font-weight: bolder;
-  padding-bottom: .5rem;
   background-image: -webkit-linear-gradient(270deg, #808080 53%, #808080 54%, #c0c0c0 64%, #808080 72%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-.or-set-your-own {
-  margin: 0 0 0 4.5rem;
 }
 
 .timer-popup {
@@ -276,4 +358,10 @@ body::-webkit-scrollbar-thumb {
   border-bottom: 2px solid var(--color-3-1);
 }
 
-
+.time-left-seconds {
+  margin: -15px 0 0 0;
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--color-3-1);
+  letter-spacing: 3px;
+}
