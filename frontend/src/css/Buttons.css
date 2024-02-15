@@ -65,6 +65,9 @@ button:hover {
 .save-bookmark-btn {
     border: var(--color-1) solid 2px;
     outline: solid 2px var(--color-22);
+    margin-top: 3rem;
+    width: fit-content;
+    height: 50px;
 }
 
 .edit-bookmark-btn,
@@ -84,12 +87,6 @@ button:hover {
 
 .submit {
     margin: 10px 20px;
-}
-
-.save-bookmark-btn {
-    margin-top: 3rem;
-    width: fit-content;
-    height: 50px;
 }
 
 .save-close-btn {

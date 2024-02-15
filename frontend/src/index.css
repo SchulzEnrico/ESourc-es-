@@ -252,10 +252,6 @@ padding: 15px;
   color: var(--color-3);
 }
 
-.timer-input {
-
-}
-
 .get-more,
 .edit-modal {
   display: flex;
