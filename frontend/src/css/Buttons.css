@@ -128,13 +128,12 @@ button:hover {
 
 .save-close-btn:hover,
 .submit:hover {
-    border: solid 2px #011fa4;
-    outline: solid 2px var(--color-22);
+    border: solid 2px var(--color-23);
+    outline: solid 2px var(--color-51);
     color: var(--color-5);
-    box-shadow: -7px -4px 10px #001980,
-                7px 4px 10px #001280,
-                inset -3px -3px 10px var(--color-21),
-                inset 3px 3px 10px var(--color-21);
+    box-shadow: 0 0 15px 10px var(--color-5),
+                inset -5px -5px 10px var(--color-51),
+                inset 5px 5px 10px var(--color-51);
 }
 
 .dropdown-button-container > button {
@@ -210,6 +209,7 @@ button:hover {
 .close-button:hover{
     padding: 0;
     border: solid 2px var(--color-31);
+    outline: solid 2px var(--color-3-2);
     box-shadow: 5px 5px 10px var(--color-3),
                 -3px -3px 10px var(--color-31),
                 inset -3px -3px 10px var(--color-3),
@@ -270,7 +270,7 @@ button:hover {
 }
 .dropdown-edit:hover,
 .get-more-button:hover {
-    box-shadow: 0 0 10px 2px var(--color-0),
+    box-shadow: 0 0 10px 3px var(--color-0),
                 inset -3px -3px 10px var(--color-5),
                 inset 3px 3px 10px var(--color-5);
 }

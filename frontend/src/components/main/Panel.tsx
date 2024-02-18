@@ -194,7 +194,7 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
                     <button data-tooltip={"Copy to clipboard"}
                             className={"iframe-handler-btn copy-to-clipboard-btn tooltip-cont tt_n"}
                             onClick={handleCopyToClipboard}>
-                        <HiOutlineClipboardCopy id={"copy-to-clipboard-icon"} />
+                        <HiOutlineClipboardCopy id={"copy-to-clipboard-icon"}/>
                     </button>
                 </div>
             </div>
