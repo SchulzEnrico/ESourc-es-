@@ -434,3 +434,16 @@ button:hover {
     height: 35px;
     margin: 1rem auto;
 }
+
+
+@media only screen and (max-width: 1050px) {
+    .reset-width-btn {
+        display: none;
+    }
+
+    .ruler-btn
+    {
+        display: none;
+    }
+
+}

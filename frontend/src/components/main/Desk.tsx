@@ -3,7 +3,7 @@ import '../../css/DeskGrid.css';
 import '../../css/DeskStyles.css';
 import Panel from './Panel.tsx';
 import '../../css/Resizeable.css';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import CustomResizableBox from './CustomResizableBox.tsx';
 import {TbArrowAutofitHeight} from "react-icons/tb";
 import {TiArrowSync} from "react-icons/ti";
@@ -47,6 +47,16 @@ function Desk() {
     const fullHeight = viewportToPixels("78.8vh");
     const fullResizeHeight = fullHeight - 43;
     const PANEL_MIN_HEIGHT = 10;
+
+
+    useEffect(() => {
+        if (window.innerWidth < 900) {
+            const panel = document.querySelector('.workstation .inner-panels-wrapper .panel') as HTMLElement;
+            if (panel) {
+                panel.style.width = window.innerWidth + 'px';
+            }
+        }
+    }, []);
 
     const resetAll = () => {
         setWorkstationWidthPixels(proportionToPixels(workstationProportion));
