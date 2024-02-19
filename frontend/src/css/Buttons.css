@@ -443,7 +443,12 @@ button:hover {
 
     .ruler-btn
     {
-        display: none;
+        position: absolute;
+        top: 95.2%;
+    }
+
+    .get-more-button {
+        right: 1px;
     }
 
 }
