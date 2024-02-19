@@ -51,8 +51,8 @@ button:hover {
     inset 5px 5px 10px #a20f08;
 }
 
-.close-button,
-.manageBookmarksBtn {
+.close-btn-GetMore,
+.close-btn-EditBookmark {
     margin: 0 0 -30px 40px;
     width: 40px;
     height: 40px;
@@ -60,6 +60,11 @@ button:hover {
     border: var(--color-1) solid 2px;
     outline: solid 2px var(--color-22);
     color: var(--color-31);
+}
+
+.close-btn-EditBookmark {
+    position: absolute;
+    left: 2%;
 }
 
 .save-bookmark-btn {
@@ -206,7 +211,8 @@ button:hover {
     scale: .65;
 }
 
-.close-button:hover{
+.close-btn-GetMore:hover,
+.close-btn-EditBookmark:hover{
     padding: 0;
     border: solid 2px var(--color-31);
     outline: solid 2px var(--color-3-2);
@@ -437,13 +443,32 @@ button:hover {
 
 
 @media only screen and (max-width: 1050px) {
+
     .reset-width-btn {
         display: none;
     }
 
     .ruler-btn
     {
-        display: none;
+        position: absolute;
+        top: 95.2%;
+    }
+
+    .get-more-button {
+        right: 1px;
+    }
+
+    .close-btn-GetMore {
+        position: absolute;
+        bottom: 10.5%;
+        left: 1.5%;
+    }
+
+    .save-bookmark-btn {
+        position: relative;
+        margin-top: 1.5rem;
+        left: 32%;
+        bottom: -20%;
     }
 
 }

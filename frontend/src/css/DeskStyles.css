@@ -6,9 +6,6 @@
     background: var(--color-0);
 }
 
-.inner-panels-wrapper {
-}
-
 .panel-items-container { display: grid;
     grid-template-areas: "iframe-bounding" "panel-controls";
     grid-template-rows: calc(100% - 25px) 25px; /* Beispiel: 50px für die unteren 13% */

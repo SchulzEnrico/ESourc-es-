@@ -1,14 +1,11 @@
 .esources-desk {
     display: grid;
     grid-template-areas: "garage workstation library managements";
-    /* place-items: center; */
     place-content: center;
-
     gap: 90px;
     margin-left: -20px;
     min-width: 100vw;
     height: 100vh;
-    /* padding-right: 1.5rem; */ /* wegen der position fixed im body aus der index.css eingefügt */
 }
 
 .placeholder-gap-row {
@@ -19,10 +16,9 @@
     grid-area: garage;
     display: grid;
     grid-template-areas: "ins_pro" "snip_gen";
-
     min-width: fit-content;
     min-height: fit-content;
-    margin: -3rem 1.5rem 0 .1rem; /* -3rem wegen der position fixed im body aus der index.css von -1.4rem verändert */
+    margin: -3rem 1.5rem 0 .1rem;
 }
 .ins_pro {
     grid-area: ins_pro;
@@ -37,7 +33,7 @@
     grid-area: workstation;
     display: grid;
     grid-template-areas: "development";
-    margin: -3rem -4.5rem 0 -2.7rem; /* -3rem wegen der position fixed im body aus der index.css von -1.4rem verändert */
+    margin: -3rem -4.5rem 0 -2.7rem;
 }
 .development {
     grid-area: development;
@@ -50,8 +46,7 @@
     display: grid;
     grid-template-areas: "know_guide" "lip_doc";
     min-width: fit-content;
-
-    margin: -3rem -1rem 0 0; /* -3rem wegen der position fixed im body aus der index.css von -1.4rem verändert */
+    margin: -3rem -1rem 0 0;
 }
 .know_guide {
     grid-area: know_guide;
@@ -66,11 +61,9 @@
     grid-area: managements;
     display: grid;
     grid-template-areas: "project" "personal";
-
     min-width: fit-content;
-    margin: -3rem 2rem 0 0; /* -3rem wegen der position fixed im body aus der index.css von -1.4rem verändert */
+    margin: -3rem 2rem 0 0;
 }
-
 .project {
     grid-area: project;
     min-width: fit-content;
@@ -81,47 +74,35 @@
 }
 
 /* Media Query für mobile Ansichten */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1050px) {
     .esources-desk {
-        position: absolute;
+        position: relative;
         height: 100vh !important;
-        width: 100vw !important;
         gap: 0;
         margin: auto;
-        padding: 0 10px 0 0;
     }
 
-    /* Verstecke alle CustomResizableBox-Elemente außer workstation */
     .garage,
     .library,
     .managements {
         display: none;
     }
 
-    /* Ändere die Breite von workstation auf volle Bildschirmbreite */
     .workstation {
         height: 80vh !important;
         width: 100% !important;
-        margin: auto;
-        place-self: center;
+        margin: 0;
     }
 
-    /* Setze die Höhe von workstation auf die volle Bildschirmhöhe */
-    .workstation  {
-        display: grid;
-    }
-
-    /* Zentriere den Inhalt der workstation */
     .workstation .inner-panels-wrapper {
-        width: 100vw !important;
         height: 100% !important;
+        width: 90vw !important;
     }
 
-    /* Setze die Breite des inneren Panels auf volle Bildschirmbreite */
     .workstation .inner-panels-wrapper .panel {
-        width: 100vw !important;
         height: 100% !important;
-        box-sizing: border-box; /* Hinzufügen, um sicherzustellen, dass die Breite nicht durch das Hinzufügen von Padding oder Border überschritten wird */
+        width: 90vw !important;
+        box-sizing: border-box;
     }
 
     .development {
@@ -131,9 +112,5 @@
 
     .panel-controls {
         margin-bottom: 5px !important;
-    }
-
-    .rules-btn {
-  display: none;
     }
 }
