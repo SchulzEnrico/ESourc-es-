@@ -3,6 +3,7 @@ import { EditBookmarkProps } from '../types/types.ts';
 
 import {RiSave3Fill} from "react-icons/ri";
 import {BsFillTrash3Fill} from "react-icons/bs";
+import {IoClose} from "react-icons/io5";
 
 function EditBookmark({
                           showEditModal,
@@ -25,6 +26,9 @@ function EditBookmark({
         <Modal className={"edit-modal dropdown-container"} show={showEditModal} onHide={handleCloseModalEdit}>
             <Modal.Header>
                 <Modal.Title className={"edit-modal-title"}>
+                    <Button variant="link" className="close-btn-EditBookmark" onClick={handleCloseModalEdit}>
+                        <IoClose className={"close-icon"}/>
+                    </Button>
                     <h2>Edit Bookmark</h2>
                 </Modal.Title>
             </Modal.Header>
@@ -61,6 +65,14 @@ function EditBookmark({
                         aria-label={"change the dropdown category"}
                         value={selectedBookmark?.dropdownCategory ?? ''}
                         onChange={(e) => handleInputChange('dropdownCategory', e.target.value)}
+                    />
+                    <Form.Label className={"input-label"}>NEW CATEGORY</Form.Label>
+                    <Form.Control
+                        className="form-control-custom shadow--inset"
+                        placeholder="create a new dropdown category"
+                        aria-label="create a new dropdown category"
+                        value={selectedBookmark?.dropdownCategory ?? ''}
+                        onChange={(e) => handleInputChange('dropdownCategory', e.target.value)}  // Füge diese Zeile hinzu
                     />
                     <Form.Label className={"input-label"}>IDENTIFIER</Form.Label>
                     <Form.Control

@@ -70,6 +70,7 @@ function GetMore({ show, onClose, destination, setDestination, getAvailableCateg
             .post("api/bookmarks/add", newBookmarkDTO)
             .then(() => {
                 setUrl("");
+                setDestination("");
                 setDropdownCategory("");
                 setNewCategory("");
                 setTags("");
@@ -89,14 +90,14 @@ function GetMore({ show, onClose, destination, setDestination, getAvailableCateg
         <div className={`get-more ${show ? 'show' : 'hide'} dropdown-container`}>
             <Button
                 data-tooltip="Close window"
-                className={"close-button tooltip-btn tt_n"}
+                className={"close-btn-GetMore tooltip-btn tt_n"}
                 onClick={onClose}
                 aria-label="Close window"
                 name="Close"
             >
                 <IoClose title={"close"} className={"close-icon"}/>
             </Button>
-            <h2 className={"introductions"}>A NEW BOOKMARK? ...fill in these fields !</h2>
+            <h2 className={"introductions"}>A NEW BOOKMARK? ...fill in these fields!</h2>
             <Form className={"form-proportions"} onSubmit={handleSubmit}>
                 <InputGroup className="container-fluid md-3 d-flex justify-content-between">
                     <Form.Label className={"input-label"}>URL</Form.Label>
