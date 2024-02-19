@@ -357,7 +357,7 @@ button:hover {
 
 #reset-all-dimensions-btn {
     position: fixed;
-    z-index: 9999;
+    z-index: 999999;
     background-color: transparent;
     border: none;
     box-shadow: none;
