@@ -2,7 +2,6 @@ import React, { useRef, useState, useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import Navigation from '../nav/Navigation';
 import { PanelProps, BookmarkDTO } from '../types/types';
-import { TiThMenu } from 'react-icons/ti';
 import { HiOutlineClipboardCopy } from "react-icons/hi";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Ruler from "../utilities/Ruler.tsx";
@@ -142,15 +141,7 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
                 onMouseEnter={handlePanelHover}
                 onMouseLeave={() => setHoverText('')}
             >
-                <button
-                    className={'panel-menu-btn ${className} tooltip-btn tt_ne'}
-                    onClick={() => setShowNavigationModal(true)}
-                    onMouseEnter={handlePanelHover}
-                    data-tooltip={hoverText}
-                    onMouseLeave={() => setHoverText('')}
-                >
-                    <TiThMenu/>
-                </button>
+
                 <Navigation
                     onLinkClick={(url, title) => {
                         openInIframe(url, title);
@@ -170,6 +161,7 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
                     showModal={showNavigationModal}
                     closeModal={() => setShowNavigationModal(false)}
                     isExternal={false}
+                    hoverText={hoverText} // Übergeben Sie hoverText an Navigation
                 />
                 <div
                     className={"temporary-input-area"}>
