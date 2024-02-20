@@ -82,10 +82,10 @@ body::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
-::-webkit-scrollbar-track {
+body::-webkit-scrollbar-track {
   background-color: #101010;
 }
-::-webkit-scrollbar-corner {
+body::-webkit-scrollbar-corner {
   background-color: #101010;
 }
 body::-webkit-scrollbar-thumb {
@@ -146,6 +146,7 @@ ul li {
   border-radius: 10px;
   border: 1px solid var(--color-2);
 }
+
 .navigation-category {
   display: flex;
   justify-content: start;
@@ -156,9 +157,50 @@ ul li {
   padding-left: 15px;
   color: var(--color-1);
 }
+
+.nav-group.dropdown-container {
+  display: flex;
+  justify-content: center;
+  max-width: 75vw;
+  max-height: 65vh;
+  overflow-y: auto; /* Horizontal scrollen ermöglichen, wenn der Inhalt breiter als der Bildschirm ist */
+  flex-wrap: wrap; /* Umbruch bei Bedarf auf mehrere Zeilen */
+}
+.nav-group.dropdown-container::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.nav-group.dropdown-container::-webkit-scrollbar-track {
+  background-color: #101010;
+}
+.nav-group.dropdown-container::-webkit-scrollbar-corner {
+  background-color: #101010;
+}
+.nav-group.dropdown-container::-webkit-scrollbar-thumb {
+  background-color: var(--color-3-1);
+  border: 1px solid var(--color-41);
+  border-radius: 25px;
+}
+
+.category-column {
+  width: 200px; /* Breite der Container auf 20% minus den Abstand */
+}
+
+.category-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 .dropdown-list {
   margin-top: 0;
 }
+
+/* Anpassung für externe Dropdowns */
+.external .dropdown-list {
+  max-width: none; /* Keine maximale Höhe für externe Dropdowns */
+}
+
 .dropdown-button-container {
   padding: 0;
   margin: 0;
@@ -417,6 +459,11 @@ padding: 15px;
     min-width: 87%;
     max-width: 87%;
     cursor: grabbing;
+  }
+
+  .nav-group.dropdown-container {
+    max-width: 45vw;
+    max-height: 78vh;
   }
 }
 

@@ -25,7 +25,6 @@ const Navigation: React.FC<NavigationProps> = ({onLinkClick,
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [hideTimeout, setHideTimeout] = useState<NodeJS.Timeout | null>(null);
 
-
     const getAvailableCategories = (): string[] => {
         return Array.from(
             new Set(
@@ -149,26 +148,25 @@ const Navigation: React.FC<NavigationProps> = ({onLinkClick,
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
             >
-                <div className={"dropdown-container shadow--inset"}>
-                    <div>
-                        <Button
-                            data-tooltip={"Add a new Bookmark to your collection"}
-                            variant="primary"
-                            onClick={() => setShowGetMore(true)}>
-                            <TiPlus className={"add-icon"}/>
-                        </Button>
-                    </div>
+                <div className={"nav-group dropdown-container shadow--inset"}>
                     {uniqueCategories.map((category) => (
-                        <div key={category}>
-
-                            <div className={"category-column shadow--sunken"}>
-                                <h6 className={"navigation-category"}>{category}</h6>
-                                <ul className="dropdown-list">
-                                    {renderDropdownItems(category)}
-                                </ul>
-                            </div>
+                        <div key={category} className={"category-column shadow--sunken"}>
+                            <h6 className={"navigation-category"}>{category}</h6>
+                            <ul className="dropdown-list">
+                                {renderDropdownItems(category)}
+                            </ul>
                         </div>
                     ))}
+                </div>
+                <div>
+                    <Button
+                        data-tooltip={"Add a new Bookmark to your collection"}
+                        className={"get-more-button tooltip-btn tt_n"}
+                        variant="primary"
+                        onClick={() => setShowGetMore(true)}
+                    >
+                        <TiPlus className={"add-icon"} />
+                    </Button>
                 </div>
             </DropdownButton>
         );
