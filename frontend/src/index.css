@@ -101,29 +101,25 @@ body::-webkit-scrollbar-thumb {
   display: block !important;
   opacity: 1 !important;
   visibility: visible !important;
+  z-index: 9999999999999999999999999999;
 }
 
 .nav-group {
   display: flex;
+  flex-direction: row;
   padding: 0 50px 0 50px;
   height: fit-content;
   width: max-content;    /* Dies stellt sicher, dass der Container so breit wie sein Inhalt ist */
   min-width: fit-content;
   box-sizing: border-box; /* Dies stellt sicher, dass Padding und Border in die Breite des Elements einbezogen werden */
-  background-color: var(--color-00);
-  border: solid 3px var(--color-41);
-  outline: solid 1px var(--color-31);
-  border-radius: 25px;
-  box-shadow: 0 0 10px 5px var(--color-31),
-  inset 6px 6px 12px #111111,
-  inset -6px -6px 12px #3b3b3b;
+  z-index: 9999999999999999999999999999;
 }
 
 .dropdown-container {
   position: relative;
   display: flex;
-  flex-direction: column;
-  padding: 0;
+  flex-direction: row;
+  padding: 8px;
   background-color: var(--color-2);
   border: solid 2px var(--color-3-1);
   outline: solid 1px var(--color-41);
@@ -133,10 +129,42 @@ body::-webkit-scrollbar-thumb {
               inset -6px -6px 12px #3b3b3b;
 }
 
-.nav-group .dropdown-container {
- min-width: 300px;
- padding: 8px 15px;
+ul {
+  margin: 0;
+  padding: 0;
 }
+
+ul li {
+  margin: 0;
+}
+.category-column {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-2);
+  margin: 10px 8px;
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px solid var(--color-2);
+}
+.navigation-category {
+  display: flex;
+  justify-content: start;
+  font-size: small;
+  width: fit-content;
+  font-weight: bold;
+  margin: 0;
+  padding-left: 15px;
+  color: var(--color-1);
+}
+.dropdown-list {
+  margin-top: 0;
+}
+.dropdown-button-container {
+  padding: 0;
+  margin: 0;
+  height: fit-content !important;
+}
+
 
 .dc-github{
   width: fit-content;
@@ -158,6 +186,7 @@ body::-webkit-scrollbar-thumb {
   border-radius: 25px;
   height: 40px;
   padding: 2px;
+  z-index: 9999999999999999999999999999;
 }
 
 .introductions {
@@ -389,4 +418,10 @@ padding: 15px;
     max-width: 87%;
     cursor: grabbing;
   }
+}
+
+
+
+.iframe-bounding {
+/*  display: none;*/
 }

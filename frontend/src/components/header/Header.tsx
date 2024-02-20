@@ -2,8 +2,6 @@ import Navigation from "../nav/Navigation.tsx";
 import "../../css/Header.css";
 import {HeaderProps} from '../types/types.ts';
 import React, {useState} from "react";
-import { Button } from "react-bootstrap";
-import {BsBookmarksFill} from "react-icons/bs";
 import {FcGoogle} from "react-icons/fc";
 
 const Header: React.FC<HeaderProps> = () => {
@@ -38,13 +36,6 @@ const Header: React.FC<HeaderProps> = () => {
                     <FcGoogle id={"google-icon"}/>
                 </button>
             </form>
-            <Button
-                className={"external-links-btn tooltip-btn tt_sw"}
-                data-tooltip={"External bookmarks"}
-                onClick={() => setShowNavigationModal(true)}
-            >
-                <BsBookmarksFill/>
-            </Button>
             <div data-bs-theme={"dark"}>
                 <Navigation isExternal={true}
                             showModal={showNavigationModal}

@@ -1,35 +1,30 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
-import {
-    DropdownButton,
-    ButtonGroup,
-    Modal,
-    Button,
-    Alert,
-} from 'react-bootstrap';
+import {Button, DropdownButton, Alert, Modal} from 'react-bootstrap';
 import '../../index.css';
 import GetMore from '../header/GetMore.tsx';
-import './EditBookmark.tsx'
 import EditBookmark from "./EditBookmark";
-import {NavigationProps, BookmarkDTO} from "../types/types.ts";
-import {TiPlus} from "react-icons/ti";
-import {MdOutlineSettings} from "react-icons/md";
-import {VscEyeClosed} from "react-icons/vsc";
+import { NavigationProps, BookmarkDTO } from "../types/types.ts";
+import { MdOutlineSettings } from "react-icons/md";
+import {TiPlus, TiThMenu} from "react-icons/ti";
+import {BsBookmarksFill} from "react-icons/bs";
 
-const Navigation: React.FC<NavigationProps> = ({ onLinkClick,
+
+const Navigation: React.FC<NavigationProps> = ({onLinkClick,
                                                    panelName,
                                                    isExternal,
-                                                   showModal,
-                                                   closeModal,
-}) => {
+                                                   hoverText
+                                               }) => {
     const tempBookmark = useRef<BookmarkDTO | null>(null);
-    const [showEditModal, setShowEditModal] = useState(false);
     const [bookmarks, setBookmarks] = useState<BookmarkDTO[]>([]);
-    const [showGetMore, setShowGetMore] = useState(false);
     const [selectedBookmark, setSelectedBookmark] = useState<BookmarkDTO | null>(null);
     const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+    const [showGetMore, setShowGetMore] = useState(false); // State für das GetMore-Modal
     const [currentNavigation, setCurrentNavigation] = useState("default");
     const [destination, setDestination] = useState("default");
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [hideTimeout, setHideTimeout] = useState<NodeJS.Timeout | null>(null);
+
 
     const getAvailableCategories = (): string[] => {
         return Array.from(
@@ -53,36 +48,10 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick,
 
     const openLink = (url: string, title: string, destination: string = "internal") => {
         destination === "external" ? window.open(url, '_blank') : onLinkClick?.(url, title, destination);
-        closeModal();
     };
 
     const openEditModal = (bookmark: BookmarkDTO) => {
         setSelectedBookmark(bookmark);
-        setShowEditModal(true);
-        document.body.style.overflow = 'hidden';
-    };
-
-    const [alert, setAlert] = useState({
-        open: false,
-        message: '',
-        variant: 'success'
-    });
-
-    const handleGetMoreClick = () => {
-        setShowGetMore(true);
-        document.body.style.overflow = 'hidden';
-    };
-
-    const handleCloseModal = () => {
-        setShowGetMore(false);
-        document.body.style.overflow = 'auto';
-        loadBookmarks();
-    };
-
-    const handleCloseModalEdit = () => {
-        setShowEditModal(false);
-        setShowSuccessPopup(false);
-        document.body.style.overflow = 'auto';
     };
 
     const handleSaveChanges = () => {
@@ -92,8 +61,6 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick,
                 .then(response => {
                     console.log('Bookmark updated successfully:', response.data);
                     setShowSuccessPopup(true);
-                    setShowEditModal(false);
-                    document.body.style.overflow = 'auto';
                     loadBookmarks();
                     setTimeout(() => setShowSuccessPopup(false), 1500);
                 })
@@ -125,9 +92,7 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick,
             .then(response => {
                 console.log('Bookmark deleted successfully:', response.data);
                 setShowSuccessPopup(true);
-                setShowEditModal(false);
                 loadBookmarks();
-                document.body.style.overflow = 'auto';
                 setTimeout(() => setShowSuccessPopup(false), 1500);
             })
             .catch(error => {
@@ -145,12 +110,75 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick,
         // Weitere Logs oder Code hier, um sicherzustellen, dass currentNavigation korrekt aktualisiert wird
     }, [currentNavigation]);
 
+    // Funktion zum Anzeigen des Dropdown-Containers und Löschen des Timeout
+    const handleMouseEnter = () => {
+        setDropdownOpen(true);
+        if (hideTimeout !== null) {
+            clearTimeout(hideTimeout); // Timeout löschen, um das Ausblenden zu verhindern
+        }
+    };
 
+// Funktion zum Ausblenden des Dropdown-Containers mit einer kurzen Verzögerung
+    const handleMouseLeave = () => {
+        const timeout = setTimeout(() => {
+            setDropdownOpen(false);
+        }, 200); // Verzögerung von 200 Millisekunden
+
+        setHideTimeout(timeout); // Timeout-Referenz aktualisieren
+    };
+
+    const renderDropdowns = () => {
+        const uniqueCategories = Array.from(
+            new Set(
+                bookmarks
+                    .filter((bookmark) => isExternal ? bookmark.destination === "external" : bookmark.destination === panelName)
+                    .map((bookmark) => bookmark.dropdownCategory)
+            )
+        );
+
+        const dropDirection = dropdownOpen && !isExternal ? "up" : "start";
+
+        return (
+            <DropdownButton
+                id="dropdown-basic-button"
+                className={isExternal ? "external-links-btn tooltip-btn tt_w" : "panel-menu-btn tooltip-btn tt_n"}
+                data-tooltip={isExternal ? "External Links" : hoverText}
+                title={<>{isExternal ? <BsBookmarksFill/> : <TiThMenu/>}</>}
+                drop={dropDirection}
+                show={dropdownOpen}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+            >
+                <div className={"dropdown-container shadow--inset"}>
+                    <div>
+                        <Button
+                            data-tooltip={"Add a new Bookmark to your collection"}
+                            variant="primary"
+                            onClick={() => setShowGetMore(true)}>
+                            <TiPlus className={"add-icon"}/>
+                        </Button>
+                    </div>
+                    {uniqueCategories.map((category) => (
+                        <div key={category}>
+
+                            <div className={"category-column shadow--sunken"}>
+                                <h6 className={"navigation-category"}>{category}</h6>
+                                <ul className="dropdown-list">
+                                    {renderDropdownItems(category)}
+                                </ul>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </DropdownButton>
+        );
+    };
 
     const renderDropdownItems = (category: string) => {
         const relatedBookmarks = bookmarks.filter(bookmark => bookmark.dropdownCategory === category && (isExternal ? bookmark.destination === "external" : bookmark.destination === panelName));
 
         return relatedBookmarks.map((bookmark) => (
+
             <div className="dropdown-button-container" key={bookmark.url}>
                 <Button
                     className="dropdown-item"
@@ -169,99 +197,53 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick,
         ));
     };
 
-    const renderDropdowns = () => {
-        const uniqueCategories = Array.from(
-            new Set(
-                bookmarks
-                    .filter((bookmark) => isExternal ? bookmark.destination === "external" : bookmark.destination === panelName)
-                    .map((bookmark) => bookmark.dropdownCategory)
-            )
-        );
-
-        return (
-
-            <ButtonGroup className={"nav-group"}>
-                <Button
-                    data-tooltip={"Close Navigation"}
-                    className={"close-navigation-btn tooltip-btn tt_n"}
-                    onClick={closeModal}>
-                    <VscEyeClosed className={"close-navigation-icon"} />
-                </Button>
-                {
-                    uniqueCategories.map((category) => (
-
-                        <DropdownButton
-                            as={ButtonGroup}
-                            className={"dropdown-category dropdown-category-btn"}
-                            key={category}
-                            id={`dropdown-variants-${category}`}
-                            variant="secondary"
-                            title={category}
-                            drop={isExternal ? "down-centered" : "up-centered"}
-                        >
-
-                            <div className="dropdown-container navigation">
-                                {renderDropdownItems(category)}
-                            </div>
-                        </DropdownButton>
-                    ))}
-
-                { (
-                    <Button
-                        data-tooltip={"Add a new Bookmark to your collection"}
-                        className={"get-more-button tooltip-btn tt_ne"}
-                        variant="primary"
-                        onClick={handleGetMoreClick}>
-                        <TiPlus className={"add-icon"}/>
-                    </Button>
-                )}
-
-                <EditBookmark
-                    showEditModal={showEditModal}
-                    handleCloseModalEdit={handleCloseModalEdit}
-                    handleInputChange={(field, value) => { handleInputChange(field, value, selectedBookmark) }}
-                    handleSaveChanges={handleSaveChanges}
-                    handleDeleteBookmark={() => {
-                        if (selectedBookmark?._id) {
-                            handleDeleteBookmark(selectedBookmark._id)
-                                .then(() => {
-                                    setSelectedBookmark(null);
-                                })
-                                .catch((error) => {
-                                    console.error('Error deleting bookmark:', error);
-                                });
-                        } else {
-                            console.warn('Trying to delete a null or undefined bookmark.');
-                        }
-                    }}
-                    selectedBookmark={selectedBookmark}
-                    showSuccessPopup={showSuccessPopup}
-                />
-            </ButtonGroup>
-        );
-    };
-
     return (
-        <Modal className={"navigation-modal"} show={showModal} onHide={closeModal}>
-            <>
-                {renderDropdowns()}
-                {alert.open && (
-                    <Alert variant={alert.variant} onClose={() => setAlert({ ...alert, open: false })} dismissible>
-                        {alert.message}
-                    </Alert>
-                )}
-                <Modal show={showGetMore} onHide={handleCloseModal}>
-                    <GetMore
-                        onClose={handleCloseModal}
-                        show={showSuccessPopup}
-                        getAvailableCategories={getAvailableCategories}
-                        destination={destination}
-                        setDestination={setDestination}
-                        setCurrentNavigation={setCurrentNavigation}
-                    />
-                </Modal>
-            </>
-        </Modal>
+        <>
+
+            {renderDropdowns()}
+
+            {showSuccessPopup && (
+                <Alert variant="success"
+                       onClose={() => setShowSuccessPopup(false)}
+                       dismissible>
+                    Bookmark updated successfully!
+                </Alert>
+            )}
+            <EditBookmark
+                showEditModal={selectedBookmark !== null}
+                handleCloseModalEdit={() => setSelectedBookmark(null)}
+                handleInputChange={(field, value) => {
+                    handleInputChange(field, value, selectedBookmark)
+                }}
+                handleSaveChanges={handleSaveChanges}
+                handleDeleteBookmark={() => {
+                    if (selectedBookmark?._id) {
+                        handleDeleteBookmark(selectedBookmark._id)
+                            .then(() => {
+                                setSelectedBookmark(null);
+                            })
+                            .catch((error) => {
+                                console.error('Error deleting bookmark:', error);
+                            });
+                    } else {
+                        console.warn('Trying to delete a null or undefined bookmark.');
+                    }
+                }}
+                selectedBookmark={selectedBookmark}
+                showSuccessPopup={showSuccessPopup}
+            />
+            <Modal show={showGetMore}
+                   onHide={() => setShowGetMore(false)}>
+                <GetMore
+                    onClose={() => setShowGetMore(false)}
+                    show={showSuccessPopup}
+                    getAvailableCategories={getAvailableCategories}
+                    destination={destination}
+                    setDestination={setDestination}
+                    setCurrentNavigation={setCurrentNavigation}
+                />
+            </Modal>
+        </>
     );
 }
 

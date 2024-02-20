@@ -52,6 +52,11 @@ export type NavigationProps = {
     currentNavigation?: string;
     showModal: boolean;
     closeModal: () => void;
+    headerButtonClass?: string; // Klasse für den Button im Header
+    panelButtonClass?: string; // Klasse für den Button in den Panels
+    buttonText?: string; // Text für den Button im Header
+    hoverText?: string; // Text für den Tooltip
+    handleButtonClick?: () => void; // Funktion für den Button
 };
 
 export type HeaderProps = {

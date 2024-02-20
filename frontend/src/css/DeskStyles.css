@@ -202,7 +202,7 @@ iframe {
     hue-rotate(354deg)
     brightness(135%)
     contrast(100%);
-    z-index: 99999;
+    z-index: 999999;
 }
 
 .h1-under-underline {
@@ -213,5 +213,5 @@ iframe {
     top: 43px;
     left: 43px;
     width: 128px;
-    z-index: 99997;
+    z-index: 99999;
 }
