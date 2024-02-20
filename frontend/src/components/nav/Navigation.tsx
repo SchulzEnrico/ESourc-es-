@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
-import {Button, DropdownButton, Alert, ButtonGroup, Modal} from 'react-bootstrap';
+import {Button, DropdownButton, Alert, Modal} from 'react-bootstrap';
 import '../../index.css';
 import GetMore from '../header/GetMore.tsx';
 import EditBookmark from "./EditBookmark";
@@ -22,6 +22,9 @@ const Navigation: React.FC<NavigationProps> = ({onLinkClick,
     const [showGetMore, setShowGetMore] = useState(false); // State für das GetMore-Modal
     const [currentNavigation, setCurrentNavigation] = useState("default");
     const [destination, setDestination] = useState("default");
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [hideTimeout, setHideTimeout] = useState<NodeJS.Timeout | null>(null);
+
 
     const getAvailableCategories = (): string[] => {
         return Array.from(
@@ -107,6 +110,23 @@ const Navigation: React.FC<NavigationProps> = ({onLinkClick,
         // Weitere Logs oder Code hier, um sicherzustellen, dass currentNavigation korrekt aktualisiert wird
     }, [currentNavigation]);
 
+    // Funktion zum Anzeigen des Dropdown-Containers und Löschen des Timeout
+    const handleMouseEnter = () => {
+        setDropdownOpen(true);
+        if (hideTimeout !== null) {
+            clearTimeout(hideTimeout); // Timeout löschen, um das Ausblenden zu verhindern
+        }
+    };
+
+// Funktion zum Ausblenden des Dropdown-Containers mit einer kurzen Verzögerung
+    const handleMouseLeave = () => {
+        const timeout = setTimeout(() => {
+            setDropdownOpen(false);
+        }, 200); // Verzögerung von 200 Millisekunden
+
+        setHideTimeout(timeout); // Timeout-Referenz aktualisieren
+    };
+
     const renderDropdowns = () => {
         const uniqueCategories = Array.from(
             new Set(
@@ -116,27 +136,38 @@ const Navigation: React.FC<NavigationProps> = ({onLinkClick,
             )
         );
 
+        const dropDirection = dropdownOpen && !isExternal ? "up" : "start";
+
         return (
             <DropdownButton
                 id="dropdown-basic-button"
-                className={isExternal ? "external-links-btn tooltip-btn tt_sw" : "panel-menu-btn tooltip-btn tt_n"}
+                className={isExternal ? "external-links-btn tooltip-btn tt_w" : "panel-menu-btn tooltip-btn tt_n"}
                 data-tooltip={isExternal ? "External Links" : hoverText}
-                title={<>{isExternal ? <BsBookmarksFill/> : <TiThMenu/>}</>}>
-                <div className={"nav-group dropdown-container"}>
+                title={<>{isExternal ? <BsBookmarksFill/> : <TiThMenu/>}</>}
+                drop={dropDirection}
+                show={dropdownOpen}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+            >
+                <div className={"dropdown-container shadow--inset"}>
+                    <div>
+                        <Button
+                            data-tooltip={"Add a new Bookmark to your collection"}
+                            variant="primary"
+                            onClick={() => setShowGetMore(true)}>
+                            <TiPlus className={"add-icon"}/>
+                        </Button>
+                    </div>
                     {uniqueCategories.map((category) => (
+                        <div key={category}>
 
-                        <DropdownButton
-                            as={ButtonGroup}
-                            className={"dropdown-item dropdown-category dropdown-category-btn"}
-                            key={category}
-                            id={`dropdown-variants-${category}`}
-                            variant="secondary"
-                            title={category}
-                        >
-                            <div className={"dropdown-container"}>
-                                {renderDropdownItems(category)}
+                            <div className={"category-column shadow--sunken"}>
+                                <h6 className={"navigation-category"}>{category}</h6>
+                                <ul className="dropdown-list">
+                                    {renderDropdownItems(category)}
+                                </ul>
                             </div>
-                        </DropdownButton>
+                        </div>
                     ))}
                 </div>
             </DropdownButton>
@@ -168,14 +199,7 @@ const Navigation: React.FC<NavigationProps> = ({onLinkClick,
 
     return (
         <>
-            <div>
-                <Button
-                    data-tooltip={"Add a new Bookmark to your collection"}
-                    variant="primary"
-                    onClick={() => setShowGetMore(true)}>
-                    <TiPlus className={"add-icon"}/>
-                </Button>
-            </div>
+
             {renderDropdowns()}
 
             {showSuccessPopup && (
