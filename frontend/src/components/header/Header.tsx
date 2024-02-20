@@ -3,8 +3,6 @@ import "../../css/Header.css";
 import {HeaderProps} from '../types/types.ts';
 import React, {useState} from "react";
 import {FcGoogle} from "react-icons/fc";
-import {Button} from "react-bootstrap";
-import {TiPlus} from "react-icons/ti";
 
 const Header: React.FC<HeaderProps> = () => {
     const [showNavigationModal, setShowNavigationModal] = useState(false);
