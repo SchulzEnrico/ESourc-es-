@@ -228,7 +228,6 @@ button:hover {
     outline: 1px solid var(--color-01);
 }
 
-.get-more-button,
 .close-navigation-btn {
     position: absolute;
     border-radius: 0;
@@ -245,25 +244,32 @@ button:hover {
     border-bottom-left-radius: 25px;
 }
 .get-more-button {
+    position: relative;
     scale: .97;
-    right: 16px;
-    top: 3px;
-    border-top-right-radius: 25px;
-    border-bottom-right-radius: 25px;
+    width: 100px;
+    top: -15px;
+    border-radius: 10px;
+    border: solid 2px var(--color-3);
+    outline: solid 1px var(--color-41);
+    box-shadow: 0 0 10px 5px var(--color-31);
+    z-index: 999999999999999999999;
 }
 
 .dropdown-button-container > button:first-child:hover,
 .dropdown-category-btn .dropdown-toggle:hover {
     color: var(--color-31);
-    box-shadow: 0 0 10px 3px var(--color-0),
-                inset -1px -1px 8px var(--color-4),
-                inset 1px 1px 8px var(--color-41);
+    outline: solid 1px var(--color-31);
+    box-shadow: inset -1px -1px 3px var(--color-4),
+                inset 1px 1px 3px var(--color-41);
+
 }
 .dropdown-edit:hover,
 .get-more-button:hover {
-    box-shadow: 0 0 10px 3px var(--color-0),
-                inset -3px -3px 10px var(--color-5),
-                inset 3px 3px 10px var(--color-5);
+    border-radius: 10px;
+    border: solid 2px var(--color-51);
+    outline: solid 1px var(--color-5);
+    box-shadow: inset -3px -3px 10px var(--color-51),
+                inset 3px 3px 10px var(--color-51);
 }
 
 .close-navigation-btn:hover {

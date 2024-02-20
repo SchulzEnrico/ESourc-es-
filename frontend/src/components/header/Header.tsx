@@ -37,6 +37,7 @@ const Header: React.FC<HeaderProps> = () => {
                 </button>
             </form>
             <div data-bs-theme={"dark"}>
+
                 <Navigation isExternal={true}
                             showModal={showNavigationModal}
                             closeModal={() => setShowNavigationModal(false)}/>
