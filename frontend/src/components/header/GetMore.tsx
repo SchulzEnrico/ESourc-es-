@@ -97,7 +97,7 @@ function GetMore({ show, onClose, destination, setDestination, getAvailableCateg
             >
                 <IoClose title={"close"} className={"close-icon"}/>
             </Button>
-            <h2 className={"introductions"}>A NEW BOOKMARK? ...fill in these fields!</h2>
+            <p className={"instructions engrave"}>A NEW BOOKMARK? ...fill in these fields!</p>
             <Form className={"form-proportions"} onSubmit={handleSubmit}>
                 <InputGroup className="container-fluid md-3 d-flex justify-content-between">
                     <Form.Label className={"input-label"}>URL</Form.Label>
