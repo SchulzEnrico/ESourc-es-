@@ -126,6 +126,29 @@ const Navigation: React.FC<NavigationProps> = ({onLinkClick,
         setHideTimeout(timeout); // Timeout-Referenz aktualisieren
     };
 
+    const renderDropdownItems = (category: string) => {
+        const relatedBookmarks = bookmarks.filter(bookmark => bookmark.dropdownCategory === category && (isExternal ? bookmark.destination === "external" : bookmark.destination === panelName));
+
+        return relatedBookmarks.map((bookmark) => (
+
+            <div className="dropdown-button-container" key={bookmark.url}>
+                <Button
+                    className="dropdown-item"
+                    target={bookmark.target}
+                    onClick={() => openLink(bookmark.url, bookmark.title, bookmark.destination)}
+                >
+                    {bookmark.title}
+                </Button>
+                <Button
+                    className={"dropdown-item edit-bookmark-btn"}
+                    onClick={() => openEditModal(bookmark)}
+                >
+                    <MdOutlineSettings title={"Edit bookmark"} className={"settings-icon"} />
+                </Button>
+            </div>
+        ));
+    };
+
     const renderDropdowns = () => {
         const uniqueCategories = Array.from(
             new Set(
@@ -150,8 +173,9 @@ const Navigation: React.FC<NavigationProps> = ({onLinkClick,
             >
                 <div className={"nav-group dropdown-container shadow--inset"}>
                     {uniqueCategories.map((category) => (
-                        <div key={category} className={"category-column shadow--sunken"}>
-                            <h6 className={"navigation-category"}>{category}</h6>
+                        <div key={category}
+                             className={"category-column shadow--sunken"}>
+                            <p className={"navigation-category engrave"}>{category}</p>
                             <ul className="dropdown-list">
                                 {renderDropdownItems(category)}
                             </ul>
@@ -161,7 +185,7 @@ const Navigation: React.FC<NavigationProps> = ({onLinkClick,
                 <div>
                     <Button
                         data-tooltip={"Add a new Bookmark to your collection"}
-                        className={"get-more-button tooltip-btn tt_n"}
+                        className={"get-more-button tooltip-btn tt_s"}
                         variant="primary"
                         onClick={() => setShowGetMore(true)}
                     >
@@ -170,29 +194,6 @@ const Navigation: React.FC<NavigationProps> = ({onLinkClick,
                 </div>
             </DropdownButton>
         );
-    };
-
-    const renderDropdownItems = (category: string) => {
-        const relatedBookmarks = bookmarks.filter(bookmark => bookmark.dropdownCategory === category && (isExternal ? bookmark.destination === "external" : bookmark.destination === panelName));
-
-        return relatedBookmarks.map((bookmark) => (
-
-            <div className="dropdown-button-container" key={bookmark.url}>
-                <Button
-                    className="dropdown-item"
-                    target={bookmark.target}
-                    onClick={() => openLink(bookmark.url, bookmark.title, bookmark.destination)}
-                >
-                    {bookmark.title}
-                </Button>
-                <Button
-                    className={"dropdown-item dropdown-edit"}
-                    onClick={() => openEditModal(bookmark)}
-                >
-                    <MdOutlineSettings title={"Edit bookmark"} className={"settings-icon"} />
-                </Button>
-            </div>
-        ));
     };
 
     return (

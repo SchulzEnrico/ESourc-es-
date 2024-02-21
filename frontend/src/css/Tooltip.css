@@ -14,14 +14,14 @@
     font-size: x-small;
     font-weight: bold;
     display: flex;
-    color: var(--color-4);
+    color: var(--color-41);
     background-color: var(--color-2);
     border: solid 2px var(--color-3-1);
     outline: solid 1px var(--color-41);
     border-radius: 7px;
     box-shadow: inset 6px 6px 12px #111111,
     inset -6px -6px 12px #3b3b3b;
-    z-index: 999999999999 !important;
+    z-index: 999999999999999999999999 !important;
     opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none; /* Tooltip nicht interaktiv */
@@ -61,7 +61,7 @@
 }
 
 .tt_s::after {
-    bottom: calc(-100% - 5px);
+    bottom: calc(-100% - 15px);
     left: 0;
 }
 

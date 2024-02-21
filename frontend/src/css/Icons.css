@@ -24,7 +24,11 @@
 }
 
 .settings-icon {
-    font-size: .8rem;
+    font-size: .95rem;
+    margin-top: -2px;
+}
+.settings-icon:hover {
+    color: var(--color-5);
 }
 
 .save-close-icon {
