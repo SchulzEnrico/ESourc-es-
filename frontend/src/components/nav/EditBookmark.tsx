@@ -29,7 +29,7 @@ function EditBookmark({
                     <Button variant="link" className="close-btn-EditBookmark" onClick={handleCloseModalEdit}>
                         <IoClose className={"close-icon"}/>
                     </Button>
-                    <h2>Edit Bookmark</h2>
+                    <p className={"instructions engrave"}>Edit Bookmark</p>
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -40,6 +40,7 @@ function EditBookmark({
                         type="text"
                         aria-label={"change the URL"}
                         value={selectedBookmark?.url ?? ''}
+                        onFocus={(e) => e.target.select()}
                         onChange={(e) => handleInputChange('url', e.target.value)}
                     />
                     <Form.Label className={"input-label"}>PICK DESTINATION</Form.Label>
@@ -72,6 +73,7 @@ function EditBookmark({
                         placeholder="create a new dropdown category"
                         aria-label="create a new dropdown category"
                         value={selectedBookmark?.dropdownCategory ?? ''}
+                        onFocus={(e) => e.target.select()}
                         onChange={(e) => handleInputChange('dropdownCategory', e.target.value)}  // Füge diese Zeile hinzu
                     />
                     <Form.Label className={"input-label"}>IDENTIFIER</Form.Label>
@@ -80,6 +82,7 @@ function EditBookmark({
                         type="text"
                         aria-label={"change the menu item identifier"}
                         value={selectedBookmark?.title ?? ''}
+                        onFocus={(e) => e.target.select()}
                         onChange={(e) => handleInputChange('title', e.target.value)}
                     />
                     <Form.Label className={"input-label"}>CONTENT TAGS</Form.Label>
@@ -88,6 +91,7 @@ function EditBookmark({
                         type="text"
                         aria-label={"change content tags, topics and use cases"}
                         value={selectedBookmark?.tags ?? ''}
+                        onFocus={(e) => e.target.select()}
                         onChange={(e) => handleInputChange('tags', e.target.value)}
                     />
                 </Form>

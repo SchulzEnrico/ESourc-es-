@@ -187,31 +187,33 @@ iframe {
 
 .h1-underline {
     position: fixed;
-    border-radius: 20%;
-    border: solid 1px #000000;
+    scale: 1.018;
+    border-radius: 50%;
+    border: 2px solid #000000;
     margin: 0;
-    top: 42px;
-    left: 43px;
-    width: 151px;
+    top: 41px;
+    left: 50px;
+    width: 140px;
     filter: grayscale(100%)
-    brightness(50%)
+    brightness(40%)
     saturate(200%)
     invert(10%)
     sepia(98%)
     saturate(1500%)
     hue-rotate(354deg)
-    brightness(135%)
-    contrast(100%);
-    z-index: 999999;
+    brightness(120%)
+    contrast(110%);
+    z-index: 99994;
 }
 
-.h1-under-underline {
+.h1-second-underline {
     position: fixed;
     border-radius: 50%;
-    border: solid 2px var(--color-4);
+    border: solid 3px var(--color-23);
+    outline: 2px solid var(--color-00);
     margin: 0;
-    top: 42px;
-    left: 43px;
-    width: 148px;
-    z-index: 99999;
+    top: 41px;
+    left: 37px;
+    width: 165px;
+    z-index: 99993;
 }

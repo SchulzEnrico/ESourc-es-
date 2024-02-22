@@ -1,55 +1,49 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Form, InputGroup, Button } from "react-bootstrap";
-import { GetMoreProps } from "../types/types.ts";
+import {BookmarkDTO, GetMoreProps} from "../types/types.ts";
 import { IoClose } from "react-icons/io5";
 
 
-function GetMore({ show, onClose, destination, setDestination, getAvailableCategories }: Readonly<GetMoreProps>) {
+function GetMore({ show, onClose, destination, setDestination }: Readonly<GetMoreProps>) {
     const [url, setUrl] = useState("");
-    const [dropdownCategory, setDropdownCategory] = useState("");  // Benenne es um, wenn nötig
+    const [dropdownCategory, setDropdownCategory] = useState("");
     const [tags, setTags] = useState("");
     const [title, setTitle] = useState("");
     const [showSuccessPopup, setShowSuccessPopup] = useState(false);
     const [newCategory, setNewCategory] = useState("");
-    const availableCategories = getAvailableCategories();
+    const [availableCategories, setAvailableCategories] = useState<{ key: string; category: string; }[]>([]);
 
     useEffect(() => {
         setDropdownCategory(destination);
     }, [destination]);
 
     useEffect(() => {
-        console.log("Before useEffect - Current Navigation:", destination);
-
-        const switchDestination = () => {
-            console.log("Switching destination based on:", destination);
-            let updatedDestination = "";
-
-            switch (destination) {
-                case "ins_pro":
-                case "snip_gen":
-                case "development":
-                case "know_guide":
-                case "lip_doc":
-                case "project":
-                case "personal":
-                    console.log("Setting destination:", destination);
-                    updatedDestination = destination;
-                    break;
-                default:
-                    console.log("Setting default destination");
-                    updatedDestination = "";
-                    break;
+        const fetchAvailableCategories = async () => {
+            try {
+                const response = await axios.get<BookmarkDTO[]>(`api/bookmarks/getAll`);
+                if (response.data && Array.isArray(response.data)) {
+                    const categories = response.data.map((bookmark) => ({
+                        key: bookmark.url,
+                        category: bookmark.dropdownCategory
+                    }));
+                    const uniqueCategories = Array.from(new Set(categories.map(category => category.key)))
+                        .map(key => categories.find(category => category.key === key))
+                        .filter(category => category); // Filtern von undefinierten Werten
+                    setAvailableCategories(uniqueCategories);
+                    console.log("Available categories fetched successfully"); // Erfolgsmeldung hinzufügen
+                } else {
+                    console.error("Invalid data received from the API:", response.data);
+                    setAvailableCategories([]);
+                }
+            } catch (error) {
+                console.error("Error fetching available categories:", error);
+                setAvailableCategories([]);
             }
-
-            // Setze die Dropdown-Kategorie basierend auf der neuen destination
-            setDropdownCategory(updatedDestination);
-            setNewCategory(""); // Setze die Dropdown-Kategorie zurück
         };
 
-        switchDestination(); // Rufe die Funktion direkt auf, um das Problem mit der Verzögerung zu umgehen
-
-    }, [destination]);
+        fetchAvailableCategories();
+    }, []);
 
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
@@ -61,7 +55,7 @@ function GetMore({ show, onClose, destination, setDestination, getAvailableCateg
         const newBookmarkDTO = {
             url: url,
             destination: destination,
-            dropdownCategory: dropdownCategory || newCategory,  // Verwende die ausgewählte destination, wenn newCategory leer ist
+            dropdownCategory: dropdownCategory || newCategory,
             tags: tags.split(/[, .#/]+/),
             title: title,
         };
@@ -135,8 +129,8 @@ function GetMore({ show, onClose, destination, setDestination, getAvailableCateg
                     >
                         <option>pick a existing dropdown category</option>
                         {availableCategories.map((category) => (
-                            <option key={category} value={category}>
-                                {category}
+                            <option key={category.key} value={category.category}>
+                                {category.category}
                             </option>
                         ))}
                     </Form.Control>
@@ -164,18 +158,18 @@ function GetMore({ show, onClose, destination, setDestination, getAvailableCateg
                         value={tags}
                         onChange={(event) => setTags(event.target.value)}
                     />
-                    </InputGroup>
-                    <Button data-tooltip={"Save your bookmark"}
-                            type="submit"
-                            className="submit save-bookmark-btn tooltip-btn tt_n">
-                        Save your bookmark
-                    </Button>
+                </InputGroup>
+                <Button data-tooltip={"Save your bookmark"}
+                        type="submit"
+                        className="submit save-bookmark-btn tooltip-btn tt_n">
+                    Save your bookmark
+                </Button>
             </Form>
             {showSuccessPopup && (
                 <div className="success-popup">Bookmark successfully added!</div>
             )}
         </div>
-);
+    );
 }
 
 export default GetMore;

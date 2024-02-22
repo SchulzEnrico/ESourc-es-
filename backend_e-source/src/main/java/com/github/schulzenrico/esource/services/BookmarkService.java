@@ -8,7 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.*;
 
 @Service
 @AllArgsConstructor
@@ -30,6 +30,15 @@ public class BookmarkService {
         return bookmarks.stream()
                 .map(this::convertToDTO)
                 .toList();
+    }
+
+    public List<String> getAllAvailableCategories() {
+        List<BookmarkDTO> allBookmarks = getAllBookmarksAsDTO();
+        Set<String> categoriesSet = new HashSet<>();
+        for (BookmarkDTO bookmark : allBookmarks) {
+            categoriesSet.add(bookmark.dropdownCategory());
+        }
+        return new ArrayList<>(categoriesSet);
     }
 
     private BookmarkDTO convertToDTO(Bookmark bookmark) {

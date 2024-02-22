@@ -3,7 +3,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 99999;
+    z-index: 99991;
     top: 0;
     left: 0;
     right: 0;
@@ -25,26 +25,38 @@ header {
 
 #heading {
     position: sticky;
-    margin-bottom: 8px;
-    left: 86px;
-    z-index: 9999999999999;
+    margin-top: -8px;
+    left: 94px;
+    z-index: 99996 !important;
     cursor: default;
 }
 
 .header-brackets {
+    z-index: 999999;
+    position: relative;
+    top: -3px;
+    left: -3px;
+    font-weight: lighter;
+    font-size: 1.5rem;
     color: #000000;
+    letter-spacing: -3px;
     filter: grayscale(100%)
-    brightness(50%)
+    brightness(40%)
     saturate(200%)
     invert(10%)
     sepia(98%)
     saturate(1500%)
     hue-rotate(354deg)
-    brightness(135%)
-    contrast(100%);
-    z-index: 99999;
+    brightness(140%)
+    contrast(110%);
+
 }
 
+.es {
+    letter-spacing: -2px;
+    position: relative;
+    left: -2px;
+}
 #google-search {
     display: flex;
     justify-content: space-evenly;

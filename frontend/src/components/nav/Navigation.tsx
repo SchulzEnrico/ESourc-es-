@@ -25,6 +25,7 @@ const Navigation: React.FC<NavigationProps> = ({onLinkClick,
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [hideTimeout, setHideTimeout] = useState<NodeJS.Timeout | null>(null);
 
+
     const getAvailableCategories = (): string[] => {
         return Array.from(
             new Set(
@@ -34,6 +35,10 @@ const Navigation: React.FC<NavigationProps> = ({onLinkClick,
             )
         );
     };
+
+    useEffect(() => {
+        getAvailableCategories(); // Verwenden Sie die Funktion direkt, um die Kategorien abzurufen
+    }, [bookmarks]);
 
     const loadBookmarks = () => {
         axios.get<BookmarkDTO[]>('/api/bookmarks/getAll')
@@ -143,7 +148,7 @@ const Navigation: React.FC<NavigationProps> = ({onLinkClick,
                     className={"dropdown-item edit-bookmark-btn"}
                     onClick={() => openEditModal(bookmark)}
                 >
-                    <MdOutlineSettings title={"Edit bookmark"} className={"settings-icon"} />
+                    <MdOutlineSettings title={"Edit bookmark"} className={"edit-bookmark-icon"} />
                 </Button>
             </div>
         ));
@@ -174,7 +179,7 @@ const Navigation: React.FC<NavigationProps> = ({onLinkClick,
                 <div className={"nav-group dropdown-container shadow--inset"}>
                     {uniqueCategories.map((category) => (
                         <div key={category}
-                             className={"category-column shadow--sunken"}>
+                             className={"navigation-category-column shadow--sunken"}>
                             <p className={"navigation-category engrave"}>{category}</p>
                             <ul className="dropdown-list">
                                 {renderDropdownItems(category)}
