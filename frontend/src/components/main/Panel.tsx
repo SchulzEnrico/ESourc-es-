@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Container } from 'react-bootstrap';
+import {Container} from 'react-bootstrap';
 import Navigation from '../nav/Navigation';
 import { PanelProps, BookmarkDTO } from '../types/types';
 import { HiOutlineClipboardCopy } from "react-icons/hi";
@@ -7,7 +7,6 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Ruler from "../utilities/Ruler.tsx";
 import {LuRuler} from "react-icons/lu";
 import { AiFillEyeInvisible } from "react-icons/ai";
-
 
 const Panel: React.FC<PanelProps> = ({ className, width }) => {
     const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -21,7 +20,6 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
     const [secondNextBookmarkIndex, setSecondNextBookmarkIndex] = useState<number>(-1);
     const [inputLink, setInputLink] = useState('');
     const [showRuler, setShowRuler] = useState(false); // Zustand für Ruler ein-/ausschalten
-
 
     useEffect(() => {
         const handleIframeLoad = () => {
@@ -192,6 +190,7 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
             <div className="iframe-bounding shadow--ridge">
                 {showRuler && <Ruler/>}
                 <iframe
+                    id={iframeRef.current?.id}
                     ref={iframeRef}
                     title={className}
                     width={width}

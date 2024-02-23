@@ -1,0 +1,35 @@
+.sitemap-modal {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    z-index: 100000;
+    top: 50%;
+    left: 50%;
+    max-height: 80vh;
+    width: 90vw;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    transition: transform 0.5s ease-in-out;
+    border: solid 1px var(--color-4);
+    overflow: scroll;
+}
+.sitemap-modal::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+.sitemap-modal::-webkit-scrollbar-track {
+    background-color: #101010;
+}
+.sitemap-modal::-webkit-scrollbar-corner {
+    background-color: #101010;
+}
+.sitemap-modal::-webkit-scrollbar-thumb {
+    background-color: var(--color-3-1);
+    border: 1px solid var(--color-41);
+    border-radius: 25px;
+}
+
+.sitemap-dropdownCategory-marker {
+    display: flex;
+    justify-content: start;
+}

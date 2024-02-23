@@ -8,6 +8,7 @@
 @import url("css/Header.css");
 @import url("css/Icons.css");
 @import url("css/Resizeable.css");
+@import url("css/Sitemap.css");
 
 :root {
   font-family: Typewriter, ui-monospace, monospace, sans-serif;
@@ -283,6 +284,7 @@ padding: 15px;
   transition: transform 0.5s ease-in-out;
   border: solid 1px var(--color-4);
 }
+
 
 .success-popup {
   position: fixed;

@@ -130,7 +130,7 @@ function GetMore({
                         onChange={(event) => setDestination(event.target.value)}
                     >
                         <option>pick a existing destination</option>
-                        <option value="external">EXTERNAL WINDOW</option>
+                        <option value="external">EXTERNAL: opens in a new browser tab</option>
                         <option value="ins_pro">INSPIRATIONS ~ PROJECTS</option>
                         <option value="snip_gen">SNIPPETS ~ GENERATORS</option>
                         <option value="development">DEVELOPMENT ~ EDITING ~ CREATION</option>
