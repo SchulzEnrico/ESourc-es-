@@ -138,7 +138,8 @@ const Navigation: React.FC<NavigationProps> = ({onLinkClick,
 
             <div className="dropdown-button-container" key={bookmark.url}>
                 <Button
-                    className="dropdown-item"
+                    data-tooltip={bookmark.tags?.join(", ") || ""}
+                    className="dropdown-item tooltip-btn tt_n"
                     target={bookmark.target}
                     onClick={() => openLink(bookmark.url, bookmark.title, bookmark.destination)}
                 >
