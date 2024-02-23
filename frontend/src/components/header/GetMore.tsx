@@ -5,7 +5,11 @@ import {BookmarkDTO, GetMoreProps} from "../types/types.ts";
 import { IoClose } from "react-icons/io5";
 
 
-function GetMore({ show, onClose, destination, setDestination }: Readonly<GetMoreProps>) {
+function GetMore({
+                     show,
+                     onClose,
+                     destination,
+                     setDestination }: Readonly<GetMoreProps>) {
     const [url, setUrl] = useState("");
     const [dropdownCategory, setDropdownCategory] = useState("");
     const [tags, setTags] = useState("");
@@ -25,13 +29,29 @@ function GetMore({ show, onClose, destination, setDestination }: Readonly<GetMor
                 if (response.data && Array.isArray(response.data)) {
                     const categories = response.data.map((bookmark) => ({
                         key: bookmark.url,
-                        category: bookmark.dropdownCategory
+                        category: bookmark.dropdownCategory,
+                        destination: bookmark.destination
                     }));
-                    const uniqueCategories = Array.from(new Set(categories.map(category => category.key)))
-                        .map(key => categories.find(category => category.key === key))
-                        .filter(category => category); // Filtern von undefinierten Werten
+
+                    // Filtern nach der ausgewählten Destination
+                    const filteredCategories = categories.filter(category => category.destination === destination);
+
+                    // Entfernen doppelter Kategorien
+                    const uniqueCategories = Array.from(new Set(filteredCategories.map(category => category.category)))
+                        .map(category => {
+                            const foundCategory = filteredCategories.find(cat => cat.category === category);
+                            if (foundCategory) {
+                                return {
+                                    key: foundCategory.key,
+                                    category: category
+                                };
+                            }
+                            return null;
+                        })
+                        .filter(category => category !== null) as { key: string; category: string }[];
+
                     setAvailableCategories(uniqueCategories);
-                    console.log("Available categories fetched successfully"); // Erfolgsmeldung hinzufügen
+                    console.log("Available categories fetched successfully");
                 } else {
                     console.error("Invalid data received from the API:", response.data);
                     setAvailableCategories([]);
@@ -42,8 +62,8 @@ function GetMore({ show, onClose, destination, setDestination }: Readonly<GetMor
             }
         };
 
-        fetchAvailableCategories();
-    }, []);
+        fetchAvailableCategories().catch(error => console.error("Error in fetchAvailableCategories:", error));
+    }, [destination]);
 
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();

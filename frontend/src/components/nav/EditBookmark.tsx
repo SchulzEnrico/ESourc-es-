@@ -1,9 +1,10 @@
+import { useState, useEffect } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
-import { EditBookmarkProps } from '../types/types.ts';
-
-import {RiSave3Fill} from "react-icons/ri";
-import {BsFillTrash3Fill} from "react-icons/bs";
-import {IoClose} from "react-icons/io5";
+import { EditBookmarkProps, BookmarkDTO } from '../types/types.ts';
+import { RiSave3Fill } from "react-icons/ri";
+import { BsFillTrash3Fill } from "react-icons/bs";
+import { IoClose } from "react-icons/io5";
+import axios from 'axios';
 
 function EditBookmark({
                           showEditModal,
@@ -14,6 +15,52 @@ function EditBookmark({
                           selectedBookmark,
                           showSuccessPopup,
                       }: Readonly<EditBookmarkProps>) {
+    const [availableCategories, setAvailableCategories] = useState<{ key: string; category: string; }[]>([]);
+    const [dropdownCategory, setDropdownCategory] = useState<string>("");
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get<BookmarkDTO[]>(`api/bookmarks/getAll`);
+                if (response.data && Array.isArray(response.data)) {
+                    const categories = response.data.map((bookmark) => ({
+                        key: bookmark.url,
+                        category: bookmark.dropdownCategory,
+                        destination: bookmark.destination
+                    }));
+
+                    const filteredCategories = filterAndRemoveDuplicates(categories, selectedBookmark?.destination);
+
+                    setAvailableCategories(filteredCategories);
+                    console.log("Available categories fetched successfully");
+                } else {
+                    console.error("Invalid data received from the API:", response.data);
+                }
+            } catch (error) {
+                console.error("Error fetching available categories:", error);
+            }
+        };
+
+        if (showEditModal && selectedBookmark?.destination) {
+            fetchData().catch(error => console.error("Error in fetchData:", error));
+        }
+    }, [selectedBookmark?.destination, showEditModal]);
+
+    const filterAndRemoveDuplicates = (categories: { key: string; category: string; destination: string }[], selectedDestination?: string) => {
+        if (!selectedDestination) return [];
+
+        const filteredCategories = categories
+            .filter(category => category.destination === selectedDestination)
+            .map(category => category.category);
+
+        return Array.from(new Set(filteredCategories))
+            .map(category => ({
+                key: categories.find(cat => cat.category === category)?.key ?? "",
+                category: category
+            }));
+    };
+
+
 
     const onDeleteBookmarkClick = () => {
         console.log("onDeleteBookmarkClick has been called");
@@ -60,13 +107,19 @@ function EditBookmark({
                         <option value="personal">PERSONALLY  ~  INDIVIDUAL</option>
                     </Form.Select>
                     <Form.Label className={"input-label"}>DROPDOWN CATEGORY</Form.Label>
-                    <Form.Control
-                        className={"form-control-custom shadow--inset"}
-                        type="text"
+                    <Form.Select
+                        className={"form-control-custom select-field shadow--inset"}
                         aria-label={"change the dropdown category"}
-                        value={selectedBookmark?.dropdownCategory ?? ''}
-                        onChange={(e) => handleInputChange('dropdownCategory', e.target.value)}
-                    />
+                        value={dropdownCategory}
+                        onChange={(e) => setDropdownCategory(e.target.value)}
+                    >
+                        <option value="">pick an existing dropdown category</option>
+                        {availableCategories.map((category) => (
+                            <option key={category.key} value={category.category}>
+                                {category.category}
+                            </option>
+                        ))}
+                    </Form.Select>
                     <Form.Label className={"input-label"}>NEW CATEGORY</Form.Label>
                     <Form.Control
                         className="form-control-custom shadow--inset"
