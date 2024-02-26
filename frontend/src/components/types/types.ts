@@ -1,5 +1,5 @@
 import {ResizableBoxProps} from "react-resizable";
-import React from "react";
+import React, {Dispatch, SetStateAction} from "react";
 
 export type BookmarkDTO = {
     _id: string;
@@ -42,7 +42,7 @@ export type EditBookmarkProps = {
 
 export type PanelProps = {
     className: string;
-    width?: number; // Hier hinzugefügt
+    width?: number;
 };
 
 export type NavigationProps = {
@@ -52,16 +52,17 @@ export type NavigationProps = {
     currentNavigation?: string;
     showModal: boolean;
     closeModal: () => void;
-    headerButtonClass?: string; // Klasse für den Button im Header
-    panelButtonClass?: string; // Klasse für den Button in den Panels
-    buttonText?: string; // Text für den Button im Header
-    hoverText?: string; // Text für den Tooltip
-    handleButtonClick?: () => void; // Funktion für den Button
+    headerButtonClass?: string;
+    panelButtonClass?: string;
+    buttonText?: string;
+    hoverText?: string;
+    handleButtonClick?: () => void;
 };
 
 export type HeaderProps = {
     bookmarks: BookmarkDTO[];
     loadBookmarks: () => void;
+    setShowSitemap: Dispatch<SetStateAction<boolean>>;
 };
 
 export type CustomResizableBoxProps = Omit<ResizableBoxProps, "width" | "height"> & {
@@ -73,4 +74,15 @@ export type CustomResizableBoxProps = Omit<ResizableBoxProps, "width" | "height"
 
 export type  DashboardIconProps = {
     className?: string;
+}
+
+export type DestinationOrder = {
+    [key: string]: string;
+}
+
+export type SitemapProps = {
+    onLinkClick?: (url: string, title: string, destination: string) => void;
+    show: boolean;
+    onHide: () => void;
+    bookmarks: BookmarkDTO[];
 }

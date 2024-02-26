@@ -1,16 +1,17 @@
 .dashboard-icon-header {
     z-index: 999999;
     height: 34px;
-    margin: 15px 5px 0 9px;
+    scale: .8;
+    margin: 17px 5px 0 16px;
     filter: grayscale(100%)
-    brightness(50%)
+    brightness(40%)
     saturate(200%)
     invert(10%)
     sepia(98%)
     saturate(1500%)
     hue-rotate(354deg)
-    brightness(175%)
-    contrast(100%);
+    brightness(140%)
+    contrast(110%);
 }
 
 .add-icon {
@@ -23,11 +24,11 @@
     width: 30px;
 }
 
-.settings-icon {
+.edit-bookmark-icon {
     font-size: .95rem;
     margin-top: -2px;
 }
-.settings-icon:hover {
+.edit-bookmark-icon:hover {
     color: var(--color-5);
 }
 

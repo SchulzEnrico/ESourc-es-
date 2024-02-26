@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Container } from 'react-bootstrap';
+import {Container} from 'react-bootstrap';
 import Navigation from '../nav/Navigation';
 import { PanelProps, BookmarkDTO } from '../types/types';
 import { HiOutlineClipboardCopy } from "react-icons/hi";
@@ -7,7 +7,6 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Ruler from "../utilities/Ruler.tsx";
 import {LuRuler} from "react-icons/lu";
 import { AiFillEyeInvisible } from "react-icons/ai";
-
 
 const Panel: React.FC<PanelProps> = ({ className, width }) => {
     const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -22,7 +21,6 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
     const [inputLink, setInputLink] = useState('');
     const [showRuler, setShowRuler] = useState(false); // Zustand für Ruler ein-/ausschalten
 
-
     useEffect(() => {
         const handleIframeLoad = () => {
             const iframeDocument = iframeRef.current?.contentDocument;
@@ -35,14 +33,14 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
             }
         };
 
-        const currentIframeRef = iframeRef.current; // Kopiere den aktuellen Wert in eine lokale Variable
+        const currentIframeRef = iframeRef.current;
 
         if (currentIframeRef) {
             currentIframeRef.addEventListener('load', handleIframeLoad);
         }
 
         return () => {
-            if (currentIframeRef) { // Verwende die lokale Variable in der Aufräumfunktion
+            if (currentIframeRef) {
                 currentIframeRef.removeEventListener('load', handleIframeLoad);
             }
         };
@@ -78,7 +76,6 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
         const hoverText = `Linked:\n${hoverTextMap[className] || ''}`;
         setHoverText(hoverText);
     };
-
 
     const handleInputLinkChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setInputLink(event.target.value);
@@ -161,7 +158,7 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
                     showModal={showNavigationModal}
                     closeModal={() => setShowNavigationModal(false)}
                     isExternal={false}
-                    hoverText={hoverText} // Übergeben Sie hoverText an Navigation
+                    hoverText={hoverText}
                 />
                 <div
                     className={"temporary-input-area"}>
@@ -175,7 +172,7 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
                                 value={inputLink}
                                 onChange={handleInputLinkChange}
                                 placeholder="Paste URL & press &#x23CE;"
-                                onFocus={(e) => e.target.select()} // Select all text on focus
+                                onFocus={(e) => e.target.select()}
                             />
                         </div>
                         <button
@@ -193,6 +190,7 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
             <div className="iframe-bounding shadow--ridge">
                 {showRuler && <Ruler/>}
                 <iframe
+                    id={iframeRef.current?.id}
                     ref={iframeRef}
                     title={className}
                     width={width}

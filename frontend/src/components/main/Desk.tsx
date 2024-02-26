@@ -184,7 +184,7 @@ function Desk() {
                 <DashboardIcon className={"dashboard-icon-header"}/>
             </button>
             <div className={"h1-underline"}></div>
-            <div className={"h1-under-underline"}></div>
+            <div className={"h1-second-underline"}></div>
             <CustomResizableBox
                 className="garage row"
                 width={garageWidthPixels}

@@ -1,0 +1,106 @@
+.nav-group {
+    display: flex;
+    flex-direction: row;
+    padding: 0 50px 0 50px;
+    height: fit-content;
+    width: max-content;    /* Dies stellt sicher, dass der Container so breit wie sein Inhalt ist */
+    min-width: fit-content;
+    box-sizing: border-box; /* Dies stellt sicher, dass Padding und Border in die Breite des Elements einbezogen werden */
+    z-index: 9999999999999999999999999999;
+}
+ul {
+    margin: 0;
+    padding: 0;
+}
+ul li {
+    margin: 0;
+}
+
+.navigation-category-column {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-2);
+    margin: 10px 10px;
+    padding: 8px;
+    border-radius: 20px;
+    width: 225px;
+    border: 1px solid var(--color-01);
+    outline: 1px solid var(--color-22);
+    box-shadow: 0 0 5px 3px var(--color-01),
+    2px 1px 7px 3px var(--color-3-2),
+    4px 3px 8px 3px var(--color-4),
+    inset 6px -10px 10px var(--color-1),
+    inset -9px 10px 10px var(--color-21);
+}
+.navigation-category-column:hover {
+    outline: 1px solid var(--color-3);
+    border: 1px solid var(--color-41);
+    box-shadow: 0 0 5px 3px var(--color-01),
+                2px 1px 7px 3px var(--color-3-2),
+                4px 3px 8px 3px var(--color-01),
+                inset 6px -10px 10px var(--color-1),
+                inset -9px 10px 10px var(--color-21);
+    scale: 1.1;
+    transition: 0.2s ease-in,
+    0.35s ease-out;
+}
+
+.edit-modal:hover .engrave,
+.get-more:hover .engrave,
+.navigation-category-column:hover .engrave {
+    background: var(--color-41);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin: -1px 0 1px 0;
+    text-shadow: 0 1px 1px var(--color-3-2),
+    1px 0 1px var(--color-22);
+}
+
+.navigation-category{
+    display: flex;
+    justify-content: start;
+    font-size: medium;
+    width: fit-content;
+    font-weight: bold;
+    margin: 0;
+    padding-left: 15px;
+}
+
+.nav-group.dropdown-container {
+    display: flex;
+    justify-content: center;
+    max-width: 75vw;
+    max-height: 65vh;
+    overflow-y: auto;
+    flex-wrap: wrap;
+}
+.nav-group.dropdown-container::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+.nav-group.dropdown-container::-webkit-scrollbar-track {
+    background-color: #101010;
+}
+.nav-group.dropdown-container::-webkit-scrollbar-corner {
+    background-color: #101010;
+}
+.nav-group.dropdown-container::-webkit-scrollbar-thumb {
+    background-color: var(--color-3-1);
+    border: 1px solid var(--color-41);
+    border-radius: 25px;
+}
+
+.category-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown-list {
+    margin-top: 0;
+}
+
+.external .dropdown-list {
+    max-width: none;
+}
