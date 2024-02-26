@@ -24,26 +24,28 @@ const Header: React.FC<HeaderProps> = ({ setShowSitemap }) => {
             <div id={"heading"}>
                 <h1 className={"modal-{sm}"}><span className={"h1-letters"}>Sourc</span><span className={"header-brackets"}>(</span><span className={"h1-letters es"}>és</span><span className={"header-brackets"}>)</span></h1>
             </div>
-            <Button
-                data-tooltip={"Show sitemap"}
-                className={"tooltip-btn tt_e"}
-                onClick={() => setShowSitemap(true)}
-            >
-                <FaSitemap />
-            </Button>
-            <form id={"google-search"} onSubmit={handleSearchSubmit}>
-                <input className={"search-input shadow--inset"}
-                       type="text"
-                       value={searchText}
-                       onChange={handleSearchChange}
-                       placeholder="Google search..."
-                />
-                <button data-tooltip={"Search on Google"}
-                        className={"footer-btn google-btn tooltip-btn tt_w"}
-                        type="submit">
-                    <FcGoogle id={"google-icon"} />
-                </button>
-            </form>
+            <div className={"search-area"}>
+                <Button
+                    data-tooltip={"Show sitemap"}
+                    className={"tooltip-btn tt_e"}
+                    onClick={() => setShowSitemap(true)}
+                >
+                    <FaSitemap />
+                </Button>
+                <form id={"google-search"} onSubmit={handleSearchSubmit}>
+                    <input className={"search-input shadow--inset"}
+                           type="text"
+                           value={searchText}
+                           onChange={handleSearchChange}
+                           placeholder="Google search..."
+                    />
+                    <button data-tooltip={"Search on Google"}
+                            className={"footer-btn google-btn tooltip-btn tt_w"}
+                            type="submit">
+                        <FcGoogle id={"google-icon"} />
+                    </button>
+                </form>
+                </div>
             <div data-bs-theme={"dark"}>
 
                 <Navigation isExternal={true}

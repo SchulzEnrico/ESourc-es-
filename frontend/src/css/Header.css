@@ -63,6 +63,14 @@ header {
     align-items: center;
 }
 
+.search-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
 .search-input {
     border: solid 2px var(--color-3);
     outline: 1px solid var(--color-01);

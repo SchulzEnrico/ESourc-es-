@@ -110,8 +110,6 @@ const Navigation: React.FC<NavigationProps> = ({onLinkClick,
     }, []);
 
     useEffect(() => {
-        console.log("Current Navigation in Navigation:", currentNavigation);
-        // Weitere Logs oder Code hier, um sicherzustellen, dass currentNavigation korrekt aktualisiert wird
     }, [currentNavigation]);
 
     // Funktion zum Anzeigen des Dropdown-Containers und Löschen des Timeout
