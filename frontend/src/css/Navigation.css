@@ -36,10 +36,10 @@ ul li {
     outline: 1px solid var(--color-3);
     border: 1px solid var(--color-41);
     box-shadow: 0 0 5px 3px var(--color-01),
-    2px 1px 7px 3px var(--color-3-2),
-    4px 3px 8px 3px var(--color-01),
-    inset 6px -10px 10px var(--color-1),
-    inset -9px 10px 10px var(--color-21);
+                2px 1px 7px 3px var(--color-3-2),
+                4px 3px 8px 3px var(--color-01),
+                inset 6px -10px 10px var(--color-1),
+                inset -9px 10px 10px var(--color-21);
     scale: 1.1;
     transition: 0.2s ease-in,
     0.35s ease-out;

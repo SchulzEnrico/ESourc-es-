@@ -51,6 +51,7 @@ button:hover {
     inset 5px 5px 10px #a20f08;
 }
 
+.sitemap-close-btn,
 .close-btn-GetMore,
 .close-btn-EditBookmark {
     margin: 0 0 -30px 40px;
@@ -60,6 +61,10 @@ button:hover {
     border: var(--color-1) solid 2px;
     outline: solid 2px var(--color-22);
     color: var(--color-31);
+}
+.sitemap-close-btn {
+    position: absolute;
+    margin: -55px 0 0 0;
 }
 
 .close-btn-EditBookmark {
@@ -442,6 +447,17 @@ button:hover {
     margin: 1rem auto;
 }
 
+.sitemap-close-btn {
+    position: sticky;
+    top: 0;
+    left: 0%;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    border: solid 2px var(--color-01);
+    outline: solid 2px var(--color-22);
+    color: var(--color-31);
+}
 
 @media only screen and (max-width: 1050px) {
 

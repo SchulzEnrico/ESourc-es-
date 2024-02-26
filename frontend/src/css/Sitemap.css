@@ -5,31 +5,104 @@
     z-index: 100000;
     top: 50%;
     left: 50%;
-    max-height: 80vh;
-    width: 90vw;
+    max-height: calc(1000vh + 50%); /* Adjust as needed */
+    min-width: 75vw;
+    max-width: 85vw;
     transform: translate(-50%, -50%);
     padding: 20px;
     transition: transform 0.5s ease-in-out;
-    border: solid 1px var(--color-4);
-    overflow: scroll;
+    border: solid 1px var(--color-4-0);
+    color: var(--color-4);
+    overflow: hidden;
 }
-.sitemap-modal::-webkit-scrollbar {
+
+
+td {
+    display: table-cell;
+    text-align: left;
+    vertical-align: top; /* Ändern Sie die vertikale Ausrichtung auf top */
+}
+
+table {
+    table-layout: fixed; /* Festlegen der Tabellenausrichtung auf fixiert */
+    width: 100%; /* Breite der Tabelle auf 100% festlegen */
+}
+
+.sitemap-header-background {
+    position: sticky;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 5.5vh;
+    width: 100%;
+    background-color: var(--color-0) !important;
+}
+
+.sitemap-header-headline {
+    position: sticky;
+    margin: -15px 0 10px 0;
+    font-size: xx-large;
+    font-weight: bold;
+    align-self: center;
+    background-color: var(--color-4-0);
+    text-shadow: 0 1px 1px var(--color-3-3),
+                 1px 0 1px var(--color-22);
+}
+
+.table-border {
+    position: relative;
+    padding: 25px;
+    border: 1px solid var(--color-2);
+    outline: 1px solid var(--color-1);
+    border-radius: 10px;
+    height: 70vh;
+    overflow: scroll;
+    background-color: var(--color-2);
+    box-shadow: inset 1px 1px 12px var(--color-01),
+                inset -1px -1px 12px var(--color-01);
+}
+
+
+.modal-scroll-body {
+    overflow: scroll;
+
+}
+.modal-scroll-body::-webkit-scrollbar {
     width: 8px;
     height: 8px;
 }
-.sitemap-modal::-webkit-scrollbar-track {
-    background-color: #101010;
+.modal-scroll-body::-webkit-scrollbar-track {
+    display: none;
 }
-.sitemap-modal::-webkit-scrollbar-corner {
-    background-color: #101010;
+.modal-scroll-body::-webkit-scrollbar-corner {
+    display: none;
 }
-.sitemap-modal::-webkit-scrollbar-thumb {
+.modal-scroll-body::-webkit-scrollbar-thumb {
     background-color: var(--color-3-1);
     border: 1px solid var(--color-41);
     border-radius: 25px;
 }
 
+.destination-marker {
+    font-size: x-large;
+    font-weight: bold;
+
+}
+
 .sitemap-dropdownCategory-marker {
     display: flex;
     justify-content: start;
+    font-size: large;
+    min-width: 100%;
+    border: 1px solid var(--color-3)
+}
+
+.category-group {
+
+}
+
+.table-content {
+    border: 1px solid green;
+    position: relative;
+    width: 100%;
 }

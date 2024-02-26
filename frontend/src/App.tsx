@@ -25,6 +25,8 @@ function App() {
         loadBookmarks();
     }, []);
 
+
+
     return (
         <div className="app">
             <Header
@@ -32,10 +34,11 @@ function App() {
                 loadBookmarks={loadBookmarks}
                 setShowSitemap={setShowSitemap}
             />
-            <Sitemap show={showSitemap} onHide={() => setShowSitemap(false)} bookmarks={bookmarks} />
-            <Desk />
-            <Footer />
-            <script src="./helperActions/handleTooltipPosition.js"></script>
+            <Sitemap show={showSitemap}
+                     onHide={() => setShowSitemap(false)}
+                     bookmarks={bookmarks}/>
+            <Desk/>
+            <Footer/>
         </div>
     );
 }
