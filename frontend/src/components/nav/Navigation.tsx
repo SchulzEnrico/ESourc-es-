@@ -132,8 +132,20 @@ const Navigation: React.FC<NavigationProps> = ({onLinkClick,
     const renderDropdownItems = (category: string) => {
         const relatedBookmarks = bookmarks.filter(bookmark => bookmark.dropdownCategory === category && (isExternal ? bookmark.destination === "external" : bookmark.destination === panelName));
 
-        return relatedBookmarks.map((bookmark) => (
+        // Sort bookmarks by dropdownIndex or move bookmarks without dropdownIndex to the end
+        relatedBookmarks.sort((a, b) => {
+            if (!a.dropdownIndex && !b.dropdownIndex) {
+                return 0; // Keep the order unchanged if both bookmarks don't have dropdownIndex
+            } else if (!a.dropdownIndex) {
+                return 1; // Move bookmarks without dropdownIndex to the end
+            } else if (!b.dropdownIndex) {
+                return -1; // Move bookmarks without dropdownIndex to the end
+            } else {
+                return parseInt(a.dropdownIndex) - parseInt(b.dropdownIndex); // Sort by dropdownIndex if both have it
+            }
+        });
 
+        return relatedBookmarks.map((bookmark) => (
             <div className="dropdown-button-container" key={bookmark.url}>
                 <Button
                     data-tooltip={bookmark.tags?.join(", ") || ""}
@@ -189,7 +201,7 @@ const Navigation: React.FC<NavigationProps> = ({onLinkClick,
                 <div>
                     <Button
                         data-tooltip={"Add a new Bookmark to your collection"}
-                        className={"get-more-button tooltip-btn tt_s"}
+                        className={"get-more-button tooltip-btn tt_s emboss"}
                         variant="primary"
                         onClick={() => setShowGetMore(true)}
                     >

@@ -1,22 +1,26 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Form, InputGroup, Button } from "react-bootstrap";
-import {BookmarkDTO, GetMoreProps} from "../types/types.ts";
+import { BookmarkDTO, GetMoreProps } from "../types/types.ts";
 import { IoClose } from "react-icons/io5";
-
 
 function GetMore({
                      show,
                      onClose,
                      destination,
-                     setDestination }: Readonly<GetMoreProps>) {
+                     setDestination,
+                 }: Readonly<GetMoreProps>) {
     const [url, setUrl] = useState("");
     const [dropdownCategory, setDropdownCategory] = useState("");
+    const [dropdownIndex, setDropdownIndex] = useState("");
     const [tags, setTags] = useState("");
     const [title, setTitle] = useState("");
     const [showSuccessPopup, setShowSuccessPopup] = useState(false);
     const [newCategory, setNewCategory] = useState("");
-    const [availableCategories, setAvailableCategories] = useState<{ key: string; category: string; }[]>([]);
+    const [availableCategories, setAvailableCategories] = useState<
+        { key: string; category: string }[]
+    >([]);
+    const [bookmarks, setBookmarks] = useState<BookmarkDTO[]>([]);
 
     useEffect(() => {
         setDropdownCategory(destination);
@@ -30,26 +34,29 @@ function GetMore({
                     const categories = response.data.map((bookmark) => ({
                         key: bookmark.url,
                         category: bookmark.dropdownCategory,
-                        destination: bookmark.destination
+                        destination: bookmark.destination,
                     }));
 
                     // Filtern nach der ausgewählten Destination
-                    const filteredCategories = categories.filter(category => category.destination === destination);
+                    const filteredCategories = categories.filter(
+                        (category) => category.destination === destination
+                    );
 
                     // Entfernen doppelter Kategorien
-                    const uniqueCategories = Array.from(new Set(filteredCategories.map(category => category.category)))
-                        .map(category => {
-                            const foundCategory = filteredCategories.find(cat => cat.category === category);
-                            if (foundCategory) {
-                                return {
-                                    key: foundCategory.key,
-                                    category: category
-                                };
-                            }
-                            return null;
-                        })
-                        .filter(category => category !== null) as { key: string; category: string }[];
-
+                    const uniqueCategories = Array.from(
+                        new Set(filteredCategories.map((category) => category.category))
+                    ).map((category) => {
+                        const foundCategory = filteredCategories.find(
+                            (cat) => cat.category === category
+                        );
+                        if (foundCategory) {
+                            return {
+                                key: foundCategory.key,
+                                category: category,
+                            };
+                        }
+                        return null;
+                    }).filter((category) => category !== null) as { key: string; category: string }[];
                     setAvailableCategories(uniqueCategories);
                     console.log("Available categories fetched successfully");
                 } else {
@@ -57,25 +64,61 @@ function GetMore({
                     setAvailableCategories([]);
                 }
             } catch (error) {
-                console.error("Error fetching available categories:", error);
+                console.error(
+                    "Error fetching available categories:",
+                    error
+                );
                 setAvailableCategories([]);
             }
         };
 
-        fetchAvailableCategories().catch(error => console.error("Error in fetchAvailableCategories:", error));
+        const fetchBookmarks = async () => {
+            try {
+                const response = await axios.get<BookmarkDTO[]>(`api/bookmarks/getAll`);
+                if (response.data && Array.isArray(response.data)) {
+                    setBookmarks(response.data);
+                    console.log("Bookmarks fetched successfully");
+                } else {
+                    console.error("Invalid data received from the API:", response.data);
+                    setBookmarks([]);
+                }
+            } catch (error) {
+                console.error("Error fetching bookmarks:", error);
+                setBookmarks([]);
+            }
+        };
+
+        fetchAvailableCategories().catch((error) =>
+            console.error("Error in fetchAvailableCategories:", error)
+        );
+        fetchBookmarks().catch((error) =>
+            console.error("Error in fetchBookmarks:", error)
+        );
     }, [destination]);
 
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
+        console.log("Dropdown Index:", dropdownIndex); // Fügen Sie diese Zeile hinzu
+        console.log("Bookmark DTO:", {
+            url,
+            destination,
+            dropdownCategory,
+            dropdownIndex,
+            tags,
+            title,
+        });
 
         const showErrorNotification = (message: string) => {
             alert(message);
         };
 
+        const adjustedDropdownIndex = adjustDropdownIndex(dropdownIndex, bookmarks);
+
         const newBookmarkDTO = {
             url: url,
             destination: destination,
             dropdownCategory: dropdownCategory || newCategory,
+            dropdownIndex: adjustedDropdownIndex,
             tags: tags.split(/[, .#/]+/),
             title: title,
         };
@@ -87,6 +130,7 @@ function GetMore({
                 setDestination("");
                 setDropdownCategory("");
                 setNewCategory("");
+                setDropdownIndex("");
                 setTags("");
                 setTitle("");
                 setShowSuccessPopup(true);
@@ -100,8 +144,38 @@ function GetMore({
             });
     };
 
+    // Function to adjust dropdownIndex to ensure uniqueness
+    const adjustDropdownIndex = (index: string, bookmarks: BookmarkDTO[]): string => {
+        // Überprüfen, ob der bereitgestellte Index bereits verwendet wird
+        const isIndexUsed = bookmarks.some(bookmark => bookmark.dropdownIndex === index);
+
+        // Wenn der Index bereits verwendet wird, die anderen Indexnummern entsprechend anpassen
+        if (isIndexUsed) {
+            const usedIndexes = bookmarks
+                .filter(bookmark => bookmark.dropdownIndex !== index) // Exclude the current bookmark
+                .map(bookmark => parseInt(bookmark.dropdownIndex))
+                .sort((a, b) => a - b);
+
+            let newIndex = parseInt(index);
+            for (const usedIndex of usedIndexes) {
+                if (newIndex <= usedIndex) newIndex++; // Increment newIndex for every usedIndex greater than or equal to newIndex
+            }
+
+            // Aktualisiere die Indexnummern aller nachfolgenden Elemente
+            for (const bookmark of bookmarks) {
+                if (parseInt(bookmark.dropdownIndex) >= newIndex) {
+                    bookmark.dropdownIndex = (parseInt(bookmark.dropdownIndex) + 1).toString();
+                }
+            }
+
+            return newIndex.toString();
+        }
+        // Wenn der Index nicht verwendet wird, einfach den bereitgestellten Index zurückgeben
+        return index;
+    };
+
     return (
-        <div className={`get-more ${show ? 'show' : 'hide'} dropdown-container`}>
+        <div className={`get-more ${show ? "show" : "hide"} dropdown-container`}>
             <Button
                 data-tooltip="Close window"
                 className={"close-btn-GetMore tooltip-btn tt_n"}
@@ -109,9 +183,11 @@ function GetMore({
                 aria-label="Close window"
                 name="Close"
             >
-                <IoClose title={"close"} className={"close-icon"}/>
+                <IoClose title={"close"} className={"close-icon"} />
             </Button>
-            <p className={"instructions engrave"}>A NEW BOOKMARK? ...fill in these fields!</p>
+            <p className={"instructions engrave"}>
+                A NEW BOOKMARK? ...fill in these fields!
+            </p>
             <Form className={"form-proportions"} onSubmit={handleSubmit}>
                 <InputGroup className="container-fluid md-3 d-flex justify-content-between">
                     <Form.Label className={"input-label"}>URL</Form.Label>
@@ -133,7 +209,9 @@ function GetMore({
                         <option value="external">EXTERNAL: opens in a new browser tab</option>
                         <option value="ins_pro">INSPIRATIONS ~ PROJECTS</option>
                         <option value="snip_gen">SNIPPETS ~ GENERATORS</option>
-                        <option value="development">DEVELOPMENT ~ EDITING ~ CREATION</option>
+                        <option value="development">
+                            DEVELOPMENT ~ EDITING ~ CREATION
+                        </option>
                         <option value="know_guide">KNOWLEDGE ~ GUIDELINES</option>
                         <option value="lip_doc">LIBRARIES ~ DOCUMENTATIONS</option>
                         <option value="project">PROJECT MANAGEMENT ~ TOOLS</option>
@@ -160,7 +238,15 @@ function GetMore({
                         placeholder="create a new dropdown category"
                         aria-label="create a new dropdown category"
                         value={newCategory}
-                        onChange={(event) => setNewCategory(event.target.value)}  // Füge diese Zeile hinzu
+                        onChange={(event) => setNewCategory(event.target.value)}
+                    />
+                    <Form.Label className={"input-label"}>POSITION</Form.Label>
+                    <Form.Control
+                        className="form-control-custom shadow--inset"
+                        placeholder="define the position"
+                        aria-label="define the position"
+                        value={dropdownIndex}
+                        onChange={(event) => setDropdownIndex(event.target.value)}
                     />
                     <Form.Label className={"input-label"}>IDENTIFIER</Form.Label>
                     <Form.Control
@@ -179,9 +265,11 @@ function GetMore({
                         onChange={(event) => setTags(event.target.value)}
                     />
                 </InputGroup>
-                <Button data-tooltip={"Save your bookmark"}
-                        type="submit"
-                        className="submit save-bookmark-btn tooltip-btn tt_n">
+                <Button
+                    data-tooltip={"Save your bookmark"}
+                    type="submit"
+                    className="submit save-bookmark-btn tooltip-btn tt_n"
+                >
                     Save your bookmark
                 </Button>
             </Form>

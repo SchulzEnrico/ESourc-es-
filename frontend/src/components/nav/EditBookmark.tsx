@@ -129,6 +129,15 @@ function EditBookmark({
                         onFocus={(e) => e.target.select()}
                         onChange={(e) => handleInputChange('dropdownCategory', e.target.value)}  // Füge diese Zeile hinzu
                     />
+                    <Form.Label className={"input-label"}>POSITION</Form.Label>
+                    <Form.Control
+                        className="form-control-custom shadow--inset"
+                        type="text"
+                        aria-label="define the position"
+                        value={selectedBookmark?.dropdownIndex ?? ''}
+                        onFocus={(e) => e.target.select()}
+                        onChange={(e) => handleInputChange( 'dropdownIndex', e.target.value)}
+                    />
                     <Form.Label className={"input-label"}>IDENTIFIER</Form.Label>
                     <Form.Control
                         className={"form-control-custom shadow--inset"}

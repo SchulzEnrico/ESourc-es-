@@ -11,6 +11,7 @@ public record BookmarkDTO(
         String url,
         String destination,
         String dropdownCategory,
+        String dropdownIndex,
         String title,
         List<String> tags
 

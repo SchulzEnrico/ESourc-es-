@@ -16,8 +16,12 @@
 
 .add-icon {
     scale: 1.5;
-    Color: var(--color-5);
+    Color: var(--color-4);
+    text-shadow: 1px -1px 0 var(--color-2),
+    -1px 0 0 var(--color-3-2),
+    -2px -1px 0 var(--color-41);
 }
+
 .close-icon {
     margin: .15rem 0;
     height: 30px;

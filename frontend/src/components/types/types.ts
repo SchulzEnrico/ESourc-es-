@@ -7,6 +7,7 @@ export type BookmarkDTO = {
     destination: string;
     target: string;
     dropdownCategory: string;
+    dropdownIndex: string;
     title: string;
     tags?: string[];
     links: LinkParameters[];
@@ -16,6 +17,8 @@ export type LinkParameters = {
     _id: string;
     url: string;
     destination: string;
+    dropdownCategory: string;
+    dropdownIndex: string;
     target: string;
     name: string;
     tags: string[];

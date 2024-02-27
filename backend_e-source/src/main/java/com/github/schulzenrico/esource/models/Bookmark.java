@@ -21,6 +21,8 @@ public record Bookmark(
         String destination,
         @Field ("bookmark_dropdownCategory")
         String dropdownCategory,
+        @Field ("bookmark_dropdownIndex")
+        String dropdownIndex,
         @Field ("bookmark_tags")
         List<String> tags,
         @Field ("bookmark_title")
