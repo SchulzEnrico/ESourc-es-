@@ -49,39 +49,56 @@ const Sitemap: React.FC<SitemapProps> = ({ show, onHide, bookmarks }) => {
             groupedBookmarks[destination][category].push(bookmark);
         });
 
+        // Sort bookmarks by dropdownIndex or move bookmarks without dropdownIndex to the end
+        Object.values(groupedBookmarks).forEach(categories => {
+            Object.values(categories).forEach(bookmarks => {
+                bookmarks.sort((a, b) => {
+                    if (!a.dropdownIndex && !b.dropdownIndex) {
+                        return 0; // Keep the order unchanged if both bookmarks don't have dropdownIndex
+                    } else if (!a.dropdownIndex) {
+                        return 1; // Move bookmarks without dropdownIndex to the end
+                    } else if (!b.dropdownIndex) {
+                        return -1; // Move bookmarks without dropdownIndex to the end
+                    } else {
+                        return parseInt(a.dropdownIndex) - parseInt(b.dropdownIndex); // Sort by dropdownIndex if both have it
+                    }
+                });
+            });
+        });
+
         return (
             <div className="table-content shadow--ridge">
                 <table className={"style-table"}>
                     <tbody>
-                {Object.entries(groupedBookmarks).map(([destination, categories]) => (
-                    <React.Fragment key={destination}>
-                        <tr className="destination-marker emboss">
-                            <th colSpan={4}>{destination}</th>
-                        </tr>
-                        {Object.entries(categories).map(([category, bookmarks]) => (
-                            <React.Fragment key={`${destination}-${category}`}>
-                                <tr>
-                                    <th colSpan={4} className="sitemap-dropdownCategory-marker emboss">{category}</th>
-                                </tr>
-                                {bookmarks.map((bookmark) => (
-                                    <tr key={bookmark._id} className="category-group">
-                                        <td>
-                                            <table className="bookmark-group">
-                                                <tbody>
-                                                <tr>
-                                                    <td>{bookmark.title}</td>
-                                                    <td>{bookmark.tags?.join(", ")}</td>
-                                                    <td onClick={(e) => selectText(e.currentTarget as HTMLElement)}>{bookmark.url}</td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </td>
+                    {Object.entries(groupedBookmarks).map(([destination, categories]) => (
+                        <React.Fragment key={destination}>
+                            <tr className="destination-marker emboss">
+                                <th colSpan={4}>{destination}</th>
+                            </tr>
+                            {Object.entries(categories).map(([category, bookmarks]) => (
+                                <React.Fragment key={`${destination}-${category}`}>
+                                    <tr>
+                                        <th colSpan={4} className="sitemap-dropdownCategory-marker emboss">{category}</th>
                                     </tr>
-                                ))}
-                            </React.Fragment>
-                        ))}
-                    </React.Fragment>
-                ))}
+                                    {bookmarks.map((bookmark) => (
+                                        <tr key={bookmark._id}>
+                                            <td>
+                                                <table className="bookmark-group shadow--inset">
+                                                    <tbody className="category-group shadow--sunken">
+                                                    <tr>
+                                                        <td className="bookmark-item engrave">{bookmark.title}</td>
+                                                        <td className="bookmark-item emboss">{bookmark.tags?.join(", ")}</td>
+                                                        <td className="bookmark-item" onClick={(e) => selectText(e.currentTarget as HTMLElement)}>{bookmark.url}</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </React.Fragment>
+                            ))}
+                        </React.Fragment>
+                    ))}
                     </tbody>
                 </table>
             </div>

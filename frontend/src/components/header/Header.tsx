@@ -27,7 +27,7 @@ const Header: React.FC<HeaderProps> = ({ setShowSitemap }) => {
             <div className={"search-area"}>
                 <Button
                     data-tooltip={"Show sitemap"}
-                    className={"tooltip-btn tt_e"}
+                    className={"sitemap-btn tooltip-btn tt_e"}
                     onClick={() => setShowSitemap(true)}
                 >
                     <FaSitemap />

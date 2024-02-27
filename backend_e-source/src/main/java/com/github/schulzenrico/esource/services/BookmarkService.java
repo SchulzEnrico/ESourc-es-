@@ -9,6 +9,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -20,6 +21,7 @@ public class BookmarkService {
                 .url(bookmarkDTO.url())
                 .destination(bookmarkDTO.destination())
                 .dropdownCategory(bookmarkDTO.dropdownCategory())
+                .dropdownIndex(bookmarkDTO.dropdownIndex())
                 .tags(bookmarkDTO.tags())
                 .title(bookmarkDTO.title())
                 .build());
@@ -32,13 +34,12 @@ public class BookmarkService {
                 .toList();
     }
 
-    public List<String> getAllAvailableCategories() {
-        List<BookmarkDTO> allBookmarks = getAllBookmarksAsDTO();
-        Set<String> categoriesSet = new HashSet<>();
-        for (BookmarkDTO bookmark : allBookmarks) {
-            categoriesSet.add(bookmark.dropdownCategory());
-        }
-        return new ArrayList<>(categoriesSet);
+    public List<BookmarkDTO> getAllBookmarksSortedByDropdownIndex() {
+        List<Bookmark> bookmarks = bookmarkRepository.findAll();
+        return bookmarks.stream()
+                .map(this::convertToDTO)
+                .sorted(Comparator.comparing(BookmarkDTO::dropdownIndex))
+                .collect(Collectors.toList());
     }
 
     private BookmarkDTO convertToDTO(Bookmark bookmark) {
@@ -47,6 +48,7 @@ public class BookmarkService {
                 .url(bookmark.url())
                 .destination(bookmark.destination())
                 .dropdownCategory(bookmark.dropdownCategory())
+                .dropdownIndex(bookmark.dropdownIndex())
                 .tags(bookmark.tags())
                 .title(bookmark.title())
                 .build();
@@ -65,6 +67,7 @@ public class BookmarkService {
     private static Bookmark getBookmark(BookmarkDTO updatedBookmarkDTO, Bookmark existingBookmark, String updatedUrl) {
         String updatedDestination = updatedBookmarkDTO.destination();
         String updatedDropdownCategory = updatedBookmarkDTO.dropdownCategory();
+        String updatedDropdownIndex = updatedBookmarkDTO.dropdownIndex();
         List<String> updatedTags = updatedBookmarkDTO.tags();
         String updatedTitle = updatedBookmarkDTO.title();
 
@@ -72,6 +75,7 @@ public class BookmarkService {
                 .withUrl(updatedUrl)
                 .withDestination(updatedDestination)
                 .withDropdownCategory(updatedDropdownCategory)
+                .withDropdownIndex(updatedDropdownIndex)
                 .withTags(updatedTags)
                 .withTitle(updatedTitle);
     }
