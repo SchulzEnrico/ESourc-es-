@@ -38,7 +38,7 @@ const Navigation: React.FC<NavigationProps> = ({onLinkClick,
 
     useEffect(() => {
         getAvailableCategories(); // Verwenden Sie die Funktion direkt, um die Kategorien abzurufen
-    }, [bookmarks]);
+    }, [bookmarks, getAvailableCategories]);
 
     const loadBookmarks = () => {
         axios.get<BookmarkDTO[]>('/api/bookmarks/getAll')

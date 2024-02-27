@@ -34,14 +34,6 @@ public class BookmarkService {
                 .toList();
     }
 
-    public List<BookmarkDTO> getAllBookmarksSortedByDropdownIndex() {
-        List<Bookmark> bookmarks = bookmarkRepository.findAll();
-        return bookmarks.stream()
-                .map(this::convertToDTO)
-                .sorted(Comparator.comparing(BookmarkDTO::dropdownIndex))
-                .collect(Collectors.toList());
-    }
-
     private BookmarkDTO convertToDTO(Bookmark bookmark) {
         return BookmarkDTO.builder()
                 .id(bookmark.id())
