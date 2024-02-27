@@ -14,6 +14,26 @@
     contrast(110%);
 }
 
+#sitemap-icon {
+    scale: 1.1;
+    margin: 2px 1px 0 1px;
+    color: var(--color-31);
+    opacity: .8;
+}
+
+#external-links-icon {
+    margin: 1px 0 0 1px;
+    color: var(--color-31);
+    opacity: .9;
+    scale: 1.05;
+}
+
+.panel-menu-icon {
+    margin: 3px 0 -2px 1px;
+    color: var(--color-31);
+    opacity: .7;
+}
+
 .add-icon {
     scale: 1.5;
     Color: var(--color-4);
@@ -54,12 +74,16 @@
 
 #timer-icon {
     scale: 1.5;
-    margin: 1px 1px 0 0;
+    margin: 3px 1px 0 0;
 }
 
 #google-icon {
     scale: 1.2;
-    margin: 2px 0 0 1px;
+    margin: 3px 0 -1px 1px;
+    opacity: .4;
+}
+#google-icon:hover {
+    opacity: .9;
 }
 
 #deepl-icon {
@@ -70,7 +94,7 @@
 
 #blackbox-icon {
     scale: 1.1;
-    margin: 1px 1px 0 1px;
+    margin: 3px 1px 0 1px;
 }
 
 #gemini-icon {
@@ -81,16 +105,16 @@
 
 #bing-icon {
     scale: .92;
-    margin: 0 0 0 1px;
+    margin: 1px 0 0 1px;
 }
 
 #openAI-icon  {
-    margin: 1px 1px 0 0;
+    margin: 2px 1px 0 1px;
 }
 
 #github-icon {
     scale: 1.1;
-    margin: 0 1px 0 0;
+    margin: 1px 1px 0 0;
 }
 
 .close-navigation-icon {
@@ -117,4 +141,23 @@
 
 #online-timer-icon {
     scale: 1.5;
+}
+
+.clear-display-icon,
+.previous-bookmark-icon,
+.next-bookmark-icon {
+    color: var(--color-31);
+}
+.clear-display-icon {
+    margin: 2px 0 0 1px;
+    opacity: .7;
+}
+
+#external-links-icon:hover,
+#sitemap-icon:hover,
+.previous-bookmark-icon:hover,
+.next-bookmark-icon:hover ,
+.panel-menu-icon:hover,
+.clear-display-icon:hover {
+    color: var(--color-41);
 }

@@ -38,7 +38,7 @@ const Navigation: React.FC<NavigationProps> = ({onLinkClick,
 
     useEffect(() => {
         getAvailableCategories(); // Verwenden Sie die Funktion direkt, um die Kategorien abzurufen
-    }, [bookmarks]);
+    }, [bookmarks, getAvailableCategories]);
 
     const loadBookmarks = () => {
         axios.get<BookmarkDTO[]>('/api/bookmarks/getAll')
@@ -181,7 +181,7 @@ const Navigation: React.FC<NavigationProps> = ({onLinkClick,
                 id="dropdown-basic-button"
                 className={isExternal ? "external-links-btn tooltip-btn tt_w" : "panel-menu-btn tooltip-btn tt_n"}
                 data-tooltip={isExternal ? "External Links" : hoverText}
-                title={<>{isExternal ? <BsBookmarksFill/> : <TiThMenu/>}</>}
+                title={<>{isExternal ? <BsBookmarksFill id={"external-links-icon"}/> : <TiThMenu className={"panel-menu-icon"}/>}</>}
                 drop={dropDirection}
                 show={dropdownOpen}
                 onMouseEnter={handleMouseEnter}

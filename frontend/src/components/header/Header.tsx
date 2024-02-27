@@ -30,7 +30,7 @@ const Header: React.FC<HeaderProps> = ({ setShowSitemap }) => {
                     className={"sitemap-btn tooltip-btn tt_e"}
                     onClick={() => setShowSitemap(true)}
                 >
-                    <FaSitemap />
+                    <FaSitemap id={"sitemap-icon"}/>
                 </Button>
                 <form id={"google-search"} onSubmit={handleSearchSubmit}>
                     <input className={"search-input shadow--inset"}
@@ -40,7 +40,7 @@ const Header: React.FC<HeaderProps> = ({ setShowSitemap }) => {
                            placeholder="Google search..."
                     />
                     <button data-tooltip={"Search on Google"}
-                            className={"footer-btn google-btn tooltip-btn tt_w"}
+                            className={"google-btn tooltip-btn tt_w"}
                             type="submit">
                         <FcGoogle id={"google-icon"} />
                     </button>

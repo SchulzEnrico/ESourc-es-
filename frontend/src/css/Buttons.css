@@ -31,7 +31,7 @@
 
 button {
     border-radius: 25px;
-    border: 2px solid var(--color-0);
+    border: 2px solid var(--color-01);
     margin: 0 3px;
     padding: .3em .5em;
     font-size: medium;
@@ -221,7 +221,7 @@ button:hover {
 
 .footer-btn {
     margin: 1px 5px 0 0;
-    padding: 0;
+    padding: 3px 0 0 1px;
     width: 33px;
     height: 33px;
     border: solid 2px var(--color-01);
@@ -398,7 +398,7 @@ button:hover {
 .panel-menu-btn {
     position: absolute;
     left: -5px;
-    bottom: 2px;
+    bottom: 6px;
     padding: 1px 0 0 0;
     width: 32px;
     height: 30px;
@@ -406,7 +406,7 @@ button:hover {
 }
 
 .development .panel-menu-btn {
-    bottom: 2px;
+    bottom: 6px;
 }
 
 .iframe-handler-btn:hover,
