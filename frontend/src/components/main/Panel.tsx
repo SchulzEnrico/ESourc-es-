@@ -83,7 +83,7 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const newBookmark: BookmarkDTO = { _id: 'some-id', url: inputLink, destination: '', target: '', dropdownCategory: '', title: '', links: [] };
+        const newBookmark: BookmarkDTO = { _id: 'some-id', url: inputLink, destination: '', target: '', dropdownCategory: '', dropdownIndex: '', title: '', links: [] };
         setBookmarks([...bookmarks, newBookmark]);
         setCurrentBookmarkIndex(bookmarks.length);
         openInIframe(inputLink, '');
@@ -118,7 +118,7 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
                     id={"clear-iframe-btn"}
                     className={"clear-iframe-btn panel-menu-btn tooltip-btn tt_e"}
                     onClick={clearIframe}>
-                <AiFillEyeInvisible id={'clear-display-icon'}/>
+                <AiFillEyeInvisible className={'clear-display-icon'}/>
             </button>
             <div className={"loaded-bookmark-history"}>
                 <div className={"loaded-bookmark-element"}>
@@ -148,6 +148,7 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
                             destination: '',
                             target: '',
                             dropdownCategory: '',
+                            dropdownIndex: '',
                             title,
                             links: []
                         };
@@ -206,12 +207,12 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
                     data-tooltip={"Previous bookmark"}
                     className={"iframe-handler-btn tooltip-btn tt_w"}
                     onClick={() => navigateBookmarks('prior')}>
-                    <FaArrowLeft/>
+                    <FaArrowLeft className={"previous-bookmark-icon"}/>
                 </button>
                 <button data-tooltip={"Next bookmark"}
                         className={"iframe-handler-btn next-bookmark-btn tooltip-btn tt_w"}
                         onClick={() => navigateBookmarks('next')}>
-                    <FaArrowRight/>
+                    <FaArrowRight className={"next-bookmark-icon"}/>
                 </button>
             </div>
             <button
