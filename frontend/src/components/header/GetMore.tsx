@@ -17,9 +17,7 @@ function GetMore({
     const [title, setTitle] = useState("");
     const [showSuccessPopup, setShowSuccessPopup] = useState(false);
     const [newCategory, setNewCategory] = useState("");
-    const [availableCategories, setAvailableCategories] = useState<
-        { key: string; category: string }[]
-    >([]);
+    const [availableCategories, setAvailableCategories] = useState<{ key: string; category: string }[]>([]);
     const [bookmarks, setBookmarks] = useState<BookmarkDTO[]>([]);
 
     useEffect(() => {
@@ -96,6 +94,7 @@ function GetMore({
         );
     }, [destination]);
 
+    // Ändern Sie die handleSubmit-Funktion, um dropdownCategory basierend auf newCategory zu setzen
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
         console.log("Dropdown Index:", dropdownIndex); // Fügen Sie diese Zeile hinzu
@@ -117,7 +116,7 @@ function GetMore({
         const newBookmarkDTO = {
             url: url,
             destination: destination,
-            dropdownCategory: dropdownCategory || newCategory,
+            dropdownCategory: newCategory || dropdownCategory, // Hier ändern
             dropdownIndex: adjustedDropdownIndex,
             tags: tags.split(/[, .#/]+/),
             title: title,
@@ -143,6 +142,17 @@ function GetMore({
                 }
             });
     };
+
+    // Setzen Sie den Dropdown-Wert basierend auf vorhandener Kategorie oder neuer Kategorie
+    useEffect(() => {
+        if (availableCategories.some(category => category.category === dropdownCategory)) {
+            // Wenn die aktuelle Dropdown-Kategorie eine vorhandene Kategorie ist
+            setDropdownCategory(dropdownCategory);
+        } else {
+            // Wenn die aktuelle Dropdown-Kategorie eine neue Kategorie ist
+            setDropdownCategory(newCategory);
+        }
+    }, [availableCategories, dropdownCategory, newCategory]);
 
     // Function to adjust dropdownIndex to ensure uniqueness
     const adjustDropdownIndex = (index: string, bookmarks: BookmarkDTO[]): string => {
@@ -209,9 +219,7 @@ function GetMore({
                         <option value="external">EXTERNAL: opens in a new browser tab</option>
                         <option value="ins_pro">INSPIRATIONS ~ PROJECTS</option>
                         <option value="snip_gen">SNIPPETS ~ GENERATORS</option>
-                        <option value="development">
-                            DEVELOPMENT ~ EDITING ~ CREATION
-                        </option>
+                        <option value="development">DEVELOPMENT ~ EDITING ~ CREATION</option>
                         <option value="know_guide">KNOWLEDGE ~ GUIDELINES</option>
                         <option value="lip_doc">LIBRARIES ~ DOCUMENTATIONS</option>
                         <option value="project">PROJECT MANAGEMENT ~ TOOLS</option>
@@ -223,7 +231,14 @@ function GetMore({
                         className="form-control-custom select-field shadow--inset"
                         aria-label="pick a existing dropdown category"
                         value={dropdownCategory}
-                        onChange={(event) => setDropdownCategory(event.target.value)}
+                        onChange={(event) => {
+                            const selectedCategory = event.target.value;
+                            if (availableCategories.some(category => category.category === selectedCategory)) {
+                                setDropdownCategory(selectedCategory);
+                            } else {
+                                setNewCategory(selectedCategory);
+                            }
+                        }}
                     >
                         <option>pick a existing dropdown category</option>
                         {availableCategories.map((category) => (
@@ -232,6 +247,7 @@ function GetMore({
                             </option>
                         ))}
                     </Form.Control>
+
                     <Form.Label className={"input-label"}>NEW CATEGORY</Form.Label>
                     <Form.Control
                         className="form-control-custom shadow--inset"
