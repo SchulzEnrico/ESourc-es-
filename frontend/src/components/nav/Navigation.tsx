@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import axios from 'axios';
 import {Button, DropdownButton, Alert, Modal} from 'react-bootstrap';
 import '../../index.css';
@@ -26,7 +26,7 @@ const Navigation: React.FC<NavigationProps> = ({onLinkClick,
     const [hideTimeout, setHideTimeout] = useState<NodeJS.Timeout | null>(null);
 
 
-    const getAvailableCategories = (): string[] => {
+    const getAvailableCategories = useCallback((): string[] => {
         return Array.from(
             new Set(
                 bookmarks
@@ -34,7 +34,7 @@ const Navigation: React.FC<NavigationProps> = ({onLinkClick,
                     .map((bookmark) => bookmark.dropdownCategory)
             )
         );
-    };
+    }, [bookmarks, isExternal, panelName]);
 
     useEffect(() => {
         getAvailableCategories(); // Verwenden Sie die Funktion direkt, um die Kategorien abzurufen
@@ -89,20 +89,18 @@ const Navigation: React.FC<NavigationProps> = ({onLinkClick,
         tempBookmark.current = updatedBookmark;
     };
 
-    const handleDeleteBookmark = (id: string) => {
+    const handleDeleteBookmark = async (id: string) => {
         console.log(`Deleting bookmark with ID ${id}`);
-        return axios
-            .delete(`/api/bookmarks/delete/${id}`)
-            .then(response => {
-                console.log('Bookmark deleted successfully:', response.data);
-                setShowSuccessPopup(true);
-                loadBookmarks();
-                setTimeout(() => setShowSuccessPopup(false), 1500);
-            })
-            .catch(error => {
-                console.error('Error deleting bookmark:', error);
-                // Hier können Sie auch einen Fehler-Popup anzeigen
-            });
+        try {
+            const response = await axios
+                .delete(`/api/bookmarks/delete/${id}`);
+            console.log('Bookmark deleted successfully:', response.data);
+            setShowSuccessPopup(true);
+            loadBookmarks();
+            setTimeout(() => setShowSuccessPopup(false), 1500);
+        } catch (error) {
+            console.error('Error deleting bookmark:', error);
+        }
     };
 
     useEffect(() => {

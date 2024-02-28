@@ -1,26 +1,50 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { Button, Modal } from "react-bootstrap";
 import { IoClose } from "react-icons/io5";
 import { BookmarkDTO, DestinationOrder, SitemapProps } from "../types/types.ts";
 import '../../css/Sitemap.css';
 
-const Sitemap: React.FC<SitemapProps> = ({ show, onHide, bookmarks }) => {
-    const destinationOrder: DestinationOrder = {
-        "external": '< EXTERNAL >',
-        'ins_pro': '< INSPIRATIONS  /  PROJECTS >',
-        'snip_gen': '< SNIPPETS  /  GENERATORS >',
-        'development': '< DEVELOPMENT  ~  EDITING  ~  CREATION >',
-        'know_guide': '< KNOWLEDGE  /  GUIDELINES >',
-        'lip_doc': '< LIBRARIES  /  DOCUMENTATIONS >',
-        'project': '< PROJECT MANAGEMENT  /  TOOLS >',
-        'personal': '< PERSONALLY  /  INDIVIDUAL >',
-    };
+const destinationOrder: DestinationOrder = {
+    "external": '< EXTERNAL >',
+    'ins_pro': '< INSPIRATIONS  /  PROJECTS >',
+    'snip_gen': '< SNIPPETS  /  GENERATORS >',
+    'development': '< DEVELOPMENT  ~  EDITING  ~  CREATION >',
+    'know_guide': '< KNOWLEDGE  /  GUIDELINES >',
+    'lip_doc': '< LIBRARIES  /  DOCUMENTATIONS >',
+    'project': '< PROJECT MANAGEMENT  /  TOOLS >',
+    'personal': '< PERSONALLY  /  INDIVIDUAL >',
+};
 
-    const sortedBookmarks = (bookmarks as BookmarkDTO[]).sort((a, b) => {
-        const orderA = Object.keys(destinationOrder).indexOf(a.destination);
-        const orderB = Object.keys(destinationOrder).indexOf(b.destination);
-        return orderA - orderB;
+const createBookmarkIndex = (bookmarks: BookmarkDTO[]) => {
+    const index: { [destination: string]: { [category: string]: BookmarkDTO[] } } = {};
+
+    // Verwende destinationOrder, um die Reihenfolge der Destinationen festzulegen
+    Object.keys(destinationOrder).forEach(destinationKey => {
+        const destination = destinationOrder[destinationKey];
+        index[destination] = {};
     });
+
+    bookmarks.forEach((bookmark) => {
+        const destination = destinationOrder[bookmark.destination];
+        const category = bookmark.dropdownCategory;
+        if (!index[destination]) {
+            index[destination] = {};
+        }
+        if (!index[destination][category]) {
+            index[destination][category] = [];
+        }
+        index[destination][category].push(bookmark);
+    });
+
+    return index;
+};
+
+const Sitemap: React.FC<SitemapProps> = ({ show, onHide, bookmarks }) => {
+    const [bookmarkIndex, setBookmarkIndex] = useState(createBookmarkIndex(bookmarks));
+
+    useEffect(() => {
+        setBookmarkIndex(createBookmarkIndex(bookmarks));
+    }, [bookmarks]);
 
     function selectText(element: HTMLElement | null) {
         if (!element) return;
@@ -36,41 +60,11 @@ const Sitemap: React.FC<SitemapProps> = ({ show, onHide, bookmarks }) => {
     }
 
     const renderSitemapItems = () => {
-        const groupedBookmarks: { [destination: string]: { [category: string]: BookmarkDTO[] } } = {};
-        sortedBookmarks.forEach((bookmark) => {
-            const destination = destinationOrder[bookmark.destination];
-            const category = bookmark.dropdownCategory;
-            if (!groupedBookmarks[destination]) {
-                groupedBookmarks[destination] = {};
-            }
-            if (!groupedBookmarks[destination][category]) {
-                groupedBookmarks[destination][category] = [];
-            }
-            groupedBookmarks[destination][category].push(bookmark);
-        });
-
-        // Sort bookmarks by dropdownIndex or move bookmarks without dropdownIndex to the end
-        Object.values(groupedBookmarks).forEach(categories => {
-            Object.values(categories).forEach(bookmarks => {
-                bookmarks.sort((a, b) => {
-                    if (!a.dropdownIndex && !b.dropdownIndex) {
-                        return 0; // Keep the order unchanged if both bookmarks don't have dropdownIndex
-                    } else if (!a.dropdownIndex) {
-                        return 1; // Move bookmarks without dropdownIndex to the end
-                    } else if (!b.dropdownIndex) {
-                        return -1; // Move bookmarks without dropdownIndex to the end
-                    } else {
-                        return parseInt(a.dropdownIndex) - parseInt(b.dropdownIndex); // Sort by dropdownIndex if both have it
-                    }
-                });
-            });
-        });
-
         return (
             <div className="table-content shadow--ridge">
                 <table className={"style-table"}>
                     <tbody>
-                    {Object.entries(groupedBookmarks).map(([destination, categories]) => (
+                    {Object.entries(bookmarkIndex).map(([destination, categories]) => (
                         <React.Fragment key={destination}>
                             <tr className="destination-marker emboss">
                                 <th colSpan={4}>{destination}</th>
@@ -78,7 +72,8 @@ const Sitemap: React.FC<SitemapProps> = ({ show, onHide, bookmarks }) => {
                             {Object.entries(categories).map(([category, bookmarks]) => (
                                 <React.Fragment key={`${destination}-${category}`}>
                                     <tr>
-                                        <th colSpan={4} className="sitemap-dropdownCategory-marker emboss">{category}</th>
+                                        <th colSpan={4}
+                                            className="sitemap-dropdownCategory-marker emboss">{category}</th>
                                     </tr>
                                     {bookmarks.map((bookmark) => (
                                         <tr key={bookmark._id}>
@@ -88,7 +83,8 @@ const Sitemap: React.FC<SitemapProps> = ({ show, onHide, bookmarks }) => {
                                                     <tr>
                                                         <td className="bookmark-item engrave">{bookmark.title}</td>
                                                         <td className="bookmark-item emboss">{bookmark.tags?.join(", ")}</td>
-                                                        <td className="bookmark-item" onClick={(e) => selectText(e.currentTarget as HTMLElement)}>{bookmark.url}</td>
+                                                        <td className="bookmark-item"
+                                                            onClick={(e) => selectText(e.currentTarget as HTMLElement)}>{bookmark.url}</td>
                                                     </tr>
                                                     </tbody>
                                                 </table>
@@ -117,13 +113,16 @@ const Sitemap: React.FC<SitemapProps> = ({ show, onHide, bookmarks }) => {
                 <div className="sitemap-header-headline engrave">
                     Sitemap
                 </div>
-                <Button className="sitemap-close-btn" variant="secondary" onClick={onHide}>
-                    <IoClose title="close" className="close-icon" />
+                <Button className="sitemap-close-btn"
+                        variant="secondary"
+                        onClick={onHide}>
+                    <IoClose title="close"
+                             className="close-icon"/>
                 </Button>
             </Modal.Header>
             <div className="table-border modal-scroll-body">
                 <Modal.Body>
-                        {renderSitemapItems()}
+                    {renderSitemapItems()}
                 </Modal.Body>
             </div>
         </Modal>
