@@ -143,11 +143,10 @@ function GetMore({
             });
     };
 
-    // Setzen Sie den Dropdown-Wert basierend auf vorhandener Kategorie oder neuer Kategorie
     useEffect(() => {
         if (availableCategories.some(category => category.category === dropdownCategory)) {
             // Wenn die aktuelle Dropdown-Kategorie eine vorhandene Kategorie ist
-            setDropdownCategory(dropdownCategory);
+            setDropdownCategory(existingCategory => existingCategory);
         } else {
             // Wenn die aktuelle Dropdown-Kategorie eine neue Kategorie ist
             setDropdownCategory(newCategory);
