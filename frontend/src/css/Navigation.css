@@ -66,6 +66,13 @@ ul li {
     margin: 0;
     padding-left: 15px;
 }
+.navigation-category.engrave {
+    background-color: var(--color-0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 1px 1px 1px var(--color-2);
+}
 
 .nav-group.dropdown-container {
     display: flex;

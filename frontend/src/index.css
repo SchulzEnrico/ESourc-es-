@@ -225,8 +225,8 @@ padding: 15px;
   max-width: 80%;
 }
 .timer .form-control-custom.select-field{
-    min-width: 57%;
-    max-width: 57%;
+  min-width: 57%;
+  max-width: 57%;
   margin-bottom: 1rem;
 }
 

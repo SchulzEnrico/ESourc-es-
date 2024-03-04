@@ -23,8 +23,6 @@ const Header: React.FC<HeaderProps> = ({ setShowSitemap }) => {
         <header>
             <div id={"heading"}>
                 <h1 className={"modal-{sm}"}><span className={"h1-letters"}>Sourc</span><span className={"header-brackets"}>(</span><span className={"h1-letters es"}>és</span><span className={"header-brackets"}>)</span></h1>
-            </div>
-            <div className={"search-area"}>
                 <Button
                     data-tooltip={"Show sitemap"}
                     className={"sitemap-btn tooltip-btn tt_e"}
@@ -32,6 +30,10 @@ const Header: React.FC<HeaderProps> = ({ setShowSitemap }) => {
                 >
                     <FaSitemap id={"sitemap-icon"}/>
                 </Button>
+
+            </div>
+            <div className={"search-area"}>
+
                 <form id={"google-search"} onSubmit={handleSearchSubmit}>
                     <input className={"search-input shadow--inset"}
                            type="text"

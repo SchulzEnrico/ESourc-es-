@@ -184,7 +184,7 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
                     <button data-tooltip={"Copy to clipboard"}
                             className={"iframe-handler-btn copy-to-clipboard-btn tooltip-cont tt_n"}
                             onClick={handleCopyToClipboard}>
-                        <HiOutlineClipboardCopy id={"copy-to-clipboard-icon"}/>
+                        <HiOutlineClipboardCopy className={"copy-to-clipboard-icon"}/>
                     </button>
                 </div>
             </div>
@@ -219,7 +219,7 @@ const Panel: React.FC<PanelProps> = ({ className, width }) => {
                 data-tooltip={"Toggle ruler"}
                 className={"iframe-handler-btn ruler-btn tooltip-btn tt_n"}
                 onClick={() => setShowRuler(!showRuler)}>
-                <LuRuler id={"ruler-icon"}/>
+                <LuRuler className={"ruler-icon"}/>
             </button>
         </Container>
     );
