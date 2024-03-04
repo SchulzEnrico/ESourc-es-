@@ -10,7 +10,7 @@ header {
     max-width: 98%;
     height: 55px;
     margin: 0 auto;
-    padding: 0 15px 0 0;
+    padding: 0 15px 0 15px;
     color: var(--color-4);
     background-color: var(--color-01);
     border-radius: 0 0 20px 20px;
