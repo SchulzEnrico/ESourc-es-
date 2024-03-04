@@ -74,7 +74,7 @@ footer {
 }
 
 .clock-time {
-    font-size: large;
+    font-size: larger;
     margin: -7px -3px;
     width: fit-content;
     padding: 0 6px;

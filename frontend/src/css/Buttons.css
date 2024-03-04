@@ -44,11 +44,29 @@ button {
     inset 3px 3px 3px var(--color-21);
 }
 
-.clear-iframe-btn:hover,
 button:hover {
     color: var(--color-4);
     box-shadow: inset -5px -5px 10px #470603,
     inset 5px 5px 10px #a20f08;
+}
+
+#reset-all-dimensions-btn {
+    position: fixed;
+    z-index: 999999;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    top: -13px;
+    left: 20px;
+    scale: 1.12;
+}
+
+.sitemap-btn {
+    position: relative;
+    height: 40px;
+    width: 40px;
+    scale: 0.85;
+    margin: 19px 0 0 -10px;
 }
 
 .sitemap-close-btn,
@@ -63,7 +81,8 @@ button:hover {
     color: var(--color-31);
 }
 .sitemap-close-btn {
-    position: absolute;
+    position: sticky;
+    color: var(--color-31);
     margin: -55px 0 0 0;
 }
 
@@ -358,17 +377,6 @@ button:hover {
     border-left: 2px solid var(--color-4);
 }
 
-#reset-all-dimensions-btn {
-    position: fixed;
-    z-index: 999999;
-    background-color: transparent;
-    border: none;
-    box-shadow: none;
-    top: -13px;
-    left: 20px;
-    scale: 1.12;
-}
-
 .clear-iframe-btn {
     position: absolute;
     padding: 1px 0 0 0;
@@ -442,19 +450,6 @@ button:hover {
     height: 35px;
     margin: 1rem auto;
 }
-
-.sitemap-close-btn {
-    position: sticky;
-    top: 0;
-    left: 0;
-    padding: 0;
-    width: 40px;
-    height: 40px;
-    border: solid 2px var(--color-01);
-    outline: solid 2px var(--color-22);
-    color: var(--color-31);
-}
-
 
 @media only screen and (max-width: 1050px) {
 

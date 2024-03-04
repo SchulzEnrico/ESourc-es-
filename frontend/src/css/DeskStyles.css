@@ -192,7 +192,7 @@ iframe {
     border: 2px solid #000000;
     margin: 0;
     top: 41px;
-    left: 50px;
+    left: 44px;
     width: 140px;
     filter: grayscale(100%)
     brightness(40%)
@@ -213,7 +213,7 @@ iframe {
     outline: 2px solid var(--color-00);
     margin: 0;
     top: 41px;
-    left: 37px;
+    left: 30px;
     width: 165px;
     z-index: 99993;
 }
